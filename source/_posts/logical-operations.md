@@ -1,7 +1,8 @@
 ---
 title: 逻辑运算符
 date: 2020-11-28
-banner_img: /img/bg.png
+banner_img: /img/java2.jpg
+index_img: /img/java.png
 tags: 
  - logic
 categories:

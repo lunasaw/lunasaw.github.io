@@ -3,7 +3,8 @@ title: Spring Aop切面编程
 date: 2020-06-01
 tags: 
  - aop
-banner_img: /img/aop.jpg
+banner_img: /img/spring.jpg
+index_img: /img/spring.png
 categories:
  - java
  - spring

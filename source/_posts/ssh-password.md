@@ -1,7 +1,8 @@
 ---
 title: ssh 配置教程
 date: 2020-05-05
-banner_img: /img/bg.png
+banner_img: /img/ssh.jpg
+index_img: /img/ssh.png
 tags: 
  - ssh
 categories:

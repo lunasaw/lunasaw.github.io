@@ -2,7 +2,7 @@
 title: mysql-DDL
 date: 2020-07-04
 banner_img: /img/mysql.jpg
-index_img: /img/mysql.jpg
+index_img: /img/mysql.png
 tags: 
  - mysql
 categories:

@@ -93,6 +93,10 @@ fun_features:
     # If true, loop animation
     loop: false
 
+  mouse_click: # 鼠标点击动效
+    enable: true
+    style: values # 目前设置两个值：values（价值观词汇） | love（爱心）
+
   # 为文章内容中的标题添加锚图标
   # Add an anchor icon to the title on the post page
   anchorjs:
@@ -102,7 +106,7 @@ fun_features:
     # Options: hover | always | touch
     visible: hover
     # Option：§ | # | ❡
-    icon: ""
+    icon: "❡"
 
   # 加载进度条
   # Progress bar when loading
@@ -204,7 +208,7 @@ custom_head: ''
 
 # 自定义底部 HTML 内容（位于 footer 上方），注意不要和 `post: custom` 配置冲突
 # Customize the HTML content at the bottom (located above the footer), be careful not to conflict with `post: custom`
-custom_html: "<script src='https://api.vvhan.com/api/snow'></script>"
+custom_html: "<script src='https://api.vvhan.com/api/snow'>"
 
 # 网页访问统计
 # Analysis of website visitors
@@ -809,7 +813,7 @@ tag:
   banner_img: /img/paper/tags.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
-  subtitle:
+  subtitle: "标签"
   tagcloud:
     min_font: 15
     max_font: 30
@@ -827,16 +831,17 @@ about:
   banner_img: /img/paper/about.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
-  subtitle:
-  avatar: /img/avatar.png
+  subtitle: "关于"
+  avatar: /img/panda.png
   name: "LUNA"
   intro: "LUNA STAER"
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
     - { class: "iconfont icon-github-fill", link: "https://github.com/czy1024", tip: "GitHub" }
-    - { class: "iconfont icon-douban-fill", link: "https://douban.com", tip: "豆瓣" }
-    - { class: "iconfont icon-wechat-fill", qrcode: "/img/favicon.png" }
+    # - { class: "iconfont icon-douban-fill", link: "https://douban.com", tip: "豆瓣" }
+    - { class: "iconfont icon-qq-fill", link: "tencent://message/?uin=1173282254&Site=&Menu=yes", tip: "QQ" }
+    - { class: "iconfont icon-wechat-fill", qrcode: "/img/weixin.jpg" }
 
 
 #---------------------------

@@ -2,6 +2,7 @@
 title: JAVA常用工具类
 date: 2020-04-04 
 banner_img: /img/java1.jpg
+index_img: /img/java.png
 tags: 
  - util
 categories:

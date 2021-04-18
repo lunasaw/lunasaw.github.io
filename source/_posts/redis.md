@@ -1,8 +1,8 @@
 ---
 title: redis
 date: 2021-01-04
-banner_img: /img/redis.jpg
-index_img: /img/redis.png
+banner_img: /img/redis.png
+index_img: /img/redis.jpg
 tags: 
  - redis
 categories:

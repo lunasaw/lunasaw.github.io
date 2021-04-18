@@ -1,7 +1,8 @@
 ---
 title: spring RestTemplate
 date: 2020-11-24
-banner_img: /img/bg.png
+banner_img: /img/spring.jpg
+index_img: /img/spring.png
 tags: 
  - RestTemplate
 categories:

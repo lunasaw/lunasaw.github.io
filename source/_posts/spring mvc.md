@@ -1,7 +1,8 @@
 ---
 title: springMVC
 date: 2020-04-02
-banner_img: /img/bg.png
+banner_img: /img/spring.jpg
+index_img: /img/spring.png
 tags: 
  - springmvc
 categories:

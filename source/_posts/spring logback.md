@@ -1,7 +1,8 @@
 ---
 title: SpringBoot + LogBack 配置
 date: 2020-05-31
-banner_img: /img/logback.jpg
+banner_img: /img/spring.jpg
+index_img: /img/spring.png
 tags: 
  - logBack
 categories:

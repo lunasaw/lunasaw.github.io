@@ -2,7 +2,7 @@
 title: 一个简单的反向代理Nginx
 date: 2020-07-27
 banner_img: /img/nginx.png
-index_img: /img/nginx.png
+index_img: /img/nginx.jpg
 tags: 
  - nginx
 categories:

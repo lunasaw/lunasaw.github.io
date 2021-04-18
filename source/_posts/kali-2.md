@@ -2,6 +2,7 @@
 title: 定制 Kali Linux
 date: 2020-09-19
 banner_img: /img/kaili.jpg
+index_img: /img/kali.jpg
 tags: 
  - kaili
 categories:

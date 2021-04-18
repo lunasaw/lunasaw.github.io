@@ -1,8 +1,8 @@
 ---
 title: linux crontabs
 date: 2020-12-24
-banner_img: /img/linux.png
-index_img: /img/linux.png
+banner_img: /img/linux.jpg
+index_img: /img/linux.jpg
 tags: 
  - linux
 categories:

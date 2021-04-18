@@ -1,10 +1,13 @@
 ---
 title: mybatis动态sql
 date: 2020-11-04
-banner_img: /img/Pikachu.jpg
+banner_img: /img/mybatis.png
+index_img: /img/mybatis.jpg
 tags: 
  - mybatis
 categories:
+ - java
+ - middle-component
  - mybatis
 ---
 ### MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。 

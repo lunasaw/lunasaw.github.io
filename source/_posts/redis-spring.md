@@ -2,7 +2,7 @@
 title: redis与springboot整合
 date: 2020-06-02
 banner_img: /img/redis.png
-index_img: /img/redis.png
+index_img: /img/redis.jpg
 tags: 
  - redis
  - spring

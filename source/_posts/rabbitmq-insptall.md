@@ -89,7 +89,7 @@ rabbitmq的用户管理包括增加用户，删除用户，查看用户列表，
 rabbitmqctl.bat list_users
 ```
 
-![img](http://images2015.cnblogs.com/blog/784082/201609/784082-20160924001810231-489339837.png)
+![img](https://i.loli.net/2021/04/18/lmQt6sKHPRq4wZc.png)
 
 新增一个用户：
 

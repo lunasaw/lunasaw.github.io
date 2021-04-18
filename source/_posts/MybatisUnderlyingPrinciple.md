@@ -1,10 +1,13 @@
 ---
 title: mybatis原理
 date: 2020-11-04
-banner_img: /img/Pikachu.jpg
+banner_img: /img/mybatis.png
+index_img: /img/mybatis.jpg
 tags: 
  - mybatis
 categories:
+ - java
+ - middle-component
  - mybatis
 
 ---

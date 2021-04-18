@@ -2,7 +2,7 @@
 title: maven配置学习
 date: 2020-07-27
 banner_img: /img/maven.png
-index_img: /img/maven.png
+index_img: /img/maven.jpg
 tags: 
  - maven
 categories:

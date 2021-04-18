@@ -2,6 +2,8 @@
 title: anno
 date: 2020-04-13
 sidebarDepth: 2
+banner_img: /img/spring.jpg
+index_img: /img/spring.png
 tags:
  - anno
 categories:

@@ -2,6 +2,7 @@
 title: easyCode 代码生成
 date: 2020-09-13
 banner_img: /img/easycode.jpg
+index_img: /img/java.png
 tags: 
  - easyCode 
 categories:

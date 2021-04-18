@@ -1,7 +1,8 @@
 ---
 title: SpringBoot 统一异常处理
 date: 2020-06-07
-banner_img: /img/exception.jpg
+banner_img: /img/spring.jpg
+index_img: /img/spring.png
 tags: 
  - exception
 categories:

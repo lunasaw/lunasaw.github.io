@@ -2,6 +2,7 @@
 title: Spring security 配置
 date: 2020-05-31
 banner_img: /img/spring.jpg
+index_img: /img/spring.png
 tags: 
  - security
 categories:

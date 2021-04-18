@@ -2,6 +2,7 @@
 title: springhttps
 date: 2020-05-30
 banner_img: /img/spring.jpg
+index_img: /img/spring.png
 tags: 
  - https
  - spring

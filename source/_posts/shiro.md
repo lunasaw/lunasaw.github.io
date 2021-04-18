@@ -2,7 +2,7 @@
 title: shiro
 date: 2020-04-02
 banner_img: /img/shiro.png
-index_img: /img/shiro.png
+index_img: /img/shiro.jpg
 tags: 
  - shiro
 categories:

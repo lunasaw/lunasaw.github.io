@@ -1,7 +1,7 @@
 ---
 title: vncserver
 date: 2021-01-05
-banner_img: /img/vncserver.png
+banner_img: /img/vncserver.jpg
 index_img: /img/vncserver.png
 tags: 
  - vncserver

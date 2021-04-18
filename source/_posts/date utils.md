@@ -2,6 +2,7 @@
 title: DateUtils方法
 date: 2020-05-18
 banner_img: /img/commons-logo.png
+index_img: /img/java.png
 tags: 
  - date
 categories:

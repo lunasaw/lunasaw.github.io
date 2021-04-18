@@ -1,7 +1,8 @@
 ---
 title: Springboot的异步方法async调用与线程池配置
 date: 2020-06-03
-banner_img: /img/async.jpg
+banner_img: /img/spring.jpg
+index_img: /img/spring.png
 tags: 
  - async
 categories:

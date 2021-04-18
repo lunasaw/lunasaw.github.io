@@ -1,8 +1,8 @@
 ---
-title: nginx
+title: nginx all
 date: 2021-01-01
 banner_img: /img/nginx.png
-index_img: /img/nginx.png
+index_img: /img/mysql.png
 tags: 
  - nginx
 categories:

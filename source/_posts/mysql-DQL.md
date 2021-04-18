@@ -2,7 +2,7 @@
 title: mysql-DQL
 date: 2020-06-29
 banner_img: /img/mysql.jpg
-index_img: /img/mysql.jpg
+index_img: /img/mysql.png
 tags: 
  - mysql
 categories:
