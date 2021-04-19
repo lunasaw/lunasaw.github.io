@@ -24,7 +24,6 @@ public static void main(String[] args) {
 		String name = "tom";
 		List<User> list = sqlSession.selectList("com.demo.mapper.UserMapper.getUserByName",params);
 }
-1234567
 ```
 
 1. 创建SqlSessionFactoryBuilder对象，调用build(inputstream)方法读取并解析配置文件，返回SqlSessionFactory对象
@@ -46,7 +45,6 @@ public static void main(String[] args) {
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		List<User> list = mapper.getUserByName("tom");
 }
-123456789
 ```
 
 ## 原生MyBatis原理分析
@@ -94,7 +92,7 @@ public SqlSessionFactory build(InputStream inputStream, String environment, Prop
 > > properties（属性），settings（设置），typeAliases（类型别名），typeHandlers（类型处理器），objectFactory（对象工厂），mappers（映射器）等
 >
 > Configuration也有对应的对象属性来封装它们：
-> （图片来自：https://blog.csdn.net/luanlouis/article/details/37744073）![在这里插入图片描述](https://img-blog.csdnimg.cn/20190607110727998.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NDc2OQ==,size_16,color_FFFFFF,t_70)
+> ![在这里插入图片描述](https://i.loli.net/2021/04/19/ZnUdxmWcGEzgoq9.png)
 > 也就是说，`初始化配置文件信息的本质就是创建Configuration对象，将解析的xml数据封装到Configuration内部的属性中。`
 
 ```java
@@ -157,7 +155,7 @@ public SqlSessionFactory build(Configuration config) {
 
 > SqlSession是一个接口，它有两个实现类：DefaultSqlSession（默认）和SqlSessionManager（弃用，不做介绍）
 > SqlSession是MyBatis中用于和数据库交互的`顶层类`，通常将它与ThreadLocal绑定，一个会话使用一个SqlSession，并且在使用完毕后需要close。
-> ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190607113736428.png)
+> ![在这里插入图片描述](https://i.loli.net/2021/04/19/sgclvkANYuZ8Tzf.png)
 > SqlSession中的两个最重要的参数，configuration与初始化时的相同，Executor为执行器，
 
 **Executor：**
@@ -172,7 +170,6 @@ public SqlSessionFactory build(Configuration config) {
 		SqlSession sqlSession = factory.openSession();
 		String name = "tom";
 		List<User> list = sqlSession.selectList("com.demo.mapper.UserMapper.getUserByName",params);
-123
 ```
 
 获得sqlSession
@@ -250,7 +247,6 @@ public <E> List<E> selectList(String statement, Object parameter, RowBounds rowB
 
 ```java
 Map<String, MappedStatement> mappedStatements = new StrictMap<MappedStatement>("Mapped Statements collection")
-1
 ```
 
 - 在XMLConfigBuilder中的处理：
@@ -586,3 +582,4 @@ public Object execute(SqlSession sqlSession, Object[] args) {
     return result;
   }
 ```
+

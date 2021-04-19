@@ -1,5 +1,5 @@
 ---
-title: rabbitmq-insptall
+title: rabbitmq-windows
 date: 2021-01-11
 banner_img: /img/rabbitmq.jpg
 index_img: /img/rabbitmq.png
