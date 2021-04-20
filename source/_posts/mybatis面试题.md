@@ -1,5 +1,5 @@
 ---
-2title: mybatis 面试题
+title: mybatis 面试题
 date: 2021-04-19 15:09:07
 banner_img: /img/mybatis.png
 index_img: /img/mybatis.jpg
