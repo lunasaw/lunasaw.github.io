@@ -14,217 +14,70 @@ categories:
 
 
 
-## 1.下载MySQL5.7.18绿色版
+**1、下载**
 
-### 1.1下载链接
+（1）下载地址：https://dev.mysql.com/downloads/mysql/
 
-以下是MySQL5.7.18绿色版的链接（来源oracle官网），打开链接直接下载
+（2）选择下载
 
-[ https://dev.mysql.com/gt/Downloads/MySQL-5.7/mysql-5.7.18-winx64.zip](https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.18-winx64.zip )
+![img](https://img2018.cnblogs.com/blog/1627739/201906/1627739-20190620001542784-897003254.png)
 
- 
+**2、配置环境变量**
 
-![img](https://i.loli.net/2021/04/18/Fslm6cZMqWU5JCz.png)
+（1）解压目录：D:\mysql-8.0.16-winx64
 
+（2）配置环境变量
 
+![img](https://img2018.cnblogs.com/blog/1627739/201906/1627739-20190620002109235-1598560339.png)
 
-### 1.2解压
+**3、添加配置文件**
 
-解压到文件夹
+（1）配置文件目录：D:\mysql-8.0.16-winx64
 
- 
+（2）配置文件名：my.ini
 
-![img](https://i.loli.net/2021/04/18/hqpuc7SHXJ8LQgP.png)
-
- 
-
-
-
-## 2.新建或清空data文件夹
-
-2.1解压以后，在目录下创建一个data文件夹
-
-![img](https://i.loli.net/2021/04/18/GCqjWEg8un7N46r.png)
-
- 
-
-2.2如果原来已经有一个data文件夹，就把里面的数据全部删掉。
-
-![img](https://i.loli.net/2021/04/18/YZfb3eRmorDVaJ8.png)
-
-
-
-##  3.安装服务
-
-
-
-### 3.1打开cmd（管理员）
-
-右键开始菜单→选择  命令提示符（管理员）  
-
-![img](https://i.loli.net/2021/04/18/VRUrtOW9iNyLcKl.png)
-
-3.2在cmd中打开mysql的bin文件夹
-
-![img](https://i.loli.net/2021/04/18/LCwnjzseMSNaPOJ.png)
-
- 
-
-### 3.3安装服务 
-
-3.3.1运行命令mysqld –install安装服务，如下图：
-
-![img](https://i.loli.net/2021/04/18/9n3YDyxGzNiP25Q.png)
-
- 
-
- 
-
-3.3.2（可忽略）如果不需要mysql里，只需要运行mysqld –remove即可移除，如下图
-
-![img](https://i.loli.net/2021/04/18/ZO9XSDgvMQluIVa.png)
-
- 
-
-## 4.初始化数据库
-
-4.1运行命令：mysqld --initialize-insecure --user=mysql --explicit_defaults_for_timestamp。
-
-运行前，先确保data目录下没有任何文件（如果有文件，会初始化失败）。
-
-如图：
-
-![img](https://i.loli.net/2021/04/18/wWMe2ogFzNkxLq9.png)
-
-## 5启动服务
-
-5.1运行net start mysql 启动服务，如下图:
-
-![img](https://i.loli.net/2021/04/18/NQcxrwq8CvEWkAj.png)
-
-5.2运行net stop mysql 启动服务，如下图:
-
-![img](https://i.loli.net/2021/04/18/qv6uYVKd5RgsUyF.png)
-
-
-
-## 6.客户端测试
-
-6.1运行：mysql –uroot –p
-
-如下图：
-
-![img](https://i.loli.net/2021/04/18/TVWS7py5utzA8fE.png)
-
- 
-
- 这里不需要密码，直接按回车键
-
-![img](https://i.loli.net/2021/04/18/ZVoBid1muUFENrt.png)
-
-看到 mysql> 就证明是成功进入mysql的了
-
-## 7.配置编码为UTF-8
-
- 
-
-7.1创建.txt文件，改名为my.ini
-
-![img](https://i.loli.net/2021/04/18/k9GPZ2D7nFf3pMA.png)
-
-将以下代码添加到my.ini
+（3）文件内容：
 
 ```
-[mysqld]
-character-set-server=utf8
-[mysql]
-default-character-set=utf8
+[mysql]``# 设置mysql客户端默认字符集``default-character-``set``=utf8` `[mysqld]``# 绑定IPv4``bind-address=0.0.0.0``# 设置端口号``port=3306``# 设置mysql的安装目录，即解压目录``basedir=D:\\mysql-8.0.16-winx64``# 设置数据库的数据存放目录``datadir=D:\\mysql-8.0.16-winx64\\data``# 设置允许最大连接数``max_connections=200``# 设置允许连接失败次数``max_connect_errors=10``# 设置服务端的默认字符集``character-``set``-server=utf8``# 创建表使用的默认存储引擎``default-storage-engine=INNODB``# 使用“mysql_native_password”插件认证``default_authentication_plugin=mysql_native_password
 ```
 
- 
+**4、CMD命令窗口配置mysql**
 
- 如图：
+（1）初始化mysql（记住随机密码）：**mysqld --initialize --console**
 
-![img](https://i.loli.net/2021/04/18/Sc3UfXNeYqiw2Pd.png)
+ ![img](https://img2018.cnblogs.com/blog/1627739/201906/1627739-20190620014312114-157191049.png)
 
- 
+随机密码为：%tbmq)f<;3jE
 
-7.2在mysql中查看编码
+目录会多处data文件夹
 
-7.2.1重启mysql，命令：mysqld restart
+（2）安装mysql服务：**mysqld --install mysql --defaults-file=****"D:\mysql-8.0.16-winx64\my.ini"**
 
-7.2.2查看编码命令：`show variables ``like '``character``%';（修改前）`
+**![img](https://img2018.cnblogs.com/blog/1627739/201906/1627739-20190620014706448-303230754.png)**
 
-![img](https://i.loli.net/2021/04/18/2tIM8EgOsAauTYG.png)
+切换管理员身份运行
 
- 7.2.3查看编码命令：`show variables ``like '``character``%';（修改后）`
+![img](https://img2018.cnblogs.com/blog/1627739/201906/1627739-20190620015148365-1323561363.png)
 
- ![img](https://i.loli.net/2021/04/18/BxcSJWG346qTHme.png)
+（3）启动mysql服务：**net start mysql**
 
+**![img](https://img2018.cnblogs.com/blog/1627739/201906/1627739-20190620015241272-592406864.png)**
 
+（4）登录mysql：**mysql -uroot -p**
 
-##  8.修改密码
+密码为之前的随机密码：：%tbmq)f<;3jE
 
-在mysql 中逐步输入以下的代码：
+（5）修改密码：**ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';**
 
+![img](https://img2018.cnblogs.com/blog/1627739/201906/1627739-20190620020223252-138085659.png)
 
+退出重新登录
 
-```
-use mysql;
+![img](https://img2018.cnblogs.com/blog/1627739/201906/1627739-20190620021250850-1721675715.png)
 
-//密码为123456
-update user set authentication_string=PASSWORD("123456") where user="root";
+**5、其他命令**
 
+（1）关闭服务：net stop mysql
 
-//更新权限
-flush privileges; 
-
-//退出mysql
-quit;
-```
-
-
-
- 如图：
-
- a.
-
-
-
-![img](https://i.loli.net/2021/04/18/cQzYPhGJK324mVd.png)
-
- 
-
- b.
-
- 
-
-![img](https://i.loli.net/2021/04/18/Qxkv5G4cCVbpjXf.png)
-
- 
-
-c.
-
-![img](https://i.loli.net/2021/04/18/C8KUryuVfz4dOkW.png)
-
- 
-
- 
-
- d.
-
-![img](https://i.loli.net/2021/04/18/nGYSEdOCfsq6AKt.png)
-
- 
-
-
-
-##  9.重新打开mysql
-
-使用刚刚设置的密码123456登录
-
-![img](https://images2015.cnblogs.com/blog/1082630/201705/1082630-20170531194808383-101044283.png)
-
- 
-
- 登录成功！！！
+（2）卸载服务：mysqld --remove

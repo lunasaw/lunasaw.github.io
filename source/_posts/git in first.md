@@ -1,8 +1,8 @@
 ---
 title: 第一个git提交发生了什么
 date: 2020-10-12
-banner_img: /blog/img/git.jpg
-index_img: /blog/img/git.png
+banner_img: /img/git.jpg
+index_img: /img/git.png
 tags: 
  - git
 categories:
