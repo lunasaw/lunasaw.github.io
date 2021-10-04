@@ -1,8 +1,8 @@
 ---
 title: mall_attr
 date: 2021-06-23 08:44:16
-banner_img: /img/java.png
-index_img: /img/java.jpg
+banner_img: /img/java.jpg
+index_img: /img/java.png
 tags: 
  - mall
 categories:

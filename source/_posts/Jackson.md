@@ -1,7 +1,7 @@
 ---
 title: Jackson
 date: 2021-05-16 20:36:22
-tags:banner_img: /img/java.jpg
+banner_img: /img/java.jpg
 index_img: /img/java.png
 tags: 
  - RestTemplate

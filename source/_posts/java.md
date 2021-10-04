@@ -1,7 +1,7 @@
 ---
 title: java
 date: 2021-05-18 11:36:52
-tags:banner_img: /img/java.jpg
+banner_img: /img/java.jpg
 index_img: /img/java.png
 tags: 
  - video
