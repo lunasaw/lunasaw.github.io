@@ -1,12 +1,13 @@
 ---
 title: java-base
 date: 2021-10-13
-banner_img: /img/opencv.jpg
+banner_img: /img/java.jpg
+index_img: /img/java.png
 tags: 
  - java-review
 categories:
  - java
- - javacv
+ - java-interview
 ---
 
 <div id="content_views" class="htmledit_views">
