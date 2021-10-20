@@ -208,7 +208,7 @@ custom_head: '<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-
 
 # 自定义底部 HTML 内容（位于 footer 上方），注意不要和 `post: custom` 配置冲突
 # Customize the HTML content at the bottom (located above the footer), be careful not to conflict with `post: custom`
-custom_html: '<script src="https://g.joyinshare.com/hc/ribbon.min.js"></script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>'
+custom_html: '</script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>'
 # <script src="https://api.vvhan.com/api/snow"></script>
 # <script src="https://g.joyinshare.com/hc/ribbon.min.js"></script>
 # </script><script src="/js/funnytitle.js"></script>
@@ -435,7 +435,7 @@ index:
   # 头图黑色蒙版的不透明度，available: 0 - 1.0， 1 是完全不透明
   # Opacity of the banner mask, 1.0 is completely opaque
   # Available: 0 - 1.0
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.5
 
   # 首页副标题的独立设置
   # Independent config of home page subtitle
@@ -498,7 +498,7 @@ index:
 #---------------------------
 post:
   banner_img: /img/paper/bg.jpg
-  banner_img_height: 60
+  banner_img_height: 30
   banner_mask_alpha: 0.3
 
   # 文章在首页的默认封面图，当没有指定 index_img 时会使用该图片，若两者都为空则不显示任何图片
@@ -772,9 +772,9 @@ twikoo:
 #---------------------------
 archive:
   banner_img: /img/paper/archive.jpg
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
-  subtitle: "文章归档"
+  banner_img_height: 100
+  banner_mask_alpha: 0.1
+  subtitle: " "
 
 
 #---------------------------
@@ -784,9 +784,9 @@ archive:
 category:
   enable: true
   banner_img: /img/paper/categorate.jpg
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
-  subtitle: "文章分类"
+  banner_img_height: 100
+  banner_mask_alpha: 0.1
+  subtitle: " "
 
   # 分类的排序字段，前面带减号是倒序，不带减号是正序
   # Sort field for categories, with a minus sign is reverse order
@@ -795,7 +795,7 @@ category:
 
   # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在子分类则默认展开
   # Collapse depth. If 0, all posts collapsed. If greater than 0, it will be expanded by default if there are subcategories
-  collapse_depth: 0
+  collapse_depth: 1
 
   # 文章的排序字段，前面带减号是倒序，不带减号是正序
   # Sort field for posts, with a minus sign is reverse order
@@ -814,9 +814,9 @@ category:
 tag:
   enable: true
   banner_img: /img/paper/tags.jpg
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
-  subtitle: "标签"
+  banner_img_height: 100
+  banner_mask_alpha: 0.5
+  subtitle: " "
   tagcloud:
     min_font: 15
     max_font: 30
@@ -832,16 +832,16 @@ tag:
 about:
   enable: true
   banner_img: /img/paper/about.jpg
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
-  subtitle: "关于"
+  banner_img_height: 100
+  banner_mask_alpha: 0.5
+  subtitle: " "
   avatar: /img/panda.png
-  name: "LUNA"
-  intro: "LUNA STAER"
+  name: "tsuki"
+  intro: "murmure"
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
-    - { class: "iconfont icon-github-fill", link: "https://github.com/czy1024", tip: "GitHub" }
+    - { class: "iconfont icon-github-fill", link: "https://github.com/lunasaw", tip: "GitHub" }
     # - { class: "iconfont icon-douban-fill", link: "https://douban.com", tip: "豆瓣" }
     - { class: "iconfont icon-qq-fill", link: "tencent://message/?uin=1173282254&Site=&Menu=yes", tip: "QQ" }
     - { class: "iconfont icon-wechat-fill", qrcode: "/img/weixin.jpg" }
@@ -856,8 +856,8 @@ about:
 #---------------------------
 page:
   banner_img: /img/default.png
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_img_height: 100
+  banner_mask_alpha: 0.5
 
 
 #---------------------------
@@ -868,7 +868,7 @@ page404:
   enable: true
   banner_img: /img/paper/404.jpg
   banner_img_height: 100
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.5
   subtitle: "Page not found"
 
 
@@ -879,7 +879,7 @@ page404:
 links:
   enable: true
   banner_img: /img/paper/links.jpg
-  banner_img_height: 60
+  banner_img_height: 100
   banner_mask_alpha: 0.3
   subtitle: "Friendship connection"
   # 友链的成员项
@@ -894,7 +894,7 @@ links:
     - {
       title: "Luna Github",
       intro: "Github个人主页",
-      link: "https://github.com/czy1024",
+      link: "https://github.com/lunasaw",
       avatar: "/img/favicon-github.png"
     }
     # - {

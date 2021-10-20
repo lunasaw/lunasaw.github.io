@@ -1,8 +1,8 @@
 ---
-title: java
+title: java bin
 date: 2021-05-18 11:36:52
-banner_img: /img/java.jpg
-index_img: /img/java.png
+banner_img: /img/basic/java-binner.jpg
+index_img: /img/basic/java-index.jpg
 tags: 
  - video
 categories:
@@ -10,7 +10,7 @@ categories:
  - javabin
 ---
 
-## [Java的bin等目录说明](https://www.cnblogs.com/studywiththinking/p/4638948.html)
+# [Java的bin等目录说明]()
 
 - **javac：**Java编译器，将Java源代码换成字节代
 - **java：**Java解释器，直接从类文件执行Java应用程序代码

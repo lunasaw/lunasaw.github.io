@@ -1,8 +1,8 @@
 ---
 title: mac-launchctl
 date: 2021-04-20 23:18:17
-banner_img: /img/macos.png
-index_img: /img/macos.png
+banner_img: /img/basic/macos-binner.jpg
+index_img: /img/basic/macos-index.jpg
 tags: 
  - macos
 categories:

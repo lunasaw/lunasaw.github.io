@@ -1,8 +1,8 @@
 ---
-title: docker-compose
+title: docker compose
 date: 2021-04-23 11:17:43
-banner_img: /img/docker.jpg
-index_img: /img/docker.jpg
+banner_img: /img/basic/docker-binner.jpg
+index_img: /img/basic/docker-index.jpg
 tags: 
  - docker
 categories:
@@ -10,7 +10,7 @@ categories:
  - docker
 ---
 
-## Docker Compose 概述与安装？
+# Docker Compose 概述与安装？
 
 - 前面我们使用 Docker 的时候，定义 Dockerfile 文件，然后使用 docker build、docker run 等命令操作容器。然而微服务架构的应用系统一般包含若干个微服务，每个微服务一般都会部署多个实例，如果每个微服务都要手动启停，那么效率之低，维护量之大可想而知
 

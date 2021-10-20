@@ -1,8 +1,8 @@
 ---
 title: luna-macos
 date: 2021-01-010
-banner_img: /img/macos.png
-index_img: /img/macos.png
+banner_img: /img/basic/macos-binner.jpg
+index_img: /img/basic/macos-index.jpg
 tags: 
  - macos
 categories:

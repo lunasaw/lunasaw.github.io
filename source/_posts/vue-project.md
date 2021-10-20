@@ -1,6 +1,8 @@
 ---
 title: vue-project
 date: 2020-09-27
+banner_img: /img/basic/javascript-binner.jpg
+index_img: /img/basic/javascript-index.jpg
 tags: 
  - vue
 categories:

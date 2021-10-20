@@ -1,8 +1,8 @@
 ---
 title: rabbitmq-windows
 date: 2021-01-11
-banner_img: /img/rabbitmq.jpg
-index_img: /img/rabbitmq.png
+banner_img: /img/baisc/rabbitqm-binner.jpg
+index_img: /img/baisc/rabbitmq-index.jpg
 tags: 
  - rabbitmq
 categories:

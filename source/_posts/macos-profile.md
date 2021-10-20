@@ -1,8 +1,8 @@
 ---
 title: macos-profile
 date: 2021-05-17 10:32:32
-banner_img: /img/macos.png
-index_img: /img/macos.png
+banner_img: /img/basic/macos-binner.jpg
+index_img: /img/basic/macos-index.jpg
 tags: 
  - macos
 categories:

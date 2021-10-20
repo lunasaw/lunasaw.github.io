@@ -1,7 +1,8 @@
 ---
 title: vue-demo
 date: 2020-06-15
-banner_img: /img/vue.jpg
+banner_img: /img/basic/javascript-binner.jpg
+index_img: /img/basic/javascript-index.jpg
 tags: 
  - vue
 categories:

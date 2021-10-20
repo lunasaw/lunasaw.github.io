@@ -1,8 +1,8 @@
 ---
 title: luna-commons-common
 date: 2020-08-10
-banner_img: /img/java2.jpg
-index_img: /img/luna.png
+banner_img: /img/basic/java-binner.jpg
+index_img: /img/basic/java-index.jpg
 tags: 
  - commons
 categories:

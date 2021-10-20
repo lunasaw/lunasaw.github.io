@@ -1,14 +1,16 @@
 ---
 title: jvm_tuning
 date: 2021-8-26 15:45:12
-tags:banner_img: /img/java.jpg
-index_img: /img/java.png
+banner_img: /img/basic/java-binner.jpg
+index_img: /img/basic/java-index.jpg
 tags: 
  - jvm
 categories:
  - java
 
 ---
+
+# JVM
 
 ## 内存区域划分
 

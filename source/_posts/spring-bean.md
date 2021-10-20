@@ -1,8 +1,8 @@
 ---
 title: spring-bean
 date: 2021-05-11 23:22:42
-banner_img: /img/spring.jpg
-index_img: /img/spring.png
+banner_img: /img/baisc/spring-binner.jpg
+index_img: /img/baisc/spring-index.jpg
 tags: 
  - security
 categories:
