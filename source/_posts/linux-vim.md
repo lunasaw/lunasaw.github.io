@@ -13,7 +13,7 @@ Vim最大的特征与最大的困难就是纯键盘操作，所以快速移动�
 
 下文便开始介绍那些常用的快捷键，先上图！
 
-![vim-key](https://i.loli.net/2021/05/09/6hnc7U2orVyWPKi.png)
+![vim-key](https://tva1.sinaimg.cn/large/008i3skNly1gvn6dxm699j60sg0k30yr02.jpg)
 
 最近感受光标移动技能又一次升级了！来回顾一下我的Vim光标升级过程吧：
 

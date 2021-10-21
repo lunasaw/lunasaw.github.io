@@ -1,5 +1,5 @@
 ---
-title: javascript ==
+title: javascript equals
 date: 2021-07-05 14:07:53
 banner_img: /img/basic/javascript-binner.jpg
 index_img: /img/basic/javascript-index.jpg
@@ -9,7 +9,7 @@ categories:
  - javascript
 ---
 
-# [js中==和===区别](https://www.cnblogs.com/nelson-hu/p/7922731.html)
+# [js中==和===区别]()
 
 简单来说： == 代表相同， ===代表严格相同, 为啥这么说呢， 
 
