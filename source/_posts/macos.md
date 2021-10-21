@@ -53,7 +53,7 @@ ruby brew_install.rb
 
 这样就可以安装好brew_install.rb文件
 
-![img](https://www.isczy.tk/luna-image-bed/img/20210129141639.png)
+![img](https://tva1.sinaimg.cn/large/008i3skNly1gvmrin3425j60vo0qe78302.jpg)
 
  
 

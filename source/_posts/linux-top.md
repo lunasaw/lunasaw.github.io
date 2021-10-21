@@ -95,8 +95,6 @@ COMMAND — 进程名称（命令名/命令行）
 **多U多核CPU监控
 **在top基本视图中，按键盘数字“1”，可监控每个逻辑CPU的状况：
 
- 
-
 ![top视图 02](http://files.jb51.net/file_images/article/201308/2013082309233411.jpg)
 
 **top视图 02**

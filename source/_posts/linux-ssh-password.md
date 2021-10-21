@@ -1,8 +1,8 @@
 ---
 title: ssh 配置教程
 date: 2020-05-05
-banner_img: /img/ssh.jpg
-index_img: /img/ssh.png
+banner_img: /img/basic/linux-binner.jpg
+index_img: /img/basic/linux-index.jpg
 tags: 
  - ssh
 categories:
@@ -24,7 +24,7 @@ categories:
 
 # 3、ssh登录原理过程
 
-![/blog/img/ssh/ssh-2.png](/blog/img/ssh/ssh-2.png)
+![../img/ssh/ssh-2.png](https://tva1.sinaimg.cn/large/008i3skNly1gvmrb9225nj60jj08ydgu02.jpg)
 
 这里看不懂也没关系，楼主详解一番：
 
@@ -62,7 +62,7 @@ node2回复node1：连接建立成功！
 
 ssh配置中，会用到下面几个文件：
 
-![/blog/img/ssh/ssh-1.png](/blog/img/ssh/ssh-1.png)
+![../img/ssh/ssh-1.png](https://tva1.sinaimg.cn/large/008i3skNly1gvmrb678tij60co0273yr02.jpg)
 
 恩~毫无PS痕迹。。。
 
@@ -142,7 +142,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub 用户名@ip
 
 ## 5.2、报错
 
-![/blog/img/ssh/ssh-3.png](/blog/img/ssh/ssh-3.png)
+![../img/ssh/ssh-3.png](https://tva1.sinaimg.cn/large/008i3skNly1gvmratn4gyj60rd0180ti02.jpg)
 
 解决：相关目录权限不对，一下列出相关权限。读者根据具体去修改
 
@@ -158,6 +158,6 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub 用户名@ip
 
 解决： vi   /etc/ssh/sshd_config
 
-![/blog/img/ssh/ssh-4.png](/blog/img/ssh/ssh-4.png)
+![../img/ssh/ssh-4.png](https://tva1.sinaimg.cn/large/008i3skNly1gvmrawvj78j60l50bvgnp02.jpg)
 
 这三项需要注释掉，按博主图片中这样就好。
