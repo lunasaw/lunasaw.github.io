@@ -51,13 +51,13 @@ code:
     # 实现高亮的库，对应下面的设置
     # Highlight library
     # Options: highlightjs | prismjs
-    lib: "prismjs"
+    lib: "highlightjs"
 
     highlightjs:
       # 在链接中挑选 style 填入
       # Select a style in the link
-      # See: https://highlightjs.org/static/demo/
-      style: "Github Gist"
+      # See: https://highlightjs.org/static/demo/ “Vs 2015”
+      style: "idea"
 
       # 是否根据 style 改变代码背景色（如果 style 是深色背景别忘了开启此项）
       # If true, the code background will change color based on the style (If style has a dark background, don't forget to true)
