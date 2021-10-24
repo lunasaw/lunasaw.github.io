@@ -1,6 +1,6 @@
 ---
-title: java bin
-date: 2021-05-18 11:36:52
+title: java aop
+date: 2021-10-24 11:36:52
 banner_img: /img/basic/java-binner.jpg
 index_img: /img/basic/java-index.jpg
 tags: 

@@ -10,7 +10,7 @@ categories:
  - spring
 ---
 
-### spring的aop与springboot整合   [动态代理](https://juejin.im/post/5ad3e6b36fb9a028ba1fee6a)
+### spring的aop与springboot整合   [动态代理]()
 
 ### 引入依赖
 
