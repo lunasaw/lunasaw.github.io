@@ -1,5 +1,5 @@
 ---
-title: vim
+title: linux vim
 date: 2021-05-09 20:34:51
 banner_img: /img/basic/vim-binner.jpg
 index_img: /img/basic/vim-index.jpg

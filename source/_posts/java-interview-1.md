@@ -1,7 +1,13 @@
 ---
-title: interview
-date: 2021-05-21 19:10:45
-tags:
+title: java hce
+date: 2021-10-12
+banner_img: /img/basic/java-binner.jpg
+index_img: /img/basic/java-index.jpg
+tags: 
+ - java-review
+categories:
+ - java
+ - java-interview
 ---
 
 ## 项目难点

@@ -495,7 +495,6 @@ config set requirepass "password"
 
 ```
 auth password
-1
 ```
 
 ### 设置是否为命令重命名
@@ -537,7 +536,6 @@ maxclients 10000
 
 ```
 maxmemory <bytes>
-1
 ```
 
 ### 内存管理策略
@@ -679,7 +677,6 @@ auto-aof-rewrite-min-size 64mb
 
 ```
 aof-load-truncated yes
-1
 ```
 
 ## 12. LUA脚本
@@ -763,14 +760,13 @@ cluster-require-full-coverage yes
  * cluster-announce-ip
  * cluster-announce-port
  * cluster-announce-bus-port
-123
 ```
 
 如果未使用上述选项，则将使用正常的Redis群集自动检测。
 
 请注意，重新映射时，总线端口可能不在固定偏移量处客户端端口+ 10000，因此您可以指定任何端口和总线端口如何重新映射它们。 如果未设置总线端口，则固定偏移量为通常会使用10000。
 
-```
+```bash
 cluster-announce-ip 10.1.1.5
 cluster-announce-port 6379
 cluster-announce-bus-port 6380
@@ -783,13 +779,13 @@ redis中慢查询日志配置参数包括两个，一个是判断Redis执行的�
 
 1. redis查询执行的时间。单位微秒
 
-```
+```bash
 slowlog-log-slower-than 10000
 ```
 
 1. 日志长度的大小。可以通过`SLOWLOG RESET`重置
 
-```
+```bash
 slowlog-max-len 128
 ```
 
@@ -799,9 +795,8 @@ slowlog-max-len 128
 
 默认情况下关闭延时监控，
 
-```
+```bash
 latency-monitor-threshold 0
-1
 ```
 
 ## 17. EVENT NOTIFICATION（事件通知）
@@ -811,15 +806,14 @@ latency-monitor-threshold 0
 一旦key值发生变化时，Redis可以通知 Pub/Sub客户端。
 如果键值空间通知开启时，可以通过Pub/Sub两种方式发布信息：
 
-```
+```bash
  PUBLISH __keyspace@0__:foo del
  PUBLISH __keyevent@0__:del foo
-12
 ```
 
 可以在一组类中选择Redis进行事件的通知，每个类都由一个字符标识：
 
-```
+```bash
 #  K     Keyspace events, published with __keyspace@<db>__ prefix.
 #  E     Keyevent events, published with __keyevent@<db>__ prefix.
 #  g     Generic commands (non-type specific) like DEL, EXPIRE, RENAME, ...
@@ -837,7 +831,7 @@ latency-monitor-threshold 0
 
 当哈希值具有少量条目时，使用内存有效数据结构对哈希进行编码，并且最大条目不超过给定阈值。 可以使用以下指令配置这些阈值。
 
-```
+```bash
 hash-max-ziplist-entries 512
 hash-max-ziplist-value 64
 ```
@@ -855,15 +849,14 @@ hash-max-ziplist-value 64
 
 正数表示存储每个列表节点的_exactly_元素数
 
-```
+```bash
 list-max-ziplist-size -2
 ```
 
 设置list是否被压缩
 
-```
+```bash
 list-compress-depth 0
-1
 ```
 
 不同数值的含义

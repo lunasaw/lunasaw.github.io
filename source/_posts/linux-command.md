@@ -1,5 +1,5 @@
 ---
-title: linux_command
+title: linux command
 date: 2021-06-05 15:29:56
 banner_img: /img/basic/linux-binner.jpg
 index_img: /img/basic/linux-index.jpg

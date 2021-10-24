@@ -1,6 +1,6 @@
 ---
 title: nginx
-date: 2021-05-12 19:34:07
+date: 2021-10-11 19:34:07
 banner_img: /img/basic/nginx-binner.jpg
 index_img: /img/basic/nginx-index.jpg
 tags: 

@@ -1,5 +1,5 @@
 ---
-title: tar 命令
+title: linux tar 
 date: 2020-04-02
 banner_img: /img/basic/linux-binner.jpg
 index_img: /img/basic/linux-index.jpg

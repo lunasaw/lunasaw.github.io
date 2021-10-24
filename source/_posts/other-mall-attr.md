@@ -1,5 +1,5 @@
 ---
-title: mall_attr
+title: mall attribute
 date: 2021-06-23 08:44:16
 banner_img: /img/basic/linux-binner.jpg
 index_img: /img/basic/linux-index.jpg

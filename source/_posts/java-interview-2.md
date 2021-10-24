@@ -1,5 +1,5 @@
 ---
-title: java-base
+title: java interview 2
 date: 2021-10-13
 banner_img: /img/basic/java-binner.jpg
 index_img: /img/basic/java-index.jpg

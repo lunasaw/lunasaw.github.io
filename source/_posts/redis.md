@@ -171,7 +171,7 @@ Redis巧妙的使用了SDS避免了C字符串的缺陷。在SDS中，buf数组�
 
 ![img](https://czy1024.github.io/luna-image-bed/img/139239-20191126141239967-123973180.png) 
 
-![img](https://i.loli.net/2021/01/19/yAfbqXVRUHz1Pek.png)
+![img](https://tva1.sinaimg.cn/large/008i3skNly1gvqmb7qezrj60bb0bwdgx02.jpg)
 
 ### Redis特性1：事务
 
@@ -302,9 +302,7 @@ Redis协议支持的数据类型：
 
 市面上类似于Redis，同样是NoSQL型的数据库有很多，如下图所示，除了Redis，还有MemCache、Cassadra和Mongo。下面，我们就分别对这几个数据库做一下简要的介绍：
 
-![img](https://czy1024.github.io/luna-image-bed/img/139239-20191126141542546-1669870462.png)
-
- 
+![img](https://tva1.sinaimg.cn/large/008i3skNly1gvqmard27zj608w0aswez02.jpg)
 
  
 

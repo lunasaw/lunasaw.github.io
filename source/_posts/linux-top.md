@@ -1,5 +1,5 @@
 ---
-title: linux practice
+title: linux top
 date: 2020-12-24
 banner_img: /img/basic/linux-binner.jpg
 index_img: /img/basic/linux-index.jpg
