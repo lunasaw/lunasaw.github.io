@@ -11,6 +11,41 @@ categories:
 
 # Java Synchronized
 
+synchronized可以保证方法或者代码块在运行时，同一时刻只有一个方法可以进入到临界区，同时它还可以保证共享变量的内存可见性。
+
+Java中每一个对象都可以作为锁，这是synchronized实现同步的基础：
+
+- 普通同步方法，锁是当前实例对象
+- 静态同步方法，锁是当前类的class对象
+- 同步方法块，锁是括号里面的对象
+
+### **. synchronized 和 volatile 的区别是什么？**
+
+- volatile本质是在告诉jvm当前变量在寄存器（工作内存）中的值是不确定的，需要从主存中读取； synchronized则是锁定当前变量，只有当前线程可以访问该变量，其他线程被阻塞住。
+- volatile仅能使用在变量级别；synchronized则可以使用在变量、方法、和类级别的。
+- volatile仅能实现变量的修改可见性，不能保证原子性；而synchronized则可以保证变量的修改可见性和原子性。
+- volatile不会造成线程的阻塞；synchronized可能会造成线程的阻塞。
+- volatile标记的变量不会被编译器优化；synchronized标记的变量可以被编译器优化。
+
+### **synchronized 和 Lock 有什么区别？**
+
+- 首先synchronized是java内置关键字，在jvm层面，Lock是个java类；
+- synchronized无法判断是否获取锁的状态，Lock可以判断是否获取到锁；
+- synchronized会自动释放锁(a 线程执行完同步代码会释放锁 ；b 线程执行过程中发生异常会释放锁)，Lock需在finally中手工释放锁（unlock()方法释放锁），否则容易造成线程死锁；
+- 用synchronized关键字的两个线程1和线程2，如果当前线程1获得锁，线程2线程等待。如果线程1阻塞，线程2则会一直等待下去，而Lock锁就不一定会等待下去，如果尝试获取不到锁，线程可以不用一直等待就结束了；
+- synchronized的锁可重入、不可中断、非公平，而Lock锁可重入、可判断、可公平（两者皆可）；
+- Lock锁适合大量同步的代码的同步问题，synchronized锁适合代码少量的同步问题。
+
+### **synchronized 和 ReentrantLock 区别是什么？**
+
+synchronized是和if、else、for、while一样的关键字，ReentrantLock是类，这是二者的本质区别。既然ReentrantLock是类，那么它就提供了比synchronized更多更灵活的特性，可以被继承、可以有方法、可以有各种各样的类变量，ReentrantLock比synchronized的扩展性体现在几点上：
+
+- ReentrantLock可以对获取锁的等待时间进行设置，这样就避免了死锁
+- ReentrantLock可以获取各种锁的信息
+- ReentrantLock可以灵活地实现多路通知
+
+另外，二者的锁机制其实也是不一样的:ReentrantLock底层调用的是Unsafe的park方法加锁，synchronized操作的应该是对象头中mark word。
+
 ![img](https://tva1.sinaimg.cn/large/008i3skNly1gw4d7j3x92j30nq0d50tl.jpg)
 
 #### 锁的级别从低到高：
