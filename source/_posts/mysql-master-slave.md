@@ -1,8 +1,8 @@
 ---
 title: mysql-master-slave
 date: 2021-11-04
-banner_img: /img/baisc/mysql-binner.jpg
-index_img: /img/baisc/mysql-index.jpg
+banner_img: /img/basic/mysql-binner.jpg
+index_img: /img/basic/mysql-index.jpg
 tags: 
  - mysql
 categories:

@@ -2,7 +2,7 @@
 title: mybatis动态sql
 date: 2020-11-04
 banner_img: /img/baisc/mybatis-binner.jpg
-index_img: /img/baisc/mybatis-index.jpg
+index_img: /img/basic/mybatis-index.jpg
 tags: 
  - mybatis
 categories:

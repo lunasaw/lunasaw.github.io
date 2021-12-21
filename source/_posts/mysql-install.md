@@ -1,8 +1,8 @@
 ---
 title: mysql 免安装配置学习
 date: 2020-07-27
-banner_img: /img/baisc/mysql-binner.jpg
-index_img: /img/baisc/mysql-index.jpg
+banner_img: /img/basic/mysql-binner.jpg
+index_img: /img/basic/mysql-index.jpg
 tags: 
  - mysql-install
 categories:

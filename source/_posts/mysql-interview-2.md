@@ -1,8 +1,8 @@
 ---
 title: mysql面试题
 date: 2021-04-25 15:11:34
-banner_img: /img/baisc/mysql-binner.jpg
-index_img: /img/baisc/mysql-index.jpg
+banner_img: /img/basic/mysql-binner.jpg
+index_img: /img/basic/mysql-index.jpg
 tags: 
  - mysql
 categories:
