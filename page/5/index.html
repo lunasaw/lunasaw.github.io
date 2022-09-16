@@ -203,26 +203,28 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/01/11/rabbitmq-linux/" target="_blank">
-          <img src="/img/baisc/rabbitmq-index.jpg" srcset="/img/loading.gif" lazyload alt="rabbitmq-linux">
+        <a href="/2021/01/11/rabbitmq-windows-install/" target="_blank">
+          <img src="/img/baisc/rabbitmq-index.jpg" srcset="/img/loading.gif" lazyload alt="rabbitmq-windows">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/01/11/rabbitmq-linux/" target="_blank">
-          rabbitmq-linux
+        <a href="/2021/01/11/rabbitmq-windows-install/" target="_blank">
+          rabbitmq-windows
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/01/11/rabbitmq-linux/" target="_blank">
+        <a href="/2021/01/11/rabbitmq-windows-install/" target="_blank">
           
           
             
           
-          RabbitMQ1 MQ引言1.1 什么是MQMQ(Message Quene) :  翻译为消息队列,通过典型的生产者和消费者模型,生产者不断向消息队列中生产消息，消费者不断的从队列中获取消息。因为消息的生产和消费都是异步的，而且只关心消息的发送和接收，没有业务逻辑的侵入,轻松的实现系统间解耦。别名为 消息中间件通过利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统
+          rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。
+1.安装Erlang所以在安装rabbitMQ之前，需要先安装Erlang 。
+小编使用的是otp_win64_18.1 ，需要其他版本或者32位系
         </a>
       </p>
 
@@ -324,6 +326,64 @@ Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不�
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/01/07/basic-connect-frp/" target="_blank">
+          <img src="/img/connect/connect-index.jpg" srcset="/img/loading.gif" lazyload alt="frp">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/01/07/basic-connect-frp/" target="_blank">
+          frp
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/07/basic-connect-frp/" target="_blank">
+          
+          
+            
+          
+          为什么需要内网穿透功能从公网中访问自己的私有设备向来是一件难事儿。自己的主力台式机、NAS等等设备，它们可能处于路由器后，或者运营商因为IP地址短缺不给你分配公网IP地址。如果我们想直接访问到这些设备（远程桌面，远程文件，SSH等等），一般来说要通过一些转发或者P2P组网软件的帮助。我有一台计算机位于一个很复杂的局域网中，我想要实现远程桌面和文件访问，目前来看其所处的网络环境很难通过简单的端口映射
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-07 00:00" pubdate>
+              2021-01-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/basic-component/">basic-component</a>
+            
+              <a href="/categories/basic-component/frp/">frp</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/frp/">frp</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/01/07/consul-start/" target="_blank">
           <img src="/img/basic/consul-index.jpg" srcset="/img/loading.gif" lazyload alt="consul">
         </a>
@@ -379,64 +439,6 @@ Consul Open Source解决了跨分布式基础架构连接服务
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/consul/">consul</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/01/07/basic-connect-frp/" target="_blank">
-          <img src="/img/connect/connect-index.jpg" srcset="/img/loading.gif" lazyload alt="frp">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/01/07/basic-connect-frp/" target="_blank">
-          frp
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/07/basic-connect-frp/" target="_blank">
-          
-          
-            
-          
-          为什么需要内网穿透功能从公网中访问自己的私有设备向来是一件难事儿。自己的主力台式机、NAS等等设备，它们可能处于路由器后，或者运营商因为IP地址短缺不给你分配公网IP地址。如果我们想直接访问到这些设备（远程桌面，远程文件，SSH等等），一般来说要通过一些转发或者P2P组网软件的帮助。我有一台计算机位于一个很复杂的局域网中，我想要实现远程桌面和文件访问，目前来看其所处的网络环境很难通过简单的端口映射
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-07 00:00" pubdate>
-              2021-01-07
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/frp/">frp</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/frp/">frp</a>
             
           </div>
         
@@ -852,7 +854,7 @@ useradd -g admin crane
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Serĉi</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -861,7 +863,7 @@ useradd -g admin crane
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+                 for="local-search-input">ŝlosivorto</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
