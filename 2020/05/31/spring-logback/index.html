@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="SpringBoot + LogBack 配置 首先可使用Spring 默认依赖,其他maven项目可引入  &lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;ch.qos.logback&#x2F;logback-classic --&gt; &lt;dependency&gt;     &lt;groupId&gt;ch.qos.logback&lt;&#x2F;groupId">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot + LogBack 配置">
+<meta property="og:url" content="https://lunasaw.github.io/2020/05/31/spring-logback/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="SpringBoot + LogBack 配置 首先可使用Spring 默认依赖,其他maven项目可引入  &lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;ch.qos.logback&#x2F;logback-classic --&gt; &lt;dependency&gt;     &lt;groupId&gt;ch.qos.logback&lt;&#x2F;groupId">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.995Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="logBack">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>SpringBoot + LogBack 配置 - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/baisc/spring-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="SpringBoot + LogBack 配置">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-05-31 00:00" pubdate>
+        2020年5月31日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SpringBoot + LogBack 配置</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="SpringBoot-LogBack-配置"><a href="#SpringBoot-LogBack-配置" class="headerlink" title="SpringBoot + LogBack 配置"></a>SpringBoot + LogBack 配置</h3><ol>
+<li>首先可使用Spring 默认依赖,其他maven项目可引入</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>ch.qos.logback<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>logback-classic<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.3.0-alpha5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre></div>
+
+<ol start="2">
+<li>使用</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringBootDemoLogbackApplication</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger log = LoggerFactory.getLogger(SpringBootDemoLogbackApplication.class);
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+		ConfigurableApplicationContext context = SpringApplication.run(SpringBootDemoLogbackApplication.class, args);
+		<span class="hljs-keyword">int</span> length = context.getBeanDefinitionNames().length;
+		log.trace(<span class="hljs-string">&quot;Spring boot启动初始化了 &#123;&#125; 个 Bean&quot;</span>, length);
+		log.debug(<span class="hljs-string">&quot;Spring boot启动初始化了 &#123;&#125; 个 Bean&quot;</span>, length);
+		log.info(<span class="hljs-string">&quot;Spring boot启动初始化了 &#123;&#125; 个 Bean&quot;</span>, length);
+		log.warn(<span class="hljs-string">&quot;Spring boot启动初始化了 &#123;&#125; 个 Bean&quot;</span>, length);
+		log.error(<span class="hljs-string">&quot;Spring boot启动初始化了 &#123;&#125; 个 Bean&quot;</span>, length);
+		<span class="hljs-keyword">try</span> &#123;
+			<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+			<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span> / i;
+		&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+			log.error(<span class="hljs-string">&quot;【SpringBootDemoLogbackApplication】启动异常：&quot;</span>, e);
+		&#125;
+	&#125;
+&#125;</code></pre></div>
+
+<ol start="3">
+<li>也可使用lombok 配合IDEA插件 使用@Sel4j 注解 无需LoggerFactory创建log</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<li><p><a href="(https://juejin.im/post/5b51f85c5188251af91a7525#heading-6)">参照这个文件介绍</a></p>
+</li>
+<li><p>这里贴出自定义完整配置</p>
+</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+<span class="hljs-comment">&lt;!--  &quot;$&#123;FILE_LOG_PATTERN:-%d&#123;$&#123;LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS&#125;&#125; $&#123;LOG_LEVEL_PATTERN:-%5p&#125; $&#123;PID:- &#125; - - - [%t]  %-40.40logger&#123;39&#125;  %file:%line: %m%n$&#123;LOG_EXCEPTION_CONVERSION_WORD:-%wEx&#125;&#125;&quot;--&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;FILE_ERROR_PATTERN_LUNA&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;FILE_ERROR_PATTERN_LUNA:-%d&#123;$&#123;FILE_ERROR_PATTERN_LUNA:-yyyy-MM-dd HH:mm:ss.SSS&#125;&#125; $&#123;LOG_LEVEL_PATTERN:-%5p&#125; $&#123;PID:- &#125; --- [%t] %file:%line: -  %m%n$&#123;LOG_EXCEPTION_CONVERSION_WORD:-%wEx&#125;&#125;&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;org/springframework/boot/logging/logback/defaults.xml&quot;</span>/&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">conversionRule</span> <span class="hljs-attr">conversionWord</span>=<span class="hljs-string">&quot;clr&quot;</span> <span class="hljs-attr">converterClass</span>=<span class="hljs-string">&quot;org.springframework.boot.logging.logback.ColorConverter&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">conversionRule</span> <span class="hljs-attr">conversionWord</span>=<span class="hljs-string">&quot;wex&quot;</span> <span class="hljs-attr">converterClass</span>=<span class="hljs-string">&quot;org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">conversionRule</span> <span class="hljs-attr">conversionWord</span>=<span class="hljs-string">&quot;wEx&quot;</span></span>
+<span class="hljs-tag">                  <span class="hljs-attr">converterClass</span>=<span class="hljs-string">&quot;org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter&quot;</span> /&gt;</span>
+  <span class="hljs-comment">&lt;!-- 彩色日志格式 --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;CONSOLE_LOG_PATTERN_LUNA&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;CONSOLE_LOG_PATTERN_LUNA:-%clr(%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125;)&#123;faint&#125; %clr($&#123;LOG_LEVEL_PATTERN:-%5p&#125;) %clr($&#123;PID:- &#125;)&#123;magenta&#125; %clr(---)&#123;faint&#125; %clr([%t])&#123;faint&#125; %clr(%40.40file:%line:)&#123;cyan&#125; %clr( -)&#123;faint&#125; %m%n$&#123;LOG_EXCEPTION_CONVERSION_WORD:-%wEx&#125;&#125;&quot;</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;CONSOLE&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.classic.filter.LevelFilter&quot;</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">level</span>&gt;</span>INFO<span class="hljs-tag">&lt;/<span class="hljs-name">level</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">pattern</span>&gt;</span>$&#123;CONSOLE_LOG_PATTERN_LUNA&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">pattern</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">charset</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">charset</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;FILE_INFO&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;</span>&gt;</span>
+		<span class="hljs-comment">&lt;!--如果只是想要 Info 级别的日志，只是过滤 info 还是会输出 Error 日志，因为 Error 的级别高， 所以我们使用下面的策略，可以避免输出 Error 的日志--&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.classic.filter.LevelFilter&quot;</span>&gt;</span>
+			<span class="hljs-comment">&lt;!--过滤 Error--&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">level</span>&gt;</span>ERROR<span class="hljs-tag">&lt;/<span class="hljs-name">level</span>&gt;</span>
+			<span class="hljs-comment">&lt;!--匹配到就禁止--&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">onMatch</span>&gt;</span>DENY<span class="hljs-tag">&lt;/<span class="hljs-name">onMatch</span>&gt;</span>
+			<span class="hljs-comment">&lt;!--没有匹配到就允许--&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">onMismatch</span>&gt;</span>ACCEPT<span class="hljs-tag">&lt;/<span class="hljs-name">onMismatch</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
+		<span class="hljs-comment">&lt;!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则如果同时有&lt;File&gt;和&lt;FileNamePattern&gt;，那么当天日志是&lt;File&gt;，明天会自动把今天的日志改名为今天的日期。即，&lt;File&gt; 的日志都是当天的。--&gt;</span>
+		<span class="hljs-comment">&lt;!--&lt;File&gt;logs/info.spring-boot-demo-logback.log&lt;/File&gt;--&gt;</span>
+		<span class="hljs-comment">&lt;!--滚动策略，按照时间滚动 TimeBasedRollingPolicy--&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">rollingPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;</span>&gt;</span>
+			<span class="hljs-comment">&lt;!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间--&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">FileNamePattern</span>&gt;</span>logs/spring-boot-demo-logback/info.created_on_%d&#123;yyyy-MM-dd&#125;.part_%i.log<span class="hljs-tag">&lt;/<span class="hljs-name">FileNamePattern</span>&gt;</span>
+			<span class="hljs-comment">&lt;!--只保留最近90天的日志--&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">maxHistory</span>&gt;</span>90<span class="hljs-tag">&lt;/<span class="hljs-name">maxHistory</span>&gt;</span>
+			<span class="hljs-comment">&lt;!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志--&gt;</span>
+			<span class="hljs-comment">&lt;!--&lt;totalSizeCap&gt;1GB&lt;/totalSizeCap&gt;--&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&quot;</span>&gt;</span>
+				<span class="hljs-comment">&lt;!-- maxFileSize:这是活动文件的大小，默认值是10MB,本篇设置为1KB，只是为了演示 --&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">maxFileSize</span>&gt;</span>2MB<span class="hljs-tag">&lt;/<span class="hljs-name">maxFileSize</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">rollingPolicy</span>&gt;</span>
+		<span class="hljs-comment">&lt;!--&lt;triggeringPolicy class=&quot;ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy&quot;&gt;--&gt;</span>
+		<span class="hljs-comment">&lt;!--&lt;maxFileSize&gt;1KB&lt;/maxFileSize&gt;--&gt;</span>
+		<span class="hljs-comment">&lt;!--&lt;/triggeringPolicy&gt;--&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">pattern</span>&gt;</span>$&#123;FILE_ERROR_PATTERN_LUNA&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">pattern</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">charset</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">charset</span>&gt;</span> <span class="hljs-comment">&lt;!-- 此处设置字符集 --&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;FILE_ERROR&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;</span>&gt;</span>
+		<span class="hljs-comment">&lt;!--如果只是想要 Error 级别的日志，那么需要过滤一下，默认是 info 级别的，ThresholdFilter--&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.classic.filter.ThresholdFilter&quot;</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">level</span>&gt;</span>Error<span class="hljs-tag">&lt;/<span class="hljs-name">level</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
+		<span class="hljs-comment">&lt;!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则如果同时有&lt;File&gt;和&lt;FileNamePattern&gt;，那么当天日志是&lt;File&gt;，明天会自动把今天的日志改名为今天的日期。即，&lt;File&gt; 的日志都是当天的。--&gt;</span>
+		<span class="hljs-comment">&lt;!--&lt;File&gt;logs/error.spring-boot-demo-logback.log&lt;/File&gt;--&gt;</span>
+		<span class="hljs-comment">&lt;!--滚动策略，按照时间滚动 TimeBasedRollingPolicy--&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">rollingPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;</span>&gt;</span>
+			<span class="hljs-comment">&lt;!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间--&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">FileNamePattern</span>&gt;</span>logs/spring-boot-demo-logback/error.created_on_%d&#123;yyyy-MM-dd&#125;.part_%i.log<span class="hljs-tag">&lt;/<span class="hljs-name">FileNamePattern</span>&gt;</span>
+			<span class="hljs-comment">&lt;!--只保留最近90天的日志--&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">maxHistory</span>&gt;</span>90<span class="hljs-tag">&lt;/<span class="hljs-name">maxHistory</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&quot;</span>&gt;</span>
+				<span class="hljs-comment">&lt;!-- maxFileSize:这是活动文件的大小，默认值是10MB,本篇设置为1KB，只是为了演示 --&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">maxFileSize</span>&gt;</span>2MB<span class="hljs-tag">&lt;/<span class="hljs-name">maxFileSize</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">rollingPolicy</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">pattern</span>&gt;</span>$&#123;FILE_ERROR_PATTERN_LUNA&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">pattern</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">charset</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">charset</span>&gt;</span> <span class="hljs-comment">&lt;!-- 此处设置字符集 --&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">root</span> <span class="hljs-attr">level</span>=<span class="hljs-string">&quot;info&quot;</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;CONSOLE&quot;</span>/&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;FILE_INFO&quot;</span>/&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;FILE_ERROR&quot;</span>/&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">root</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
+</code></pre></div>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>logback和logback-spring.xml都可以用来配置logback，但是2者的加载顺序是不一样的。</p>
+<p>logback.xml—&gt;application.properties—&gt;logback-spring.xml.</p>
+<h2 id="logback-xml加载早于application-properties，所以如果你在logback-xml使用了变量时，而恰好这个变量是写在application-properties时，那么就会获取不到，只要改成logback-spring-xml就可以解决。"><a href="#logback-xml加载早于application-properties，所以如果你在logback-xml使用了变量时，而恰好这个变量是写在application-properties时，那么就会获取不到，只要改成logback-spring-xml就可以解决。" class="headerlink" title="logback.xml加载早于application.properties，所以如果你在logback.xml使用了变量时，而恰好这个变量是写在application.properties时，那么就会获取不到，只要改成logback-spring.xml就可以解决。"></a>logback.xml加载早于application.properties，所以如果你在logback.xml使用了变量时，而恰好这个变量是写在application.properties时，那么就会获取不到，只要改成logback-spring.xml就可以解决。</h2>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/categories/java/spring/">spring</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/logBack/">logBack</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/01/spring-aop/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring Aop切面编程</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/31/spring-security/">
+                        <span class="hidden-mobile">Spring security 配置</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

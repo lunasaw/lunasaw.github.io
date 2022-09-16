@@ -1,0 +1,844 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Java binner这么秀的代码，你能写出来吗？ 技术主管来了都不好使，main函数里第一个函数必须是这个。 佛祖保佑版： void godBless(void) &amp;#123; &#x2F;&#x2F;                              _ooOoo_ &#x2F;&#x2F;                             o8888888o &#x2F;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="binner">
+<meta property="og:url" content="https://lunasaw.github.io/2021/05/16/java-binner-pic/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Java binner这么秀的代码，你能写出来吗？ 技术主管来了都不好使，main函数里第一个函数必须是这个。 佛祖保佑版： void godBless(void) &amp;#123; &#x2F;&#x2F;                              _ooOoo_ &#x2F;&#x2F;                             o8888888o &#x2F;&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-16T05:03:26.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.985Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="date">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>binner - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/java-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="binner">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-16 13:03" pubdate>
+        2021年5月16日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">binner</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Java-binner"><a href="#Java-binner" class="headerlink" title="Java binner"></a>Java binner</h1><p>这么秀的代码，你能写出来吗？</p>
+<p>技术主管来了都不好使，main函数里第一个函数必须是这个。</p>
+<p>佛祖保佑版：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">void godBless<span class="hljs-params">(void)</span>
+&#123;
+<span class="hljs-string">//</span>                              _ooOoo_
+<span class="hljs-string">//</span>                             o8888888o
+<span class="hljs-string">//</span>                             88<span class="hljs-string">&quot; . &quot;</span>88
+<span class="hljs-string">//</span>                             <span class="hljs-params">(| -_- |)</span>
+<span class="hljs-string">//</span>                              O\ = <span class="hljs-string">/O</span>
+<span class="hljs-string">//</span>                           ____/`<span class="hljs-params">---</span>&#x27;\____
+<span class="hljs-string">//</span>                        .   &#x27; \\| |<span class="hljs-string">//</span> `.
+<span class="hljs-string">//</span>                         / \\||| : |||<span class="hljs-string">//</span> \
+<span class="hljs-string">//</span>                        / _||||| -<span class="hljs-function">:-</span> |||||- \
+<span class="hljs-string">//</span>                         | | \\\ - <span class="hljs-string">///</span> | |
+<span class="hljs-string">//</span>                       | \_| &#x27;&#x27;\<span class="hljs-params">---/</span>&#x27;&#x27; | |
+<span class="hljs-string">//</span>                        \ <span class="hljs-string">.-</span>\__ `-` ___/-. /
+<span class="hljs-string">//</span>                    ___`. .&#x27; <span class="hljs-string">/--.--</span>\ `. . __
+<span class="hljs-string">//</span>                  .<span class="hljs-string">&quot;&quot;</span> &#x27;&lt; `<span class="hljs-string">.___</span>\_&lt;|&gt;_/___.&#x27; &gt;&#x27;<span class="hljs-string">&quot;&quot;</span>.
+<span class="hljs-string">//</span>                 | | : `- \`.;`\ _ /`;.`/ - ` : | |
+<span class="hljs-string">//</span>                    \ \ `-. \_ __\ <span class="hljs-string">/__</span> _/ <span class="hljs-string">.-</span>` / /
+<span class="hljs-string">//</span>           ======`-<span class="hljs-string">.____</span>`-<span class="hljs-string">.___</span>\_____/___.-`____.-&#x27;======
+<span class="hljs-string">//</span>                              `=<span class="hljs-params">---=</span>&#x27;
+<span class="hljs-string">//</span>
+<span class="hljs-string">//</span>           <span class="hljs-string">.............................................</span>
+<span class="hljs-string">//</span>                     佛祖保佑             永无BUG
+<span class="hljs-string">//</span>            佛曰:
+<span class="hljs-string">//</span>                     写字楼里写字间，写字间里程序员；
+<span class="hljs-string">//</span>                     程序人员写程序，又拿程序换酒钱。
+<span class="hljs-string">//</span>                     酒醒只在网上坐，酒醉还来网下眠；
+<span class="hljs-string">//</span>                     酒醉酒醒日复日，网上网下年复年。
+<span class="hljs-string">//</span>                     但愿老死电脑间，不愿鞠躬老板前；
+<span class="hljs-string">//</span>                     奔驰宝马贵者趣，公交自行程序员。
+<span class="hljs-string">//</span>                     别人笑我忒疯癫，我笑自己命太贱；
+<span class="hljs-string">//</span>                     不见满街漂亮妹，哪个归得程序员？
+&#125;</code></pre></div>
+
+<p>佛主保佑版2：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs perl">void foZuBaoYou(void)&#123;
+    //<span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span>
+//                          _ooOoo<span class="hljs-number">_</span>                               //
+//                         o8888888o                              //
+//                         <span class="hljs-number">88</span><span class="hljs-string">&quot; . &quot;</span><span class="hljs-number">88</span>                              //
+//                         (| ^<span class="hljs-number">_</span>^ |)                              //
+//                         O\  =  <span class="hljs-regexp">/O                              /</span>/
+//                      ___<span class="hljs-number">_</span>/<span class="hljs-string">`---&#x27;\____                           //</span>
+<span class="hljs-string">//                    .&#x27;  \\|     |//  `</span>.                         //
+//                   <span class="hljs-regexp">/  \\|||  :  |||/</span><span class="hljs-regexp">/  \                        /</span>/
+//                  <span class="hljs-regexp">/  _||||| -:- |||||-  \                       /</span>/
+//                  |   | \\\  -  <span class="hljs-regexp">//</span><span class="hljs-regexp">/ |   |                       /</span>/
+//                  | \<span class="hljs-number">_</span>|  <span class="hljs-string">&#x27;&#x27;</span>\---<span class="hljs-regexp">/&#x27;&#x27;  |   |                       /</span>/
+//                  \  .-\_<span class="hljs-number">_</span>  <span class="hljs-string">`-`</span>  __<span class="hljs-number">_</span>/-. /                       <span class="hljs-regexp">//</span>
+//                __<span class="hljs-number">_</span><span class="hljs-string">`. .&#x27;  /--.--\  `</span>. . __<span class="hljs-number">_</span>                     //
+//              .<span class="hljs-string">&quot;&quot;</span> <span class="hljs-string">&#x27;&lt;  `.___\_&lt;|&gt;_/___.&#x27;</span>  &gt;<span class="hljs-string">&#x27;&quot;&quot;.                  //</span>
+<span class="hljs-string">//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //</span>
+<span class="hljs-string">//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //</span>
+<span class="hljs-string">//      ========`-.____`-.___\_____/___.-`____.-&#x27;</span>========         <span class="hljs-regexp">//</span>
+//                           <span class="hljs-string">`=---=&#x27;                              //</span>
+<span class="hljs-string">//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //</span>
+<span class="hljs-string">//                  佛祖保佑       永不宕机     永无BUG              //</span>
+<span class="hljs-string">////////////////////////////////////////////////////////////////////</span>
+<span class="hljs-string">    </span>
+<span class="hljs-string">&#125;</span></code></pre></div>
+
+<p>再更新几个吧</p>
+<blockquote>
+<p>素材均来源于网络，本人只用过佛祖保佑版，就是第一个。</p>
+</blockquote>
+<p>佛祖不行了版：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs gherkin">void godFailed(void)&#123;    
+    /<span class="hljs-symbol">*</span><span class="hljs-symbol">*</span>
+ <span class="hljs-symbol">*</span> _ooOoo_
+ <span class="hljs-symbol">*</span> o8888888o
+ <span class="hljs-symbol">*</span> 88<span class="hljs-string">&quot; . &quot;</span>88
+ <span class="hljs-symbol">*</span> (|<span class="hljs-string"> -_- </span>|<span class="hljs-string">)</span>
+<span class="hljs-string"> *  O\ = /O</span>
+<span class="hljs-string"> * ___/`---&#x27;\____</span>
+<span class="hljs-string"> * .   &#x27; \\</span>|<span class="hljs-string"> </span>|<span class="hljs-string">// `.</span>
+<span class="hljs-string"> * / \\</span>|||<span class="hljs-string"> : </span>|||<span class="hljs-string">// \</span>
+<span class="hljs-string"> * / _</span>|||||<span class="hljs-string"> -:- </span>|||||<span class="hljs-string">- \</span>
+<span class="hljs-string"> * </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> \\\ - /// </span>|<span class="hljs-string"> </span>|
+ <span class="hljs-symbol">*</span> |<span class="hljs-string"> \_</span>|<span class="hljs-string"> &#x27;&#x27;\---/&#x27;&#x27; </span>|<span class="hljs-string"> </span>|
+ <span class="hljs-symbol">*</span> \ .-\__ `-` ___/-. /
+ <span class="hljs-symbol">*</span> ___`. .&#x27; /--.--\ `. . __
+ <span class="hljs-symbol">*</span> .<span class="hljs-string">&quot;&quot;</span> &#x27;<span class="hljs-variable">&lt; `.___\_&lt;|&gt;</span>_/___.&#x27; &gt;&#x27;<span class="hljs-string">&quot;&quot;</span>.
+ <span class="hljs-symbol">*</span> |<span class="hljs-string"> </span>|<span class="hljs-string"> : `- \`.;`\ _ /`;.`/ - ` : </span>|<span class="hljs-string"> </span>|
+ <span class="hljs-symbol">*</span> \ \ `-. \_ __\ /__ _/ .-` / /
+ <span class="hljs-symbol">*</span> ======`-.____`-.___\_____/___.-`____.-&#x27;======
+ <span class="hljs-symbol">*</span> `=---=&#x27;
+ <span class="hljs-symbol">*</span>          .............................................
+ <span class="hljs-symbol">*</span>           佛曰：bug泛滥，我已瘫痪！
+ <span class="hljs-symbol">*</span>/
+&#125;</code></pre></div>
+
+<p>海贼王版：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs gherkin">void kingOfPirateBless(void)&#123;
+    /<span class="hljs-symbol">*</span><span class="hljs-symbol">*</span>  
+ <span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span>  
+ <span class="hljs-symbol">*</span>                                                            <span class="hljs-symbol">*</span>  
+ <span class="hljs-symbol">*</span>    .=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-.      <span class="hljs-symbol">*</span>  
+ <span class="hljs-symbol">*</span>    |<span class="hljs-string">                 ______________                 </span>|<span class="hljs-string">      * </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">                </span>|<span class="hljs-string">              </span>|<span class="hljs-string">                </span>|<span class="hljs-string">      *</span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">               </span>|<span class="hljs-string">                </span>|<span class="hljs-string">               </span>|<span class="hljs-string">      * </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">       _______</span>|<span class="hljs-string">__________________</span>|<span class="hljs-string">________      </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">                  .-&quot;      &quot;-.                  </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">                 /            \                 </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">     _          </span>|<span class="hljs-string">              </span>|<span class="hljs-string">          _     </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">    ( \         </span>|<span class="hljs-string">,  .-.  .-.  ,</span>|<span class="hljs-string">         / )    </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">     &gt; &quot;=._     </span>|<span class="hljs-string"> )(__/  \__)( </span>|<span class="hljs-string">     _.=&quot; &lt;     </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">    (_/&quot;=._&quot;=._ </span>|<span class="hljs-string">/     /\     \</span>|<span class="hljs-string"> _.=&quot;_.=&quot;\_)    </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">           &quot;=._&quot;(_     ^^     _)&quot;_.=&quot;           </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">               &quot;=\__</span>|<span class="hljs-string">IIIIII</span>|<span class="hljs-string">__/=&quot;               </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">              _.=&quot;</span>|<span class="hljs-string"> \IIIIII/ </span>|<span class="hljs-string">&quot;=._              </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">    _     _.=&quot;_.=&quot;\          /&quot;=._&quot;=._     _    </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">   ( \_.=&quot;_.=&quot;     `--------`     &quot;=._&quot;=._/ )   </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">    &gt; _.=&quot;                            &quot;=._ &lt;    </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">   (_/                                    \_)   </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    </span>|<span class="hljs-string">                                                </span>|<span class="hljs-string">      *  </span>
+<span class="hljs-string"> *    &#x27;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=&#x27;      *  </span>
+<span class="hljs-string"> *                                                            *  </span>
+<span class="hljs-string"> *                      1,500,000,000$                        *  </span>
+<span class="hljs-string"> **************************************************************  </span>
+<span class="hljs-string"> */</span>
+<span class="hljs-string">&#125;</span></code></pre></div>
+
+<p>杰瑞鼠版：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs gcode">void jerryBless<span class="hljs-comment">(void)</span>&#123;
+    <span class="hljs-comment">/**********/</span>**********<span class="hljs-comment">/**********/</span><span class="hljs-comment">/**********/</span><span class="hljs-comment">/**********/</span><span class="hljs-comment">/**********/</span><span class="hljs-comment">/**********/</span>
+  .--,       .--,
+ <span class="hljs-comment">( (  \.---./  )</span> )
+  <span class="hljs-string">&#x27;.__/o   o\__.&#x27;</span>
+     &#123;=  ^  =&#125;
+      &gt;  -  &lt;
+     /       \
+    <span class="hljs-comment">//       \\</span>
+   <span class="hljs-comment">//|   .   |\\</span>
+   <span class="hljs-string">&quot;&#x27;\       /&#x27;&quot;</span>_.-~^`<span class="hljs-string">&#x27;-.</span>
+<span class="hljs-string">      \  _  /--&#x27;</span>         `
+    ___)<span class="hljs-comment">( )</span><span class="hljs-comment">(___</span>
+<span class="hljs-comment">   (((__)</span> <span class="hljs-comment">(__)</span>))    高山仰止,景行行止.虽不能至,心向往之。
+<span class="hljs-comment">/**********/</span>**********<span class="hljs-comment">/**********/</span><span class="hljs-comment">/**********/</span><span class="hljs-comment">/**********/</span><span class="hljs-comment">/**********/</span><span class="hljs-comment">/**********/</span>  
+&#125;</code></pre></div>
+
+<p>神兽版：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs vala"><span class="hljs-keyword">void</span>  CNMBless(<span class="hljs-keyword">void</span>)&#123;
+<span class="hljs-meta">#code is far away from bug with the animal protecting</span>
+<span class="hljs-meta">#    ┏┓   ┏┓</span>
+<span class="hljs-meta">#   ┏┛┻━━━┛┻┓</span>
+<span class="hljs-meta">#   ┃       ┃</span>
+<span class="hljs-meta">#   ┃   ━   ┃</span>
+<span class="hljs-meta">#   ┃ ┳┛ ┗┳ ┃</span>
+<span class="hljs-meta">#   ┃       ┃</span>
+<span class="hljs-meta">#   ┃   ┻   ┃</span>
+<span class="hljs-meta">#   ┃       ┃</span>
+<span class="hljs-meta">#   ┗━┓   ┏━┛Codes are far away from bugs with the animal protecting</span>
+<span class="hljs-meta">#     ┃   ┃    神兽保佑,代码无bug</span>
+<span class="hljs-meta">#     ┃   ┃</span>
+<span class="hljs-meta">#     ┃   ┗━━━┓</span>
+<span class="hljs-meta">#     ┃         ┣┓</span>
+<span class="hljs-meta">#     ┃          ┏┛</span>
+<span class="hljs-meta">#     ┗┓┓┏━┳┓┏┛</span>
+<span class="hljs-meta">#      ┃┫┫ ┃┫┫</span>
+<span class="hljs-meta">#      ┗┻┛ ┗┻┛</span>
+    
+<span class="hljs-meta">#code is far away from bug with the animal protecting</span>
+<span class="hljs-meta">#    ┏┓   ┏┓</span>
+<span class="hljs-meta">#   ┏┛┻━━━┛┻┓</span>
+<span class="hljs-meta">#   ┃       ┃  </span>
+<span class="hljs-meta">#   ┃   ━   ┃</span>
+<span class="hljs-meta">#   ┃ ＞   ＜  ┃</span>
+<span class="hljs-meta">#   ┃       ┃</span>
+<span class="hljs-meta">#   ┃    . ⌒ .. ┃</span>
+<span class="hljs-meta">#   ┃       ┃</span>
+<span class="hljs-meta">#   ┗━┓   ┏━┛</span>
+<span class="hljs-meta">#     ┃   ┃ Codes are far away from bugs with the animal protecting       </span>
+<span class="hljs-meta">#     ┃   ┃ 神兽保佑,代码无bug</span>
+<span class="hljs-meta">#     ┃   ┃           </span>
+<span class="hljs-meta">#     ┃   ┃       </span>
+<span class="hljs-meta">#     ┃   ┃</span>
+<span class="hljs-meta">#     ┃   ┃           </span>
+<span class="hljs-meta">#     ┃   ┗━━━┓</span>
+<span class="hljs-meta">#     ┃       ┣┓</span>
+<span class="hljs-meta">#     ┃       ┏┛</span>
+<span class="hljs-meta">#     ┗┓┓┏━┳┓┏┛</span>
+<span class="hljs-meta">#      ┃┫┫ ┃┫┫</span>
+<span class="hljs-meta">#      ┗┻┛ ┗┻┛</span>
+    
+<span class="hljs-meta">#code is far away from bug with the animal protecting</span>
+<span class="hljs-meta">#        ┏┓   ┏┓+ +</span>
+<span class="hljs-meta">#   ┏┛┻━━━┛┻┓ + +</span>
+<span class="hljs-meta">#   ┃       ┃  </span>
+<span class="hljs-meta">#   ┃   ━   ┃ ++ + + +</span>
+<span class="hljs-meta">#    ┃ ████━████  ┃+</span>
+<span class="hljs-meta">#   ┃       ┃ +</span>
+<span class="hljs-meta">#   ┃   ┻   ┃</span>
+<span class="hljs-meta">#   ┃       ┃ + +</span>
+<span class="hljs-meta">#   ┗━┓   ┏━┛</span>
+<span class="hljs-meta">#     ┃   ┃           </span>
+<span class="hljs-meta">#     ┃   ┃ + + + +</span>
+<span class="hljs-meta">#     ┃   ┃    Codes are far away from bugs with the animal protecting   </span>
+<span class="hljs-meta">#     ┃   ┃ +     神兽保佑,代码无bug  </span>
+<span class="hljs-meta">#     ┃   ┃</span>
+<span class="hljs-meta">#     ┃   ┃  +         </span>
+<span class="hljs-meta">#     ┃    ┗━━━┓ + +</span>
+<span class="hljs-meta">#     ┃        ┣┓</span>
+<span class="hljs-meta">#     ┃        ┏┛</span>
+<span class="hljs-meta">#     ┗┓┓┏━┳┓┏┛ + + + +</span>
+<span class="hljs-meta">#      ┃┫┫ ┃┫┫</span>
+<span class="hljs-meta">#      ┗┻┛ ┗┻┛+ + + +</span>
+
+<span class="hljs-meta">#code is far away from bug with the animal protecting</span>
+<span class="hljs-meta">#  ┏┓   ┏┓</span>
+<span class="hljs-meta">#┏┛┻━━━┛┻┓</span>
+<span class="hljs-meta">#┃       ┃  </span>
+<span class="hljs-meta">#┃   ━   ┃</span>
+<span class="hljs-meta">#┃ ┳┛ ┗┳ ┃</span>
+<span class="hljs-meta">#┃       ┃</span>
+<span class="hljs-meta">#┃   ┻   ┃</span>
+<span class="hljs-meta">#┃       ┃</span>
+<span class="hljs-meta">#┗━┓   ┏━┛</span>
+<span class="hljs-meta">#  ┃   ┃神兽保佑</span>
+<span class="hljs-meta">#  ┃   ┃代码无BUG！</span>
+<span class="hljs-meta">#  ┃   ┗━━━┓</span>
+<span class="hljs-meta">#  ┃       ┣┓</span>
+<span class="hljs-meta">#  ┃       ┏┛</span>
+<span class="hljs-meta">#  ┗┓┓┏━┳┓┏┛</span>
+<span class="hljs-meta">#   ┃┫┫ ┃┫┫</span>
+<span class="hljs-meta">#   ┗┻┛ ┗┻┛ </span>
+<span class="hljs-meta">#   </span>
+
+<span class="hljs-meta">#code is far away from bug with the animal protecting</span>
+<span class="hljs-meta">#         ┌─┐       ┌─┐</span>
+<span class="hljs-meta">#      ┌──┘ ┴───────┘ ┴──┐</span>
+<span class="hljs-meta">#      │                 │</span>
+<span class="hljs-meta">#      │       ───       │</span>
+<span class="hljs-meta">#      │  ─┬┘       └┬─  │</span>
+<span class="hljs-meta">#      │                 │</span>
+<span class="hljs-meta">#      │       ─┴─       │</span>
+<span class="hljs-meta">#      │                 │</span>
+<span class="hljs-meta">#      └───┐         ┌───┘</span>
+<span class="hljs-meta">#          │         │</span>
+<span class="hljs-meta">#          │         │</span>
+<span class="hljs-meta">#          │         │</span>
+<span class="hljs-meta">#          │         └──────────────┐</span>
+<span class="hljs-meta">#          │                        │</span>
+<span class="hljs-meta">#          │                        ├─┐</span>
+<span class="hljs-meta">#          │                        ┌─┘</span>
+<span class="hljs-meta">#          │                        │</span>
+<span class="hljs-meta">#          └─┐  ┐  ┌───────┬──┐  ┌──┘</span>
+<span class="hljs-meta">#            │ ─┤ ─┤       │ ─┤ ─┤</span>
+<span class="hljs-meta">#            └──┴──┘       └──┴──┘</span>
+<span class="hljs-meta">#                神兽保佑</span>
+<span class="hljs-meta">#                代码无BUG!    </span>
+&#125;</code></pre></div>
+
+<p>真正的神兽版：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs vala"><span class="hljs-keyword">void</span> mythicalAnimalBless(<span class="hljs-keyword">void</span>)&#123;
+<span class="hljs-meta">#code is far away from bug with the animal protecting</span>
+<span class="hljs-meta">#                  ___====-_  _-====___</span>
+<span class="hljs-meta">#            _--^^^#####//      \\#####^^^--_</span>
+<span class="hljs-meta">#         _-^##########// (    ) \\##########^-_</span>
+<span class="hljs-meta">#        -############//  |\^^/|  \\############-</span>
+<span class="hljs-meta">#      _/############//   (@::@)   \\############\_</span>
+<span class="hljs-meta">#     /#############((     \\//     ))#############\</span>
+<span class="hljs-meta">#    -###############\\    (oo)    //###############-</span>
+<span class="hljs-meta">#   -#################\\  / VV \  //#################-</span>
+<span class="hljs-meta">#  -###################\\/      \//###################-</span>
+<span class="hljs-meta"># _#/|##########/\######(   /\   )######/\##########|\#_</span>
+<span class="hljs-meta"># |/ |#/\#/\#/\/  \#/\##\  |  |  /##/\#/  \/\#/\#/\#| \|</span>
+<span class="hljs-meta"># `  |/  V  V  `   V  \#\| |  | |/#/  V   &#x27;  V  V  \|  &#x27;</span>
+<span class="hljs-meta">#    `   `  `      `   / | |  | | \   &#x27;      &#x27;  &#x27;   &#x27;</span>
+<span class="hljs-meta">#                     (  | |  | |  )</span>
+<span class="hljs-meta">#                    __\ | |  | | /__</span>
+<span class="hljs-meta">#                   (vvv(VVV)(VVV)vvv)</span>
+<span class="hljs-meta">#                  神兽保佑</span>
+<span class="hljs-meta">#                代码无BUG!</span>
+<span class="hljs-meta">#                                                    __----~~~~~~~~~~~------___</span>
+<span class="hljs-meta">#                                   .  .   ~~//====......          __--~ ~~</span>
+<span class="hljs-meta">#                   -.            \_|//     |||\\  ~~~~~~::::... /~</span>
+<span class="hljs-meta">#                ___-==_       _-~o~  \/    |||  \\            _/~~-</span>
+<span class="hljs-meta">#        __---~~~.==~||\=_    -_--~/_-~|-   |\\   \\        _/~</span>
+<span class="hljs-meta">#    _-~~     .=~    |  \\-_    &#x27;-~7  /-   /  ||    \      /</span>
+<span class="hljs-meta">#  .~       .~       |   \\ -_    /  /-   /   ||      \   /</span>
+<span class="hljs-meta"># /  ____  /         |     \\ ~-_/  /|- _/   .||       \ /</span>
+<span class="hljs-meta"># |~~    ~~|--~~~~--_ \     ~==-/   | \~--===~~        .\</span>
+<span class="hljs-meta">#          &#x27;         ~-|      /|    |-~\~~       __--~~</span>
+<span class="hljs-meta">#                      |-~~-_/ |    |   ~\_   _-~            /\</span>
+<span class="hljs-meta">#                           /  \     \__   \/~                \__</span>
+<span class="hljs-meta">#                       _--~ _/ | .-~~____--~-/                  ~~==.</span>
+<span class="hljs-meta">#                      ((-&gt;/~   &#x27;.|||&#x27; -_|    ~~-/ ,              . _||</span>
+<span class="hljs-meta">#                                 -_     ~\      ~~---l__i__i__i--~~_/</span>
+<span class="hljs-meta">#                                 _-~-__   ~)  \--______________--~~</span>
+<span class="hljs-meta">#                               //.-~~~-~_--~- |-------~~~~~~~~</span>
+<span class="hljs-meta">#                                      //.-~~~--\</span>
+<span class="hljs-meta">#                  神兽保佑</span>
+<span class="hljs-meta">#                代码无BUG!</span>
+&#125;</code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/java/">java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/date/">date</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/16/java-jackson/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Jackson</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/11/spring-bean/">
+                        <span class="hidden-mobile">spring-bean</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

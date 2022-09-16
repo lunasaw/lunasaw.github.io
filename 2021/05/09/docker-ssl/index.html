@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Docker SSL前言仅仅开放远程访问Docker API，这个还不够的，因为会有安全问题。关于这点，Docker有相关的安全机制，参考官方文档Protect the Docker daemon socket，大致就是：生成证书，用来达到验证客户端身份的目的。 下面是操作步骤： 服务器配置1. 创建certs文件夹，用来存放CA私钥和公钥mkdir -pv &#x2F;etc&#x2F;docker&#x2F;certs c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker-ssl">
+<meta property="og:url" content="https://lunasaw.github.io/2021/05/09/docker-ssl/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Docker SSL前言仅仅开放远程访问Docker API，这个还不够的，因为会有安全问题。关于这点，Docker有相关的安全机制，参考官方文档Protect the Docker daemon socket，大致就是：生成证书，用来达到验证客户端身份的目的。 下面是操作步骤： 服务器配置1. 创建certs文件夹，用来存放CA私钥和公钥mkdir -pv &#x2F;etc&#x2F;docker&#x2F;certs c">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-09T13:07:10.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.983Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>docker-ssl - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/docker-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="docker-ssl">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-09 21:07" pubdate>
+        2021年5月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">docker-ssl</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Docker-SSL"><a href="#Docker-SSL" class="headerlink" title="Docker SSL"></a>Docker SSL</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>仅仅开放远程访问Docker API，这个还不够的，因为会有安全问题。关于这点，Docker有相关的安全机制，参考官方文档<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/security/https/">Protect the Docker daemon socket</a>，大致就是：生成证书，用来达到验证客户端身份的目的。</strong></p>
+<p>下面是操作步骤：</p>
+<h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><h3 id="1-创建certs文件夹，用来存放CA私钥和公钥"><a href="#1-创建certs文件夹，用来存放CA私钥和公钥" class="headerlink" title="1. 创建certs文件夹，用来存放CA私钥和公钥"></a>1. 创建certs文件夹，用来存放CA私钥和公钥</h3><div class="hljs code-wrapper"><pre><code class="hljs awk">mkdir -pv <span class="hljs-regexp">/etc/</span>docker/certs
+cd <span class="hljs-regexp">/etc/</span>docker/certs</code></pre></div>
+
+<h3 id="2-创建密码"><a href="#2-创建密码" class="headerlink" title="2. 创建密码"></a>2. 创建密码</h3><p><strong>需要连续输入两次相同的密码</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">openssl</span> genrsa -aes<span class="hljs-number">256</span> -out ca-key.pem <span class="hljs-number">4096</span></code></pre></div>
+
+<h3 id="3-依次输入密码、国家、省、市、组织名称等（除了密码外其他的可以直接回车跳过）"><a href="#3-依次输入密码、国家、省、市、组织名称等（除了密码外其他的可以直接回车跳过）" class="headerlink" title="3. 依次输入密码、国家、省、市、组织名称等（除了密码外其他的可以直接回车跳过）"></a>3. 依次输入密码、国家、省、市、组织名称等（除了密码外其他的可以直接回车跳过）</h3><div class="hljs code-wrapper"><pre><code class="hljs vim">openssl req -<span class="hljs-keyword">new</span> -x509 -days <span class="hljs-number">365</span> -key <span class="hljs-keyword">ca</span>-key.pem -<span class="hljs-built_in">sha256</span> -out <span class="hljs-keyword">ca</span>.pem</code></pre></div>
+
+<h3 id="4-生成server-key-pem"><a href="#4-生成server-key-pem" class="headerlink" title="4. 生成server-key.pem"></a>4. 生成server-key.pem</h3><div class="hljs code-wrapper"><pre><code class="hljs pgsql">openssl genrsa -<span class="hljs-keyword">out</span> <span class="hljs-keyword">server</span>-key.pem <span class="hljs-number">4096</span></code></pre></div>
+
+<h3 id="5-生成server-csr（把下面的IP换成你自己服务器外网的IP或者域名）"><a href="#5-生成server-csr（把下面的IP换成你自己服务器外网的IP或者域名）" class="headerlink" title="5. 生成server.csr（把下面的IP换成你自己服务器外网的IP或者域名）"></a>5. 生成server.csr（把下面的IP换成你自己服务器外网的IP或者域名）</h3><div class="hljs code-wrapper"><pre><code class="hljs pgsql">openssl req -subj &quot;/CN=123.123.123.123&quot; -sha256 -<span class="hljs-built_in">new</span> -key <span class="hljs-keyword">server</span>-key.pem -<span class="hljs-keyword">out</span> <span class="hljs-keyword">server</span>.csr</code></pre></div>
+
+<h3 id="6-配置白名单"><a href="#6-配置白名单" class="headerlink" title="6. 配置白名单"></a>6. 配置白名单</h3><p><strong>0.0.0.0表示所有ip都可以连接。（这里需要注意，虽然0.0.0.0可以匹配任意，但是仍需要配置你的外网ip和127.0.0.1，否则客户端会连接不上）</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">echo</span> subjectAltName = IP:<span class="hljs-number">0.0.0.0</span>,IP:<span class="hljs-number">123.123.123.123</span>,IP:<span class="hljs-number">127.0.0.1</span> &gt;&gt; extfile.cnf</code></pre></div>
+
+<p><strong>或者也可以设置成域名</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">echo</span> subjectAltName = DNS:www.example.com,IP:<span class="hljs-number">123.123.123.123</span>,IP:<span class="hljs-number">127.0.0.1</span> &gt;&gt; extfile.cnf</code></pre></div>
+
+<h3 id="7-将Docker守护程序密钥的扩展使用属性设置为仅用于服务器身份验证"><a href="#7-将Docker守护程序密钥的扩展使用属性设置为仅用于服务器身份验证" class="headerlink" title="7. 将Docker守护程序密钥的扩展使用属性设置为仅用于服务器身份验证"></a>7. 将Docker守护程序密钥的扩展使用属性设置为仅用于服务器身份验证</h3><div class="hljs code-wrapper"><pre><code class="hljs vim"><span class="hljs-keyword">echo</span> extendedKeyUsage = serverAuth &gt;&gt; extfile.<span class="hljs-keyword">cnf</span></code></pre></div>
+
+<h3 id="8-输入之前设置的密码，生成签名证书"><a href="#8-输入之前设置的密码，生成签名证书" class="headerlink" title="8.输入之前设置的密码，生成签名证书"></a>8.输入之前设置的密码，生成签名证书</h3><div class="hljs code-wrapper"><pre><code class="hljs stata">openssl x509 -req -days 365 -sha256 -<span class="hljs-keyword">in</span> server.csr -<span class="hljs-keyword">CA</span> <span class="hljs-keyword">ca</span>.pem -CAkey <span class="hljs-keyword">ca</span>-key.pem \
+  -CAcreateserial -<span class="hljs-keyword">out</span> server-cert.pem -extfile extfile.cnf</code></pre></div>
+
+<h3 id="9、生成供客户端发起远程访问时使用的key-pem"><a href="#9、生成供客户端发起远程访问时使用的key-pem" class="headerlink" title="9、生成供客户端发起远程访问时使用的key.pem"></a>9、生成供客户端发起远程访问时使用的key.pem</h3><div class="hljs code-wrapper"><pre><code class="hljs sas">openssl genrsa -<span class="hljs-meta">out</span> <span class="hljs-meta">key</span>.pem 4096</code></pre></div>
+
+<h3 id="10-生成client-csr（把下面的IP换成你自己服务器外网的IP或者域名）"><a href="#10-生成client-csr（把下面的IP换成你自己服务器外网的IP或者域名）" class="headerlink" title="10. 生成client.csr（把下面的IP换成你自己服务器外网的IP或者域名）"></a>10. 生成client.csr（把下面的IP换成你自己服务器外网的IP或者域名）</h3><div class="hljs code-wrapper"><pre><code class="hljs maxima">openssl req -subj <span class="hljs-string">&quot;/CN=123.123.123.123&quot;</span> -<span class="hljs-built_in">new</span> -<span class="hljs-built_in">key</span> <span class="hljs-built_in">key</span>.pem -out client.csr</code></pre></div>
+
+<h3 id="11-创建扩展配置文件，把密钥设置为客户端身份验证用"><a href="#11-创建扩展配置文件，把密钥设置为客户端身份验证用" class="headerlink" title="11. 创建扩展配置文件，把密钥设置为客户端身份验证用"></a>11. 创建扩展配置文件，把密钥设置为客户端身份验证用</h3><div class="hljs code-wrapper"><pre><code class="hljs vim"><span class="hljs-keyword">echo</span> extendedKeyUsage = clientAuth &gt; extfile-client.<span class="hljs-keyword">cnf</span></code></pre></div>
+
+<h3 id="12-生成cert-pem，输入前面设置的密码，生成签名证书"><a href="#12-生成cert-pem，输入前面设置的密码，生成签名证书" class="headerlink" title="12. 生成cert.pem，输入前面设置的密码，生成签名证书"></a>12. 生成cert.pem，输入前面设置的密码，生成签名证书</h3><div class="hljs code-wrapper"><pre><code class="hljs stata">openssl x509 -req -days 365 -sha256 -<span class="hljs-keyword">in</span> client.csr -<span class="hljs-keyword">CA</span> <span class="hljs-keyword">ca</span>.pem -CAkey <span class="hljs-keyword">ca</span>-key.pem \
+  -CAcreateserial -<span class="hljs-keyword">out</span> cert.pem -extfile extfile-client.cnf</code></pre></div>
+
+<h3 id="13-删除不需要的配置文件和两个证书的签名请求"><a href="#13-删除不需要的配置文件和两个证书的签名请求" class="headerlink" title="13. 删除不需要的配置文件和两个证书的签名请求"></a>13. 删除不需要的配置文件和两个证书的签名请求</h3><div class="hljs code-wrapper"><pre><code class="hljs axapta">rm -v <span class="hljs-keyword">client</span>.csr <span class="hljs-keyword">server</span>.csr extfile.cnf extfile-<span class="hljs-keyword">client</span>.cnf</code></pre></div>
+
+<h3 id="14-为了防止私钥文件被更改以及被其他用户查看，修改其权限为所有者只读"><a href="#14-为了防止私钥文件被更改以及被其他用户查看，修改其权限为所有者只读" class="headerlink" title="14. 为了防止私钥文件被更改以及被其他用户查看，修改其权限为所有者只读"></a>14. 为了防止私钥文件被更改以及被其他用户查看，修改其权限为所有者只读</h3><div class="hljs code-wrapper"><pre><code class="hljs lsl">chmod -v <span class="hljs-number">0400</span> ca-<span class="hljs-type">key</span>.pem <span class="hljs-type">key</span>.pem server-<span class="hljs-type">key</span>.pem</code></pre></div>
+
+<h3 id="15-为了防止-公钥文件被更改，修改其权限为只读"><a href="#15-为了防止-公钥文件被更改，修改其权限为只读" class="headerlink" title="15. 为了防止##### 公钥文件被更改，修改其权限为只读"></a>15. 为了防止##### 公钥文件被更改，修改其权限为只读</h3><div class="hljs code-wrapper"><pre><code class="hljs stylus">chmod -v <span class="hljs-number">0444</span> ca<span class="hljs-selector-class">.pem</span> server-cert<span class="hljs-selector-class">.pem</span> cert.pem</code></pre></div>
+
+<h3 id="16-修改Docker配置，使Docker守护程序仅接受来自提供CA信任的证书的客户端的连接"><a href="#16-修改Docker配置，使Docker守护程序仅接受来自提供CA信任的证书的客户端的连接" class="headerlink" title="16. 修改Docker配置，使Docker守护程序仅接受来自提供CA信任的证书的客户端的连接"></a>16. 修改Docker配置，使Docker守护程序仅接受来自提供CA信任的证书的客户端的连接</h3><p>拷贝安装包单元文件到/etc，这样就不会因为docker升级而被覆盖</p>
+<div class="hljs code-wrapper"><pre><code class="hljs awk">cp <span class="hljs-regexp">/lib/</span>systemd<span class="hljs-regexp">/system/</span>docker.service <span class="hljs-regexp">/etc/</span>systemd<span class="hljs-regexp">/system/</span>docker.service</code></pre></div>
+
+<p>在<code>ExecStart=/usr/bin/dockerd-current \</code>下面增加</p>
+<div class="hljs code-wrapper"><pre><code class="hljs awk">--tlsverify \
+--tlscacert=<span class="hljs-regexp">/etc/</span>docker<span class="hljs-regexp">/certs/</span>ca.pem \
+--tlscert=<span class="hljs-regexp">/etc/</span>docker<span class="hljs-regexp">/certs/</span>server-cert.pem \
+--tlskey=<span class="hljs-regexp">/etc/</span>docker<span class="hljs-regexp">/certs/</span>server-key.pem \
+-H tcp:<span class="hljs-regexp">//</span><span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>:<span class="hljs-number">2376</span> \
+-H unix:<span class="hljs-regexp">//</span><span class="hljs-regexp">/var/</span>run/docker.sock \</code></pre></div>
+
+<h3 id="17-重新加载daemon并重启docker"><a href="#17-重新加载daemon并重启docker" class="headerlink" title="17. 重新加载daemon并重启docker"></a>17. 重新加载daemon并重启docker</h3><div class="hljs code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">systemctl daemon-reload</span>
+<span class="hljs-attribute">systemctl restart docker</span></code></pre></div>
+
+<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><h3 id="1-创建证书目录"><a href="#1-创建证书目录" class="headerlink" title="1. 创建证书目录"></a>1. 创建证书目录</h3><div class="hljs code-wrapper"><pre><code class="hljs arcade">mkdir -pv ~<span class="hljs-regexp">/.docker/</span>certs/
+cd ~<span class="hljs-regexp">/.docker/</span>certs/</code></pre></div>
+
+<h3 id="2-将ca-pem-cert-pem-key-pem这3个文件拷贝到当前目录"><a href="#2-将ca-pem-cert-pem-key-pem这3个文件拷贝到当前目录" class="headerlink" title="2. 将ca.pem cert.pem key.pem这3个文件拷贝到当前目录"></a>2. 将<code>ca.pem</code> <code>cert.pem</code> <code>key.pem</code>这3个文件拷贝到当前目录</h3><div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">scp ca.pem <span class="hljs-string">./</span>
+scp cert.pem <span class="hljs-string">./</span>
+scp key.pem <span class="hljs-string">./</span></code></pre></div>
+
+<h3 id="3-使用docker客户端测试（注意修改证书路径）"><a href="#3-使用docker客户端测试（注意修改证书路径）" class="headerlink" title="3. 使用docker客户端测试（注意修改证书路径）"></a>3. 使用docker客户端测试（注意修改证书路径）</h3><div class="hljs code-wrapper"><pre><code class="hljs awk">docker --tlsverify \
+    --tlscacert=<span class="hljs-regexp">/home/</span>alex<span class="hljs-regexp">/.docker/</span>certs/ca.pem \
+    --tlscert=<span class="hljs-regexp">/home/</span>alex<span class="hljs-regexp">/.docker/</span>certs/cert.pem \
+    --tlskey=<span class="hljs-regexp">/home/</span>alex<span class="hljs-regexp">/.docker/</span>certs/key.pem \
+    -H=<span class="hljs-number">123.123</span>.<span class="hljs-number">123.123</span>:<span class="hljs-number">2376</span> version</code></pre></div>
+
+<h3 id="4-使用curl测试Docker-API"><a href="#4-使用curl测试Docker-API" class="headerlink" title="4. 使用curl测试Docker API"></a>4. 使用curl测试Docker API</h3><div class="hljs code-wrapper"><pre><code class="hljs awk">curl https:<span class="hljs-regexp">//</span><span class="hljs-number">123.123</span>.<span class="hljs-number">123.123</span>:<span class="hljs-number">2376</span><span class="hljs-regexp">/images/</span>json \
+  --cert ~<span class="hljs-regexp">/.docker/</span>certs/cert.pem \
+  --key ~<span class="hljs-regexp">/.docker/</span>certs/key.pem \
+  --cacert ~<span class="hljs-regexp">/.docker/</span>certs/ca.pem</code></pre></div>
+
+<h3 id="5-配置默认远程调用服务器docker服务"><a href="#5-配置默认远程调用服务器docker服务" class="headerlink" title="5. 配置默认远程调用服务器docker服务"></a>5. 配置默认远程调用服务器docker服务</h3><div class="hljs code-wrapper"><pre><code class="hljs routeros"><span class="hljs-comment"># 配置~/.zshrc（或者~/.bashrc，根据你的客户端环境而定），在末尾添加以下几行</span>
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">DOCKER_HOST</span>=tcp://123.123.123.123:2376 <span class="hljs-attribute">DOCKER_TLS_VERIFY</span>=1
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">DOCKER_CERT_PATH</span>=~/.docker/certs/
+<span class="hljs-comment"># 然后让加载到当前会话</span>
+source .zshrc
+<span class="hljs-comment"># 测试</span>
+docker ps</code></pre></div>
+
+<h4 id="务必非常小心保管这些key，它们就跟服务器root密码一样重要（众所周知docker是可以进行真实主机提权的）"><a href="#务必非常小心保管这些key，它们就跟服务器root密码一样重要（众所周知docker是可以进行真实主机提权的）" class="headerlink" title="*务必非常小心保管这些key，它们就跟服务器root密码一样重要（众所周知docker是可以进行真实主机提权的）"></a>*<code>务必非常小心保管这些key，它们就跟服务器root密码一样重要（众所周知docker是可以进行真实主机提权的）</code></h4>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/docker/">docker</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/docker/">docker</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/10/java-utils-files/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java utils files</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/09/linux-vim/">
+                        <span class="hidden-mobile">linux vim</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

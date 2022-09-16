@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Mysql 主从复制一、概要mysql从3.23版本开始提供复制功能，复制是将主库的DDL和DML操作通过二进制日志传递到复制服务器（从库）上，然后从库对这些日志重新执行（重做），从而使得主库和从库保持数据一致。 1.1 mysql 复制的优点** 如果主库出现问题，可以快速切换到从库提供服务 可以在从库执行查询操作，降低主库的访问压力。 可以在从库进行备份，以免备份期间影响主库的服务。  1.2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql-master-slave">
+<meta property="og:url" content="https://lunasaw.github.io/2021/11/04/mysql-master-slave/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Mysql 主从复制一、概要mysql从3.23版本开始提供复制功能，复制是将主库的DDL和DML操作通过二进制日志传递到复制服务器（从库）上，然后从库对这些日志重新执行（重做），从而使得主库和从库保持数据一致。 1.1 mysql 复制的优点** 如果主库出现问题，可以快速切换到从库提供服务 可以在从库执行查询操作，降低主库的访问压力。 可以在从库进行备份，以免备份期间影响主库的服务。  1.2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gw24d8i4k4j306s07ct8m.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gw24db1yhrj3060058q2s.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gw24dbqy71j308e02y744.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gw24d9axmcj30hs06zaaa.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gw24d9o2bgj30hs0733yl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gw24dab5opj30hs07u0t2.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gw24dciy1nj30hs08b0t9.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gw24dambalj30j50dwq3n.jpg">
+<meta property="article:published_time" content="2021-11-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.992Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gw24d8i4k4j306s07ct8m.jpg">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>mysql-master-slave - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/mysql-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="mysql-master-slave">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-04 00:00" pubdate>
+        2021年11月4日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mysql-master-slave</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Mysql-主从复制"><a href="#Mysql-主从复制" class="headerlink" title="Mysql 主从复制"></a>Mysql 主从复制</h1><h2 id="一、概要"><a href="#一、概要" class="headerlink" title="一、概要"></a><strong>一、概要</strong></h2><p>mysql从3.23版本开始提供复制功能，复制是将主库的<strong>DDL</strong>和<strong>DML</strong>操作通过二进制日志传递到复制服务器（从库）上，然后从库对这些日志重新执行（重做），从而使得主库和从库保持数据一致。</p>
+<h2 id="1-1-mysql-复制的优点"><a href="#1-1-mysql-复制的优点" class="headerlink" title="1.1 mysql 复制的优点**"></a><strong>1.1</strong> <strong>mysql</strong> 复制的优点**</h2><ul>
+<li>如果主库出现问题，可以快速切换到从库提供服务</li>
+<li>可以在从库执行查询操作，降低主库的访问压力。</li>
+<li>可以在从库进行备份，以免备份期间影响主库的服务。</li>
+</ul>
+<h2 id="1-2-Mysql-复制解决的问题"><a href="#1-2-Mysql-复制解决的问题" class="headerlink" title="1.2 Mysql 复制解决的问题**"></a><strong>1.2</strong> <strong>Mysql</strong> 复制解决的问题**</h2><ul>
+<li>数据分布 (Data distribution )</li>
+<li>负载平衡(load balancing)</li>
+<li>数据备份(Backups) ，保证数据安全</li>
+<li>高可用性和容错行(High availability and failover)</li>
+<li>实现读写分离，缓解数据库压力</li>
+</ul>
+<blockquote>
+<p><em>注意：由于</em> <em>mysql</em> <em>实现的异步复制，所以主库和从库数据之间存在一定的差异，在从库执行查询操作需要考虑这些数据的差异，一般只有更新不频繁和对实时性要求不高的数据可以通过从库查询，实行要求高的仍要从主库查询。</em></p>
+</blockquote>
+<h1 id="二、-MySQL-主从复制的概念"><a href="#二、-MySQL-主从复制的概念" class="headerlink" title="二、 MySQL** 主从复制的概念**"></a><strong>二、</strong> MySQL** 主从复制的概念**</h1><p><strong>MySQL 主从复制是指数据可以从一个MySQL数据库服务器主节点复制到一个或多个从节点</strong>。MySQL 默认采用<strong>异步复制</strong>方式，这样从节点不用一直访问主服务器来更新自己的数据，数据的更新可以在远程连接上进行，从节点可以复制主数据库中的所有数据库或者特定的数据库，或者特定的表。</p>
+<h1 id="三、-MySQL-主从复制的主要用途"><a href="#三、-MySQL-主从复制的主要用途" class="headerlink" title="三、 MySQL** 主从复制的主要用途**"></a><strong>三、</strong> MySQL** 主从复制的主要用途**</h1><h2 id="3-1-读写分离"><a href="#3-1-读写分离" class="headerlink" title="3.1 读写分离"></a><strong>3.1</strong> <strong>读写分离</strong></h2><p>在开发工作中，有时候会遇见某个sql 语句需要锁表，导致暂时不能使用读的服务，这样就会影响现有业务，使用主从复制，让主库负责写，从库负责读，这样，即使主库出现了锁表的情景，通过读从库也可以保证业务的正常运作。</p>
+<h2 id="3-2-数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换-主从切换"><a href="#3-2-数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换-主从切换" class="headerlink" title="3.2 数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换( 主从切换** )**"></a><strong>3.2</strong> <strong>数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换(</strong> 主从切换** )**</h2><h2 id="3-3-高可用-（-HA-）"><a href="#3-3-高可用-（-HA-）" class="headerlink" title="3.3 高可用 （** HA** ）**"></a><strong>3.3</strong> <strong>高可用</strong> （** HA** ）**</h2><h2 id="3-4-架构扩展"><a href="#3-4-架构扩展" class="headerlink" title="3.4 架构扩展"></a><strong>3.4</strong> <strong>架构扩展</strong></h2><p>随着系统中业务访问量的增大，如果是单机部署数据库，就会导致I/O访问频率过高。有了主从复制，增加多个数据存储节点，将负载分布在多个从节点上，降低单机磁盘I/O访问的频率，提高单个机器的I/O性能。</p>
+<h1 id="四、-MySQL-主从形式一主一从"><a href="#四、-MySQL-主从形式一主一从" class="headerlink" title="四、 MySQL** 主从形式一主一从**"></a><strong>四、</strong> MySQL** 主从形式一主一从**</h1><h2 id="4-1-一主多从"><a href="#4-1-一主多从" class="headerlink" title="4.1 一主多从"></a><strong>4.1</strong> <strong>一主多从</strong></h2><p>提高系统的读性能</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gw24d8i4k4j306s07ct8m.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>一主一从和一主多从是最常见的主从架构，实施起来简单并且有效，不仅可以实现HA，而且还能读写分离，进而提升集群的并发能力。</p>
+<h2 id="4-2-多主一从-（从-5-7-开始支持）"><a href="#4-2-多主一从-（从-5-7-开始支持）" class="headerlink" title="4.2 多主一从 （从 5.7** 开始支持）**"></a><strong>4.2</strong> <strong>多主一从 （从</strong> 5.7** 开始支持）**</h2><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gw24db1yhrj3060058q2s.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>多主一从可以将多个mysql数据库备份到一台存储性能比较好的服务器上。</p>
+<h2 id="4-3-双主复制"><a href="#4-3-双主复制" class="headerlink" title="4.3 双主复制"></a><strong>4.3</strong> <strong>双主复制</strong></h2><p>双主复制，也就是互做主从复制，每个<strong>master</strong> （主）<strong>既是master，又是另外一台服务器的</strong>slave** （从）**。这样任何一方所做的变更，都会通过复制应用到另外一方的数据库中。</p>
+<h2 id="4-4-级联复制"><a href="#4-4-级联复制" class="headerlink" title="4.4 级联复制"></a><strong>4.4 级联复制</strong></h2><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gw24dbqy71j308e02y744.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>级联复制模式下，部分slave的数据同步不连接主节点，而是连接从节点。因为如果主节点有太多的从节点，就会损耗一部分性能用于<strong>replication</strong> （复制）<strong>，那么我们可以让3~5个从节点连接主节点，其它从节点作为二级或者三级与从节点连接，这样不仅可以缓解主节点的压力，并且对数据一致性没有负面影响。</strong>级联复制下从节点也要开启** binary log** （** bin-log** ）功能**。</p>
+<h1 id="五、-MySQL-主从复制的原理"><a href="#五、-MySQL-主从复制的原理" class="headerlink" title="五、 MySQL** 主从复制的原理**"></a><strong>五、</strong> MySQL** 主从复制的原理**</h1><p>MySQL主从复制涉及到三个线程，一个运行在<strong>主节点（</strong> log dump thread** ）**，其余两个(<strong>I/O thread</strong>, <strong>SQL thread</strong>)运行在从节点，如下图所示:</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gw24d9axmcj30hs06zaaa.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="5-1-主节点-log-dump-线程"><a href="#5-1-主节点-log-dump-线程" class="headerlink" title="5.1 主节点 log dump 线程"></a><strong>5.1</strong> <strong>主节点</strong> <strong>log dump</strong> <strong>线程</strong></h2><p>当从节点连接主节点时，主节点会为其创建一个log dump 线程，用于发送和读取bin-log的内容。在读取bin-log中的操作时，log dump线程会对主节点上的bin-log加锁，当读取完成，在发送给从节点之前，锁会被释放。<strong>主节点会为自己的每一个从节点创建一个</strong> log dump** <strong>线程</strong>。</p>
+<h2 id="5-2-从节点-I-O-线程"><a href="#5-2-从节点-I-O-线程" class="headerlink" title="5.2 从节点 I/O 线程**"></a><strong>5.2</strong> <strong>从节点</strong> <strong>I/O</strong> 线程**</h2><p>当从节点上执行<code>start slave</code>命令之后，从节点会创建一个I/O线程用来连接主节点，请求主库中更新的bin-log。I/O线程接收到主节点的blog dump进程发来的更新之后，保存在本地<strong>relay-log</strong> （中继日志）**中。</p>
+<h2 id="5-3-从节点-SQL-线程"><a href="#5-3-从节点-SQL-线程" class="headerlink" title="5.3 从节点 SQL 线程**"></a><strong>5.3</strong> <strong>从节点</strong> <strong>SQL</strong> 线程**</h2><p>SQL线程负责读取relay-log中的内容，解析成具体的操作并执行，最终保证主从数据的一致性。</p>
+<p>对于每一个主从连接，都需要这三个进程来完成。当主节点有多个从节点时，主节点会为每一个当前连接的从节点建一个<strong>log dump</strong> <strong>进程</strong>，而每个从节点都有自己的<strong>I/O</strong> 进程<strong>，</strong>SQL** 进程**。从节点用两个线程将从主库拉取更新和执行分成独立的任务，这样在执行同步数据任务的时候，不会降低读操作的性能。比如，如果从节点没有运行，此时I/O进程可以很快从主节点获取更新，尽管SQL进程还没有执行。如果在SQL进程执行之前从节点服务停止，至少I/O进程已经从主节点拉取到了最新的变更并且保存在本地relay日志中，当服务再次起来之后，就可以完成数据的同步。</p>
+<p>要实施复制，首先<strong>必须打开</strong> Master** <strong>端的</strong> binary log** （** bin-log** ）功能，否则无法实现**。</p>
+<p>因为整个复制过程实际上就是Slave 从Master 端获取该日志然后再在自己身上完全顺序的执行日志中所记录的各种操作。如下图所示：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gw24d9o2bgj30hs0733yl.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="5-4-复制的基本过程"><a href="#5-4-复制的基本过程" class="headerlink" title="5.4 复制的基本过程"></a><strong>5.4</strong> <strong>复制的基本过程</strong></h2><ol>
+<li>在从节点上执行sart slave命令开启主从复制开关，开始进行主从复制。从节点上的I/O 进程连接主节点，并请求从指定日志文件的指定位置（或者从最开始的日志）之后的日志内容；</li>
+<li>主节点接收到来自从节点的I/O请求后，通过负责复制的I/O进程（log dump 线程）根据请求信息读取指定日志指定位置之后的日志信息，返回给从节点。返回信息中除了日志所包含的信息之外，还包括本次返回的信息的bin-log file 的以及bin-log position（bin-log中的下一个指定更新位置）；</li>
+<li>从节点的I/O进程接收到主节点发送过来的日志内容、日志文件及位置点后，将接收到的日志内容更新到本机的relay-log（中继日志）的文件（Mysql-relay-bin.xxx）的最末端，并将读取到的binary log（bin-log）文件名和位置保存到<strong>master-info</strong> <strong>文件</strong>中，以便在下一次读取的时候能够清楚的告诉Master“我需要从某个bin-log 的哪个位置开始往后的日志内容，请发给我”；</li>
+<li>Slave 的 SQL线程检测到relay-log 中新增加了内容后，会将relay-log的内容解析成在主节点上实际执行过SQL语句，然后在本数据库中按照解析出来的顺序执行，并在<strong>relay-log.info</strong>中记录当前应用中继日志的文件名和位置点。</li>
+</ol>
+<h1 id="六、-MySQL-主从复制的模式"><a href="#六、-MySQL-主从复制的模式" class="headerlink" title="六、 MySQL** 主从复制的模式**"></a><strong>六、</strong> MySQL** 主从复制的模式**</h1><p>MySQL 主从复制默认是<strong>异步的模式</strong>。MySQL增删改操作会全部记录在<strong>bin</strong> -** log** （** binary log** ）**中，当slave节点连接master时，会主动从master处获取最新的bin-log文件。并把bin-log存储到本地的relay-log中，然后去执行relay-log的更新内容。</p>
+<h2 id="6-1-异步模式（-mysql-async-mode-）"><a href="#6-1-异步模式（-mysql-async-mode-）" class="headerlink" title="6.1 异步模式（ mysql async-mode** ）**"></a><strong>6.1</strong> <strong>异步模式（</strong> mysql async-mode** ）**</h2><p>异步模式如下图所示，这种模式下，主节点不会主动推送bin-log到从节点，主库在执行完客户端提交的事务后会立即将结果返给给客户端，并不关心从库是否已经接收并处理，这样就会有一个问题，主节点如果崩溃掉了，此时主节点上已经提交的事务可能并没有传到从节点上，如果此时，强行将从提升为主，可能导致新主节点上的数据不完整。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gw24dab5opj30hs07u0t2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="6-2-半同步模式-mysql-semi-sync"><a href="#6-2-半同步模式-mysql-semi-sync" class="headerlink" title="6.2 半同步模式 (mysql semi-sync)**"></a><strong>6.2</strong> <strong>半同步模式</strong> (mysql semi-sync)**</h2><p>介于异步复制和全同步复制之间，主库在执行完客户端提交的事务后不是立刻返回给客户端，而是等待至少一个从库接收到并写到relay-log中才返回成功信息给客户端（只能保证主库的bin-log至少传输到了一个从节点上，但并不能保证从节点将此事务执行更新到db中），否则需要等待直到超时时间然后切换成异步模式再提交。相对于异步复制，半同步复制提高了数据的安全性，一定程度的保证了数据能成功备份到从库，同时它也造成了一定程度的延迟，但是比全同步模式延迟要低，这个延迟最少是一个TCP/IP往返的时间。所以，半同步复制最好在低延时的网络中使用。如下图所示：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gw24dciy1nj30hs08b0t9.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>半同步模式不是mysql内置的，从mysql 5.5开始集成，需要master 和slave 安装插件开启半同步模式。</p>
+<h2 id="6-3-全同步模式"><a href="#6-3-全同步模式" class="headerlink" title="6.3 全同步模式"></a><strong>6.3</strong> <strong>全同步模式</strong></h2><p>指当主库执行完一个事务，然后所有的从库都复制了该事务并成功执行完才返回成功信息给客户端。因为需要等待所有从库执行完该事务才能返回成功信息，所以全同步复制的性能必然会收到严重的影响。</p>
+<h2 id="6-4-异步模式，全同步模式，半同步模式-的对比图"><a href="#6-4-异步模式，全同步模式，半同步模式-的对比图" class="headerlink" title="6.4 异步模式，全同步模式，半同步模式 的对比图**"></a><strong>6.4</strong> <strong>异步模式，全同步模式，半同步模式</strong> 的对比图**</h2><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gw24dambalj30j50dwq3n.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="6-5-GTID-复制模式"><a href="#6-5-GTID-复制模式" class="headerlink" title="6.5 GTID 复制模式**"></a><strong>6.5 GTID</strong> 复制模式**</h2><p>在传统的复制里面，当发生故障，需要<strong>主从切换</strong>，需要找到bin-log和pos点（指从库更新到了主库bin-log的哪个位置，这个位置之前都已经更显完毕，这个位置之后未更新），然后将主节点指向新的主节点，相对来说比较麻烦，也容易出错。在MySQL 5.6里面，不用再找bin-log和pos点，我们只需要知道主节点的ip，端口，以及账号密码就行，因为复制是自动的，MySQL会通过内部机制<strong>GTID</strong>自动找点同步。</p>
+<p>基于GTID的复制是MySQL 5.6后新增的复制方式.</p>
+<p><strong>GTID (global transaction identifier)</strong> 即全局事务ID, 保证了在每个在主库上提交的事务在集群中有一个唯一的ID.</p>
+<h3 id="6-5-1-GTID-复制原理"><a href="#6-5-1-GTID-复制原理" class="headerlink" title="6.5.1 GTID 复制原理**"></a><strong>6.5.1 GTID</strong> 复制原理**</h3><p>在原来基于日志的复制中, 从库需要告知主库要从哪个偏移量进行增量同步, 如果指定错误会造成数据的遗漏, 从而造成数据的不一致.</p>
+<p>而基于GTID的复制中, 从库会告知主库已经执行的事务的GTID的值, 然后主库会将所有未执行的事务的GTID的列表返回给从库. 并且可以保证同一个事务只在指定的从库执行一次.<strong>通过全局的事务</strong> ID** 确定从库要执行的事务的方式代替了以前需要用** bin-log** 和** pos** 点确定从库要执行的事务的方式**。</p>
+<p>GTID是由server_uuid和事物id组成，格式为：GTID=server_uuid:transaction_id。server_uuid是在数据库启动过程中自动生成，每台机器的server-uuid不一样。uuid存放在数据目录的auto.conf文件中，而transaction_id就是事务提交时系统顺序分配的一个不会重复的序列号。</p>
+<p>主节点更新数据时，会在事务前产生GTID，一起记录到bin-log日志中。从节点的I/O线程将变更的bin-log，写入到本地的relay-log中。SQL线程从relay-log中获取GTID，然后对比本地bin-log是否有记录（所以MySQL从节点必须要开启binary-log）。如果有记录，说明该GTID的事务已经执行，从节点会忽略。如果没有记录，从节点就会从relay-log中执行该GTID的事务，并记录到binlog。在解析过程中会判断是否有主键，如果没有就用二级索引，如果有就用全部扫描。</p>
+<h3 id="6-5-2-GTID-的好处"><a href="#6-5-2-GTID-的好处" class="headerlink" title="6.5.2 GTID 的好处**"></a><strong>6.5.2</strong> <strong>GTID</strong> 的好处**</h3><ol>
+<li>GTID使用master_auto_position=1代替了binlog和position号的主从复制搭建方式，相比binlog和position方式更容易搭建主从复制。</li>
+<li>GTID方便实现主从之间的failover（主从切换），不用一步一步的去查找position和binlog文件。</li>
+</ol>
+<h3 id="6-5-3-GTID-模式复制局限性"><a href="#6-5-3-GTID-模式复制局限性" class="headerlink" title="6.5.3 GTID 模式复制局限性**"></a><strong>6.5.3</strong> <strong>GTID</strong> 模式复制局限性**</h3><ol>
+<li>不能使用create table table_name select * from table_name模式的语句</li>
+<li>在一个事务中既包含事务表的操作又包含非事务表</li>
+<li>不支持CREATE TEMPORARY TABLE or DROP TEMPORARY TABLE语句操作</li>
+<li>使用GTID复制从库跳过错误时，不支持sql_slave_skip_counter参数的语法</li>
+</ol>
+<h2 id="6-6-多线程复制"><a href="#6-6-多线程复制" class="headerlink" title="6.6 多线程复制"></a><strong>6.6</strong> <strong>多线程复制</strong></h2><p>多线程复制（基于库），在MySQL 5.6以前的版本，slave的复制是单线程的，而master是并发写入的，所以延时是避免不了的。唯一有效的方法是把多个库放在多台slave，这样又有点浪费服务器。在MySQL 5.6里面，我们可以把多个表放在多个库，这样就可以使用多线程复制。</p>
+<p>但 5.6 中的每个线程只能处理一个数据库，所以如果只有一个数据库，或者绝大多数写操作都是集中在某一个数据库的，那么这个“多线程复制”就不能充分发挥作用了</p>
+<p>Mysql 5.7 对 “多线程复制” 进行了改善，可以按照逻辑时钟的方式来分配线程，大大提高了复制性能</p>
+<h1 id="七、MySQL主从复制的方式"><a href="#七、MySQL主从复制的方式" class="headerlink" title="七、MySQL主从复制的方式"></a><strong>七、MySQL主从复制的方式</strong></h1><p>MySQL 主从复制有三种方式：<strong>基于</strong> SQL** 语句的复制<strong>（statement-based replication，SBR），</strong>基于行的复制<strong>（row-based replication，RBR)，</strong>混合模式复制<strong>（mixed-based replication,MBR)。对应的bin-log文件的格式也有三种：</strong>STATEMENT**, <strong>ROW</strong>, <strong>MIXED</strong>。</p>
+<h2 id="7-1-Statement-base-Replication-SBR"><a href="#7-1-Statement-base-Replication-SBR" class="headerlink" title="7.1 Statement-base Replication (SBR)"></a><strong>7.1</strong> <strong>Statement-base Replication (SBR)</strong></h2><p>就是记录sql语句在bin-log中，Mysql 5.1.4 及之前的版本都是使用的这种复制格式。优点是只需要记录会修改数据的sql语句到bin-log中，减少了bin-log日质量，节约I/O，提高性能。缺点是在某些情况下，会导致主从节点中数据不一致（比如sleep(),now()等）。</p>
+<h2 id="7-2-Row-based-Relication-RBR"><a href="#7-2-Row-based-Relication-RBR" class="headerlink" title="7.2 Row-based Relication(RBR)"></a><strong>7.2 Row-based Relication(RBR)</strong></h2><p>mysql master将SQL语句分解为基于Row更改的语句并记录在bin-log中，也就是只记录哪条数据被修改了，修改成什么样。优点是不会出现某些特定情况下的存储过程、或者函数、或者trigger的调用或者触发无法被正确复制的问题。缺点是会产生大量的日志，尤其是修改table的时候会让日志暴增,同时增加bin-log同步时间。也不能通过bin-log解析获取执行过的sql语句，只能看到发生的data变更。</p>
+<h2 id="7-3-Mixed-format-Replication-MBR"><a href="#7-3-Mixed-format-Replication-MBR" class="headerlink" title="7.3 Mixed-format Replication(MBR)"></a><strong>7.3</strong> <strong>Mixed-format Replication(MBR)</strong></h2><p>MySQL NDB cluster 7.3 和7.4 使用的MBR。是以上两种模式的混合，对于一般的复制使用STATEMENT模式保存到bin-log，对于STATEMENT模式无法复制的操作则使用ROW模式来保存，MySQL会根据执行的SQL语句选择日志保存方式。</p>
+<h1 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a><strong>八、总结</strong></h1><p>Mysql 主从复制是mysql 高可用，高性能的基础，有了这个基础，mysql 的部署会变得简单、灵活并且具有多样性，从而可以根据不同的业务场景做出灵活的调整。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/mysql/">mysql</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/mysql/">mysql</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/05/java-synchornized/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java synchronized lock</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/24/java-aop/">
+                        <span class="hidden-mobile">java aop</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

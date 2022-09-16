@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="HAProxyHAProxy介绍HAProxy: 是法国人Willy Tarreau开发的一个开源软件，是一款应对客户端10000以上的同时连接的高性能的TCP和 HTTP负载均衡器。其功能是用来提供基于cookie的持久性， 基于内容的交换，过载保护的高级流量管制，自动故障切换 ，以正则表达式为基础的标题控制运行时间，基于Web的报表，高级日志记录以帮助排除故‹@障的应用或网络及其他功能。 相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="haproxy">
+<meta property="og:url" content="https://lunasaw.github.io/2021/01/15/haproxy/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="HAProxyHAProxy介绍HAProxy: 是法国人Willy Tarreau开发的一个开源软件，是一款应对客户端10000以上的同时连接的高性能的TCP和 HTTP负载均衡器。其功能是用来提供基于cookie的持久性， 基于内容的交换，过载保护的高级流量管制，自动故障切换 ，以正则表达式为基础的标题控制运行时间，基于Web的报表，高级日志记录以帮助排除故‹@障的应用或网络及其他功能。 相关">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/xjDWm63snTL48fG.png">
+<meta property="article:published_time" content="2021-01-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.984Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="haproxy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/29/xjDWm63snTL48fG.png">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>haproxy - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/haproxy-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="haproxy">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-15 00:00" pubdate>
+        2021年1月15日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      12k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      38 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">haproxy</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="HAProxy"><a href="#HAProxy" class="headerlink" title="HAProxy"></a>HAProxy</h2><h2 id="HAProxy介绍"><a href="#HAProxy介绍" class="headerlink" title="HAProxy介绍"></a>HAProxy介绍</h2><p>HAProxy: 是法国人Willy Tarreau开发的一个开源软件，是一款应对客户端10000以上的同时连接的高性能的TCP和 HTTP负载均衡器。其功能是用来提供基于cookie的持久性， 基于内容的交换，过载保护的高级流量管制，自动故障切换 ，以正则表达式为基础的标题控制运行时间，基于Web的报表，高级日志记录以帮助排除故‹@障的应用或网络及其他功能。</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="代理的作用"><a href="#代理的作用" class="headerlink" title="代理的作用"></a>代理的作用</h3><ol>
+<li>正向代理，反向代理</li>
+<li>代理服务器，可以提供缓存功能加速客户端访问，同时可以对缓存数据进行有效性检查</li>
+<li>内容路由：根据流量以及内容类型将请求转发至特定的服务器</li>
+<li>转码器：支持压缩功能，将数据以压缩形式发送给客户端</li>
+</ol>
+<h3 id="缓存的作用"><a href="#缓存的作用" class="headerlink" title="缓存的作用"></a>缓存的作用</h3><ol>
+<li>减少访冗余内容传输</li>
+<li>节省带宽，缓解网络瓶颈</li>
+<li>降低了对原始服务器的请求压力</li>
+<li>降低了传输延迟</li>
+</ol>
+<h3 id="负载均衡集群："><a href="#负载均衡集群：" class="headerlink" title="负载均衡集群："></a>负载均衡集群：</h3><p>四层：<br>lvs, nginx(stream)，haproxy(mode tcp)<br>七层：<br>http: nginx(http, ngx_http_upstream_module), haproxy(mode http), httpd, ats, perlbal, pound…</p>
+<h3 id="HAProxy功能"><a href="#HAProxy功能" class="headerlink" title="HAProxy功能"></a>HAProxy功能</h3><p>HAProxy是TCP / HTTP反向代理服务器，尤其适合于高可用性环境<br>可以针对HTTP请求添加cookie，进行路由后端服务器<br>可平衡负载至后端服务器，并支持持久连接<br>支持基于cookie进行调度<br>支持所有主服务器故障切换至备用服务器<br>支持专用端口实现监控服务<br>支持不影响现有连接情况下停止接受新连接请求<br>可以在双向添加，修改或删除HTTP报文首部<br>支持基于pattern实现连接请求的访问控制<br>通过特定的URI为授权用户提供详细的状态信息<br>版本：1.4 1.5 1.6 1.7 1.8<br><img src="https://i.loli.net/2021/01/29/xjDWm63snTL48fG.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>支持http反向代理<br>支持动态程序的反向代理<br>支持基于数据库的反向代理</p>
+<h2 id="HAproxy组成"><a href="#HAproxy组成" class="headerlink" title="HAproxy组成"></a>HAproxy组成</h2><p>包名：haproxy</p>
+<h3 id="程序环境"><a href="#程序环境" class="headerlink" title="程序环境"></a>程序环境</h3><p>主程序：/usr/sbin/haproxy<br>配置文件：/etc/haproxy/haproxy.cfg<br>Unit file：/usr/lib/systemd/system/haproxy.service</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>haproxy.cfg主要有两部分组成：global，和proxies配置段</p>
+<h4 id="global：全局配置段"><a href="#global：全局配置段" class="headerlink" title="global：全局配置段"></a>global：全局配置段</h4><p>进程及安全配置相关的参数<br>性能调整相关参数<br>Debug参数</p>
+<h4 id="proxies：代理配置段"><a href="#proxies：代理配置段" class="headerlink" title="proxies：代理配置段"></a>proxies：代理配置段</h4><p>defaults：为frontend, backend, listen提供默认配置<br>fronted：前端，相当于nginx, server {}<br>backend：后端，相当于nginx, upstream {}<br>listen：同时拥有前端和后端,适用于一对一环境</p>
+<h3 id="简单前端调度实现"><a href="#简单前端调度实现" class="headerlink" title="简单前端调度实现"></a>简单前端调度实现</h3><p>利用四台虚拟机实现简单的前端轮询调度。<br>一台客户端，一台haproxy调度器，两台RS</p>
+<ol>
+<li><p>首先在后端部署两台http服务</p>
+</li>
+<li><p>编辑haproxy配置文件/etc/haproxy/haproxy.cfg<br>默认设置不做修改</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">[root@CentOS6 ~]<span class="hljs-comment"># vim /etc/haproxy/haproxy.cfg </span>
+frontend  main *:80     <span class="hljs-comment">#设置监听ip：端口</span>
+default_backend         websrvs     <span class="hljs-comment">#调用后端RS组名</span>
+backend websrvs
+balance     roundrobin      <span class="hljs-comment">#轮询算法</span>
+server      web1 192.168.45.11:80 check
+server      web2 192.168.45.12:80 check</code></pre></div></li>
+</ol>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="global配置参数："><a href="#global配置参数：" class="headerlink" title="global配置参数："></a>global配置参数：</h3><div class="hljs code-wrapper"><pre><code class="hljs bash">global      <span class="hljs-comment"># 全局参数的设置</span>
+<span class="hljs-built_in">log</span>         127.0.0.1   local2                      
+<span class="hljs-comment"># log语法：log &lt;address_1&gt;[max_level_1] </span>
+<span class="hljs-comment"># 全局的日志配置，使用log关键字，指定使用127.0.0.1上的syslog服务中的local0日志设备，记录日志等级为info的日志</span>
+chroot      /var/lib/haproxy        <span class="hljs-comment">#改变当前工作目录</span>
+pidfile     /var/run/haproxy.pid    <span class="hljs-comment">#当前进程id文件</span>
+maxconn     4000                    <span class="hljs-comment">#最大连接数</span>
+user        haproxy                 <span class="hljs-comment">#所属用户</span>
+group       haproxy                 <span class="hljs-comment">#所属组</span>
+daemon                              <span class="hljs-comment">#以守护进程方式运行haproxy</span>
+stats socket /var/lib/haproxy/stats <span class="hljs-comment">#基于本地的文件传输</span></code></pre></div>
+
+<p>实现日志记录：<br>haproxy配置文件中默认定义了log 127.0.0.1 local2 说明日志将被记录在本机的local2设施中。<br>编辑rsyslog配置文件：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">[root@CentOS6 ~]<span class="hljs-comment">#vim /etc/rsyslog.conf</span>
+<span class="hljs-comment"># Provides UDP syslog reception</span>
+<span class="hljs-variable">$ModLoad</span> imudp      <span class="hljs-comment">#取消注释</span>
+<span class="hljs-variable">$UDPServerRun</span> 514   <span class="hljs-comment">#取消注释</span>
+local2.*            /var/<span class="hljs-built_in">log</span>/haproxy.log
+<span class="hljs-comment">#指定设备local2日志存放位置</span></code></pre></div>
+
+<p>haproxy的日志信息可以设置存放在专门的日志服务器中</p>
+<h3 id="proxies配置参数："><a href="#proxies配置参数：" class="headerlink" title="proxies配置参数："></a>proxies配置参数：</h3><p>代理配置段：</p>
+<ul>
+<li>defaults <name></li>
+<li>frontend <name></li>
+<li>backend <name></li>
+<li>listen <name></li>
+</ul>
+<p>Frontend段：指定接收客户端连接侦听套接字设置<br>Backend段：指定将连接请求转发至后端服务器的相关设置<br>Listen段：指定完整的前后端设置，只对 TCP 有效<br>proxy 名称：使用字母 数字 - _ . : 并区分字符大小写</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">mode        http             
+<span class="hljs-comment">#默认的模式mode &#123; tcp|http|health &#125;，tcp是4层，http是7层，health只会返回OK</span>
+<span class="hljs-built_in">log</span>         global        
+<span class="hljs-comment">#应用全局的日志配置</span>
+option      httplog       
+<span class="hljs-comment"># 启用日志记录HTTP请求，默认haproxy日志记录是不记录HTTP请求日志</span>
+option      dontlognull   
+<span class="hljs-comment"># 启用该项，日志中将不会记录空连接。所谓空连接就是在上游的负载均衡器或者监控系统为了探测该服务是否存活可用时，需要定期的连接或者获取某一固定的组件或页面，或者探测扫描端口是否在监听或开放等动作被称为空连接；官方文档中标注，如果该服务上游没有其他的负载均衡器的话，建议不要使用该参数，因为互联网上的恶意扫描或其他动作就不会被记录下来</span>
+option      http-server-close  
+<span class="hljs-comment">#每次请求完毕后主动关闭http通道</span>
+option      forwardfor       except 127.0.0.0/8   
+<span class="hljs-comment">#如果服务器上的应用程序想记录发起请求的客户端的IP地址，需要在HAProxy上配置此选项， 这样 HAProxy会把客户端的IP信息发送给服务器，在HTTP请求中添加&quot;X-Forwarded-For&quot;字段。启用X-Forwarded-For，在requests头部插入客户端IP发送给后端的server，使后端server获取到客户端的真实IP。 </span>
+option        redispatch                      
+<span class="hljs-comment">#当使用了cookie时，haproxy将会将其请求的后端服务器的serverID插入到cookie中，以保证会话的SESSION持久性；而此时，如果后端的服务器宕掉了， 但是客户端的cookie是不会刷新的，如果设置此参数，将会将客户的请求强制定向到另外一个后端server上，以保证服务的正常。</span>
+retries       3                             
+<span class="hljs-comment"># 定义连接后端服务器的失败重连次数，连接失败次数超过此值后将会将对应后端服务器标记为不可用</span>
+timeout http-request    10s     <span class="hljs-comment">#http请求超时时间</span>
+timeout queue           1m      <span class="hljs-comment">#一个请求在队列里的超时时间</span>
+timeout connect         10s     <span class="hljs-comment">#连接超时</span>
+timeout client          1m      <span class="hljs-comment">#客户端超时</span>
+timeout server          1m      <span class="hljs-comment">#服务器端超时</span>
+timeout http-keep-alive 10s     <span class="hljs-comment">#设置http-keep-alive的超时时间</span>
+timeout check           10s     <span class="hljs-comment">#检测超时</span>
+maxconn                 3000    <span class="hljs-comment">#每个进程可用的最大连接数</span>
+frontend  main *:80             <span class="hljs-comment">#监听地址为80</span>
+acl url_static       path_beg       -i /static /images /javascript /stylesheets
+acl url_static       path_end       -i .jpg .gif .png .css .js
+use_backend static          <span class="hljs-keyword">if</span> url_static
+default_backend             my_webserver     
+<span class="hljs-comment">#定义一个名为my_app前端部分。此处将对应的请求转发给后端</span>
+backend static                                       
+<span class="hljs-comment">#使用了静态动态分离（如果url_path匹配 .jpg .gif .png .css .js静态文件则访问此后端）</span>
+balance             roundrobin                       
+<span class="hljs-comment">#负载均衡算法（#banlance roundrobin 轮询，balance source 保存session值，支持static-rr，leastconn，first，uri等参数）</span>
+server              static 127.0.0.1:80 check         
+<span class="hljs-comment">#静态文件部署在本机（也可以部署在其他机器或者squid缓存服务器）</span>
+backend my_webserver                                 
+<span class="hljs-comment">#定义一个名为my_webserver后端部分。PS：此处my_webserver只是一个自定义名字而已，但是需要与frontend里面配置项default_backend 值相一致</span>
+balance     roundrobin          <span class="hljs-comment">#负载均衡算法</span>
+server  web01 172.31.2.33:80  check inter 2000 fall 3 weight 30              <span class="hljs-comment">#定义的多个后端</span>
+server  web02 172.31.2.34:80  check inter 2000 fall 3 weight 30              <span class="hljs-comment">#定义的多个后端</span>
+server  web03 172.31.2.35:80  check inter 2000 fall 3 weight 30              <span class="hljs-comment">#定义的多个后端</span></code></pre></div>
+
+<h3 id="Balance配置"><a href="#Balance配置" class="headerlink" title="Balance配置"></a>Balance配置</h3><p>balance：后端服务器组内的服务器调度算法<br>balance <algorithm> [ <arguments> ]<br>balance url_param <param> [check_post]<br>haproxy中调度算法同样分为动态调度算法和静态调度算法，与nginx调度算法中区分动静态调度算法的概念不同，nginx用能不能根据后端服务器的负载状况进行调度来区分动静态调度算法的差别，而haproxy中则根据该算法支不支持运行时即时生效来区分动静态算法。</p>
+<p>调度算法：<br>roundrobin：基于权重轮询，动态算法，支持权重的运行时调整，支持慢启动；每个后端backend中最多支持4095个<br>server server options： weight #</p>
+<p>static-rr：基于权重轮询，静态算法，不支持权重的运行时调整及慢启动；后端主机数量无上限</p>
+<p>leastconn：加权最少连接，动态算法，最少连接的后端服务器优先分配接收新连接，相同连接时轮询，适用于长连接场景，例如 MySQL、LDAP等，不适合http</p>
+<p>first：根据服务器在列表中的位置，自上而下进行调度；前面服务器的连接数达到上限，新请求才会分配给下一台服务</p>
+<p>source：源地址hash，新连接先按权重分配，后续连接按source分配请求<br>动静态取决于hash type<br>hash-type：哈希算法<br>hash-type <method> <function> <modifier><br>method:<br>map-based：除权取余法，哈希数据结构是静态数组（不支持权重动态调整）<br>consistent：一致性哈希，哈希数据结构是一棵树 （支持权重动态调整）<br><function> : 哈希函数<br>sdbm djb2 wt6</p>
+<p>uri：<br>对URI的左半部分或整个uri做hash计算，并除以服务器总权重取模，以后派发至某挑出的服务器,适用于后端缓存服务器<br>动静态取决于hash type</p>
+<div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">hash</span>-<span class="hljs-built_in">type</span>
+    <span class="hljs-built_in">map</span>-based
+    consistent</code></pre></div>
+
+<p><scheme>://<user>:<password>@<host>:<port>/<path> ;<params>?<query>#<frag><br>左半部分：/<path>;<params><br>整个uri：/<path>;<params>?<query>#<frag></p>
+<p>url_param：<br>对用户请求的uri听<params>部分中的参数的值作hash计算， 并由服务器总权重相除以后派发至某挑出的服务器；通常用于追踪用户，以确保来自同一个用户的请求始终发往同一个Backend Server<br>动静态取决于hash type</p>
+<div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">hash</span>-<span class="hljs-built_in">type</span>
+    <span class="hljs-built_in">map</span>-based
+    consistent</code></pre></div>
+
+<p>hdr(<name>)：根据请求报文中指定的header（如use_agent,referer,hostname）将该hesder做hash计算进行调度<br>动静态取决于hash type</p>
+<div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">hash</span>-<span class="hljs-built_in">type</span>
+    <span class="hljs-built_in">map</span>-based
+    consistent</code></pre></div>
+
+<p>hdr(Cookie)</p>
+<p>rdp-cookie 远程桌面相关</p>
+<p>rdp-cookie(<name>)</p>
+<h3 id="default-backend"><a href="#default-backend" class="headerlink" title="default_backend "></a>default_backend <backend></h3><p>无use_backend 匹配时，使用默认的backend，用于 frontend中</p>
+<h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><p>server <name> <address>[:[port]] [param*]<br>定义后端主机的各服务器及其选项 server <name> <address>[:port] [settings …] default-server [settings …]</p>
+<p><name>：服务器在haproxy上的内部名称；出现在日志及警告信息</p>
+<address>：服务器地址，支持使用主机名
+
+<p>[:[port]]：端口映射；省略时，表示同bind中绑定的端口</p>
+<p>[param*]：参数<br>check：对当前server做健康状态检测，只用于四层检测<br>注意：httpchk，“smtpchk”, “mysql-check”, “pgsql-check” and “sslhello-chk” 用于定义应用层检测方法<br>addr ：检测时使用的IP地址<br>port ：针对此端口进行检测<br>inter <delay>：连续两次检测之间的时间间隔，默认为2000ms<br>rise <count>：连续多少次检测结果为“成功”才标记服务器为可用 ；默认为2<br>fall <count>：连续多少次检测结果为“失败”才标记服务器为不可 用；默认为3<br>cookie <value>：为当前server指定cookie值，实现基于cookie的会话黏性<br>disabled：标记为不可用<br>redir <div class="hljs code-wrapper"><prefix>：将发往此server的所有GET和HEAD类的请求重定向至指 定的URL<br>weight <weight>：权重，默认为1<br>maxconn <maxconn>：当前server的最大并发连接数<br>backlog <backlog>：当server的连接数达到上限后的后援队列长度<br>backup：设定当前server为备用服务器</p>
+<p>default-server [param*] 为backend中的各server设定默认选项</p>
+<h3 id="bind配置"><a href="#bind配置" class="headerlink" title="bind配置"></a>bind配置</h3><p>bind：指定一个或多个前端侦听地址和端口<br>只用于frountend配置段和listen配置段<br>bind [<address>]:<port_range> [, …] [param*]<br>示例：</p>
+<pre><code class="hljs bash">listen http_proxy 
+    <span class="hljs-built_in">bind</span> :80,:443 
+    <span class="hljs-built_in">bind</span> 10.0.0.1:10080,10.0.0.1:10443 
+    <span class="hljs-built_in">bind</span> /var/run/ssl-frontend.sock user root mode 600 accept-proxy</code></pre></div>
+
+<h3 id="maxconn"><a href="#maxconn" class="headerlink" title="maxconn"></a>maxconn</h3><p>maxconn <conns>：为指定的frontend定义其最大并发连接数；默认为2000</p>
+<h3 id="mode-tcp-http-health"><a href="#mode-tcp-http-health" class="headerlink" title="mode { tcp|http|health }"></a>mode { tcp|http|health }</h3><p>定义haproxy的工作模式<br>tcp：基于layer4实现代理；可代理mysql, pgsql, ssh, ssl等协议,https时使用此模式，默认模式<br>http：仅当代理协议为http时使用,centos实际默认模式<br>health：工作为健康状态检查的响应模式，当连接请求到达时回应“OK”后即断开连接，较少使用</p>
+<h3 id="基于cookie的会话绑定"><a href="#基于cookie的会话绑定" class="headerlink" title="基于cookie的会话绑定"></a>基于cookie的会话绑定</h3><p>cookie <name> [ rewrite | insert | prefix ] [ indirect ] [ nocache ] [ postonly ] [ preserve ] [ httponly ] [ secure ] [ domain <domain> ]* [ maxidle <idle> ] [ maxlife <life> ]<br><name>：cookie名称，用于实现持久连接<br>rewrite：重写<br>insert：插入<br>prefix：前缀<br>配置示例：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">backend websrvs
+  balance     roundrobin
+  cookie WEBSRV insert nocache indirect
+  server   web1 192.168.45.11:80 check cookie srv1
+  server   web2 192.168.45.12:80 check cookie srv2
+<span class="hljs-comment">#每个server有自己的唯一的cookie标识</span>
+<span class="hljs-comment">#在backend中为用户请求调度完成后操纵其cookie</span></code></pre></div>
+
+<h3 id="统计接口启用相关的参数"><a href="#统计接口启用相关的参数" class="headerlink" title="统计接口启用相关的参数"></a>统计接口启用相关的参数</h3><p>stats enable<br>启用统计页；基于默认的参数启用stats page</p>
+<ul>
+<li>stats uri : /haproxy?stats uri默认值</li>
+<li>stats realm : HAProxy Statistics</li>
+<li>stats auth : no authentication</li>
+</ul>
+<p>stats uri <div class="hljs code-wrapper"><prefix> 自定义stats page uri</p>
+<p>stats auth <user>:<passwd> 认证时的账号和密码，可使用多次</p>
+<p>stats realm <realm> 认证时的realm</p>
+<p>stats hide-version 隐藏版本</p>
+<p>stats refresh <delay> 设定自动刷新时间间隔</p>
+<p>stats admin { if | unless } <cond> 启用stats page中的管理功能</p>
+<p>配置示例：</p>
+<pre><code class="hljs bash">listen stats 
+    <span class="hljs-built_in">bind</span> :9099 
+    stats <span class="hljs-built_in">enable</span> 
+    stats realm HAPorxy\ Stats\ Page 
+    stats auth 用户名：密码
+    stats admin <span class="hljs-keyword">if</span> TRUE
+<span class="hljs-comment">#在frountend中单独定义一个stats服务，监听9099端口</span>
+<span class="hljs-comment">#如果认证成功就开启管理功能</span></code></pre></div>
+
+<h3 id="forwardfor配置"><a href="#forwardfor配置" class="headerlink" title="forwardfor配置"></a>forwardfor配置</h3><p>option forwardfor [ except <network> ] [ header <name> ] [ if-none ]<br>在由haproxy发往后端主机的请求报文中添加“X-ForwardedFor”首部，其值为前端客户端的地址；用于向后端主发送真实的客户端IP</p>
+<p>[ except <network> ]：请求报请来自此处指定的网络时不予添加此首部，如haproxy自身所在网络</p>
+<p>[ header <name> ]：使用自定义的首部名称，而非“XForwarded-For”</p>
+<p>[ if-none ] 如果没有首部才添加首部，如果有使用默认值</p>
+<p>为指定的MIME类型启用压缩传输功能<br>compression algo <algorithm> …：启用http协议的压缩机制，指明压缩算法gzip, deflate<br>compression type <mime type> …：指明压缩的MIMI类型</p>
+<h3 id="错误页配置"><a href="#错误页配置" class="headerlink" title="错误页配置"></a>错误页配置</h3><p>errorfile <code> <file> 自定义错误页<br><code>：HTTP status code.<br>支持200, 400, 403, 408, 500, 502, 503, 504.<br><file>：错误页文件路径</p>
+<p>示例：<br>使用haproxy主机本地的文件进行响应</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">errorfile 400 /etc/haproxy/errorfiles/400badreq.http 
+errorfile 408 /dev/null     <span class="hljs-comment"># workaround Chrome preconnect bug </span>
+errorfile 403 /etc/haproxy/errorfiles/403forbid.http 
+errorfile 503 /etc/haproxy/errorfiles/503sorry.http</code></pre></div>
+
+<p>使用url进行响应，响应状态码为302，不适用于GET以外的其他请求方法：<br>errorloc <code> <url> 相当于errorloc302 <code> <url>，利用302重定向至指URL</p>
+<div class="hljs code-wrapper"><pre><code class="hljs awk">errorloc <span class="hljs-number">503</span> http:<span class="hljs-regexp">//</span>www.a.com<span class="hljs-regexp">/error_pages/</span><span class="hljs-number">503</span>.html</code></pre></div>
+
+<h3 id="修改报文首部"><a href="#修改报文首部" class="headerlink" title="修改报文首部"></a>修改报文首部</h3><p>reqadd <string> [{if | unless} <cond>]<br>在请求报文尾部添加指定首部</p>
+<p>rspadd <string> [{if | unless} <cond>]<br>在响应报文尾部添加指定首部<br>示例：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs livescript">rspadd X-Via:<span class="hljs-string">\</span> HAPorxy  <span class="hljs-comment">#字符串中的空格要转义</span></code></pre></div>
+
+<p>reqdel <search> [{if | unless} <cond>]<br>reqidel <search> [{if | unless} <cond>] (ignore case) 不分大小写<br>从请求报文中删除匹配正则表达式的首部</p>
+<p>rspdel <search> [{if | unless} <cond>]<br>rspidel <search> [{if | unless} <cond>] (ignore case) 不分大小写从响应报文中删除匹配正则表达式的首部 示例： rspidel Server.*</p>
+<h3 id="连接超时"><a href="#连接超时" class="headerlink" title="连接超时"></a>连接超时</h3><p>timeout client <timeout> 客户端最长空闲连接超时时长 默认单位是毫秒<br>timeout server <timeout> 后端服务器最长空闲连接超时时长<br>timeout http-keep-alive <timeout> 持久连接的持久时长<br>timeout http-request <timeout> 一次完整的HTTP请求的最大等待时长<br>timeout connect <timeout> 成功连接后端服务器的最大等待时长<br>timeout client-fin <timeout> 客户端半连接的空闲时长<br>timeout server-fin <timeout> 后端服务器半连接的空闲时长</p>
+<h2 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h2><p>acl：haproxy的ACL用于实现基于请求报文的首部、响应报文的内容或其他的环境状态信息来做出转发决策，这大大增加了其配置弹性。其配置法则一般分为两部，首先定义ACL，既定义一个测试条件，而后在条件得到满足时执行某特定动作，如阻止访问或者转发至某特定的后端，<br>定义ACL的语法格式如下：<br>acl <aclname> <criterion> [flags] [operator] [<value>] …</p>
+<p><aclname>：ACL名称，可使用字母 数字 : . - _ 区分字符大小写</p>
+<p><criterion>： 指明检查条件<br>各种条件 :<br>dst 目标IP<br>dst_port 目标PORT<br>src 源IP<br>src_port 源PORT<br>示例：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">acl</span> invalid_src src <span class="hljs-number">172.16.100.200</span></code></pre></div>
+
+<p><value>的类型：</p>
+<ul>
+<li>boolean</li>
+<li>integer or integer range</li>
+<li>IP address / network</li>
+<li>string (exact, substring, suffix, prefix, subdir, domain)</li>
+<li>regular expression</li>
+<li>hex block</li>
+</ul>
+<flags>
+-i 不区分大小写
+-m 使用指定的pattern匹配方法
+-n 不做DNS解析
+-u 强制每个ACL必须唯一ID，否则多个同名ACL或关系
+-- 强制flag结束. 当字符串和某个flag相似时使用
+
+<p>[operator]<br>匹配整数值：eq、ge、gt、le、lt<br>匹配字符串：</p>
+<ul>
+<li>exact match (-m str) :字符串必须完全匹配模式</li>
+<li>substring match (-m sub) :在提取的字符串中查找模式， 如果其中任何一个被发现，ACL将匹配</li>
+<li>prefix match (-m beg) :在提取的字符串首部中查找模式 ，如果其中任何一个被发现，ACL将匹配</li>
+<li>suffix match (-m end) :将模式与提取字符串的尾部进行比较，如果其中任何一个匹配，则ACL进行匹配</li>
+<li>subdir match (-m dir) :查看提取出来的用斜线分隔（ “/”）的字符串，如果其中任何一个匹配，则ACL进行匹配</li>
+<li>domain match (-m dom) :查找提取的用点（“.”）分隔 字符串，如果其中任何一个匹配，则ACL进行匹配</li>
+</ul>
+<h3 id="acl作为条件时的逻辑关系"><a href="#acl作为条件时的逻辑关系" class="headerlink" title="acl作为条件时的逻辑关系:"></a>acl作为条件时的逻辑关系:</h3><ul>
+<li>与：隐式（默认）使用</li>
+<li>或：使用“or” 或 “||”表示</li>
+<li>否定：使用“!“ 表示</li>
+</ul>
+<p>示例：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-keyword">if</span> invalid_src invalid_port 与关系 
+<span class="hljs-keyword">if</span> invalid_src || invalid_port 或 
+<span class="hljs-keyword">if</span> ! invalid_src 非</code></pre></div>
+
+<h3 id="base-string"><a href="#base-string" class="headerlink" title="base : string"></a>base : string</h3><p>返回第一个主机头和请求的路径部分的连接，该请求从第一个斜杠开始，并在问号之前结束,对虚拟主机有用<br><scheme>://<user>:<password>@<host>:<port>/<path>;&lt; params&gt;?<query>#<frag><br>base : exact string match<br>base_beg : prefix match<br>base_dir : subdir match<br>base_dom : domain match<br>base_end : suffix match<br>base_len : length match<br>base_reg : regex match<br>base_sub : substring match</p>
+<h3 id="path-string"><a href="#path-string" class="headerlink" title="path : string"></a>path : string</h3><p>提取请求的URL路径，该路径从第一个斜杠开始，并在问号之 前结束（无主机部分）<br><scheme>://<user>:<password>@<host>:<port>/<path>;&lt; params&gt;?<query>#<frag><br>path : exact string match<br>path_beg : prefix match 匹配路径开头<br>path_dir : subdir match<br>path_dom : domain match<br>path_end : suffix match 匹配路径结尾<br>path_len : length match<br>path_reg : regex match 正则表达式匹配一类PATH<br>path_sub : substring match</p>
+<h3 id="url-string"><a href="#url-string" class="headerlink" title="url : string"></a>url : string</h3><p>提取请求中的URL。一个典型的应用是具有预取能力的缓存， 以及需要从数据库聚合多个信息并将它们保存在缓存中的网页门户入口<br>url : exact string match<br>url_beg : prefix match URL开头，匹配协议<br>url_dir : subdir match<br>url_dom : domain match<br>url_end : suffix match URL结尾<br>url_len : length match<br>url_reg : regex match 正则表达式匹配一类url<br>url_sub : substring match</p>
+<h3 id="req-hdr"><a href="#req-hdr" class="headerlink" title="req.hdr(["></a>req.hdr([</h3><p>提取在一个HTTP请求报文的首部<br>hdr([<name>[,<occ>]]) : exact string match<br>hdr_beg([<name>[,<occ>]]) : prefix match 首部开头<br>hdr_dir([<name>[,<occ>]]) : subdir match<br>hdr_dom([<name>[,<occ>]]) : domain match<br>hdr_end([<name>[,<occ>]]) : suffix match 首部结尾<br>hdr_len([<name>[,<occ>]]) : length match<br>hdr_reg([<name>[,<occ>]]) : regex match<br>hdr_sub([<name>[,<occ>]]) : substring match<br>示例：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">acl bad_curl hdr_sub(User-Agent) -i curl 
+block <span class="hljs-keyword">if</span> bad_curl</code></pre></div>
+
+<h3 id="status-integer"><a href="#status-integer" class="headerlink" title="status : integer"></a>status : integer</h3><p>返回在响应报文中的状态码</p>
+<h3 id="预定义ACL"><a href="#预定义ACL" class="headerlink" title="预定义ACL"></a>预定义ACL</h3><p>ACL名称 等价于 说明<br>TRUE always_true 总是匹配<br>FALSE always_false 从不匹配<br>HTTP req_proto_http 匹配HTTP协议<br>HTTP_1.0 req_ver 1.0 匹配HTTP协议1.0<br>HTTP_1.1 req_ver 1.1 匹配HTTP协议1.1<br>HTTP_CONTENT hdr_val(content-length) gt 0 匹配已存在内容长度<br>HTTP_URL_ABS url_reg ^[^/:]<em>:// 匹配URL绝对路径<br>HTTP_URL_SLASHurl_beg / 匹配URL相对路径<br>HTTP_URL_STAR url * 匹配 URL 等于 “</em>“<br>LOCALHOST src 127.0.0.1/8 匹配从localhost来的连接<br>METH_CONNECT method CONNECT 匹配HTTP CONNECT方法<br>METH_GETmethod GET HEAD #match HTTP GET or HEAD method<br>METH_HEAD method HEAD #match HTTP HEAD method<br>METH_OPTIONS method OPTIONS #match HTTP OPTIONS method<br>METH_POST method POST #match HTTP POST method<br>METH_TRACE method TRACE #match HTTP TRACE method<br>RDP_COOKIE req_rdp_cookie_cnt gt 0 #match presence of an RDP cookie<br>REQ_CONTENT req_len gt 0 #match data in the request buffer<br>WAIT_ENDwait_end #wait for end of content analysis</p>
+<h3 id="acl配置"><a href="#acl配置" class="headerlink" title="acl配置"></a>acl配置</h3><h4 id="基于IP的访问控制"><a href="#基于IP的访问控制" class="headerlink" title="基于IP的访问控制"></a>基于IP的访问控制</h4><p>use_backend <backend> [{if | unless} <condition>]<br>当if/unless一个基于ACL的条件匹配时切换指定backend</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">acl invalid_src src 172.16.200.2 
+block <span class="hljs-keyword">if</span> invalid_src 
+errorfile 403 /etc/fstab</code></pre></div>
+
+<h4 id="七层请求的访问控制"><a href="#七层请求的访问控制" class="headerlink" title="七层请求的访问控制"></a>七层请求的访问控制</h4><p>http-request { allow | deny |add-header <name> <fmt> |set-header <name> <fmt> } [ { if | unless } <condition> ]</p>
+<h4 id="四层请求访问控制"><a href="#四层请求访问控制" class="headerlink" title="四层请求访问控制"></a>四层请求访问控制</h4><p>tcp-request connection {accept|reject} [{if | unless} <condition>]<br>示例：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">listen ssh 
+<span class="hljs-built_in">bind</span> :22022 
+balance leastconn 
+acl invalid_src src 172.16.200.2 
+tcp-request connection reject <span class="hljs-keyword">if</span> invalid_src 
+mode tcp 
+server sshsrv1 172.16.100.6:22 check 
+server sshsrv2 172.16.100.7:22 check backup</code></pre></div>
+
+<h4 id="基于ACL的动静分离示例"><a href="#基于ACL的动静分离示例" class="headerlink" title="基于ACL的动静分离示例"></a>基于ACL的动静分离示例</h4><div class="hljs code-wrapper"><pre><code class="hljs bash">frontend  web *:80 
+    acl url_static       path_beg       -i /static /images /javascript /stylesheets 
+    acl url_static       path_end       -i .jpg .gif .png .css .js .html .txt .htm 
+    use_backend staticsrvs       <span class="hljs-keyword">if</span> url_static 
+    default_backend             appsrvs 
+backend staticsrvs 
+    balance     roundrobin 
+    server      stcsrv1 172.16.100.6:80 check 
+backend appsrvs 
+    balance     roundrobin 
+    server  app1 172.16.100.7:80 check 
+    server  app1 172.16.100.7:8080 check 
+listen stats 
+    <span class="hljs-built_in">bind</span> :9091 
+    stats <span class="hljs-built_in">enable</span> 
+    stats auth admin:admin 
+    stats admin <span class="hljs-keyword">if</span> TRUE
+<span class="hljs-comment">#一个ACL定义了两个条件，如果用户的请求满足PATH中带有/static /images /javascript /stylesheets 这些字符的，或者path是以.jpg .gif .png .css .js .html .txt .htm 这些字符结尾的就匹配ACL定义</span>
+<span class="hljs-comment">#满足ACL定义的请求为静态请求，被调度到后端的staticsrvs机组上</span>
+<span class="hljs-comment">#不满组以上两个条件的请求默认调度都后端包含两台服务器轮询的appsrvs机组上</span></code></pre></div>
+
+<h3 id="支持https协议"><a href="#支持https协议" class="headerlink" title="支持https协议"></a>支持https协议</h3><p>配置HAProxy支持https协议：<br>1 支持ssl会话；<br>bind *:443 ssl crt /PATH/TO/SOME_PEM_FILE<br>crt 后证书文件为PEM格式，且同时包含证书和所有私钥<br>cat demo.crt demo.key &gt; demo.pem</p>
+<p>2 把80端口的请求重向定443<br>bind *:80<br>redirect scheme https if !{ ssl_fc }</p>
+<p>3 向后端传递用户请求的协议和端口（frontend或backend）<br>http_request set-header X-Forwarded-Port %[dst_port]<br>http_request add-header X-Forwared-Proto https if { ssl_fc }</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/haproxy/">haproxy</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/haproxy/">haproxy</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/19/mybatis-interview-1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mybatis 面试题</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/11/rabbitmq-windows-install/">
+                        <span class="hidden-mobile">rabbitmq-windows</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

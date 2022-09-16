@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Nginx安装配置NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。 本文提供了Nginx的基本概念及知识。以开发者必备的Nginx基础知识为主，罗列了一些Nginx教程，希望对大家有所帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个简单的反向代理Nginx">
+<meta property="og:url" content="https://lunasaw.github.io/2020/07/27/nginx-install/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Nginx安装配置NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。 本文提供了Nginx的基本概念及知识。以开发者必备的Nginx基础知识为主，罗列了一些Nginx教程，希望对大家有所帮助。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/nginx-1.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/nginx-2.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/nginx-3.jpg">
+<meta property="article:published_time" content="2020-07-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.992Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="nginx">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lunasaw.github.io/blog/img/nginx-1.jpg">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>一个简单的反向代理Nginx - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/nginx-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="一个简单的反向代理Nginx">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-07-27 00:00" pubdate>
+        2020年7月27日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">一个简单的反向代理Nginx</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Nginx安装配置"><a href="#Nginx安装配置" class="headerlink" title="Nginx安装配置"></a>Nginx安装配置</h1><p>NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。</p>
+<p>本文提供了Nginx的基本概念及知识。以开发者必备的Nginx基础知识为主，罗列了一些Nginx教程，希望对大家有所帮助。</p>
+<p><strong>一.环境</strong></p>
+<p>服务器版本：CentOS 7.2</p>
+<p>为了保证学习阶段不遇到奇怪的事情，请保证以下四点：</p>
+<ol>
+<li>确认系统网络</li>
+<li>确认yum可用</li>
+<li>确认关闭iptables</li>
+<li>确认停用selinux</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment">#查看iptables状态</span>
+systemctl status firewalld.service
+<span class="hljs-comment">#关闭防火墙（临时关闭）</span>
+systemctl stop firewalld.service
+<span class="hljs-comment">#查看SELinux状态 </span>
+getenforce<span class="hljs-comment">#临时关闭SELinux </span>
+setenforce 0</code></pre></div>
+
+<p>安装一些系统基本工具，正常情况系统都会自带</p>
+<div class="hljs code-wrapper"><pre><code class="hljs angelscript">yum -y install gcc gcc-c++ <span class="hljs-built_in">auto</span>conf pcre pcre-devel make <span class="hljs-built_in">auto</span>make
+yum -y install wget httpd-tools vim</code></pre></div>
+
+<p><strong>二.基本概念</strong></p>
+<p><strong>2.1Nginx是什么？</strong></p>
+<p><code>Nginx</code>是一个高性能的<code>http</code>和反向代理服务器，其特点是占用内存小，并发能力强。<code>Nginx</code>专为性能优化而开发，性能是其最重要的考量，能经受高负载的考验，有报告表明能支持高达50000个并发连接数。</p>
+<p><img src="/blog/img/nginx-1.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><strong>2.2正向代理与反向代</strong></p>
+<p>为了便于理解，首先先来了解一下一些基础知识，nginx是一个高性能的反向代理服务器那么什么是反向代理呢？</p>
+<p>代理是在服务器和客户端之间假设的一层服务器，代理将接收客户端的请求并将它转发给服务器，然后将服务端的响应转发给客户端。</p>
+<p>不管是正向代理还是反向代理，实现的都是上面的功能。如果你对OSI 七层模型与 TCP/IP 四层模型不是很熟悉可以再回顾下。</p>
+<p><img src="/blog/img/nginx-2.jpg" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>正向代理</strong></p>
+</blockquote>
+<p>正向代理（forward）意思是一个位于客户端和原始服务器 (origin server) 之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标 (原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。</p>
+<p>正向代理是为我们服务的，即为客户端服务的，客户端可以根据正向代理访问到它本身无法访问到的服务器资源。</p>
+<p>正向代理对我们是透明的，对服务端是非透明的，即服务端并不知道自己收到的是来自代理的访问还是来自真实客户端的访问。</p>
+<blockquote>
+<p><strong>反向代理</strong></p>
+</blockquote>
+<p>反向代理（Reverse Proxy）方式是指以代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
+<p>反向代理是为服务端服务的，反向代理可以帮助服务器接收来自客户端的请求，帮助服务器做请求转发，负载均衡等。</p>
+<p>反向代理对服务端是透明的，对我们是非透明的，即我们并不知道自己访问的是代理服务器，而服务器知道反向代理在为他服务。</p>
+<p><strong>2.3负载均衡</strong></p>
+<p>如果请求数过大，单个服务器解决不了，我们增加服务器的数量，然后将请求分发到各个服务器上，将原先请求集中到单个服务器的情况改为请求分发到多个服务器上，就是负载均衡。</p>
+<p>Upstream 指定后端服务器地址列表，在 server 中拦截响应请求，并将请求转发到 Upstream 中配置的服务器列表。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">upstream</span> <span class="hljs-string">balanceServer</span> &#123;
+ <span class="hljs-string">server</span> <span class="hljs-number">10.1</span><span class="hljs-number">.22</span><span class="hljs-number">.33</span><span class="hljs-string">:12345;</span>
+  <span class="hljs-string">server</span> <span class="hljs-number">10.1</span><span class="hljs-number">.22</span><span class="hljs-number">.34</span><span class="hljs-string">:12345;</span>
+<span class="hljs-string">server</span> <span class="hljs-number">10.1</span><span class="hljs-number">.22</span><span class="hljs-number">.35</span><span class="hljs-string">:12345;</span>
+&#125;
+<span class="hljs-string">server</span> &#123; 
+  <span class="hljs-string">server_name</span> <span class="hljs-string">fe.server.com;</span>
+  <span class="hljs-string">listen</span> <span class="hljs-number">80</span><span class="hljs-string">;</span>
+  <span class="hljs-string">location</span> <span class="hljs-string">/api</span> &#123;
+    <span class="hljs-string">proxy_pass</span> [<span class="hljs-string">http://balanceServer</span>]<span class="hljs-string">(http://balanceserver/);</span>
+ &#125;
+&#125;</code></pre></div>
+
+<p>上面的配置只是指定了 nginx 需要转发的服务端列表，并没有指定分配策略。</p>
+<p>默认情况下采用的是轮询策略，将所有客户端请求轮询分配给服务端。这种策略是可以正常工作的，但是如果其中某一台服务器压力太大，出现延迟，会影响所有分配在这台服务器下的用户。</p>
+<p><strong>Nginx支持的负载均衡调度算法方式如下：</strong></p>
+<p>weight轮询(默认，常用)：接收到的请求按照权重分配到不同的后端服务器，即使在使用过程中，某一台后端服务器宕机，Nginx会自动将该服务器剔除出队列，请求受理情况不会受到任何影响。这种方式下，可以给不同的后端服务器设置一个权重值(weight)，用于调整不同的服务器上请求的分配率；权重数据越大，被分配到请求的几率越大；该权重值，主要是针对实际工作环境中不同的后端服务器硬件配置进行调整的。ip_hash（常用）：每个请求按照发起客户端的ip的hash结果进行匹配，这样的算法下一个固定ip地址的客户端总会访问到同一个后端服务器，这也在一定程度上解决了集群部署环境下session共享的问题。</p>
+<p>fair：智能调整调度算法，动态的根据后端服务器的请求处理到响应的时间进行均衡分配，响应时间短处理效率高的服务器分配到请求的概率高，响应时间长处理效率低的服务器分配到的请求少；结合了前两者的优点的一种调度算法。但是需要注意的是Nginx默认不支持fair算法，如果要使用这种调度算法，请安装upstream_fair模块。url_hash：按照访问的url的hash结果分配请求，每个请求的url会指向后端固定的某个服务器，可以在Nginx作为静态服务器的情况下提高缓存效率。同样要注意Nginx默认不支持这种调度算法，要使用的话需要安装Nginx的hash软件包。</p>
+<p><strong>2.4动静分离</strong></p>
+<p>为了加快服务器的解析速度，可以把动态页面和静态页面交给不同的服务器来解析，加快解析速度，降低原来单个服务器的压力。</p>
+<p><strong>2.5Nginx常用命令</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务</span>
+nginx -s stop
+<span class="hljs-comment"># 平稳关闭Nginx，保存相关信息，有安排的结束web服务</span>
+nginx -s quit
+<span class="hljs-comment"># 因改变了Nginx相关配置，需要重新加载配置而重载</span>
+nginx -s reload
+<span class="hljs-comment"># 重新打开日志文件</span>
+nginx -s reopen
+<span class="hljs-comment"># 为 Nginx 指定一个配置文件，来代替缺省的</span>
+nginx -c filename
+<span class="hljs-comment"># 不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件</span>
+nginx -t
+<span class="hljs-comment">#  显示 nginx 的版本</span>
+nginx -v
+<span class="hljs-comment"># 显示 nginx 的版本，编译器版本和配置参数</span>
+nginx -V
+<span class="hljs-comment"># 格式换显示 nginx 配置参数</span>
+2&gt;&amp;1 nginx -V | xargs -n1
+2&gt;&amp;1 nginx -V | xargs -n1 | grep lua</code></pre></div>
+
+<p><strong>三.为什么选择****Nginx？</strong></p>
+<p>Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外Nginx可以作为反向代理进行负载均衡的实现。在Nginx网站上，其功能包括：</p>
+<ul>
+<li>HTTP和HTTPS（TLS / SSL / SNI）</li>
+<li>超快速的Web服务器用于静态内容</li>
+<li>FastCGI，WSGI，SCGI用于动态内容</li>
+<li>具有负载平衡和缓存功能的加速Web代理</li>
+<li>不间断实时二进制升级和配置</li>
+<li>压缩和内容过滤器</li>
+<li>虚拟主机</li>
+<li>FLV和MP4的媒体流</li>
+<li>带宽和连接策略</li>
+<li>全面的访问控制</li>
+<li>自定义日志</li>
+<li>嵌入式脚本</li>
+<li>带有TLS的SMTP / IMAP / POP3的邮件代理</li>
+<li>逻辑，灵活，可扩展的配置</li>
+<li>在Linux，FreeBSD，Mac OS X，Solaris和Windows上运行</li>
+</ul>
+<p><strong>nginx有如下优势：</strong></p>
+<p><strong>1. IO多路复用epoll（IO复用）</strong></p>
+<p>如何理解呢？举个例子吧！<br>有A、B、C三个老师，他们都遇到一个难题，要帮助一个班级的学生解决课堂作业。<br>老师A采用从第一排开始一个学生一个学生轮流解答的方式去回答问题，老师A浪费了很多时间，并且有的学生作业还没有完成呢，老师就来了，反反复复效率极慢。<br>老师B是一个忍者，他发现老师A的方法行不通，于是他使用了影分身术，分身出好几个自己同一时间去帮好几个同学回答问题，最后还没回答完，老师B消耗光了能量累倒了。<br>老师C比较精明，他告诉学生，谁完成了作业举手，有举手的同学他才去指导问题，他让学生主动发声，分开了“并发”。<br>这个老师C就是Nginx。</p>
+<p><strong>2.</strong> <strong>轻量级</strong></p>
+<ul>
+<li>功能模块少 - Nginx仅保留了HTTP需要的模块，其他都用插件的方式，后天添加</li>
+<li>代码模块化 - 更适合二次开发，如阿里巴巴Tengine</li>
+</ul>
+<p><strong>3. CPU亲和</strong></p>
+<p>把CPU核心和Nginx工作进程绑定，把每个worker进程固定在一个CPU上执行，减少切换CPU的cache miss，从而提高性能。</p>
+<p><strong>四.Nginx的安装</strong></p>
+<h4 id="1-本地安装"><a href="#1-本地安装" class="headerlink" title="1.本地安装"></a><strong>1.本地安装</strong></h4><ul>
+<li>windows系统：</li>
+</ul>
+<blockquote>
+<p>直接去官网：<a target="_blank" rel="noopener" href="https://nginx.org/en/download">https://nginx.org/en/download</a>… 下载相应版本即可。</p>
+</blockquote>
+<ul>
+<li>mac系统：</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">$ brew install nginx</code></pre></div>
+
+<h4 id="2-Linux安装："><a href="#2-Linux安装：" class="headerlink" title="2.Linux安装："></a><strong>2.Linux安装：</strong></h4><blockquote>
+<p>以centOS系统为例，有下面两种安装方式(推荐1)</p>
+</blockquote>
+<p>1.) 通过rpm镜像源安装</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">$ rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+$ yum install -y nginx</code></pre></div>
+
+<p>2.) 通过依赖包详细安装</p>
+<blockquote>
+<p>安装nginx依赖库pcre、zlib</p>
+</blockquote>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">$ yum install pcre pcre-devel
+$ yum install zlib zlib-devel</code></pre></div>
+
+<blockquote>
+<p>如有必要，可以安装c++编译环境和openssl</p>
+</blockquote>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">$ yum install gcc-c++
+$ yum install openssl openssl-devel</code></pre></div>
+
+<blockquote>
+<p>下载/编译nginx</p>
+</blockquote>
+<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">$</span> <span class="hljs-string">wget</span> <span class="hljs-string">-c</span> <span class="hljs-string">https://nginx.org/download/nginx-1.16.0.tar.gz</span>
+<span class="hljs-string">$</span> <span class="hljs-string">tar</span> <span class="hljs-string">-zxvf</span> <span class="hljs-string">nginx-1.16.0.tar.gz</span>
+<span class="hljs-comment"># 编译安装</span>
+<span class="hljs-string">$</span> <span class="hljs-string">cd</span> <span class="hljs-string">nginx-1.16.0</span>
+<span class="hljs-string">$</span> <span class="hljs-string">./configure</span>  <span class="hljs-comment"># 默认安装在/usr/local/nginx</span>
+<span class="hljs-string">$</span> <span class="hljs-string">make</span> <span class="hljs-string">&amp;&amp;</span> <span class="hljs-string">make</span> <span class="hljs-string">install</span>
+<span class="hljs-comment"># 创建软链</span>
+<span class="hljs-string">$</span> <span class="hljs-string">ln</span> <span class="hljs-string">-s</span> <span class="hljs-string">/usr/local/nginx/sbin/nginx</span> <span class="hljs-string">/usr/local/sbin/nginx</span>
+<span class="hljs-string">$</span> <span class="hljs-string">nginx</span> <span class="hljs-string">-v</span></code></pre></div>
+
+<p><strong>五.Nginx配置</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment">#打开主配置文件，若你是用lnmp环境安装</span>
+<span class="hljs-string">vim</span> <span class="hljs-string">/usr/local/nginx/conf/nginx.conf</span>
+<span class="hljs-string">----------------------------------------</span>
+<span class="hljs-string">user</span>                    <span class="hljs-comment">#设置nginx服务的系统使用用户</span>
+<span class="hljs-string">worker_processes</span>        <span class="hljs-comment">#工作进程数 一般情况与CPU核数保持一致</span>
+<span class="hljs-string">error_log</span>               <span class="hljs-comment">#nginx的错误日志</span>
+<span class="hljs-string">pid</span>                     <span class="hljs-comment">#nginx启动时的pid</span>
+<span class="hljs-string">events</span> &#123;
+    <span class="hljs-string">worker_connections</span>    <span class="hljs-comment">#每个进程允许最大连接数</span>
+    <span class="hljs-string">use</span>                   <span class="hljs-comment">#nginx使用的内核模型</span>
+&#125;</code></pre></div>
+
+<p>我们使用 nginx 的 http 服务，在配置文件 nginx.conf 中的 http 区域内，配置无数个 server ，每一个 server 对应这一个虚拟主机或者域名。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">http</span> &#123;
+    <span class="hljs-string">...</span> <span class="hljs-string">...</span>        <span class="hljs-comment">#后面再详细介绍 http 配置项目</span>
+    
+    <span class="hljs-string">server</span> &#123;
+        <span class="hljs-string">listen</span> <span class="hljs-number">80</span>                          <span class="hljs-comment">#监听端口;</span>
+        <span class="hljs-string">server_name</span> <span class="hljs-string">localhost</span>              <span class="hljs-comment">#地址</span>
+        
+        <span class="hljs-string">location</span> <span class="hljs-string">/</span> &#123;                       <span class="hljs-comment">#访问首页路径</span>
+            <span class="hljs-string">root</span> <span class="hljs-string">/xxx/xxx/index.html</span>       <span class="hljs-comment">#默认目录</span>
+            <span class="hljs-string">index</span> <span class="hljs-string">index.html</span> <span class="hljs-string">index.htm</span>     <span class="hljs-comment">#默认文件</span>
+        &#125;        
+        
+        <span class="hljs-string">error_page</span>  <span class="hljs-number">500</span> <span class="hljs-number">504</span>   <span class="hljs-string">/50x.html</span>    <span class="hljs-comment">#当出现以上状态码时从新定义到50x.html</span>
+        <span class="hljs-string">location</span> <span class="hljs-string">=</span> <span class="hljs-string">/50x.html</span> &#123;             <span class="hljs-comment">#当访问50x.html时</span>
+            <span class="hljs-string">root</span> <span class="hljs-string">/xxx/xxx/html</span>             <span class="hljs-comment">#50x.html 页面所在位置</span>
+        &#125;        
+    &#125;
+    
+    <span class="hljs-string">server</span> &#123;
+        <span class="hljs-string">...</span> <span class="hljs-string">...</span>
+ &#125; 
+&#125;</code></pre></div>
+
+<p>一个 server 可以出现多个 location ，我们对不同的访问路径进行不同情况的配置<br>我们再来看看 http 的配置详情。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">http</span> &#123;
+    <span class="hljs-string">sendfile</span>  <span class="hljs-string">on</span>                  <span class="hljs-comment">#高效传输文件的模式 一定要开启</span>
+    <span class="hljs-string">keepalive_timeout</span>   <span class="hljs-number">65</span>        <span class="hljs-comment">#客户端服务端请求超时时间</span>
+    <span class="hljs-string">log_format</span>  <span class="hljs-string">main</span>   <span class="hljs-string">XXX</span>        <span class="hljs-comment">#定义日志格式 代号为main</span>
+    <span class="hljs-string">access_log</span>  <span class="hljs-string">/usr/local/access.log</span>  <span class="hljs-string">main</span>     <span class="hljs-comment">#日志保存地址 格式代码 main</span>
+&#125;</code></pre></div>
+
+<p>下面是 nginx 一些配置中常用的内置全局变量，你可以在配置的任何位置使用它们。</p>
+<p><img src="/blog/img/nginx-3.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><strong>六.Nginx实战</strong></p>
+<p>各种开发工具的配置结合实战来讲述，会让人更易理解。</p>
+<p>我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。</p>
+<p>nginx.conf 配置文件如下：</p>
+<blockquote>
+<p><em>注：_</em><code>conf/nginx.conf</code> 是 nginx 的默认配置文件。你也可以使用 nginx -c 指定你的配置文件_</p>
+</blockquote>
+<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment">#运行用户</span>
+<span class="hljs-comment">#user somebody;</span>
+<span class="hljs-comment">#启动进程,通常设置成和cpu的数量相等</span>
+<span class="hljs-string">worker_processes</span>  <span class="hljs-number">1</span><span class="hljs-string">;</span>
+<span class="hljs-comment">#全局错误日志</span>
+<span class="hljs-string">error_log</span>  <span class="hljs-string">D:/Tools/nginx-1.10.1/logs/error.log;</span>
+<span class="hljs-string">error_log</span>  <span class="hljs-string">D:/Tools/nginx-1.10.1/logs/notice.log</span>  <span class="hljs-string">notice;</span>
+<span class="hljs-string">error_log</span>  <span class="hljs-string">D:/Tools/nginx-1.10.1/logs/info.log</span>  <span class="hljs-string">info;</span>
+<span class="hljs-comment">#PID文件，记录当前启动的nginx的进程ID</span>
+<span class="hljs-string">pid</span>        <span class="hljs-string">D:/Tools/nginx-1.10.1/logs/nginx.pid;</span>
+<span class="hljs-comment">#工作模式及连接数上限</span>
+<span class="hljs-string">events</span> &#123;
+    <span class="hljs-string">worker_connections</span> <span class="hljs-number">1024</span><span class="hljs-string">;</span>    <span class="hljs-comment">#单个后台worker process进程的最大并发链接数</span>
+&#125;
+<span class="hljs-comment">#设定http服务器，利用它的反向代理功能提供负载均衡支持</span>
+<span class="hljs-string">http</span> &#123;
+    <span class="hljs-comment">#设定mime类型(邮件支持类型),类型由mime.types文件定义</span>
+    <span class="hljs-string">include</span>       <span class="hljs-string">D:/Tools/nginx-1.10.1/conf/mime.types;</span>
+    <span class="hljs-string">default_type</span>  <span class="hljs-string">application/octet-stream;</span>
+    <span class="hljs-comment">#设定日志</span>
+    <span class="hljs-string">log_format</span>  <span class="hljs-string">main</span>  <span class="hljs-string">&#x27;[$remote_addr] - [$remote_user] [$time_local] &quot;$request&quot; &#x27;</span>
+                      <span class="hljs-string">&#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span>
+                      <span class="hljs-string">&#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;</span><span class="hljs-string">;</span>
+    <span class="hljs-string">access_log</span>    <span class="hljs-string">D:/Tools/nginx-1.10.1/logs/access.log</span> <span class="hljs-string">main;</span>
+    <span class="hljs-string">rewrite_log</span>     <span class="hljs-string">on;</span>
+    <span class="hljs-comment">#sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，</span>
+    <span class="hljs-comment">#必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.</span>
+    <span class="hljs-string">sendfile</span>        <span class="hljs-string">on;</span>
+    <span class="hljs-comment">#tcp_nopush     on;</span>
+    <span class="hljs-comment">#连接超时时间</span>
+    <span class="hljs-string">keepalive_timeout</span>  <span class="hljs-number">120</span><span class="hljs-string">;</span>
+    <span class="hljs-string">tcp_nodelay</span>        <span class="hljs-string">on;</span>
+    <span class="hljs-comment">#gzip压缩开关</span>
+    <span class="hljs-comment">#gzip  on;</span>
+    <span class="hljs-comment">#设定实际的服务器列表</span>
+    <span class="hljs-string">upstream</span> <span class="hljs-string">zp_server1</span>&#123;
+        <span class="hljs-string">server</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8089;</span>
+    &#125;
+    <span class="hljs-comment">#HTTP服务器</span>
+    <span class="hljs-string">server</span> &#123;
+        <span class="hljs-comment">#监听80端口，80端口是知名端口号，用于HTTP协议</span>
+        <span class="hljs-string">listen</span>       <span class="hljs-number">80</span><span class="hljs-string">;</span>
+        <span class="hljs-comment">#定义使用www.xx.com访问</span>
+        <span class="hljs-string">server_name</span>  <span class="hljs-string">www.helloworld.com;</span>
+        <span class="hljs-comment">#首页</span>
+        <span class="hljs-string">index</span> <span class="hljs-string">index.html</span>
+        <span class="hljs-comment">#指向webapp的目录</span>
+        <span class="hljs-string">root</span> <span class="hljs-string">D:01_WorkspaceProjectgithubzpSpringNotesspring-securityspring-shirosrcmainwebapp;</span>
+        <span class="hljs-comment">#编码格式</span>
+        <span class="hljs-string">charset</span> <span class="hljs-string">utf-8;</span>
+        <span class="hljs-comment">#代理配置参数</span>
+        <span class="hljs-string">proxy_connect_timeout</span> <span class="hljs-number">180</span><span class="hljs-string">;</span>
+        <span class="hljs-string">proxy_send_timeout</span> <span class="hljs-number">180</span><span class="hljs-string">;</span>
+        <span class="hljs-string">proxy_read_timeout</span> <span class="hljs-number">180</span><span class="hljs-string">;</span>
+        <span class="hljs-string">proxy_set_header</span> <span class="hljs-string">Host</span> <span class="hljs-string">$host;</span>
+        <span class="hljs-string">proxy_set_header</span> <span class="hljs-string">X-Forwarder-For</span> <span class="hljs-string">$remote_addr;</span>
+        <span class="hljs-comment">#反向代理的路径（和upstream绑定），location 后面设置映射的路径</span>
+        <span class="hljs-string">location</span> <span class="hljs-string">/</span> &#123;
+            <span class="hljs-string">proxy_pass</span> <span class="hljs-string">http://zp_server1;</span>
+        &#125;
+        <span class="hljs-comment">#静态文件，nginx自己处理</span>
+        <span class="hljs-string">location</span> <span class="hljs-string">~</span> <span class="hljs-string">^/(images|javascript|js|css|flash|media|static)/</span> &#123;
+            <span class="hljs-string">root</span> <span class="hljs-string">D:01_WorkspaceProjectgithubzpSpringNotesspring-securityspring-shirosrcmainwebappviews;</span>
+            <span class="hljs-comment">#过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。</span>
+            <span class="hljs-string">expires</span> <span class="hljs-string">30d;</span>
+        &#125;
+        <span class="hljs-comment">#设定查看Nginx状态的地址</span>
+        <span class="hljs-string">location</span> <span class="hljs-string">/NginxStatus</span> &#123;
+            <span class="hljs-string">stub_status</span>           <span class="hljs-string">on;</span>
+            <span class="hljs-string">access_log</span>            <span class="hljs-string">on;</span>
+            <span class="hljs-string">auth_basic</span>            <span class="hljs-string">&quot;NginxStatus&quot;</span><span class="hljs-string">;</span>
+            <span class="hljs-string">auth_basic_user_file</span>  <span class="hljs-string">conf/htpasswd;</span>
+        &#125;
+        <span class="hljs-comment">#禁止访问 .htxxx 文件</span>
+        <span class="hljs-string">location</span> <span class="hljs-string">~</span> <span class="hljs-string">/.ht</span> &#123;
+            <span class="hljs-string">deny</span> <span class="hljs-string">all;</span>
+        &#125;
+        <span class="hljs-comment">#错误处理页面（可选择性配置）</span>
+        <span class="hljs-comment">#error_page   404              /404.html;</span>
+        <span class="hljs-comment">#error_page   500 502 503 504  /50x.html;</span>
+        <span class="hljs-comment">#location = /50x.html &#123;</span>
+        <span class="hljs-comment">#    root   html;</span>
+        <span class="hljs-comment">#&#125;</span>
+    &#125;
+&#125;</code></pre></div>
+
+<p>好了，让我们来试试吧：</p>
+<ol>
+<li>启动 webapp，注意启动绑定的端口要和 nginx 中的 upstream 设置的端口保持一致。</li>
+<li>更改 host：在 C:WindowsSystem32driversetc 目录下的 host 文件中添加一条 DNS 记录</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs accesslog"><span class="hljs-number">127.0.0.1</span> www.helloworld.com</code></pre></div>
+
+<ol>
+<li>启动前文中 startup.bat 的命令</li>
+<li>在浏览器中访问 <a target="_blank" rel="noopener" href="http://www.helloworld.com,不出意外,已经可以访问了./">www.helloworld.com，不出意外，已经可以访问了。</a></li>
+</ol>
+<h3 id="搭建文件服务器"><a href="#搭建文件服务器" class="headerlink" title="搭建文件服务器"></a><strong>搭建文件服务器</strong></h3><p>有时候，团队需要归档一些数据或资料，那么文件服务器必不可少。使用 Nginx 可以非常快速便捷的搭建一个简易的文件服务。</p>
+<p>Nginx 中的配置要点：</p>
+<ul>
+<li>将 autoindex 开启可以显示目录，默认不开启。</li>
+<li>将 autoindex_exact_size 开启可以显示文件的大小。</li>
+<li>将 autoindex_localtime 开启可以显示文件的修改时间。</li>
+<li>root 用来设置开放为文件服务的根路径。</li>
+<li>charset 设置为 charset utf-8,gbk;，可以避免中文乱码问题</li>
+</ul>
+<p>一个最简化的配置如下：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">autoindex</span> <span class="hljs-string">on;#</span> <span class="hljs-string">显示目录</span>
+<span class="hljs-string">autoindex_exact_size</span> <span class="hljs-string">on;#</span> <span class="hljs-string">显示文件大小</span>
+<span class="hljs-string">autoindex_localtime</span> <span class="hljs-string">on;#</span> <span class="hljs-string">显示文件时间</span>
+<span class="hljs-string">server</span> &#123;
+    <span class="hljs-string">charset</span>      <span class="hljs-string">utf-8</span>,<span class="hljs-string">gbk;</span> <span class="hljs-comment"># windows 服务器下设置后，依然乱码，暂时无解</span>
+    <span class="hljs-string">listen</span>       <span class="hljs-number">9050 </span><span class="hljs-string">default_server;</span>
+    <span class="hljs-string">listen</span>       [<span class="hljs-string">::</span>]<span class="hljs-string">:9050</span> <span class="hljs-string">default_server;</span>
+    <span class="hljs-string">server_name</span>  <span class="hljs-string">_;</span>
+    <span class="hljs-string">root</span>         <span class="hljs-string">/share/fs;</span>
+&#125;</code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/nginx/">nginx</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/nginx/">nginx</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/27/mysql-install/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mysql 免安装配置学习</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/04/mysql-DDL/">
+                        <span class="hidden-mobile">mysql-DDL</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

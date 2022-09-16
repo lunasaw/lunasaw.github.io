@@ -1,0 +1,618 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="1、环境说明环境就不进行说明了，比较三次配置，一个配过九台，每每情况各有不同。只能告知各位读者，博主这里使用的是red hat红帽，估计centOS也差不太多，不过有差异也无妨，学会博主方法，相信你就不会蒙蔽了，知道怎么往对的方向走了 2、场景说明要求node1免密登录到node2，这里任选了一个用户，也即是 [hadoop@node1 .ssh]$ ssh node2  3、ssh登录原理过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssh 配置教程">
+<meta property="og:url" content="https://lunasaw.github.io/2020/05/05/linux-ssh-password/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="1、环境说明环境就不进行说明了，比较三次配置，一个配过九台，每每情况各有不同。只能告知各位读者，博主这里使用的是red hat红帽，估计centOS也差不太多，不过有差异也无妨，学会博主方法，相信你就不会蒙蔽了，知道怎么往对的方向走了 2、场景说明要求node1免密登录到node2，这里任选了一个用户，也即是 [hadoop@node1 .ssh]$ ssh node2  3、ssh登录原理过程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvmrb9225nj60jj08ydgu02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvmrb678tij60co0273yr02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvmratn4gyj60rd0180ti02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvmrawvj78j60l50bvgnp02.jpg">
+<meta property="article:published_time" content="2020-05-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.989Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="ssh">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvmrb9225nj60jj08ydgu02.jpg">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>ssh 配置教程 - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/linux-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="ssh 配置教程">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-05-05 00:00" pubdate>
+        2020年5月5日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ssh 配置教程</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="1、环境说明"><a href="#1、环境说明" class="headerlink" title="1、环境说明"></a>1、环境说明</h1><p>环境就不进行说明了，比较三次配置，一个配过九台，每每情况各有不同。只能告知各位读者，博主这里使用的是red hat红帽，估计centOS也差不太多，不过有差异也无妨，学会博主方法，相信你就不会蒙蔽了，知道怎么往对的方向走了</p>
+<h1 id="2、场景说明"><a href="#2、场景说明" class="headerlink" title="2、场景说明"></a>2、场景说明</h1><p>要求node1免密登录到node2，这里任选了一个用户，也即是</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java">[hadoop<span class="hljs-meta">@node1</span> .ssh]$ ssh node2</code></pre></div>
+
+<h1 id="3、ssh登录原理过程"><a href="#3、ssh登录原理过程" class="headerlink" title="3、ssh登录原理过程"></a>3、ssh登录原理过程</h1><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvmrb9225nj60jj08ydgu02.jpg" srcset="/img/loading.gif" lazyload alt="../img/ssh/ssh-2.png"></p>
+<p>这里看不懂也没关系，楼主详解一番：</p>
+<p>node1发送一个请求，问：node2，你在不在？我想连接你</p>
+<p>node2查找本地是否有node1的公钥，情况一：没有，情况二：有</p>
+<p>情况一：</p>
+<p>node2回复说：我在！你的公钥告诉我一下。</p>
+<p>node1再次发送过去，自己的公钥，</p>
+<p>node2在本地进行计算，存储，得到的一串通过公钥得到的不知道什么钥，返回给node1，说：你看看对不对</p>
+<p>node1告知node2：对！咱们已经建立连接了</p>
+<p>node2警惕的回复node1：你知道我登录密码多少吗？</p>
+<p>用户输入密码…..</p>
+<p>node1把密码封装了发过去：你看是这个不？</p>
+<p>node2回复：对，咱们已经建立连接！</p>
+<p>情况二：</p>
+<p>node2一看本地有node1的公钥，心想原来认识的，然后通过公钥计算出一个不知道什么钥匙，回复：你看看是这个钥匙吗？</p>
+<p>node1告知node2：对！咱们已经建立连接了</p>
+<p>node2回复node1：连接建立成功！</p>
+<p>具体几次握手，博主不知道，大致就是这么个过程</p>
+<p>ssh配置中，会用到下面几个文件：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvmrb678tij60co0273yr02.jpg" srcset="/img/loading.gif" lazyload alt="../img/ssh/ssh-1.png"></p>
+<p>恩~毫无PS痕迹。。。</p>
+<p>1、需要在node1上生成公钥以及私钥，而id_rsa就是私钥，id_rsa.pub文件就是公钥文件。私钥我们这里就不用了，就用公钥，用完了为了保证安全性，你可以选择删掉，也可以不删，根据你的喜好决定，也就是pub文件</p>
+<p>2、authorized文件，是为了方便node2的，不用询问node1的公钥本地文件，这个单词读者们需要记住，要建立这个文件！</p>
+<p>3、known_hosts，表名node2是认识的主机，这个不用配置，读者可以不用管，可以作为了解原理。比如，一台新系统，.ssh目录下你会发现没有这个文件，但在你第一次ssh以后，这个文件就会生成。</p>
+<p>简单说明：</p>
+<p>​       上面做了原理说明，简单来说：就是node1想要连接node2免密登录node2，需要把node1的id_rsa.pub文件内容写进node2的authorized_keys里面。就大功告成了</p>
+<h1 id="4、最简单配置"><a href="#4、最简单配置" class="headerlink" title="4、最简单配置"></a>4、最简单配置</h1><h2 id="4-1、生成公钥以及密钥："><a href="#4-1、生成公钥以及密钥：" class="headerlink" title="4.1、生成公钥以及密钥："></a>4.1、生成公钥以及密钥：</h2><p>在node1上：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java">[hadoop<span class="hljs-meta">@node1</span> ~]$ ssh-keygen -t rsa</code></pre></div>
+
+<p>一路回车。</p>
+<p>若是不想回车，可在上面代码末尾加上，-P “”</p>
+<h2 id="4-2、处理"><a href="#4-2、处理" class="headerlink" title="4.2、处理"></a>4.2、处理</h2><p>方法一：</p>
+<h2 id="将node1的公钥拷贝到node2"><a href="#将node1的公钥拷贝到node2" class="headerlink" title="将node1的公钥拷贝到node2"></a>将node1的公钥拷贝到node2</h2><p>node1上(小心别把node2的id_rsa.pub覆盖掉)</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java">[hadoop<span class="hljs-meta">@node1</span> .ssh]$ scp -p id_rsa.pub hadoop<span class="hljs-meta">@node2</span>:~/.ssh/id_rsa.pub1</code></pre></div>
+
+<h2 id="然后，node2将公钥加入自身认证"><a href="#然后，node2将公钥加入自身认证" class="headerlink" title="然后，node2将公钥加入自身认证"></a>然后，node2将公钥加入自身认证</h2><p>在node2上：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java">[hadoop<span class="hljs-meta">@node1</span>.ssh]$ cat id_rsa.pub1 &gt; authorized_key</code></pre></div>
+
+<p>验证查看文件authorized_key中是否有id_rsa.pub1文件的内容</p>
+<p>方法二：</p>
+<h2 id="直接把自己密钥拷贝到需要免密的机器上："><a href="#直接把自己密钥拷贝到需要免密的机器上：" class="headerlink" title="直接把自己密钥拷贝到需要免密的机器上："></a>直接把自己密钥拷贝到需要免密的机器上：</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript">ssh-copy-id -i ~<span class="hljs-regexp">/.ssh/i</span>d_rsa.pub 用户名<span class="hljs-meta">@ip</span></code></pre></div>
+
+<p> 将密钥文件直接拷贝到指定用户名、ip。输入密码后，下次你当前用户执行ssh到刚刚指定的用户名ip就不用再输入密码了。</p>
+<p>方法二较方法一方便很多</p>
+<h2 id="4-4、验证：node1连接node2"><a href="#4-4、验证：node1连接node2" class="headerlink" title="4.4、验证：node1连接node2"></a>4.4、验证：node1连接node2</h2><p>在node1上：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java">[hadoop<span class="hljs-meta">@node1</span> .ssh]$ ssh hadoop<span class="hljs-meta">@node2</span></code></pre></div>
+
+<p>楼主这里没有截图，不用输入密码发现主机名变了即为成功</p>
+<h1 id="5、调试及常规报错解决"><a href="#5、调试及常规报错解决" class="headerlink" title="5、调试及常规报错解决"></a>5、调试及常规报错解决</h1><h2 id="5-1、说明"><a href="#5-1、说明" class="headerlink" title="5.1、说明"></a>5.1、说明</h2><p>   系统日志：/var/log/secure，是个不知道干什么用的日志。ssh连接失败的报错，在这里记录</p>
+<h2 id="5-2、报错"><a href="#5-2、报错" class="headerlink" title="5.2、报错"></a>5.2、报错</h2><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvmratn4gyj60rd0180ti02.jpg" srcset="/img/loading.gif" lazyload alt="../img/ssh/ssh-3.png"></p>
+<p>解决：相关目录权限不对，一下列出相关权限。读者根据具体去修改</p>
+<p>​    1、755         ~</p>
+<p>​    2、700         ~/.ssh</p>
+<p>​    3、644         ~/.ssh/authorized_keys(博主实测，600也可，具体的读者试试也就知道了，也不麻烦)</p>
+<p>配置文件选项未开（无图）</p>
+<p>这里楼主没有碰到过，所以没有图，各位读者碰到修改了就好</p>
+<p>解决： vi   /etc/ssh/sshd_config</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvmrawvj78j60l50bvgnp02.jpg" srcset="/img/loading.gif" lazyload alt="../img/ssh/ssh-4.png"></p>
+<p>这三项需要注释掉，按博主图片中这样就好。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/ssh/">ssh</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/ssh/">ssh</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/05/java-date-time/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">时间和字符传的转化</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/05/macos-brew/">
+                        <span class="hidden-mobile">homebrew教程</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

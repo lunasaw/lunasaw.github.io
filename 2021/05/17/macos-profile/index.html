@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="macOS 环境变量配置教程如果只是寻找设置方法，请按照如下方法操作：$echo $PATH $sudo vi ~&#x2F;.bash_profile  Tips: 以上操作为显示当前已设置环境变量路径，如果没有要添加的程序，则使用vi 命令进行操作添加。 在 文件中 输入  $export PATH&#x3D;&quot;$PATH:&amp;#x27;pwd&amp;#x27;&#x2F;xxxx&#x2F;bin&quot;  Tips: 以上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="macos-profile">
+<meta property="og:url" content="https://lunasaw.github.io/2021/05/17/macos-profile/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="macOS 环境变量配置教程如果只是寻找设置方法，请按照如下方法操作：$echo $PATH $sudo vi ~&#x2F;.bash_profile  Tips: 以上操作为显示当前已设置环境变量路径，如果没有要添加的程序，则使用vi 命令进行操作添加。 在 文件中 输入  $export PATH&#x3D;&quot;$PATH:&amp;#x27;pwd&amp;#x27;&#x2F;xxxx&#x2F;bin&quot;  Tips: 以上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=PATH:">
+<meta property="article:published_time" content="2021-05-17T02:32:32.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.990Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="macos">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.jianshu.com/math?formula=PATH:">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>macos-profile - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/macos-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="macos-profile">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-17 10:32" pubdate>
+        2021年5月17日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">macos-profile</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="macOS-环境变量配置教程"><a href="#macOS-环境变量配置教程" class="headerlink" title="macOS 环境变量配置教程"></a>macOS 环境变量配置教程</h1><h3 id="如果只是寻找设置方法，请按照如下方法操作："><a href="#如果只是寻找设置方法，请按照如下方法操作：" class="headerlink" title="如果只是寻找设置方法，请按照如下方法操作："></a>如果只是寻找设置方法，请按照如下方法操作：</h3><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-variable">$echo</span> <span class="hljs-variable">$PATH</span>
+<span class="hljs-variable">$sudo</span> vi ~/.bash_profile</code></pre></div>
+
+<p><em>Tips: 以上操作为显示当前已设置环境变量路径，如果没有要添加的程序，则使用vi 命令进行操作添加。</em><br> 在 文件中 输入 </p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-variable">$export</span> PATH=<span class="hljs-string">&quot;<span class="hljs-variable">$PATH</span>:&#x27;pwd&#x27;/xxxx/bin&quot;</span></code></pre></div>
+
+<p><em>Tips: 以上命令中将  pwd  替换为当前程序文件所在目录，XXXX替换为程序名称。</em><br> <em>或者在应用程序根目录处执行以上命令</em><br> 编辑完成后，按ESC键，输入:wq 保存退出。<br> 如果需要立即生效</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-variable">$source</span> <span class="hljs-string">&#x27;fileName&#x27;</span></code></pre></div>
+
+<p><em>Tips: 以上命令中： ‘fileName’ 参数为要操作的文件名。</em></p>
+<h2 id="一、环境变量（environment-variables）"><a href="#一、环境变量（environment-variables）" class="headerlink" title="一、环境变量（environment variables）"></a>一、环境变量（environment variables）</h2><p>环境变量一般是指在操作系统中用来制定操作系统运行环境的一些参数。环境变量是在操作系统中一个具有特定名字的对象，它包含了一个或者多个应用程序所使用到的信息。</p>
+<p>当要求系统运行一个程序而没有告诉它程序所在的完整路径时，系统除了在当前目录下面寻找此程序外，还应该到path中指定的路径中去寻找。用户通过设置环境变量，来更好的运行进程。</p>
+<h2 id="二、主要作用"><a href="#二、主要作用" class="headerlink" title="二、主要作用"></a>二、主要作用</h2><h3 id="设置参数"><a href="#设置参数" class="headerlink" title="设置参数"></a>设置参数</h3><p>环境变量相当于给系统或用户应用程序设置的一些参数，具体起什么作用这当然和具体的环境变量有关。比如 path，是告诉系统，当需要系统运行一个程序而没有告诉它程序所在的完整路径时，系统除了在当前目录下面寻找此程序外，还应该到哪些目录下去寻找。</p>
+<h2 id="常见环境变量"><a href="#常见环境变量" class="headerlink" title="常见环境变量"></a>常见环境变量</h2><h3 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h3><p>macOS  一般使用bash作为默认shell</p>
+<p>Mac系统的环境变量，加载顺序为：<br> /etc/profile  /etc/paths  ~/.bash_profile  ~/.bash_login  ~/.profile   ~/.bashrc</p>
+<p>其中 /etc/profile 和 /etc/paths 是系统级别的,系统启动就会加载，后面几个是当前用户级的环境变量。后面三个按照从前往后的顺序读取，如果 ~/.bash_profile 文件存在，则后面的几个文件就会被忽略，若不存在才会依次读取。 而 ~/.bashrc 没有上述规则，它是 bash shell 打开的时候载入的。</p>
+<h4 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h4><div class="hljs code-wrapper"><pre><code class="hljs ruby"><span class="hljs-comment">#中间用冒号隔开 最好不要有空格</span>
+    export PATH=<span class="hljs-variable">$PATH</span><span class="hljs-symbol">:&lt;PATH</span> <span class="hljs-number">1</span>&gt;<span class="hljs-symbol">:&lt;PATH</span> <span class="hljs-number">2</span>&gt;<span class="hljs-symbol">:&lt;PATH</span> <span class="hljs-number">3</span>&gt;<span class="hljs-symbol">:---</span><span class="hljs-symbol">:&lt;PATH</span> N&gt;</code></pre></div>
+
+<p>(一) 全局变量<br> 下面的几个文件是全局的，修改时需要先获取权限</p>
+<ol>
+<li>/etc/paths<br> 编辑 paths 时，将环境变量添加到 paths 文件中即可，一行一个路径</li>
+</ol>
+<p>2）/etc/profile (建议不修改此文件)<br> 全局（公有）配置，不管是哪个用户，登录时都会读取该文件。</p>
+<ol>
+<li>/etc/bashrc (一般在此文件中添加系统级环境变量)<br> 全局（公有）配置，bash shell 执行时，不管是何种方式，读取此文件。</li>
+</ol>
+<p>(二)单个用户设置</p>
+<p>1）~/bash_profile (任意一个文件中添加用户级环境变量)<br> （<em>tips</em>: Linux里面是 .bashrc 而Mac下是 .bash_profile）</p>
+<p>若 bash shell 是以 login 方式执行时，才会读取此文件。该文件仅仅执行一次，默认情况下，他设置一些环境变量设置命令别名 alias ll= ‘ls -la’</p>
+<ol>
+<li>若需要立即生效，需要执行  $source .bash_profile ,否则一般重启后生效。</li>
+</ol>
+<h3 id="WINDOWS系统"><a href="#WINDOWS系统" class="headerlink" title="WINDOWS系统"></a>WINDOWS系统</h3><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">%ALLUSERSPROFILE%</td>
+<td align="left">局部 返回所有“用户配置文件”的位置。</td>
+</tr>
+<tr>
+<td align="center">%APPDATA%</td>
+<td align="left">局部 返回默认情况下应用程序存储数据的位置。</td>
+</tr>
+<tr>
+<td align="center">%CD%</td>
+<td align="left">局部 返回当前目录字符串。</td>
+</tr>
+<tr>
+<td align="center">%CMDCMDLINE%</td>
+<td align="left">局部 返回用来启动当前的 Cmd.exe 的准确命令行。</td>
+</tr>
+<tr>
+<td align="center">%CMDEXTVERSION%</td>
+<td align="left">系统 返回当前的“命令处理程序扩展”的版本号。</td>
+</tr>
+<tr>
+<td align="center">%COMPUTERNAME%</td>
+<td align="left">系统 返回计算机的名称。</td>
+</tr>
+<tr>
+<td align="center">%COMSPEC%</td>
+<td align="left">系统 返回命令行解释器可执行程序的准确路径。</td>
+</tr>
+<tr>
+<td align="center">%DATE%</td>
+<td align="left">系统 返回当前日期。使用与 date /t 命令相同的格式。由 Cmd.exe 生成。有关 date 命令的详细信息，请参阅 Date。</td>
+</tr>
+<tr>
+<td align="center">%ERRORLEVEL%</td>
+<td align="left">系统 返回使用过的命令的错误代码。通常用非零值表示错误。</td>
+</tr>
+<tr>
+<td align="center">%HOMEDRIVE%</td>
+<td align="left">系统 返回连接到用户主目录的本地工作站驱动器号。基于主目录值的设置。用户主目录是在“本地用户和组”中指定的。</td>
+</tr>
+<tr>
+<td align="center">%HOMEPATH%</td>
+<td align="left">系统 返回用户主目录的完整路径。基于主目录值的设置。用户主目录是在“本地用户和组”中指定的。</td>
+</tr>
+<tr>
+<td align="center">%HOMESHARE%</td>
+<td align="left">系统 返回用户的共享主目录的网络路径。基于主目录值的设置。用户主目录是在“本地用户和组”中指定的。</td>
+</tr>
+<tr>
+<td align="center">%LOGONSEVER%</td>
+<td align="left">局部 返回验证当前登录会话的域控制器的名称。</td>
+</tr>
+<tr>
+<td align="center">%NUMBER_OF_PROCESSORS%</td>
+<td align="left">系统 指定安装在计算机上的处理器的数目。</td>
+</tr>
+<tr>
+<td align="center">%OS%</td>
+<td align="left">系统 返回操作系统的名称。Windows 2000 将操作系统显示为 Windows_NT。</td>
+</tr>
+<tr>
+<td align="center">%PATH%</td>
+<td align="left">系统 指定可执行文件的搜索路径。</td>
+</tr>
+<tr>
+<td align="center">%PATHEXT%</td>
+<td align="left">系统 返回操作系统认为可执行的文件扩展名的列表。</td>
+</tr>
+<tr>
+<td align="center">%PROCESSOR_ARCHITECTURE%</td>
+<td align="left">系统 返回处理器的芯片体系结构。值: x86，IA64。</td>
+</tr>
+<tr>
+<td align="center">%PROCESSOR_IDENTIFIER%</td>
+<td align="left">系统 返回处理器说明。</td>
+</tr>
+<tr>
+<td align="center">%PROCESSOR_LEVEL%</td>
+<td align="left">系统 返回计算机上安装的处理器的型号。</td>
+</tr>
+<tr>
+<td align="center">%PROCESSOR_REVISION%</td>
+<td align="left">系统 返回处理器修订号的系统变量。</td>
+</tr>
+<tr>
+<td align="center">%PROMPT%</td>
+<td align="left">局部 返回当前解释程序的命令提示符设置。由 Cmd.exe 生成。</td>
+</tr>
+<tr>
+<td align="center">%RANDOM%</td>
+<td align="left">系统 返回 0 到 32767 之间的任意十进制数字。由 Cmd.exe 生成。</td>
+</tr>
+<tr>
+<td align="center">%SYSTEMDRIVE%</td>
+<td align="left">系统 返回包含 Windows XP 根目录（即系统根目录）的驱动器。</td>
+</tr>
+<tr>
+<td align="center">%SYSTEMROOT%</td>
+<td align="left">系统 返回 Windows XP 根目录的位置。</td>
+</tr>
+<tr>
+<td align="center">%TEMP% and %TMP%</td>
+<td align="left">系统和用户 返回对当前登录用户可用的应用程序所使用的默认临时目录。有些应用程序需要 TEMP，而其它应用程序则需要 TMP。</td>
+</tr>
+<tr>
+<td align="center">%TIME%</td>
+<td align="left">系统 返回当前时间。使用与 time /t 命令相同的格式。由 Cmd.exe 生成。有关 time 命令的详细信息，请参阅 Time。</td>
+</tr>
+<tr>
+<td align="center">%USERDOMAIN%</td>
+<td align="left">局部 返回包含用户帐户的域的名称。</td>
+</tr>
+<tr>
+<td align="center">%USERNAME%</td>
+<td align="left">局部 返回当前登录的用户的名称。</td>
+</tr>
+<tr>
+<td align="center">%UserProfile%</td>
+<td align="left">局部 返回当前用户的配置文件的位置。</td>
+</tr>
+<tr>
+<td align="center">%WINDIR%</td>
+<td align="left">系统 返回操作系统目录的位置。</td>
+</tr>
+</tbody></table>
+<h3 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h3><p>shell 环境依赖于多个文件的设置。当 shell 被调用时，它从两个初始文件读取命令。 /etc/profile 包含了系统变量，它由系统管理员维护，由系统管理员设置本地系统变量和特殊命令。普通用户的启动信息文件($HOME/.bash_project)由各用户自己维护，该文件可以被修改以实现任何特定的系统初始化。</p>
+<p>只有在特定的情况下才读取 profile 文件，确切的说是在用户登录的时候。当运行shell脚本或者 subshell 以后，就无需再读 profile。虽然所有 profile 都是可选的，但是基本上所有系统都有 /etc/profile.</p>
+<p>如果定义了变量 ENV 且已经传递到环境中，则所有的 bash shell 都要读取并调用由这个变量制定的文件所包含的命令。这个文件用来定义所有 bash shell 的特性，而不仅仅是登录到 shell。这个文件的典型的名字是 ‘$HOME/,bashrc’。</p>
+<p>当新建用户是，.bash_profile、bashrc 和其他公共的环境文件模板将复制到 /etc/skel 这个目录下面。可以编辑这些初始化设置，也可以在此目录下添加附加的文件。</p>
+<table>
+<thead>
+<tr>
+<th align="center">一个典型的系统profile(/etc/profile):</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">PATH=$PATH:/usr/qa/tools/bin</td>
+</tr>
+<tr>
+<td align="center">ENV==$HOME/.bashrc</td>
+</tr>
+<tr>
+<td align="center">ORACLE_HOME=/dbs/oracle</td>
+</tr>
+<tr>
+<td align="center">ORACLE_SID=qadb</td>
+</tr>
+<tr>
+<td align="center">Export PATH ENV ORACLE_HOME ORCAL_SID</td>
+</tr>
+<tr>
+<td align="center">Cat /etc/motd</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">一个典型的用户profile(.bashrc)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">PATH=<img src="https://math.jianshu.com/math?formula=PATH:" srcset="/img/loading.gif" lazyload alt="PATH:">HOME/bin</td>
+</tr>
+<tr>
+<td align="center">TEAM=uvt1224 export TERM</td>
+</tr>
+<tr>
+<td align="center">sttyintr ^C</td>
+</tr>
+<tr>
+<td align="center">cal</td>
+</tr>
+<tr>
+<td align="center">mesg n</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">一个典型的用户 bashrc file (.bashrc):</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">alias dir=ls lf=’ls -FC’</td>
+</tr>
+<tr>
+<td align="center">PSI=’$PWS[!]&gt;’</td>
+</tr>
+<tr>
+<td align="center">set -o vi</td>
+</tr>
+</tbody></table>
+<p><em>tips:</em> 别名和其他bash专用的定义应该放在.bashrc文件（不应在.bash_profile) 中定义；否则会导致找不到某些命令。</p>
+<p> 应该记住profile文件和.bashrc文件的区别：两个profile都只在系统启动时被读取一次，而.bashrc在系统启动和每次调用shell的时候都要被读取。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/system/">system</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/macos/">macos</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/18/idea-jrebel/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">jRebel</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/16/java-jackson/">
+                        <span class="hidden-mobile">Jackson</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

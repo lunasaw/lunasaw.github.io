@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="IDEA插件今天介绍一下IDEA的一些炫酷的插件，IDEA强大的插件库，不仅能给我们带来一些开发的便捷，还能体现我们的与众不同。 插件安装各种插件 activate-power-mode 和 Power mode II 根据Atom的插件activate-power-mode的效果移植到IDEA上 写代码是整个屏幕都在抖动，activate-power-mode是白的的，Power mode II">
+<meta property="og:type" content="article">
+<meta property="og:title" content="idea plugs">
+<meta property="og:url" content="https://lunasaw.github.io/2020/04/13/idea-plugs/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="IDEA插件今天介绍一下IDEA的一些炫酷的插件，IDEA强大的插件库，不仅能给我们带来一些开发的便捷，还能体现我们的与众不同。 插件安装各种插件 activate-power-mode 和 Power mode II 根据Atom的插件activate-power-mode的效果移植到IDEA上 写代码是整个屏幕都在抖动，activate-power-mode是白的的，Power mode II">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190408111052416.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190408111107597.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190408111123402.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190408111137891.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190408111154893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NTY3MDM5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190408111210770.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NTY3MDM5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190408111253652.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190408111322532.png">
+<meta property="article:published_time" content="2020-04-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.985Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="idea">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190408111052416.png">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>idea plugs - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/idea-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="idea plugs">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-13 00:00" pubdate>
+        2020年4月13日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">idea plugs</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="IDEA插件"><a href="#IDEA插件" class="headerlink" title="IDEA插件"></a>IDEA插件</h1><p>今天介绍一下IDEA的一些炫酷的插件，IDEA强大的插件库，不仅能给我们带来一些开发的便捷，还能体现我们的与众不同。</p>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><h3 id="各种插件"><a href="#各种插件" class="headerlink" title="各种插件"></a>各种插件</h3><ol>
+<li><p>activate-power-mode 和 Power mode II</p>
+<p>根据Atom的插件activate-power-mode的效果移植到IDEA上</p>
+<p>写代码是整个屏幕都在抖动，activate-power-mode是白的的，Power mode II色彩更酷炫点。</p>
+</li>
+<li><p>Background Image Plus</p>
+<p>idea背景修改插件，让你的idea与众不同，可以设置自己喜欢的图片作为code背景。</p>
+<p>安装成功之后重启，菜单栏的VIew标签&gt;点击Set Background Image(没安装插件是没有这个标签的)，在弹框中路由选择到本地图片，点击OK即可。</p>
+</li>
+<li><p>Grep console</p>
+<p>自定义日志颜色，idea控制台可以彩色显示各种级别的log，安装完成后，在console中右键就能打开。</p>
+<p>并且可以设置不同的日志级别的显示样式。</p>
+<p>可以直接根据关键字搜索你想要的，搜索条件是支持正则表达式的。官网地址</p>
+<p><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/idea/plugin/7125-grep-console">https://plugins.jetbrains.com/idea/plugin/7125-grep-console</a></p>
+</li>
+<li><p>Free Mybatis plugin</p>
+<p>mybatis 插件，让你的mybatis.xml像java代码一样编辑。我们开发中使用mybatis时时长需要通过mapper接口查找对应的xml中的sql语句，该插件方便了我们的操作。</p>
+<p>安装完成重启IDEA之后，我们会看到code左侧或多出一列绿色的箭头，点击箭头我们就可以直接定位到xml相应文件的位置。</p>
+<p>mapper</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20190408111052416.png" srcset="/img/loading.gif" lazyload alt="mapper"></p>
+<div class="hljs code-wrapper"><pre><code>    xml
+</code></pre></div>
+<p><img src="https://img-blog.csdnimg.cn/20190408111107597.png" srcset="/img/loading.gif" lazyload alt="xml"></p>
+<ol start="5">
+<li><p>MyBatis Log Plugin</p>
+<p>Mybatis现在是java中操作数据库的首选，在开发的时候，我们都会把Mybatis的脚本直接输出在console中，但是默认的情况下，输出的脚本不是一个可以直接执行的。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408111123402.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果我们想直接执行，还需要在手动转化一下。</p>
+<p>MyBatis Log Plugin 这款插件是直接将Mybatis执行的sql脚本显示出来，无需处理，可以直接复制出来执行的，如图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408111137891.png" srcset="/img/loading.gif" lazyload></p>
+<p>执行程序后，我们可以很清晰的看到我们执行了哪些sql脚本，而且脚本可以执行拿出来运行。</p>
+</li>
+<li><p>String Manipulation</p>
+<p>强大的字符串转换工具。使用快捷键，Alt+m。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408111154893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NTY3MDM5,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+<p>切换样式（camelCase, hyphen-lowercase, HYPHEN-UPPERCASE, snake_case, SCREAMING_SNAKE_CASE, dot.case, words lowercase, Words Capitalized, PascalCase）</p>
+<ul>
+<li><p>转换为SCREAMING_SNAKE_CASE (或转换为camelCase)</p>
+</li>
+<li><p>转换为 snake_case (或转换为camelCase)</p>
+</li>
+<li><p>转换为dot.case (或转换为camelCase)</p>
+</li>
+<li><p>转换为hyphen-case (或转换为camelCase)</p>
+</li>
+<li><p>转换为hyphen-case (或转换为snake_case)</p>
+</li>
+<li><p>转换为camelCase (或转换为Words)</p>
+</li>
+<li><p>转换为camelCase (或转换为lowercase words)</p>
+</li>
+<li><p>转换为PascalCase (或转换为camelCase)</p>
+<p>选定文本大写</p>
+<p>样式反转</p>
+</li>
+</ul>
+</li>
+<li><p>Alibaba Java Coding Guidelines</p>
+<p>阿里巴巴代码规范检查插件，当然规范可以参考《阿里巴巴Java开发手册》。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408111210770.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NTY3MDM5,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>Lombok</p>
+<p>Java语言，每次写实体类的时候都需要写一大堆的setter，getter，如果bean中的属性一旦有修改、删除或增加时，需要重新生成或删除get/set等方法，给代码维护增加负担，这也是Java被诟病的一种原因。</p>
+<p>Lombok则为我们解决了这些问题，使用了lombok的注解(@Setter,@Getter,@ToString,@@RequiredArgsConstructor,@EqualsAndHashCode或@Data)之后，就不需要编写或生成get/set等方法，很大程度上减少了代码量，而且减少了代码维护的负担。</p>
+<p>安装完成之后，在应用Lombok的时候注意别忘了需要添加依，maven为例：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  
+          <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  
+          <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>   
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Setter</span>
+<span class="hljs-meta">@Getter</span>
+<span class="hljs-meta">@ToString</span>
+<span class="hljs-meta">@EqualsAndHashCode</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;
+    <span class="hljs-keyword">private</span> String male;
+&#125;</code></pre></div></li>
+<li><p>Key promoter</p>
+<p>Key promoter 是IntelliJ IDEA的快捷键提示插件，会统计你鼠标点击某个功能的次数，提示你应该用什么快捷键，帮助记忆快捷键，等熟悉了之后可以关闭掉这个插件。</p>
+</li>
+<li><p>Gsonformat</p>
+<p>可根据json数据快速生成java实体类。</p>
+<p>自定义个javaBean(无任何内容，就一个空的类)，复制你要解析的Json，然后alt+insert弹出如下界面或者使用快捷键 Alt+S，在里面粘贴刚刚复制的Json，点击OK即可。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408111253652.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>Restfultookit</p>
+<p>Spring MVC网页开发的时候，我们都是通过requestmapping的方式来定义页面的URL地址的，为了找到这个地址我们一般都是cmd+shift+F的方式进行查找，大家都知道，我们URL的命名一个是类requestmapping+方法requestmapping，查找的时候还是有那么一点不方便的，restfultookit就能很方便的帮忙进行查找。</p>
+<p>例如：我要找到/user/add 对应的controller,那么只要Ctrl+斜杠 ,（图片来自于网络）</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20190408111322532.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>就能直接定位到我们想要的controller。这个也是真心方便，当然restfultookit还为我们提供的其他的功能。根据我们的controller帮我们生成默认的测试数据，还能直接调用测试，这个可以是解决了我们每次postman调试数据时，自己傻傻的组装数据的的操作，这个更加清晰，比在console找数据包要方便多了。（图片来自于网络）
+</code></pre></div>
+<ol start="12">
+<li><p>JRebel</p>
+<p>JRebel是一种热部署生产力工具，修改代码后不用重新启动程序，所有的更改便可以生效。它跳过了Java开发中常见的重建、重新启动和重新部署周期。<br>使用方式参考此处:<br><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/ac6a9a5e31417c2b653eace8.html">https://jingyan.baidu.com/article/ac6a9a5e31417c2b653eace8.html</a></p>
+</li>
+</ol>
+<h3 id="常用插件推荐"><a href="#常用插件推荐" class="headerlink" title="常用插件推荐"></a>常用插件推荐</h3><div class="hljs code-wrapper"><pre><code>注：微信不支持外链，如需打开请自行复制链接
+</code></pre></div>
+<ol>
+<li><p>Gitee<br>开源中国的码云插件<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/8383-gitee">https://plugins.jetbrains.com/plugin/8383-gitee</a></p>
+</li>
+<li><p>Alibaba Java Coding Guidelines<br>阿里巴巴出的代码规范检查插件<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines">https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines</a></p>
+</li>
+<li><p>IDE Features Trainer<br>IntelliJ IDEA 官方出的学习辅助插件<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/8554?pr=idea">https://plugins.jetbrains.com/plugin/8554?pr=idea</a></p>
+</li>
+<li><p>Key promoter<br>快捷键提示<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/4455?pr=idea">https://plugins.jetbrains.com/plugin/4455?pr=idea</a></p>
+</li>
+<li><p>Grep Console<br>自定义设置控制台输出颜色<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/idea/plugin/7125-grep-console">https://plugins.jetbrains.com/idea/plugin/7125-grep-console</a></p>
+</li>
+<li><p>String Manipulation<br>驼峰式命名和下划线命名交替变化<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/2162?pr=idea">https://plugins.jetbrains.com/plugin/2162?pr=idea</a></p>
+</li>
+<li><p>CheckStyle-IDEA<br>代码规范检查<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/1065?pr=idea">https://plugins.jetbrains.com/plugin/1065?pr=idea</a></p>
+</li>
+<li><p>FindBugs-IDEA<br>潜在 Bug 检查<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/3847?pr=idea">https://plugins.jetbrains.com/plugin/3847?pr=idea</a></p>
+</li>
+<li><p>MetricsReloaded<br>代码复杂度检查<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/93?pr=idea">https://plugins.jetbrains.com/plugin/93?pr=idea</a></p>
+</li>
+<li><p>Statistic<br>代码统计<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/4509?pr=idea">https://plugins.jetbrains.com/plugin/4509?pr=idea</a></p>
+</li>
+<li><p>JRebel Plugin<br>热部署<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/?id=4441">https://plugins.jetbrains.com/plugin/?id=4441</a></p>
+</li>
+<li><p>CodeGlance<br>在编辑代码最右侧，显示一块代码小地图<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/7275?pr=idea">https://plugins.jetbrains.com/plugin/7275?pr=idea</a></p>
+</li>
+<li><p>GsonFormat<br>把 JSON 字符串直接实例化成类<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/7654?pr=idea">https://plugins.jetbrains.com/plugin/7654?pr=idea</a></p>
+</li>
+<li><p>Markdown Navigator<br>书写 Markdown 文章<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/7896?pr=idea">https://plugins.jetbrains.com/plugin/7896?pr=idea</a></p>
+</li>
+<li><p>Eclipse Code Formatter<br>使用 Eclipse 的代码格式化风格，在一个团队中如果公司有规定格式化风格，这个可以使用。<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/6546?pr=idea">https://plugins.jetbrains.com/plugin/6546?pr=idea</a></p>
+</li>
+<li><p>Jindent-Source Code Formatter<br>自定义类、方法、doc、变量注释模板<br><a target="_blank" rel="noopener" href="http://plugins.jetbrains.com/plugin/2170?pr=idea">http://plugins.jetbrains.com/plugin/2170?pr=idea</a></p>
+</li>
+<li><p>Translation<br>翻译插件<br><a target="_blank" rel="noopener" href="https://github.com/YiiGuxing/TranslationPlugin">https://github.com/YiiGuxing/TranslationPlugin</a></p>
+</li>
+<li><p>Maven Helper<br>Maven 辅助插件<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/7179-maven-helper">https://plugins.jetbrains.com/plugin/7179-maven-helper</a></p>
+</li>
+<li><p>Properties to YAML Converter<br>把 Properties 的配置格式改为 YAML 格式<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/8000-properties-to-yaml-converter">https://plugins.jetbrains.com/plugin/8000-properties-to-yaml-converter</a></p>
+</li>
+<li><p>Git Flow Integration<br>Git Flow 的图形界面操作<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/7315-git-flow-integration">https://plugins.jetbrains.com/plugin/7315-git-flow-integration</a></p>
+</li>
+<li><p>Rainbow Brackets<br>对各个对称括号进行着色，方便查看<br><a target="_blank" rel="noopener" href="https://github.com/izhangzhihao/intellij-rainbow-brackets">https://github.com/izhangzhihao/intellij-rainbow-brackets</a></p>
+</li>
+<li><p>MybatisX<br>mybatis 框架辅助（免费）<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/10119-mybatisx">https://plugins.jetbrains.com/plugin/10119-mybatisx</a></p>
+</li>
+<li><p>Lombok Plugin<br>Lombok 功能辅助插件<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/6317-lombok-plugin">https://plugins.jetbrains.com/plugin/6317-lombok-plugin</a></p>
+</li>
+<li><p>.ignore<br>各类版本控制忽略文件生成工具<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/7495--ignore">https://plugins.jetbrains.com/plugin/7495--ignore</a></p>
+</li>
+<li><p>mongo4idea<br>mongo客户端<br><a target="_blank" rel="noopener" href="https://github.com/dboissier/mongo4idea">https://github.com/dboissier/mongo4idea</a></p>
+</li>
+<li><p>iedis<br>redis客户端<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/9228-iedis">https://plugins.jetbrains.com/plugin/9228-iedis</a></p>
+</li>
+<li><p>GenerateAllSetter<br>new POJO类的快速生成 set 方法<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/9360-generateallsetter">https://plugins.jetbrains.com/plugin/9360-generateallsetter</a></p>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/idea/">idea</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/idea/">idea</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/05/macos-brew/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">homebrew教程</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/13/java-time-ordate/">
+                        <span class="hidden-mobile">时间和字符传的转化</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

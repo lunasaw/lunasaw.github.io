@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="apache虚拟主机配置apache2.4的最终配置效果: httpd.conf Listen 19010 # Virtual hosts Include conf&#x2F;extra&#x2F;httpd-vhosts.conf  httpd-vhosts.conf # IP:Port,以端口号配置虚拟机 &lt;VirtualHost 127.0.0.1:19010&gt;     # 网站错误时提示的联系管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="apache-config-virtual">
+<meta property="og:url" content="https://lunasaw.github.io/2020/05/05/apache-config-virtual/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="apache虚拟主机配置apache2.4的最终配置效果: httpd.conf Listen 19010 # Virtual hosts Include conf&#x2F;extra&#x2F;httpd-vhosts.conf  httpd-vhosts.conf # IP:Port,以端口号配置虚拟机 &lt;VirtualHost 127.0.0.1:19010&gt;     # 网站错误时提示的联系管理">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.981Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="apache">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>apache-config-virtual - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/java/apache-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="apache-config-virtual">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-05-05 00:00" pubdate>
+        2020年5月5日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">apache-config-virtual</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="apache虚拟主机配置"><a href="#apache虚拟主机配置" class="headerlink" title="apache虚拟主机配置"></a>apache虚拟主机配置</h2><p>apache2.4的最终配置效果:</p>
+<p><strong>httpd.conf</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs xml">Listen 19010
+# Virtual hosts
+Include conf/extra/httpd-vhosts.conf</code></pre></div>
+
+<p><strong>httpd-vhosts.conf</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs xml"># IP:Port,以端口号配置虚拟机
+<span class="hljs-tag">&lt;<span class="hljs-name">VirtualHost</span> <span class="hljs-attr">127.0.0.1:19010</span>&gt;</span>
+    # 网站错误时提示的联系管理员邮箱（可不配置）
+    ServerAdmin webmaster@dummy-host.example.com
+    # 虚拟主机根目录
+    DocumentRoot &quot;$&#123;SRVROOT&#125;&quot;
+    # 服务器名称（可不配置）
+    ServerName dummy-host.example.com
+    # 服务器别名（可不配置）
+    ServerAlias www.dummy-host.example.com
+    # 错误日志
+    ErrorLog &quot;logs/dummy-host.example.com-error.log&quot;
+    # 访问日志
+    CustomLog &quot;logs/dummy-host.example.com-access.log&quot; common
+    # 访问目录的配置，可以是其的一个子文件夹
+    <span class="hljs-tag">&lt;<span class="hljs-name">Directory</span> &quot;$&#123;<span class="hljs-attr">SRVROOT</span>&#125;/<span class="hljs-attr">public</span>&quot;&gt;</span>
+        # 控制特定目录将启用哪些服务器特性
+		Options FollowSymLinks
+        # 指明Apache服务器是否去找.htacess文件作为配置文件
+		AllowOverride All
+        # 控制请求是否可以访问
+		Require all granted
+	<span class="hljs-tag">&lt;/<span class="hljs-name">Directory</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">VirtualHost</span>&gt;</span></code></pre></div>
+
+<p>部分参数详细说明：</p>
+<p><strong>Options FollowSymLinks</strong></p>
+<p>Options指令是Apache配置文件中一个比较常见也比较重要的指令，Options指令可以在Apache服务器核心配置(server config)、虚拟主机配置(virtual host)、特定目录配置(directory)以及.htaccess文件中使用。</p>
+<p>Options指令的主要作用是控制特定目录将启用哪些服务器特性。</p>
+<p>All</p>
+<p>表示除 <code>MultiViews</code>之外的所有特性。这也是Options指令的默认设置。</p>
+<p>None</p>
+<p>表示不启用任何的服务器特性。</p>
+<p>FollowSymLinks</p>
+<p>服务器允许在此目录中使用符号连接。如果该配置选项位于 <code>&lt;Location&gt;</code>配置段中，将会被忽略。</p>
+<p>Indexes</p>
+<p>如果输入的网址对应服务器上的一个文件目录，而此目录中又没有 <code>DirectoryIndex</code>指令(例如： <code>DirectoryIndex index.html index.php</code>)，那么服务器会返回由 <code>mod_autoindex</code>模块生成的一个格式化后的目录列表，并列出该目录下的所有文件。</p>
+<p>MultiViews</p>
+<p>允许使用 <code>mod_negotiation</code>模块提供内容协商的”多重视图”。</p>
+<p>SymLinksIfOwnerMatch</p>
+<p>服务器仅在符号连接与目标文件或目录的所有者具有相同的用户ID时才使用它。</p>
+<p>ExecCGI</p>
+<p>允许使用 <code>mod_cgi</code>模块执行CGI脚本。</p>
+<p>Includes</p>
+<p>允许使用 <code>mod_include</code>模块提供的服务器端包含功能。</p>
+<p>IncludesNOEXEC</p>
+<p>允许服务器端包含，但禁用”#exec cmd”和”#exec cgi”。但仍可以从 <code>ScriptAlias</code>目录使用”#include virtual”虚拟CGI脚本。</p>
+<p><strong>AllowOverride All</strong></p>
+<p>AllowOverride参数就是指明Apache服务器是否去找.htacess文件作为配置文件，如果设置为none,那么服务器将忽略.htacess文件，如果设置为All,那么所有在.htaccess文件里有的指令都将被重写。对于AllowOverride，还可以对它指定如下一些能被重写的指令类型。</p>
+<p>从安全性考虑，根目录的AllowOverride属性一般都配置成不允许任何Override 。</p>
+<p>None</p>
+<p>网站 .htaccess 文件将被完全忽略。</p>
+<p>All</p>
+<p>所有具有 .htaccess 作用域的指令都允许出现在 .htaccess 文件中。</p>
+<p>AuthConfig</p>
+<p>允许使用与认证授权相关的指令(AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthType, AuthUserFile, Require, 等)。</p>
+<p>FileInfo</p>
+<p>允许使用控制文档类型的指令(DefaultType, ErrorDocument, ForceType, LanguagePriority, SetHandler, SetInputFilter, SetOutputFilter, mod_mime中的 Add* 和 Remove* 指令等等)、控制文档元数据的指令(Header, RequestHeader, SetEnvIf, SetEnvIfNoCase, BrowserMatch, CookieExpires, CookieDomain, CookieStyle, CookieTracking, CookieName)、mod_rewrite中的指令(RewriteEngine, RewriteOptions, RewriteBase, RewriteCond, RewriteRule)和mod_actions中的Action指令。</p>
+<p>Indexes</p>
+<p>允许使用控制目录索引的指令(AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, 等)。</p>
+<p>Limit</p>
+<p>允许使用控制主机访问的指令(Allow, Deny, Order)。 一般 Apache 新安装 AllowOverride 默认为「None」。</p>
+<p>一般都尽可能避免使用.htaccess文件，任何希望放在.htaccess文件中的配置，都可放在主配置的”<Directory>”段中。避免使用的原因主要有：</p>
+<p>性能问题</p>
+<p>如果AllowOverride启用.htaccess文件，则Apache会在每个目录中查找.htaccess文件，因此启用.htaccess都会导致性能的下降。</p>
+<p>另外，对每一个请求，都需要读取一次.htaccess文件。</p>
+<p>还有，Apache必须在所有上级的目录中查找.htaccess文件，以使所有有效的指令都起作用(参见指令的生效)</p>
+<p>安全问题</p>
+<p>允许用户自己修改apache的配置，可能会导致某些意想不到的修改，如果给予用户较少的特权而不能满足其需要，则会带来额外的技术支持请求，所以必须明确地告诉用户已经给予他们的权限，说明AllowOverride设置的值，并引导他们参阅相应的说明，以免日后生出许多麻烦。</p>
+<p><strong>Require all granted</strong></p>
+<p>在Apache2.2版本中，访问控制是基于客户端的主机名、IP地址以及客户端请求中的其他特征，使用Order(排序), Allow(允许), Deny(拒绝),Satisfy(满足)指令来实现。</p>
+<p>在Apache2.4版本中，使用mod_authz_host这个新的模块，来实现访问控制，其他授权检查也以同样的方式来完成。旧的访问控制语句应当被新的授权认证机制所取代，即便Apache已经提供了mod_access_compat这一新模块来兼容旧语句。</p>
+<p>用新方法取代旧语句实现相同的访问控制示例：</p>
+<p>1.所有请求都被拒绝</p>
+<p>Apache2.2 配置:</p>
+<p>Order deny,allow #排序，先拒绝后允许</p>
+<p>Deny from all #拒绝所有</p>
+<p>Apache2.4 配置:</p>
+<p>Require all denied #拒绝所有</p>
+<p>2.所有请求都被允许</p>
+<p>Apache2.2 配置:</p>
+<p>Order allow,deny #排序，先允许后拒绝</p>
+<p>Allow from all #允许所有</p>
+<p>Apache2.4 配置:</p>
+<p>Require all granted #允许所有</p>
+<p><a target="_blank" rel="noopener" href="http://3.example.com所有请求都被允许,其他拒绝/">http://3.example.com所有请求都被允许，其他拒绝</a></p>
+<p>Apache2.2 配置:</p>
+<p>Order Deny,Allow #排序，先拒绝后允许</p>
+<p>Deny from all #拒绝所有</p>
+<p>Allow from <a href="https://link.zhihu.com/?target=http://example.com">Example Domain</a> #<a href="https://link.zhihu.com/?target=http://%E5%85%81%E8%AE%B8example.com">允许example.com</a></p>
+<p>Apache2.4 配置:</p>
+<p>Require host <a href="https://link.zhihu.com/?target=http://example.com">Example Domain</a> #<a href="https://link.zhihu.com/?target=http://%E5%85%81%E8%AE%B8example.com">允许example.com</a></p>
+<p>附：常见访问控制指令</p>
+<p>Require all granted #允许所有来源访问</p>
+<p>Require all denied #拒绝所有来源访问</p>
+<p>Require expr expression #允许表达式为true时访问</p>
+<p>Require ip 10 172.1 192.168.2 #允许特定IP段访问，多个段之前用空格隔开，每个段使用开头几项表示</p>
+<p>Require host <a href="https://link.zhihu.com/?target=http://example.com">Example Domain</a> #只允许来自域名example.com的主机访问</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/apache/">apache</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/apache/">apache</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/05/apache-config-config/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">apache-dav-config</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/05/java-date-time/">
+                        <span class="hidden-mobile">时间和字符传的转化</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

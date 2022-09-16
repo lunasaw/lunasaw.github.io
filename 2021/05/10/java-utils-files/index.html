@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="File Utils   write(final File file, final CharSequence data, final Charset encoding)write(final File file, final CharSequence data, final Charset encoding, final boolean append) write(final File file,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java utils files">
+<meta property="og:url" content="https://lunasaw.github.io/2021/05/10/java-utils-files/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="File Utils   write(final File file, final CharSequence data, final Charset encoding)write(final File file, final CharSequence data, final Charset encoding, final boolean append) write(final File file,">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-10T07:45:25.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.987Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="apache">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>java utils files - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/java-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="java utils files">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-10 15:45" pubdate>
+        2021年5月10日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">java utils files</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="File-Utils"><a href="#File-Utils" class="headerlink" title="File Utils"></a>File Utils</h1><table>
+<thead>
+<tr>
+<th>write(final File file, final CharSequence data, final Charset encoding)write(final File file, final CharSequence data, final Charset encoding, final boolean append) write(final File file, final CharSequence data, final String encoding)write(final File file, final CharSequence data, final String encoding, final boolean append)</th>
+<th>将字符序列写入到文件file：待写入的文件，路径不存在时，自动新建；data：写入的字节内容；append：是否追加；encoding：文件内容编码，这在网络通信时防止中文乱码非常有用。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>writeByteArrayToFile(final File file, final byte[] data)writeByteArrayToFile(final File file, final byte[] data, final boolean append)writeByteArrayToFile(final File file, final byte[] data, final int off, final int len)writeByteArrayToFile(final File file, final byte[] data, final int off, final int len,final boolean append)</td>
+<td>将字节数组写入到文件file：待写入的文件，路径不存在时，自动新建；data：写入的字节内容；append：是否追加；off：字节数组写入的起始位置；lem：写入的长度</td>
+</tr>
+<tr>
+<td>writeLines(final File file, final Collection<?> lines)writeLines(final File file, final Collection<?> lines, final boolean append)writeLines(final File file, final Collection<?> lines, final String lineEnding)writeLines(final File file, final Collection<?> lines, final String lineEnding,final boolean append)writeLines(final File file, final String encoding, final Collection<?> lines)writeLines(final File file, final String encoding, final Collection<?> lines,final boolean append)writeLines(final File file, final String encoding, final Collection<?> lines,final String lineEnding)writeLines(final File file, final String encoding, final Collection<?> lines,final String lineEnding, final boolean append)</td>
+<td>将集合中的内容一次性写入文件file：待写入的文件，路径不存在时，自动新建；lines：要写入的行，null 表示插入空行append：内容是否追加lineEnding：要使用的行分隔符，null 表示使用系统默认值encoding：要使用的编码，{@code null}表示平台默认值</td>
+</tr>
+<tr>
+<td>writeStringToFile(final File file, final String data, final Charset encoding)writeStringToFile(final File file, final String data, final Charset encoding,final boolean append)writeStringToFile(final File file, final String data, final String encoding)writeStringToFile(final File file, final String data, final String encoding,final boolean append)</td>
+<td>将字符串写入到文件file：待写入的文件，路径不存在时，自动新建；data：写入的字节内容；append：是否追加；encoding：文件内容编码</td>
+</tr>
+<tr>
+<td>byte[] readFileToByteArray(final File file)</td>
+<td>将文件内容读入字节数组。文件始终处于关闭状态。</td>
+</tr>
+<tr>
+<td>String readFileToString(final File file, final String encoding)String readFileToString(final File file, final Charset encoding)String readFileToString(final File file)</td>
+<td>将文件的内容读入字符串。文件始终处于关闭状态。 file：要读取的文件，不能是 nullencoding:要使用的编码，null表示使用平台默认值</td>
+</tr>
+<tr>
+<td>List<String> readLines(final File file, final Charset encoding)List<String> readLines(final File file, final String encoding)</td>
+<td>逐行读取文件内容到字符串列表。文件始终处于关闭状态。 file：要读取的文件，不能是 nullencoding:要使用的编码，null表示使用平台默认值</td>
+</tr>
+<tr>
+<td>LineIterator lineIterator(final File file)LineIterator lineIterator(final File file, final String encoding)</td>
+<td>为文件打开一个 InputStream 的行迭代器，完成迭代器之后，应该关闭流以释放内部资源。LineIterator implements Iterator：可以很方便的一行一行读取文件内容</td>
+</tr>
+<tr>
+<td>copyDirectory(final File srcDir, final File destDir)copyDirectory(final File srcDir, final File destDir,final boolean preserveFileDate)copyDirectory(final File srcDir, final File destDir,final FileFilter filter)copyDirectory(final File srcDir, final File destDir,final FileFilter filter, final boolean preserveFileDate)</td>
+<td>将指定目录下所有子孙目录和文件复制到指定的目标目录下，如果目标目录不存在，则创建该目录。如果目标目录确实存在，则此方法将源目录与目标目录合并，源目录优先。注意只能是目录，如果是文件则异常。srcDir：源目录，不能为 nulldestDir：目标目录，不能为 nullpreserveFileDate：副本的文件日期是否与原件相同filter：要应用的筛选器，即可以细粒度的控制复制哪些文件或者目录，null 表示复制所有目录和文件</td>
+</tr>
+<tr>
+<td>copyFile(final File srcFile, final File destFile)copyFile(final File srcFile, final File destFile,final boolean preserveFileDate)copyFile(final File input, final OutputStream output)</td>
+<td>此方法将指定源文件的内容复制到指定的目标文件，如果目标文件不存在，则会创建包含目标文件的目录，如果目标文件存在，则此方法将覆盖它。srcFile：源文件，不能为 nulldestFile：目标文件，，不能为 nullpreserveFileDate：副本的文件日期是否与原件相同output：将文件复制到字节输出流，方法在内部使用缓冲输入。</td>
+</tr>
+<tr>
+<td>copyFileToDirectory(final File srcFile, final File destDir)copyFileToDirectory(final File srcFile, final File destDir, final boolean preserveFileDate)</td>
+<td>将指定源文件的内容复制到指定目标目录中同名的文件中。如果目标目录不存在，则创建该目录。如果目标文件存在，则此方法将覆盖它。srcFile：源文件，不能为 nulldestDir：目标目录，不能为 nullpreserveFileDate：副本的文件日期是否与原件相同</td>
+</tr>
+<tr>
+<td>copyInputStreamToFile(final InputStream source, final File destination)</td>
+<td>将字节输入流复制到目标文件中，不存在时自动创建</td>
+</tr>
+<tr>
+<td>copyToDirectory(final File src, final File destDir)copyToDirectory(final Iterable<File> srcs, final File destDir)</td>
+<td>将源文件或目录及其所有内容复制到指定目标目录中同名的目录中。如果目标目录不存在，则创建该目录。如果目标目录确实存在，则此方法将源目录与目标目录合并，源目录优先。src：源文件或者目录destDir：目标目录，不能为 null</td>
+</tr>
+<tr>
+<td>copyToFile(final InputStream source, final File destination)</td>
+<td>将字节输入流复制打目标文件中，如果目标目录不存在，则将创建该目录。如果目标已存在，则将覆盖该目标。</td>
+</tr>
+<tr>
+<td>copyURLToFile(final URL source, final File destination)copyURLToFile(final URL source, final File destination,final int connectionTimeout, final int readTimeout)</td>
+<td>将 URL 网络资源复制到目标文件中，可以用于下载，未设置超时时间时，可能出现永久阻塞connectionTimeout：连接超时时间，单位毫秒readTimeout：读取超时时间，单位毫秒</td>
+</tr>
+<tr>
+<td>deleteDirectory(final File directory)</td>
+<td>递归删除目录。注意只能是目录，如果是文件，则异常。</td>
+</tr>
+<tr>
+<td>deleteQuietly(final File file)</td>
+<td>安全删除文件或者递归删除目录，不会抛出任何异常。</td>
+</tr>
+<tr>
+<td>forceDelete(final File file)</td>
+<td>强制删除文件或者递归删除目录</td>
+</tr>
+<tr>
+<td>forceMkdir(final File directory)</td>
+<td>生成一个目录，包括任何必需但不存在的父目录。如果已存在具有指定名称的文件，但它不是目录，则会引发IOException。如果目录无法创建（或不存在），则抛出IOException。</td>
+</tr>
+<tr>
+<td>moveDirectory(final File srcDir, final File destDir)</td>
+<td>移动目录。当目标目录在另一个文件系统上时，执行“复制并删除”。srcDi r要移动的目录 destDir 目标目录</td>
+</tr>
+<tr>
+<td>moveDirectoryToDirectory(final File src, final File destDir, final boolean createDestDir)</td>
+<td>将目录移动到另一个目录。<em>将目录移动到另一个目录。</em>@param src要移动的文件*@param destDir目标文件*@param createDestDir如果为true，则创建目标目录，否则如果为false，则抛出IOException</td>
+</tr>
+<tr>
+<td>moveFile(final File srcFile, final File destFile)</td>
+<td>移动文件。当目标文件位于另一个文件系统上时，请执行“复制并删除”。</td>
+</tr>
+<tr>
+<td>moveFileToDirectory(final File srcFile, final File destDir, final boolean createDestDir)</td>
+<td>将文件移动到目录。</td>
+</tr>
+<tr>
+<td>moveToDirectory(final File src, final File destDir, final boolean createDestDir)</td>
+<td>将文件或目录移动到目标目录。*当目标位于另一个文件系统上时，请执行“复制并删除”。</td>
+</tr>
+<tr>
+<td>forceMkdirParent(final File file)</td>
+<td>为给定文件生成任何必需但不存在的父目录。如果无法创建父目录，则引发IOException。</td>
+</tr>
+<tr>
+<td>File getFile(final File directory, final String… names)File getFile(final String… names)</td>
+<td>获取文件对象directory：父目录names：子孙目录名称</td>
+</tr>
+<tr>
+<td>File getTempDirectory()String getTempDirectoryPath()</td>
+<td>返回系统临时目录。底层就是 System.getProperty(“java.io.tmpdir”)</td>
+</tr>
+<tr>
+<td>File getUserDirectory()String getUserDirectoryPath()</td>
+<td>返回用户的主目录，底层就是 System.getProperty(“user.home”)</td>
+</tr>
+<tr>
+<td>boolean isFileNewer(final File file, final Date date)boolean isFileNewer(final File file, final File reference)boolean isFileNewer(final File file, final long timeMillis)</td>
+<td>测试指定文件的最后修改时间是否在指定时间之后，底层是 file.lastModified() &gt; timeMillis</td>
+</tr>
+<tr>
+<td>boolean isFileNewer(final File file, final Date date)boolean isFileNewer(final File file, final File reference)boolean isFileNewer(final File file, final long timeMillis)</td>
+<td>测试指定文件的最后修改时间是否在指定时间之前，底层是 file.lastModified() &lt; timeMillis</td>
+</tr>
+<tr>
+<td>long sizeOf(final File file)BigInteger sizeOfAsBigInteger(final File file)</td>
+<td>返回指定文件或目录的大小。如果提供的{@link File}是一个常规文件，则返回该文件的长度。如果参数是目录，则递归计算目录的大小。如果某个目录或子目录受到安全限制，则不会包括其大小。请注意，不会检测到溢出，如果发生溢出，则返回值可能为负。</td>
+</tr>
+<tr>
+<td>long sizeOfDirectory(final File directory)BigInteger sizeOfDirectoryAsBigInteger(final File directory)</td>
+<td>递归计算目录的大小（所有文件的长度之和）。sizeOfDirectory 只统计目录的大小，单位为 字节，如果是文件则报错。</td>
+</tr>
+<tr>
+<td>String byteCountToDisplaySize(final long size)String byteCountToDisplaySize(final BigInteger size)</td>
+<td>将文件字节大小转为可视化的 KB、MB、GB 等形式的字符串，一共有：bytes、KB、MB、GB、TB、PB、EB.</td>
+</tr>
+<tr>
+<td>boolean contentEquals(final File file1, final File file2)</td>
+<td>比较两个文件的内容以确定它们是否相等。（注意只能是文件，如果是目录，则异常）此方法检查两个文件的长度是否不同，或者它们是否指向同一个文件，然后对内容进行逐字节比较。如果文件的内容相等或两者都不存在，则为true；否则为false</td>
+</tr>
+<tr>
+<td>File[] convertFileCollectionToFileArray(final Collection<File> files)</td>
+<td>将文件集合转为文件数组，底层就是:files.toArray(new File[files.size()]);</td>
+</tr>
+<tr>
+<td>Collection<File> listFiles(final File directory, final String[] extensions, final boolean recursive)Collection<File> listFiles(final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter)</td>
+<td>查找给定目录（及其子目录）中与扩展名数组匹配的文件。 directory 要搜索的目录 extensions：要过滤的扩展数组，例如{“java”、“xml”}，为 null，返回所有文件。 ecursive：true 表示搜索所有子目录fileFilter：文件过滤器，IOFileFilter 是一个接口，常用的实现类有：SuffixFileFilter(文件后缀过滤器)、PrefixFileFilter(文件前缀过滤器)、TrueFileFilter(总是返回true的文件过滤器)、FalseFileFilter(总是返回false的文件过滤器)dirFilter：与上面同理</td>
+</tr>
+<tr>
+<td>FileInputStream openInputStream(final File file)</td>
+<td>为指定文件打开 FileInputStream，提供比简单调用new FileInputStream（file更好的错误消息。在方法结束时，要么成功打开流，要么抛出异常。<em>如果文件不存在，则引发异常。</em>如果文件对象存在但是一个目录，则引发异常。*如果文件存在但无法读取，则引发异常。</td>
+</tr>
+<tr>
+<td>FileOutputStream openOutputStream(final File file)FileOutputStream openOutputStream(final File file, final boolean append)</td>
+<td>打开指定文件的{@link FileOutputStream}，检查并创建父目录（如果不存在）。在方法结束时，要么成功打开流，要么抛出异常。<em>如果父目录不存在，将创建它。</em>如果文件不存在，将创建该文件。<em>如果文件对象存在但是一个目录，则引发异常。</em>如果文件存在但无法写入，则引发异常。*如果无法创建父目录，则引发异常。</td>
+</tr>
+<tr>
+<td>File toFile(final URL url)File[] toFiles(final URL[] urls)</td>
+<td>将 URL 转为 File 对象，注意只能对本地文件生成的 URL 才有效，对网络上的 URL 直接返回 null.</td>
+</tr>
+<tr>
+<td>URL[] toURLs(final File[] files)</td>
+<td>将 File 对象转为 URL 对象。</td>
+</tr>
+</tbody></table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/apache/">apache</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/apache/">apache</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/11/maven-centeral/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">maven to centeral</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/09/docker-ssl/">
+                        <span class="hidden-mobile">docker-ssl</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

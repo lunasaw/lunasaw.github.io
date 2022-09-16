@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Linux top命令的用法详细详解**查看多核CPU命令**mpstat -P ALL 和 sar -P ALL    说明：sar -P ALL &gt; aaa.txt  重定向输出内容到文件 aaa.txt top命令经常用来监控Linux的系统状况，比如cpu、内存的使用，程序员基本都知道这个命令，但比较奇怪的是能用好它的人却很少，例如top监控视图中内存数值的含义就有不少的曲解。 本文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux top">
+<meta property="og:url" content="https://lunasaw.github.io/2020/12/24/linux-top/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Linux top命令的用法详细详解**查看多核CPU命令**mpstat -P ALL 和 sar -P ALL    说明：sar -P ALL &gt; aaa.txt  重定向输出内容到文件 aaa.txt top命令经常用来监控Linux的系统状况，比如cpu、内存的使用，程序员基本都知道这个命令，但比较奇怪的是能用好它的人却很少，例如top监控视图中内存数值的含义就有不少的曲解。 本文">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201308/201308230923349.gif">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201308/2013082309233410.jpg">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201308/2013082309233411.jpg">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201308/2013082309233412.jpg">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201308/2013082309233413.jpg">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201308/2013082309233414.jpg">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201308/2013082309233415.jpg">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201308/2013082309233416.jpg">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201308/2013082309233417.jpg">
+<meta property="article:published_time" content="2020-12-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.989Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://files.jb51.net/file_images/article/201308/201308230923349.gif">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>linux top - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/linux-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="linux top">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-24 00:00" pubdate>
+        2020年12月24日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">linux top</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Linux-top命令的用法详细详解"><a href="#Linux-top命令的用法详细详解" class="headerlink" title="Linux top命令的用法详细详解"></a><a href="">Linux top命令的用法详细详解</a></h1><p>**查看多核CPU命令<br>**mpstat -P ALL 和 sar -P ALL </p>
+<p><img src="http://files.jb51.net/file_images/article/201308/201308230923349.gif" srcset="/img/loading.gif" lazyload alt="img"> </p>
+<p><strong>说明：</strong>sar -P ALL &gt; aaa.txt  重定向输出内容到文件 aaa.txt</p>
+<p>top命令经常用来监控<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/linux">Linux</a>的系统状况，比如cpu、内存的使用，程序员基本都知道这个命令，但比较奇怪的是能用好它的人却很少，例如top监控视图中内存数值的含义就有不少的曲解。</p>
+<p>本文通过一个运行中的WEB服务器的top监控截图，讲述top视图中的各种数据的含义，还包括视图中各进程（任务）的字段的排序。</p>
+<p><strong>top进入视图</strong></p>
+<p><img src="http://files.jb51.net/file_images/article/201308/2013082309233410.jpg" srcset="/img/loading.gif" lazyload alt="top视图 01"></p>
+<p>**top视图 01<br>**【top视图 01】是刚进入top的基本视图，我们来结合这个视图讲解各个数据的含义。</p>
+<p>第一行：<br>10:01:23 — 当前系统时间<br>126 days, 14:29 — 系统已经运行了126天14小时29分钟（在这期间没有重启过）<br>2 users — 当前有2个用户登录系统<br>load average: 1.15, 1.42, 1.44 — load average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。</p>
+<p>load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑CPU的数量，结果高于5的时候就表明系统在超负荷运转了。</p>
+<p>第二行：<br>Tasks — 任务（进程），系统现在共有183个进程，其中处于运行中的有1个，182个在休眠（sleep），stoped状态的有0个，zombie状态（僵尸）的有0个。</p>
+<p>第三行：cpu状态<br>6.7% us — 用户空间占用CPU的百分比。<br>0.4% sy — 内核空间占用CPU的百分比。<br>0.0% ni — 改变过优先级的进程占用CPU的百分比<br>92.9% id — 空闲CPU百分比<br>0.0% wa — IO等待占用CPU的百分比<br>0.0% hi — 硬中断（Hardware IRQ）占用CPU的百分比<br>0.0% si — 软中断（Software Interrupts）占用CPU的百分比</p>
+<p>在这里CPU的使用比率和windows概念不同，如果你不理解用户空间和内核空间，需要充充电了。</p>
+<p>第四行：内存状态<br>8306544k total — 物理内存总量（8GB）<br>7775876k used — 使用中的内存总量（7.7GB）<br>530668k free — 空闲内存总量（530M）<br>79236k buffers — 缓存的内存量 （79M）</p>
+<p>第五行：swap交换分区<br>2031608k total — 交换区总量（2GB）<br>2556k used — 使用的交换区总量（2.5M）<br>2029052k free — 空闲交换区总量（2GB）<br>4231276k cached — 缓冲的交换区总量（4GB）</p>
+<p>这里要说明的是不能用windows的内存概念理解这些数据，如果按windows的方式此台服务器“危矣”：8G的内存总量只剩下530M的可用内存。Linux的内存管理有其特殊性，复杂点需要一本书来说明，这里只是简单说点和我们传统概念（windows）的不同。</p>
+<p>第四行中使用中的内存总量（used）指的是现在系统内核控制的内存数，空闲内存总量（free）是内核还未纳入其管控范围的数量。纳入内核管理的内存不见得都在使用中，还包括过去使用过的现在可以被重复利用的内存，内核并不把这些可被重新使用的内存交还到free中去，因此在<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/linux">linux</a>上free内存会越来越少，但不用为此担心。</p>
+<p>如果出于习惯去计算可用内存数，这里有个近似的计算公式：第四行的free + 第四行的buffers + 第五行的cached，按这个公式此台服务器的可用内存：530668+79236+4231276 = 4.7GB。</p>
+<p>对于内存监控，在top里我们要时刻监控第五行swap交换分区的used，如果这个数值在不断的变化，说明内核在不断进行内存和swap的数据交换，这是真正的内存不够用了。</p>
+<p>第六行是空行<br>第七行以下：各进程（任务）的状态监控<br>PID — 进程id<br>USER — 进程所有者<br>PR — 进程优先级<br>NI — nice值。负值表示高优先级，正值表示低优先级<br>VIRT — 进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES<br>RES — 进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA<br>SHR — 共享内存大小，单位kb<br>S — 进程状态。D=不可中断的睡眠状态 R=运行 S=睡眠 T=跟踪/停止 Z=僵尸进程<br>%CPU — 上次更新到现在的CPU时间占用百分比<br>%MEM — 进程使用的物理内存百分比<br>TIME+ — 进程使用的CPU时间总计，单位1/100秒<br>COMMAND — 进程名称（命令名/命令行）</p>
+<p>**多U多核CPU监控<br>**在top基本视图中，按键盘数字“1”，可监控每个逻辑CPU的状况：</p>
+<p><img src="http://files.jb51.net/file_images/article/201308/2013082309233411.jpg" srcset="/img/loading.gif" lazyload alt="top视图 02"></p>
+<p><strong>top视图 02</strong></p>
+<p>观察上图，服务器有16个逻辑CPU，实际上是4个物理CPU。</p>
+<p>**进程字段排序<br>**默认进入top时，各进程是按照CPU的占用量来排序的，在【top视图 01】中进程ID为14210的<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/java">Java</a>进程排在第一（cpu占用100%），进程ID为14183的java进程排在第二（cpu占用12%）。可通过键盘指令来改变排序字段，比如想监控哪个进程占用MEM最多，我一般的使用方法如下：</p>
+<p>\1. 敲击键盘“b”（打开/关闭加亮效果），top的视图变化如下：</p>
+<p><img src="http://files.jb51.net/file_images/article/201308/2013082309233412.jpg" srcset="/img/loading.gif" lazyload alt="top视图 03"></p>
+<p><strong>top视图 03</strong></p>
+<p>我们发现进程id为10704的“top”进程被加亮了，top进程就是视图第二行显示的唯一的运行态（runing）的那个进程，可以通过敲击“y”键关闭或打开运行态进程的加亮效果。</p>
+<p>\2. 敲击键盘“x”（打开/关闭排序列的加亮效果），top的视图变化如下：</p>
+<p><img src="http://files.jb51.net/file_images/article/201308/2013082309233413.jpg" srcset="/img/loading.gif" lazyload alt="top视图 04"></p>
+<p><strong>top视图 04</strong></p>
+<p>可以看到，top默认的排序列是“%CPU”。</p>
+<p>\3. 通过”shift + &gt;”或”shift + &lt;”可以向右或左改变排序列，下图是按一次”shift + &gt;”的效果图：</p>
+<p><img src="http://files.jb51.net/file_images/article/201308/2013082309233414.jpg" srcset="/img/loading.gif" lazyload alt="top视图 05"></p>
+<p><strong>top视图 05</strong></p>
+<p>视图现在已经按照%MEM来排序了。</p>
+<p><strong>改变进程显示字段</strong></p>
+<p>\1. 敲击“f”键，top进入另一个视图，在这里可以编排基本视图中的显示字段：</p>
+<p><img src="http://files.jb51.net/file_images/article/201308/2013082309233415.jpg" srcset="/img/loading.gif" lazyload alt="top视图 06"></p>
+<p><strong>top视图 06</strong></p>
+<p>这里列出了所有可在top基本视图中显示的进程字段，有”<em>”并且标注为大写字母的字段是可显示的，没有”</em>”并且是小写字母的字段是不显示的。如果要在基本视图中显示“CODE”和“DATA”两个字段，可以通过敲击“r”和“s”键：</p>
+<p><img src="http://files.jb51.net/file_images/article/201308/2013082309233416.jpg" srcset="/img/loading.gif" lazyload alt="top视图 07"></p>
+<p><strong>top视图 07</strong></p>
+<p>\2. “回车”返回基本视图，可以看到多了“CODE”和“DATA”两个字段：</p>
+<p><img src="http://files.jb51.net/file_images/article/201308/2013082309233417.jpg" srcset="/img/loading.gif" lazyload alt="top视图 08"></p>
+<p>top视图 08</p>
+<p>**top命令的补充<br>**top命令是Linux上进行系统监控的首选命令，但有时候却达不到我们的要求，比如当前这台服务器，top监控有很大的局限性。这台服务器运行着websphere集群，有两个节点服务，就是【top视图 01】中的老大、老二两个java进程，top命令的监控最小单位是进程，所以看不到我关心的java线程数和客户连接数，而这两个指标是java的web服务非常重要的指标，通常我用ps和netstate两个命令来补充top的不足。</p>
+<p>监控java线程数：<br>ps -eLf | grep java | wc -l</p>
+<p>监控网络客户连接数：<br>netstat -n | grep tcp | grep 侦听端口 | wc -l</p>
+<p>满载一船星辉,在星辉斑斓里放歌</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/system/">system</a>
+                    
+                      <a class="hover-with-bg" href="/categories/system/linux/">linux</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/24/linux-practice/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">linux practice</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/28/other-logical-operations/">
+                        <span class="hidden-mobile">逻辑运算符</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

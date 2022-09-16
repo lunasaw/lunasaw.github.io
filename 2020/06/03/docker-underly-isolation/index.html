@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Docker资源隔离1. 前言​    在上一章Docker安全性能中已有讲解Namespace的功能作用。 ​    概念回顾：Docker 是基于 Linux 内核的 Namespace 技术实现资源隔离的，所有的容器都共享主机的内核。其实这与以虚拟机为代表的云计算时代还是有很多区别的，比如虚拟机有着更好的隔离性和安全性，而容器的隔离性和安全性则相对较弱。 ​    虽然Namespace的技">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker underly isolation">
+<meta property="og:url" content="https://lunasaw.github.io/2020/06/03/docker-underly-isolation/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Docker资源隔离1. 前言​    在上一章Docker安全性能中已有讲解Namespace的功能作用。 ​    概念回顾：Docker 是基于 Linux 内核的 Namespace 技术实现资源隔离的，所有的容器都共享主机的内核。其实这与以虚拟机为代表的云计算时代还是有很多区别的，比如虚拟机有着更好的隔离性和安全性，而容器的隔离性和安全性则相对较弱。 ​    虽然Namespace的技">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lunasaw.github.io/img/images/9.Namespaces%E7%B1%BB%E5%9E%8B.png">
+<meta property="article:published_time" content="2020-06-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.984Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/images/9.Namespaces%E7%B1%BB%E5%9E%8B.png">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>docker underly isolation - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/docker-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="docker underly isolation">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-06-03 00:00" pubdate>
+        2020年6月3日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">docker underly isolation</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Docker资源隔离"><a href="#Docker资源隔离" class="headerlink" title="Docker资源隔离"></a>Docker资源隔离</h1><h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h3><p>​    在上一章Docker安全性能中已有讲解Namespace的功能作用。</p>
+<p>​    概念回顾：Docker 是基于 Linux 内核的 <strong>Namespace</strong> 技术实现资源隔离的，<strong>所有的容器都共享主机的内核</strong>。其实这与以虚拟机为代表的云计算时代还是有很多区别的，比如虚拟机有着更好的隔离性和安全性，而容器的隔离性和安全性则相对较弱。</p>
+<p>​    虽然Namespace的技术的隔离和安全性相对较弱，那么究竟什么是 Namespace，各种 Namespace 都有什么作用，为什么 Docker 需要 Namespace呢？</p>
+<h3 id="2-什么是Namespace"><a href="#2-什么是Namespace" class="headerlink" title="2.什么是Namespace"></a>2.什么是Namespace</h3><p>​    <strong>维基百科定义</strong>：Namespace 是 Linux 内核的一项功能，该功能对内核资源进行分区，以使一组进程看到一组资源，而另一组进程看到另一组资源。Namespace 的工作方式通过为一组资源和进程设置相同的 Namespace 而起作用，但是这些 Namespace 引用了不同的资源。资源可能存在于多个 Namespace 中。这些资源可以是进程 ID、主机名、用户 ID、文件名、与网络访问相关的名称和进程间通信。</p>
+<p>​    <strong>简单来说，</strong>Namespace 是 Linux 内核的一个特性，该<strong>特性可以实现在同一主机系统中，对进程 ID、主机名、用户 ID、文件名、网络和进程间通信等资源的隔离</strong>。Docker 利用 Linux 内核的 Namespace 特性，<strong>实现了每个容器的资源相互隔离，从而保证容器内部只能访问到自己 Namespace 的资源</strong>。</p>
+<p><img src="/img/images/9.Namespaces%E7%B1%BB%E5%9E%8B.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-Namespace的作用"><a href="#3-Namespace的作用" class="headerlink" title="3.Namespace的作用"></a>3.Namespace的作用</h3><p>下面分别讲解六种Namespace的运用：<br><strong>1）Mount Namespace</strong><br>​    <strong>Mount Namespace 是 Linux 内核实现的第一个 Namespace，</strong>从内核的 2.4.19 版本开始加入。它可以用来隔离不同的进程或进程组看到的挂载点。通俗地说，就是可以实现在不同的进程中看到不同的挂载目录。使用 Mount Namespace 可以实现容器内只能看到自己的挂载信息，在容器内的挂载操作不会影响主机的挂载目录。</p>
+<p>​    <strong>unshare</strong> 是 util-linux 工具包中的一个工具，CentOS 7 系统默认已经集成了该工具，使用 unshare 命令可以实现创建并访问不同类型的 Namespace。</p>
+<p>首先我们使用以下命令创建一个 bash 进程并且新建一个 Mount Namespace：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">$ sudo unshare <span class="hljs-params">--mount</span> <span class="hljs-params">--fork</span> <span class="hljs-string">/bin/bash</span></code></pre></div>
+
+<p>执行完上述命令后，这时我们已经在主机上创建了一个新的 Mount Namespace，并且当前命令行窗口加入了新创建的 Mount Namespace。下面我通过一个例子来验证下，<strong>在独立的 Mount Namespace 内创建挂载目录是不影响主机的挂载目录的。</strong></p>
+<p>首先在 /tmp 目录下创建一个目录。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs autoit">[root<span class="hljs-symbol">@centos7</span> centos]<span class="hljs-meta"># mkdir /tmp/tmpfs</span></code></pre></div>
+
+<p>创建好目录后使用 mount 命令挂载一个 tmpfs 类型的目录。命令如下：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs gradle">[root@centos7 centos]# mount -t tmpfs -o <span class="hljs-keyword">size</span>=<span class="hljs-number">20</span>m tmpfs <span class="hljs-regexp">/tmp/</span>tmpfs</code></pre></div>
+
+<p>然后使用 df 命令查看一下已经挂载的目录信息：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs awk">[root@centos7 centos]<span class="hljs-comment"># df -h</span>
+Filesystem      Size  Used Avail Use% Mounted on
+<span class="hljs-regexp">/dev/</span>vda1       <span class="hljs-number">500</span>G  <span class="hljs-number">1.4</span>G  <span class="hljs-number">499</span>G   <span class="hljs-number">1</span>% /
+devtmpfs         <span class="hljs-number">16</span>G     <span class="hljs-number">0</span>   <span class="hljs-number">16</span>G   <span class="hljs-number">0</span>% /dev
+tmpfs            <span class="hljs-number">16</span>G     <span class="hljs-number">0</span>   <span class="hljs-number">16</span>G   <span class="hljs-number">0</span>% <span class="hljs-regexp">/dev/</span>shm
+tmpfs            <span class="hljs-number">16</span>G     <span class="hljs-number">0</span>   <span class="hljs-number">16</span>G   <span class="hljs-number">0</span>% <span class="hljs-regexp">/sys/</span>fs/cgroup
+tmpfs            <span class="hljs-number">16</span>G   <span class="hljs-number">57</span>M   <span class="hljs-number">16</span>G   <span class="hljs-number">1</span>% /run
+tmpfs           <span class="hljs-number">3.2</span>G     <span class="hljs-number">0</span>  <span class="hljs-number">3.2</span>G   <span class="hljs-number">0</span>% <span class="hljs-regexp">/run/u</span>ser/<span class="hljs-number">1000</span>
+tmpfs            <span class="hljs-number">20</span>M     <span class="hljs-number">0</span>   <span class="hljs-number">20</span>M   <span class="hljs-number">0</span>% <span class="hljs-regexp">/tmp/</span>tmpfs</code></pre></div>
+
+<p>可以看到 /tmp/tmpfs 目录已经被正确挂载。为了验证主机上并没有挂载此目录，我们新打开一个命令行窗口，同样执行 df 命令查看主机的挂载信息：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs gradle">[centos@centos7 ~]$ df -h
+Filesystem      <span class="hljs-keyword">Size</span>  Used Avail Use% Mounted on
+devtmpfs         <span class="hljs-number">16</span>G     <span class="hljs-number">0</span>   <span class="hljs-number">16</span>G   <span class="hljs-number">0</span>% /dev
+tmpfs            <span class="hljs-number">16</span>G     <span class="hljs-number">0</span>   <span class="hljs-number">16</span>G   <span class="hljs-number">0</span>% <span class="hljs-regexp">/dev/</span>shm
+tmpfs            <span class="hljs-number">16</span>G   <span class="hljs-number">57</span>M   <span class="hljs-number">16</span>G   <span class="hljs-number">1</span>% /run
+tmpfs            <span class="hljs-number">16</span>G     <span class="hljs-number">0</span>   <span class="hljs-number">16</span>G   <span class="hljs-number">0</span>% <span class="hljs-regexp">/sys/</span>fs/cgroup
+<span class="hljs-regexp">/dev/</span>vda1       <span class="hljs-number">500</span>G  <span class="hljs-number">1.4</span>G  <span class="hljs-number">499</span>G   <span class="hljs-number">1</span>% /
+tmpfs           <span class="hljs-number">3.2</span>G     <span class="hljs-number">0</span>  <span class="hljs-number">3.2</span>G   <span class="hljs-number">0</span>% <span class="hljs-regexp">/run/u</span>ser/<span class="hljs-number">1000</span></code></pre></div>
+
+<p>通过上面输出可以看到主机上并没有挂载 /tmp/tmpfs，可见我们独立的 Mount Namespace 中执行 mount 操作并不会影响主机。</p>
+<p>为了进一步验证我们的想法，我们继续在当前命令行窗口查看一下当前进程的 Namespace 信息，命令如下：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs tcl">[root@centos7 centos]# ls -l /<span class="hljs-keyword">proc</span>/self/ns/
+total 0
+lrwxrwxrwx. 1<span class="hljs-title"> root</span> root 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> ipc</span> -&gt;<span class="hljs-title"> ipc:[4026531839]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> root</span> root 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> mnt</span> -&gt;<span class="hljs-title"> mnt:[4026532239]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> root</span> root 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> net</span> -&gt;<span class="hljs-title"> net:[4026531956]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> root</span> root 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> pid</span> -&gt;<span class="hljs-title"> pid:[4026531836]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> root</span> root 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> user</span> -&gt;<span class="hljs-title"> user:[4026531837]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> root</span> root 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> uts</span> -&gt;<span class="hljs-title"> uts:[4026531838]</span></code></pre></div>
+
+<p>然后新打开一个命令行窗口，使用相同的命令查看一下主机上的 Namespace 信息：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs tcl">[centos@centos7 ~]$ ls -l /<span class="hljs-keyword">proc</span>/self/ns/
+total 0
+lrwxrwxrwx. 1<span class="hljs-title"> centos</span> centos 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> ipc</span> -&gt;<span class="hljs-title"> ipc:[4026531839]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> centos</span> centos 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> mnt</span> -&gt;<span class="hljs-title"> mnt:[4026531840]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> centos</span> centos 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> net</span> -&gt;<span class="hljs-title"> net:[4026531956]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> centos</span> centos 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> pid</span> -&gt;<span class="hljs-title"> pid:[4026531836]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> centos</span> centos 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> user</span> -&gt;<span class="hljs-title"> user:[4026531837]</span>
+<span class="hljs-title">lrwxrwxrwx.</span> 1<span class="hljs-title"> centos</span> centos 0<span class="hljs-title"> Sep</span>  4 08:20<span class="hljs-title"> uts</span> -&gt;<span class="hljs-title"> uts:[4026531838]</span></code></pre></div>
+
+<p>通过对比两次命令的输出结果，我们可以看到，除了 Mount Namespace 的 ID 值不一样外，其他Namespace 的 ID 值均一致。</p>
+<p>通过以上结果我们可以得出结论，使用 unshare 命令可以新建 Mount Namespace，并且在新建的 Mount Namespace 内 mount 是和外部完全隔离的。</p>
+<p><strong>2）PID Namespace</strong><br>​    <strong>PID Namespace 的作用是用来隔离进程</strong>。在不同的 PID Namespace 中，进程可以拥有相同的 PID 号，利用 PID Namespace 可以实现每个容器的主进程为 1 号进程，而容器内的进程在主机上却拥有不同的PID。例如一个进程在主机上 PID 为 122，使用 PID Namespace 可以实现该进程在容器内看到的 PID 为 1。</p>
+<p>下面演示PID Namespace的作用。创建一个 bash 进程，并且新建一个 PID Namespace：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">$ sudo unshare <span class="hljs-params">--pid</span> <span class="hljs-params">--fork</span> <span class="hljs-params">--mount-proc</span> <span class="hljs-string">/bin/bash</span></code></pre></div>
+
+<p>执行完上述命令后，我们在主机上创建了一个新的 PID Namespace，并且当前命令行窗口加入了新创建的 PID Namespace。在当前的命令行窗口使用 ps aux 命令查看一下进程信息：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs tap">[root@centos7 centos]<span class="hljs-comment"># ps aux</span>
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root        <span class="hljs-number"> 1 </span> 0.0  0.0<span class="hljs-number"> 115544 </span><span class="hljs-number"> 2004 </span>pts/0    S    10:57   0:00 bash
+root       <span class="hljs-number"> 10 </span> 0.0  0.0<span class="hljs-number"> 155444 </span><span class="hljs-number"> 1764 </span>pts/0    R+   10:59   0:00 ps aux</code></pre></div>
+
+<p>通过上述命令输出结果可以看到当前 Namespace 下 bash 为 1 号进程，而且我们也看不到主机上的其他进程信息。</p>
+<p><strong>3）UTS Namespace</strong><br>​    <strong>UTS Namespace 主要是用来隔离主机名的</strong>，它允许每个 UTS Namespace 拥有一个独立的主机名。例如我们的主机名称为 docker，使用 UTS Namespace 可以实现在容器内的主机名称为 utsdocker 或者其他任意自定义主机名。</p>
+<p>同样我们通过一个实例来验证下 UTS Namespace 的作用，首先我们使用 unshare 命令来创建一个 UTS Namespace：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">$ sudo unshare <span class="hljs-params">--uts</span> <span class="hljs-params">--fork</span> <span class="hljs-string">/bin/bash</span></code></pre></div>
+
+<p>创建好 UTS Namespace 后，当前命令行窗口已经处于一个独立的 UTS Namespace 中，下面我们使用 hostname 命令（hostname 可以用来查看主机名称）设置一下主机名：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs autoit">root<span class="hljs-symbol">@centos7</span> centos]<span class="hljs-meta"># hostname -b utsdocker</span></code></pre></div>
+
+<p>然后再查看一下主机名：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs autoit">[root<span class="hljs-symbol">@centos7</span> centos]<span class="hljs-meta"># hostname</span>
+utsdocker</code></pre></div>
+
+<p>通过上面命令的输出，我们可以看到当前UTS Namespace 内的主机名已经被修改为 utsdocker。然后我们新打开一个命令行窗口，使用相同的命令查看一下主机的 hostname：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs elixir">[centos<span class="hljs-variable">@centos7</span> ~]<span class="hljs-variable">$ </span>hostname
+centos7</code></pre></div>
+
+<p>可以看到主机的名称仍然为 centos7，并没有被修改。由此，可以验证 UTS Namespace 可以用来隔离主机名。</p>
+<p><strong>4）IPC Namespace</strong><br>​    <strong>IPC Namespace 主要是用来隔离进程间通信的</strong>。<strong>PID Namespace 和 IPC Namespace 一起使用可以实现同一 IPC Namespace 内的进程彼此可以通信</strong>，不同 IPC Namespace 的进程却不能通信。</p>
+<p>使用 unshare 命令来创建一个 IPC Namespace：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">$ sudo unshare <span class="hljs-params">--ipc</span> <span class="hljs-params">--fork</span> <span class="hljs-string">/bin/bash</span></code></pre></div>
+
+<p>下面我们需要借助两个命令来实现对 IPC Namespace 的验证。</p>
+<ul>
+<li><p>ipcs -q 命令：用来查看系统间通信队列列表。</p>
+</li>
+<li><p>ipcmk -Q 命令：用来创建系统间通信队列。</p>
+</li>
+</ul>
+<p>我们首先使用 ipcs -q 命令查看一下当前 IPC Namespace 下的系统通信队列列表：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs brainfuck"><span class="hljs-title">[</span><span class="hljs-comment">centos@centos7</span> <span class="hljs-comment">~</span><span class="hljs-title">]</span><span class="hljs-comment">$</span> <span class="hljs-comment">ipcs</span> <span class="hljs-literal">-</span><span class="hljs-comment">q</span>
+<span class="hljs-comment"></span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span> <span class="hljs-comment">Message</span> <span class="hljs-comment">Queues</span> --<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>
+<span class="hljs-comment">key</span>        <span class="hljs-comment">msqid</span>      <span class="hljs-comment">owner</span>      <span class="hljs-comment">perms</span>      <span class="hljs-comment">used</span><span class="hljs-literal">-</span><span class="hljs-comment">bytes</span>   <span class="hljs-comment">messages</span></code></pre></div>
+
+<p>由上可以看到当前无任何系统通信队列，然后我们使用 ipcmk -Q 命令创建一个系统通信队列：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs applescript">[root@centos7 centos]<span class="hljs-comment"># ipcmk -Q</span>
+Message queue <span class="hljs-built_in">id</span>: <span class="hljs-number">0</span></code></pre></div>
+
+<p>再次使用 ipcs -q 命令查看当前 IPC Namespace 下的系统通信队列列表：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">[root@centos7 centos]<span class="hljs-comment"># ipcs -q</span>
+<span class="hljs-params">------</span> Message Queues <span class="hljs-params">--------</span>
+key        msqid      owner      perms      used-bytes   messages
+0x73682a32 0          root       644        0            0</code></pre></div>
+
+<p>可以看到我们已经成功创建了一个系统通信队列。然后我们新打开一个命令行窗口，使用ipcs -q 命令查看一下主机的系统通信队列：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs brainfuck"><span class="hljs-title">[</span><span class="hljs-comment">centos@centos7</span> <span class="hljs-comment">~</span><span class="hljs-title">]</span><span class="hljs-comment">$</span> <span class="hljs-comment">ipcs</span> <span class="hljs-literal">-</span><span class="hljs-comment">q</span>
+<span class="hljs-comment"></span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span> <span class="hljs-comment">Message</span> <span class="hljs-comment">Queues</span> --<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>
+<span class="hljs-comment">key</span>        <span class="hljs-comment">msqid</span>      <span class="hljs-comment">owner</span>      <span class="hljs-comment">perms</span>      <span class="hljs-comment">used</span><span class="hljs-literal">-</span><span class="hljs-comment">bytes</span>   <span class="hljs-comment">messages</span></code></pre></div>
+
+<p>通过上面的实验，可以发现，在单独的 IPC Namespace 内创建的系统通信队列在主机上无法看到。即 IPC Namespace 实现了系统通信队列的隔离。</p>
+<p><strong>5）User Namespace</strong><br>​    <strong>User Namespace 主要是用来隔离用户和用户组的</strong>。一个比较典型的应用场景就是在主机上以非 root 用户运行的进程可以在一个单独的 User Namespace 中映射成 root 用户。使用 User Namespace 可以实现进程在容器内拥有 root 权限，而在主机上却只是普通用户。</p>
+<p>User Namesapce 的创建是可以不使用 root 权限的。下面我们以普通用户的身份创建一个 User Namespace，命令如下：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs crmsh">[centos@centos7 ~]$ unshare --<span class="hljs-keyword">user</span> <span class="hljs-title">-r</span> /bin/bash</code></pre></div>
+
+<p>CentOS7 默认允许创建的 User Namespace 为 0，如果执行上述命令失败（ unshare 命令返回的错误为 unshare: unshare failed: Invalid argument ），需要使用以下命令修改系统允许创建的 User Namespace 数量，命令为：echo 65535 &gt; /proc/sys/user/max_user_namespaces，然后再次尝试创建 User Namespace。</p>
+<p>然后执行 id 命令查看一下当前的用户信息：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs routeros">[root@centos7 ~]# id
+<span class="hljs-attribute">uid</span>=0(root) <span class="hljs-attribute">gid</span>=0(root) <span class="hljs-attribute">groups</span>=0(root),65534(nfsnobody) <span class="hljs-attribute">context</span>=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</code></pre></div>
+
+<p>通过上面的输出可以看到我们在新的 User Namespace 内已经是 root 用户了。下面我们使用只有主机 root 用户才可以执行的 reboot 命令来验证一下，在当前命令行窗口执行 reboot 命令：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs autoit">[root<span class="hljs-symbol">@centos7</span> ~]<span class="hljs-meta"># reboot</span>
+Failed <span class="hljs-keyword">to</span> open /dev/initctl: Permission denied
+Failed <span class="hljs-keyword">to</span> talk <span class="hljs-keyword">to</span> init daemon.</code></pre></div>
+
+<p>可以看到，我们在新创建的 User Namespace 内虽然是 root 用户，但是并没有权限执行 reboot 命令。这说明在隔离的 User Namespace 中，并不能获取到主机的 root 权限，也就是说 User Namespace 实现了用户和用户组的隔离。</p>
+<p><strong>6）Net Namespace</strong><br>​    <strong>Net Namespace 是用来隔离网络设备、IP 地址和端口等信息的</strong>。Net Namespace 可以让每个进程拥有自己独立    的 IP 地址，端口和网卡信息。例如主机 IP 地址为 172.16.4.1 ，容器内可以设置独立的 IP 地址为 192.168.1.1。</p>
+<p>同样用实例验证，我们首先使用 ip a 命令查看一下主机上的网络信息：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs pf">$ ip a
+<span class="hljs-number">1</span>: lo: <span class="hljs-variable">&lt;LOOPBACK,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">65536</span> qdisc noqueue <span class="hljs-keyword">state</span> UNKNOWN <span class="hljs-keyword">group</span> <span class="hljs-keyword">default</span> qlen <span class="hljs-number">1000</span>
+    link/loopback <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> brd <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>/<span class="hljs-number">8</span> scope host lo
+       valid_lft forever preferred_lft forever
+    <span class="hljs-keyword">inet6</span> ::<span class="hljs-number">1</span>/<span class="hljs-number">128</span> scope host
+       valid_lft forever preferred_lft forever
+<span class="hljs-number">2</span>: eth0: <span class="hljs-variable">&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;</span> mtu <span class="hljs-number">1500</span> qdisc pfifo_fast <span class="hljs-keyword">state</span> UP <span class="hljs-keyword">group</span> <span class="hljs-keyword">default</span> qlen <span class="hljs-number">1000</span>
+    link/ether <span class="hljs-number">02</span>:<span class="hljs-number">11</span>:b0:<span class="hljs-number">14</span>:<span class="hljs-number">01</span>:<span class="hljs-number">0</span>c brd ff:ff:ff:ff:ff:ff
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">172.20</span>.<span class="hljs-number">1.11</span>/<span class="hljs-number">24</span> brd <span class="hljs-number">172.20</span>.<span class="hljs-number">1.255</span> scope <span class="hljs-keyword">global</span> dynamic eth0
+       valid_lft <span class="hljs-number">86063337</span>sec preferred_lft <span class="hljs-number">86063337</span>sec
+    <span class="hljs-keyword">inet6</span> fe80::<span class="hljs-number">11</span>:b0ff:fe14:<span class="hljs-number">10</span>c/<span class="hljs-number">64</span> scope link
+       valid_lft forever preferred_lft forever
+<span class="hljs-number">3</span>: docker0: <span class="hljs-variable">&lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt;</span> mtu <span class="hljs-number">1500</span> qdisc noqueue <span class="hljs-keyword">state</span> DOWN <span class="hljs-keyword">group</span> <span class="hljs-keyword">default</span>
+    link/ether <span class="hljs-number">02</span>:<span class="hljs-number">42</span>:<span class="hljs-number">82</span>:<span class="hljs-number">8</span>d:a0:df brd ff:ff:ff:ff:ff:ff
+    <span class="hljs-keyword">inet</span> <span class="hljs-number">172.17</span>.<span class="hljs-number">0.1</span>/<span class="hljs-number">16</span> scope <span class="hljs-keyword">global</span> docker0
+       valid_lft forever preferred_lft forever
+    <span class="hljs-keyword">inet6</span> fe80::<span class="hljs-number">42</span>:<span class="hljs-number">82</span>ff:fe8d:a0df/<span class="hljs-number">64</span> scope link
+       valid_lft forever preferred_lft forever</code></pre></div>
+
+<p>然后我们使用以下命令创建一个 Net Namespace：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">$ sudo unshare <span class="hljs-params">--net</span> <span class="hljs-params">--fork</span> <span class="hljs-string">/bin/bash</span></code></pre></div>
+
+<p>同样的我们使用 ip a 命令查看一下网络信息：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs pf">[root@centos7 centos]<span class="hljs-comment"># ip a</span>
+<span class="hljs-number">1</span>: lo: <span class="hljs-variable">&lt;LOOPBACK&gt;</span> mtu <span class="hljs-number">65536</span> qdisc noop <span class="hljs-keyword">state</span> DOWN <span class="hljs-keyword">group</span> <span class="hljs-keyword">default</span> qlen <span class="hljs-number">1000</span>
+    link/loopback <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> brd <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span></code></pre></div>
+
+<p>可以看到，宿主机上有 lo、eth0、docker0 等网络设备，而我们新建的 Net Namespace 内则与主机上的网络设备不同。</p>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>​    Linux 内核从 2002 年 2.4.19 版本开始加入了 Mount Namespace，而直到内核 3.8 版本加入了 User Namespace 才为容器提供了足够的支持功能。</p>
+<p>​    当 Docker 新建一个容器时， 它会创建这六种 Namespace，然后将容器中的进程加入这些 Namespace 之中，使得 Docker 容器中的进程只能看到当前 Namespace 中的系统资源。</p>
+<p>​    正是由于 Docker 使用了 Linux 的这些 Namespace 技术，才实现了 Docker 容器的隔离，可以说没有 Namespace，就没有 Docker 容器。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/docker/">docker</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/docker/">docker</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/03/docker-security-2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">docker security 2</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/03/docker-technology-%20principal/">
+                        <span class="hidden-mobile">Docker 技术原理</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

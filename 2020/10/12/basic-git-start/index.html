@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Git 使用前言Git 是目前世界上被最广泛使用的现代软件版本管理系统（Version Control System）。Git 本身亦是一个成熟并处于活跃开发状态的开源项目，今天惊人数量的软件项目依赖 Git 进行版本管理，这些项目包括开源以及各种商业软件。Git 在职业软件开发者中拥有良好的声誉，Git 目前支持绝大多数的操作系统以及 IDE（Integrated Development Env">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git-start">
+<meta property="og:url" content="https://lunasaw.github.io/2020/10/12/basic-git-start/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Git 使用前言Git 是目前世界上被最广泛使用的现代软件版本管理系统（Version Control System）。Git 本身亦是一个成熟并处于活跃开发状态的开源项目，今天惊人数量的软件项目依赖 Git 进行版本管理，这些项目包括开源以及各种商业软件。Git 在职业软件开发者中拥有良好的声誉，Git 目前支持绝大多数的操作系统以及 IDE（Integrated Development Env">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/git-1.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/git-2.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/nginx-3.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/nginx-4.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/git-5.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/git-6.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/git-7.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/blog/img/git-8.jpg">
+<meta property="article:published_time" content="2020-10-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.982Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lunasaw.github.io/blog/img/git-1.jpg">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>git-start - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/git-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="git-start">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-12 00:00" pubdate>
+        2020年10月12日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      30 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">git-start</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Git-使用"><a href="#Git-使用" class="headerlink" title="Git 使用"></a>Git 使用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Git 是目前世界上被最广泛使用的现代软件版本管理系统（Version Control System）。Git 本身亦是一个成熟并处于活跃开发状态的开源项目，今天惊人数量的软件项目依赖 Git 进行版本管理，这些项目包括开源以及各种商业软件。Git 在职业软件开发者中拥有良好的声誉，Git 目前支持绝大多数的操作系统以及 IDE（Integrated Development Environments）。</p>
+<p>Git 最初是由 Linux 操作系统内核的创造者 Linus Torvalds 在 2005 年创造，Git 第一个可用版本是 Linus 花了两周时间用C写出来的。Git 第一个版本就实现了 Git 源码自托管，一个月之内，Linux系统的源码也已经由 Git 管理了！</p>
+<p>Git 的第一个提交源码仅有约1000行，但是已经实现了Git的基本设计原理，比如初始化仓库、提交代码、查看代码diff、读取提交信息等，Git 定义了三个区：工作区（workspace）、暂存区（index）、版本库（commit history），也实现了三类重要的 Git 对象：blob、tree、commit。本文将从源码上分析 Git 的第一个提交并挖掘背后优秀的设计原理。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h4 id="获取源码"><a href="#获取源码" class="headerlink" title="获取源码"></a>获取源码</h4><p>在Github上可以找到Git的仓库镜像：<br>        <a target="_blank" rel="noopener" href="https://github.com/git/git.git">https://github.com/git/git.git</a></p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 获取 git 源码</span>
+$ git <span class="hljs-built_in">clone</span> https://github.com/git/git.git
+
+<span class="hljs-comment"># 查看第一个提交</span>
+$ git <span class="hljs-built_in">log</span> --date-order --reverse
+commit e83c5163316f89bfbde7d9ab23ca2e25604af290
+Author: Linus Torvalds &lt;torvalds@ppc970.osdl.org&gt;
+Date:   Thu Apr 7 15:13:13 2005 -0700
+
+    Initial revision of <span class="hljs-string">&quot;git&quot;</span>, the information manager from hell
+
+<span class="hljs-comment"># 变更为第一个提交，指定commit-id</span>
+$ git reset --hard e83c5163316f89bfbde7d9ab23ca2e25604af290</code></pre></div>
+
+<h4 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h4><div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> tree <span class="hljs-literal">-h</span>
+.
+├── [<span class="hljs-number">2.4</span><span class="hljs-type">K</span>]  cache.h
+├── [ <span class="hljs-number">503</span>]  <span class="hljs-built_in">cat</span><span class="hljs-operator">-file</span>.c                  <span class="hljs-comment"># 查看objects文件</span>
+├── [<span class="hljs-number">4.0</span><span class="hljs-type">K</span>]  commit<span class="hljs-literal">-tree</span>.c               <span class="hljs-comment"># 提交tree</span>
+├── [<span class="hljs-number">1.2</span><span class="hljs-type">K</span>]  init<span class="hljs-literal">-db</span>.c                   <span class="hljs-comment"># 初始化仓库</span>
+├── [ <span class="hljs-number">970</span>]  Makefile
+├── [<span class="hljs-number">5.5</span><span class="hljs-type">K</span>]  <span class="hljs-built_in">read-cache</span>.c                <span class="hljs-comment"># 读取当前索引文件内容</span>
+├── [<span class="hljs-number">8.2</span><span class="hljs-type">K</span>]  README
+├── [ <span class="hljs-number">986</span>]  <span class="hljs-built_in">read-tree</span>.c                 <span class="hljs-comment"># 读取tree</span>
+├── [<span class="hljs-number">2.0</span><span class="hljs-type">K</span>]  <span class="hljs-built_in">show-diff</span>.c                 <span class="hljs-comment"># 查看diff内容</span>
+├── [<span class="hljs-number">5.3</span><span class="hljs-type">K</span>]  <span class="hljs-built_in">update-cache</span>.c              <span class="hljs-comment"># 添加文件或目录</span>
+└── [<span class="hljs-number">1.4</span><span class="hljs-type">K</span>]  <span class="hljs-built_in">write-tree</span>.c                <span class="hljs-comment"># 写入到tree</span>
+
+<span class="hljs-comment"># 统计代码行数，总共1089行</span>
+<span class="hljs-variable">$</span> find . <span class="hljs-string">&quot;(&quot;</span> <span class="hljs-literal">-name</span> <span class="hljs-string">&quot;*.c&quot;</span> <span class="hljs-operator">-or</span> <span class="hljs-literal">-name</span> <span class="hljs-string">&quot;*.h&quot;</span> <span class="hljs-operator">-or</span> <span class="hljs-literal">-name</span> <span class="hljs-string">&quot;Makefile&quot;</span> <span class="hljs-string">&quot;)&quot;</span> <span class="hljs-literal">-print</span> | xargs wc <span class="hljs-literal">-l</span>
+ ...
+ <span class="hljs-number">1089</span> total</code></pre></div>
+
+<h4 id="编译-1"><a href="#编译-1" class="headerlink" title="编译"></a>编译</h4><p>编译第一个提交的Git会有编译问题，需要更改Makefile添加相关的依赖库：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">$ git diff ./Makefile
+... 
+-LIBS= -lssl
++LIBS= -lssl -lz -lcrypto
+...</code></pre></div>
+
+<p>编译：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 编译</span>
+$ make</code></pre></div>
+
+<p>只支持在 linux 平台上编译运行。</p>
+<h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><p>Write programs that do one thing and do it well.<br>——Unix philosophy</p>
+<p>查看编译生成的可执行文件，总共有7个：</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a><img src="/blog/img/git-1.jpg" srcset="/img/loading.gif" lazyload></h4><p>命令使用过程：</p>
+<h4 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="/blog/img/git-2.jpg" srcset="/img/loading.gif" lazyload></h4><h4 id="init-db：初始化仓库"><a href="#init-db：初始化仓库" class="headerlink" title="init-db：初始化仓库"></a>init-db：初始化仓库</h4><h5 id="命令说明"><a href="#命令说明" class="headerlink" title="命令说明"></a><strong>命令说明</strong></h5><div class="hljs code-wrapper"><pre><code class="hljs bash">$ init-db</code></pre></div>
+
+<div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">创建目录：<span class="hljs-string">.dircache</span>。
+创建目录：<span class="hljs-string">.dircache/objects</span>。
+在 <span class="hljs-string">.dircache/objects</span> 中创建了从 00 ~ ff 共256个目录。
+
+<span class="hljs-string">.dircache/</span> 是Git的工作目录，最新版本的Git工作目录为 <span class="hljs-string">.git/</span> 。
+
+运行示例
+
+<span class="hljs-comment"># 运行init-db初始化仓库</span>
+$ init-db
+defaulting to private storage area 
+<span class="hljs-comment"># 查看初始化后的目录结构</span>
+$ tree . -a
+.
+└── <span class="hljs-string">.dircache</span>                   <span class="hljs-comment"># git工作目录</span>
+    └── objects                 <span class="hljs-comment"># objects文件</span>
+        ├── 00
+        ├── 01
+        ├── 02
+        ├── <span class="hljs-string">......</span>              <span class="hljs-comment"># 省略</span>
+        ├── fe
+        └── ff
+258 directories, 0 files</code></pre></div>
+
+<p>最新版本Git使用 git init . 初始化仓库，而且初始化工作目录为 .git/，初始化后，.git/ 目录中的文件和功能也非常丰富，包括 .git/HEAD、.git/refs/ 、.git/info/ 等，以及很多的 hooks 示例：.git/hooks/**.sample。</p>
+<h4 id="update-cache：添加文件或目录"><a href="#update-cache：添加文件或目录" class="headerlink" title="update-cache：添加文件或目录"></a>update-cache：添加文件或目录</h4><p>update-cache 主要是把工作区的修改文件提交到暂存区。工作区、暂存区等说明见下文【设计原理】 。</p>
+<h4 id="命令使用"><a href="#命令使用" class="headerlink" title="命令使用"></a>命令使用</h4><div class="hljs code-wrapper"><pre><code class="hljs bash">$ update-cache &lt;file&gt; ...</code></pre></div>
+
+<h4 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h4><p>读取并解析索引文件 ：.dircache/index。<br>遍历多个文件，读取并生成变更文件信息（文件名称、文件内容sha1值、日期、大小等），写入到索引文件中。<br>遍历多个文件，读取并压缩变更文件，存储到objects文件中，该文件为blob对象。</p>
+<p>如果是刚初始化的仓库，会自动创建索引文件。索引文件说明见下文【设计原理 - 索引文件】。blob对象的文件格式及说明见下文【设计原理 - blob对象】。sha1值说明见下文【设计原理 - 哈希算法】。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 新增README.md文件</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;hello git&quot;</span> &gt; README.md
+
+<span class="hljs-comment"># 提交</span>
+$ update-cache README.md
+
+<span class="hljs-comment"># 查看索引文件</span>
+$ hexdump -C .dircache/index
+00000000  43 52 49 44 01 00 00 00  01 00 00 00 af a4 <span class="hljs-built_in">fc</span> 8e  |CRID............|
+00000010  5e 34 9d dd 31 8b 4c 8e  15 ca 32 05 5a e9 a4 c8  |^4..1.L...2.Z...|
+00000020  af bd 4c 5f bf fb 41 37  af bd 4c 5f bf fb 41 37  |..L_..A7..L_..A7|
+00000030  00 03 01 00 91 16 d2 04  b4 81 00 00 ee 03 00 00  |................|
+00000040  ee 03 00 00 0a 00 00 00  bb 12 25 52 ab 7b 40 20  |..........%R.&#123;@ |
+00000050  b5 f6 12 cc 3b bd d5 b4  3d 1f d3 a8 09 00 52 45  |....;...=.....RE|
+00000060  41 44 4d 45 2e 6d 64 00                           |ADME.md.|
+00000068
+
+<span class="hljs-comment"># 查看objects内容，sha1值从索引文件中获取</span>
+$ cat-file bb122552ab7b4020b5f612cc3bbdd5b43d1fd3a8
+temp_git_file_61uTTP: blob
+$ cat ./temp_git_file_RwpU8b
+hello git</code></pre></div>
+
+<h4 id="cat-file：查看objects文件内容"><a href="#cat-file：查看objects文件内容" class="headerlink" title="cat-file：查看objects文件内容"></a>cat-file：查看objects文件内容</h4><p>cat-file 根据sha1值查看暂存区中的objects文件内容。cat-file 是一个辅助工具，在正常的开发工作流中一般不会使用到。</p>
+<h4 id="命令使用-1"><a href="#命令使用-1" class="headerlink" title="命令使用"></a>命令使用</h4><div class="hljs code-wrapper"><pre><code class="hljs bash">$ cat-file &lt;sha1&gt;</code></pre></div>
+
+<h4 id="运行流程-1"><a href="#运行流程-1" class="headerlink" title="运行流程"></a>运行流程</h4><p>根据入参sha1值定位objects文件，比如 .dircache/objects/46/4b392e2c8c7d2d13d90e6916e6d41defe8bb6a<br>读取该objects文件内容，解压得到真实数据。<br>写入到临时文件 temp_git_file_XXXXXX（随机不重复文件）。</p>
+<p>objects内容为压缩格式，基于zlib压缩算法，objects说明见【设计原理 - objects 文件】。</p>
+<h4 id="运行示例"><a href="#运行示例" class="headerlink" title="运行示例"></a>运行示例</h4><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># cat-file 会把内容读取到temp_git_file_rLcGKX</span>
+$ cat-file 82f8604c3652fa5762899b5ff73eb37bef2da795
+temp_git_file_tBTXFM: blob
+
+<span class="hljs-comment"># 查看 temp_git_file_tBTXFM 文件内容</span>
+$ cat ./temp_git_file_tBTXFM 
+hello git!</code></pre></div>
+
+<h4 id="show-diff：查看diff内容"><a href="#show-diff：查看diff内容" class="headerlink" title="show-diff：查看diff内容"></a>show-diff：查看diff内容</h4><p>查看工作区和暂存区中的文件差异。</p>
+<p><strong>命令使用</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs maxima">$ <span class="hljs-built_in">show</span>-<span class="hljs-built_in">diff</span></code></pre></div>
+
+<p><strong>运行流程</strong></p>
+<p>读取并解析索引文件：.dircache/index。<br>循环遍历变更文件信息，比较工作区中的文件信息和索引文件中记录的文件信息差异。<br>无差异，显示 : ok。<br>有差异，调用 diff 命令输出差异内容。</p>
+<p><strong>运行示例</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs reasonml"># 创建文件并提交到暂存区
+$ echo <span class="hljs-string">&quot;hello git!&quot;</span> &gt; <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">README</span>.</span></span>md
+$ update-cache <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">README</span>.</span></span>md
+
+# 当前无差异
+$ show-diff
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">README</span>.</span></span>md: ok
+
+# 更改<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">README</span>.</span></span>md
+$ echo <span class="hljs-string">&quot;hello world!&quot;</span> &gt; <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">README</span>.</span></span>md
+
+# 查看diff
+$ show-diff
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">README</span>.</span></span>md:  <span class="hljs-number">82</span>f8604c3652fa5762899b5ff73eb37bef2da795
+--- -   <span class="hljs-number">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">31</span> <span class="hljs-number">17</span>:<span class="hljs-number">33</span>:<span class="hljs-number">50.047881667</span> +<span class="hljs-number">0800</span>
++++ <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">README</span>.</span></span>md   <span class="hljs-number">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">31</span> <span class="hljs-number">17</span>:<span class="hljs-number">33</span>:<span class="hljs-number">47.827740680</span> +<span class="hljs-number">0800</span>
+@@ -<span class="hljs-number">1</span> +<span class="hljs-number">1</span> @@
+-hello git!
++hello world!</code></pre></div>
+
+<h4 id="write-tree：写入到tree"><a href="#write-tree：写入到tree" class="headerlink" title="write-tree：写入到tree"></a>write-tree：写入到tree</h4><p>write-tree 作用将保存在索引文件中的多个objects对象归并到一个类型为tree的objects文件中，该文件即Git中重要的对象：tree。</p>
+<p><strong>命令使用</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">write-tree</span></code></pre></div>
+
+<p><strong>运行流程</strong></p>
+<p>读取并解析索引文件：.dircache/index。<br>循环遍历变更文件信息，按照指定格式编排变更文件信息及内容。<br>压缩并存储到objects文件中，该object文件为tree对象。</p>
+<p>tree对象的文件格式及相关说明见下文【设计原理 - tree对象】。</p>
+<p><strong>运行示例</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 提交</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">write-tree</span>
+c771b3ab2fe3b7e43099290d3e99a3e8c414ec72
+
+<span class="hljs-comment"># 查看objects内容</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span><span class="hljs-operator">-file</span>  c771b3ab2fe3b7e43099290d3e99a3e8c414ec72
+temp_git_file_r90ft5: tree
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span> ./temp_git_file_r90ft5
+<span class="hljs-number">100664</span> README.md��`L6<span class="hljs-built_in">R</span>�Wb��_�&gt;�&#123;�-��</code></pre></div>
+
+<h4 id="read-tree：读取tree"><a href="#read-tree：读取tree" class="headerlink" title="read-tree：读取tree"></a>read-tree：读取tree</h4><p>read-tree 读取并解析指定sha1值的tree对象，输出变更文件的信息。</p>
+<p><strong>命令使用</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">read-tree</span> &lt;sha1&gt;</code></pre></div>
+
+<p><strong>运行步骤</strong></p>
+<p>解析sha1值。<br>读取对应sha1值的object对象。<br>输出变更文件的属性、路径、sha1值。</p>
+<p><strong>运行示例</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 提交</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">write-tree</span>
+c771b3ab2fe3b7e43099290d3e99a3e8c414ec72
+
+<span class="hljs-comment"># 读取tree对象</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">read-tree</span>  c771b3ab2fe3b7e43099290d3e99a3e8c414ec72
+<span class="hljs-number">100664</span> README.md (<span class="hljs-number">82</span>f8604c3652fa5762899b5ff73eb37bef2da795)</code></pre></div>
+
+<h4 id="commit-tree：提交tree"><a href="#commit-tree：提交tree" class="headerlink" title="commit-tree：提交tree"></a>commit-tree：提交tree</h4><p>commit-tree 把本地变更提交到版本库里，具体是基于一个tree对象的sha1值创建一个commit对象。</p>
+<p><strong>命令使用</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs xml">$ commit-tree <span class="hljs-tag">&lt;<span class="hljs-name">sha1</span>&gt;</span> [-p <span class="hljs-tag">&lt;<span class="hljs-name">sha1</span>&gt;</span>]* &lt; changelog</code></pre></div>
+
+<p><strong>运行流程</strong></p>
+<p>参数解析。<br>获取用户名称、用户邮件、提交日期。<br>写入tree信息。<br>写入parent信息。<br>写入author、commiter信息。<br>写入comments（注释）。<br>压缩并存储到objects文件中，该object文件为commit对象。</p>
+<p>commit对象的文件格式及说明见下文【设计原理 - commit对象】。</p>
+<p><strong>运行示例</strong></p>
+<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 写入到tree</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">write-tree</span> 
+c771b3ab2fe3b7e43099290d3e99a3e8c414ec72
+
+<span class="hljs-comment"># 提交tree</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;first commit&quot;</span> &gt; changelog
+<span class="hljs-variable">$</span> commit<span class="hljs-literal">-tree</span> c771b3ab2fe3b7e43099290d3e99a3e8c414ec72 &lt; changelog
+Committing initial tree c771b3ab2fe3b7e43099290d3e99a3e8c414ec72
+<span class="hljs-number">7</span>ea820bd363e24f5daa5de8028d77d88260503d9
+
+<span class="hljs-comment"># 查看commit对象内容</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span><span class="hljs-operator">-file</span> <span class="hljs-number">7</span>ea820bd363e24f5daa5de8028d77d88260503d9
+temp_git_file_CIfJsg: commit
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span> temp_git_file_CIfJsg
+tree c771b3ab2fe3b7e43099290d3e99a3e8c414ec72
+author Xiaowen Xia &lt;chenan.xxw@aos<span class="hljs-literal">-hw09</span>&gt; Tue Sep  <span class="hljs-number">1</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">16</span> <span class="hljs-number">2020</span>
+committer Xiaowen Xia &lt;chenan.xxw@aos<span class="hljs-literal">-hw09</span>&gt; Tue Sep  <span class="hljs-number">1</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">16</span> <span class="hljs-number">2020</span>
+
+first commit</code></pre></div>
+
+<h4 id="设计原理"><a href="#设计原理" class="headerlink" title="设计原理"></a>设计原理</h4><blockquote>
+<p>Write programs to work together.<br>——Unix philosophy</p>
+</blockquote>
+<p>与传统的集中式版本控制系统（CVCS）相反，Git 从一开始就设计成了去中心化的分布式系统，每个开发者本地工作区都是一个完整的版本库，拥有本地的代码仓库。另外，Git 的设计初衷是为了让更多的开发者一起开发软件。</p>
+<p>该版本 Git 定义了三种对象：</p>
+<p>blob 对象：保存着文件快照。<br>tree 对象：记录着目录结构和 blob 对象索引。<br>commit 对象：包含着指向前述 tree 对象的指针和所有提交信息。</p>
+<p>三种对象相互之间的关系如下：</p>
+<p><img src="/blog/img/nginx-3.jpg" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>另外，Git 也定义了三个区，工作区（workspace），暂存区（index）和版本库（commit history）：</p>
+<ul>
+<li>工作区（workspace）：我们直接修改代码的地方。</li>
+<li>暂存区（index）：数据暂时存放的区域，用于在工作区和版本库之间进行数据交流。</li>
+<li>版本库（commit history）：存放已经提交的数据。</li>
+</ul>
+<p>每个可执行文件的具体分工是：init-db 用来创建一个初始化仓库，update-cache 会将 工作区 的变更写到 索引文件 （index）中，write-tree 会将之前的所有变更整理成 tree 对象，commit-tree 会将 指定的 tree 对象写到本地版本库中。另外，show-diff 用来查看 工作区 和 暂存区 中的文件差异，read-tree 用来读取 tree对象 的信息。</p>
+<p>由此可以绘制一个简单的Git开发工作流：</p>
+<p><img src="/blog/img/nginx-4.jpg" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="objects-文件"><a href="#objects-文件" class="headerlink" title="objects 文件"></a>objects 文件</h4><p>objects文件是载体，用来存储Git中的3个重要对象：blob、tree、commit。</p>
+<p>objects文件的存储目录默认为.dircache/objects，也可以通过环境变量： SHA1_FILE_DIRECTORY 指定。文件路径和名称根据sha1值决定，取sha1值的第一个字节的hex值为目录，其他字节的hex值为名称，比如sha1值为：<br>0277ec89d7ba8c46a16d86f219b21cfe09a611e1<br>的对象文件存储路径为：<br>.dircache/objects/02/77ec89d7ba8c46a16d86f219b21cfe09a611e1</p>
+<p>为了节约存储，同时也能存储多个信息，objects文件内容都是经过 zlib 压缩过的。objects文件的格式由 + + &lt;要存储的内容&gt; 组成，其中 可以是”blob”（blob对象）、”tree”（tree对象）、”commit”（commit对象）。</p>
+<p>使用 cat-file 可以查看object文件是什么类型的对象。</p>
+<p>.dircache/objects 目录结构如下：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs llvm">$ tree .git/objects
+.git/objects
+├── <span class="hljs-number">02</span>
+│   └── <span class="hljs-number">77</span>ec<span class="hljs-number">89</span>d<span class="hljs-number">7</span>ba<span class="hljs-number">8</span><span class="hljs-keyword">c</span><span class="hljs-number">46</span>a<span class="hljs-number">16</span>d<span class="hljs-number">86</span>f<span class="hljs-number">219</span>b<span class="hljs-number">21</span>cfe<span class="hljs-number">09</span>a<span class="hljs-number">611e1</span>
+├── ......                                          # 省略
+├── be
+│   ├── adb<span class="hljs-number">5</span>bac<span class="hljs-number">00</span><span class="hljs-keyword">c</span><span class="hljs-number">74</span><span class="hljs-keyword">c</span><span class="hljs-number">97</span>da<span class="hljs-number">7</span>f<span class="hljs-number">471905</span>ab<span class="hljs-number">0</span>da<span class="hljs-number">8</span>b<span class="hljs-number">50229</span><span class="hljs-keyword">c</span>
+│   └── ee<span class="hljs-number">7</span>b<span class="hljs-number">5e8</span>ab<span class="hljs-number">6</span>ae<span class="hljs-number">1</span><span class="hljs-keyword">c</span><span class="hljs-number">0</span><span class="hljs-keyword">c</span><span class="hljs-number">1</span>f<span class="hljs-number">3</span>cfa<span class="hljs-number">2</span><span class="hljs-keyword">c</span><span class="hljs-number">4643</span>aacdb<span class="hljs-number">30</span>b<span class="hljs-number">9</span>b
+├── ......                                          # 省略
+├── <span class="hljs-keyword">c</span><span class="hljs-number">9</span>
+│   └── f<span class="hljs-number">6098</span>f<span class="hljs-number">3</span>ba<span class="hljs-number">06</span>cf<span class="hljs-number">96e1248</span>e<span class="hljs-number">9</span>f<span class="hljs-number">39270883</span>ba<span class="hljs-number">0e82</span>e
+├── ......                                          # 省略
+├── cf
+│   ├── <span class="hljs-number">631</span>abbf<span class="hljs-number">3</span><span class="hljs-keyword">c</span><span class="hljs-number">4</span>cec<span class="hljs-number">0911</span>cb<span class="hljs-number">60</span><span class="hljs-keyword">cc</span><span class="hljs-number">307</span>f<span class="hljs-number">3</span>dce<span class="hljs-number">4</span>f<span class="hljs-number">7</span>a<span class="hljs-number">000</span>
+│   └── <span class="hljs-number">9e478</span>ab<span class="hljs-number">3</span>fc<span class="hljs-number">98680684</span><span class="hljs-keyword">cc</span><span class="hljs-number">7090e84644363</span>a<span class="hljs-number">4054</span>
+├── ......                                          # 省略
+└── ff</code></pre></div>
+
+<p>问：为什么 .dircache/objects/ 目录下面要以sha1值前一个字节的hex值作为子目录？</p>
+<h4 id="blob-对象"><a href="#blob-对象" class="headerlink" title="blob 对象"></a>blob 对象</h4><p>运行 update-cache 会生成 blob 对象。</p>
+<p>blob 对象用于存储变更文件内容，其实就代表一个变更文件快照。blob 对象由 + + 拼装并压缩：</p>
+<p><img src="/blog/img/git-5.jpg" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>使用 cat-file 查看 blob 对象内容：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 查看 blob 对象内容</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span><span class="hljs-operator">-file</span> <span class="hljs-number">82</span>f8604c3652fa5762899b5ff73eb37bef2da795temp_git_file_tBTXFM: blob
+
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span> ./temp_git_file_tBTXFM 
+hello git!</code></pre></div>
+
+<h4 id="tree-对象"><a href="#tree-对象" class="headerlink" title="tree 对象"></a>tree 对象</h4><p>运行 write-tree 会生成 tree 对象。</p>
+<p>tree 对象用于存储多个提交文件的信息。tree 对象由 + + 文件模式 + 文件名称 + 文件sha1值 拼装并压缩：</p>
+<p><img src="/blog/img/git-6.jpg" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>文件sha1值 使用binary格式存储，占用20字节。</p>
+<p>使用 cat-file 查看 tree 对象内容：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 查看 tree 对象内容</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span><span class="hljs-operator">-file</span>  c771b3ab2fe3b7e43099290d3e99a3e8c414ec72
+temp_git_file_r90ft5: tree
+
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span> ./temp_git_file_r90ft5
+<span class="hljs-number">100664</span> README.md��`L6<span class="hljs-built_in">R</span>�Wb��_�&gt;�&#123;�-��</code></pre></div>
+
+<p>文件sha1值 使用binary格式存储，所以打印的时候会有乱码。</p>
+<h4 id="commit-对象"><a href="#commit-对象" class="headerlink" title="commit 对象"></a>commit 对象</h4><p>运行 commit-tree 会生成 commit 对象。</p>
+<p>commit 对象存储一次提交的信息，包括所在的tree信息，parent信息以及提交的作者等信息。commit 对象由 + + + * + + + 拼装并压缩：</p>
+<p><img src="/blog/img/git-7.jpg" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>tree sha1值 和 parent sha1值 使用hex字符串格式存储，占用40字节。</p>
+<p>使用 cat-file 查看 commit 对象内容：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-comment"># 查看 commit 对象内容</span>
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span><span class="hljs-operator">-file</span> <span class="hljs-number">7</span>ea820bd363e24f5daa5de8028d77d88260503d9
+temp_git_file_CIfJsg: commit
+
+<span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span> temp_git_file_CIfJsg
+tree c771b3ab2fe3b7e43099290d3e99a3e8c414ec72
+author Xiaowen Xia &lt;chenan.xxw@aos<span class="hljs-literal">-hw09</span>&gt; Tue Sep  <span class="hljs-number">1</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">16</span> <span class="hljs-number">2020</span>
+committer Xiaowen Xia &lt;chenan.xxw@aos<span class="hljs-literal">-hw09</span>&gt; Tue Sep  <span class="hljs-number">1</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">16</span> <span class="hljs-number">2020</span>
+
+first commit</code></pre></div>
+
+<h4 id="索引文件"><a href="#索引文件" class="headerlink" title="索引文件"></a>索引文件</h4><p>索引文件默认路径为：.dircache/index。索引文件用来存储变更文件的相关信息，当运行 update-cache 时会添加变更文件的信息到索引文件中。</p>
+<p>同时也有一个叫 .dircache/index.lock 的文件，该文件存在时表示当前工作区被锁定，无法进行提交操作。</p>
+<p>使用 hexdump 命令可以查看到索引文件内容：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs tap">$ hexdump -C .dircache/index 
+00000000 <span class="hljs-number"> 43 </span>52<span class="hljs-number"> 49 </span>44<span class="hljs-number"> 01 </span>00<span class="hljs-number"> 00 </span>00 <span class="hljs-number"> 01 </span>00<span class="hljs-number"> 00 </span>00 ae<span class="hljs-number"> 73 </span>c4 f2  |CRID.........s..|
+00000010  ce<span class="hljs-number"> 32 </span>c9 6f<span class="hljs-number"> 13 </span>20 0d<span class="hljs-number"> 56 </span> 9c e8 cf 0d d3<span class="hljs-number"> 75 </span>10 c8  |.2.o. .V.....u..|
+00000020 <span class="hljs-number"> 94 </span>ad 4c 5f f4 5c<span class="hljs-number"> 42 </span>06 <span class="hljs-number"> 94 </span>ad 4c 5f f4 5c<span class="hljs-number"> 42 </span>06  |..L_.B...L_.B.|
+00000030 <span class="hljs-number"> 00 </span>03<span class="hljs-number"> 01 </span>00<span class="hljs-number"> 91 </span>16 d2<span class="hljs-number"> 04 </span> b4<span class="hljs-number"> 81 </span>00<span class="hljs-number"> 00 </span>ee<span class="hljs-number"> 03 </span>00<span class="hljs-number"> 00 </span> |................|
+00000040  ee<span class="hljs-number"> 03 </span>00<span class="hljs-number"> 00 </span>0b<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span> a3 f4 a0<span class="hljs-number"> 66 </span>c5<span class="hljs-number"> 46 </span>39<span class="hljs-number"> 78 </span> |...........f.F9x|
+00000050  1e<span class="hljs-number"> 30 </span>19 a3<span class="hljs-number"> 20 </span>42 e3<span class="hljs-number"> 82 </span><span class="hljs-number"> 84 </span>ee<span class="hljs-number"> 31 </span>54<span class="hljs-number"> 09 </span>00<span class="hljs-number"> 52 </span>45  |.0.. B....1T..RE|
+00000060 <span class="hljs-number"> 41 </span>44 4d<span class="hljs-number"> 45 </span>2e 6d<span class="hljs-number"> 64 </span>00                           |ADME.md.|</code></pre></div>
+
+<p>.dircache/index 索引文件使用二进制存储相关内容，该文件由 文件头 + 变更文件信息 组成：</p>
+<p><img src="/blog/img/git-8.jpg" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>文件头大小为32字节，一个变更文件信息大小至少是63字节。其中：文件头中的sha1值由整个索引文件内容（文件头 + 变更文件信息）计算得到的。变更文件信息的sha1值由变更文件内容（压缩后）计算得到的。</p>
+<h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><p>该 Git 版本中使用的哈希算法为 sha1算法 ，代码中使用的是 OpenSSL 库中提供的sha1算法。</p>
+<p>目前 Git 已经有了新的选择：sha256算法 ，且目前正在做 sha1 到 sha256 的迁移。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs reasonml">#<span class="hljs-keyword">include</span> &lt;openssl/sha.h&gt;
+
+static <span class="hljs-built_in">int</span> verify<span class="hljs-constructor">_hdr(<span class="hljs-params">struct</span> <span class="hljs-params">cache_header</span> <span class="hljs-operator">*</span><span class="hljs-params">hdr</span>, <span class="hljs-params">unsigned</span> <span class="hljs-params">long</span> <span class="hljs-params">size</span>)</span>
+&#123;
+  SHA_CTX c;
+  unsigned <span class="hljs-built_in">char</span> sha1<span class="hljs-literal">[<span class="hljs-number">20</span>]</span>;
+        <span class="hljs-comment">/* 省略 */</span>
+  <span class="hljs-comment">/* 计算索引文件头sha1值 */</span>
+  <span class="hljs-constructor">SHA1_Init(&amp;<span class="hljs-params">c</span>)</span>;
+  <span class="hljs-constructor">SHA1_Update(&amp;<span class="hljs-params">c</span>, <span class="hljs-params">hdr</span>, <span class="hljs-params">offsetof</span>(<span class="hljs-params">struct</span> <span class="hljs-params">cache_header</span>, <span class="hljs-params">sha1</span>)</span>);
+  <span class="hljs-constructor">SHA1_Update(&amp;<span class="hljs-params">c</span>, <span class="hljs-params">hdr</span>+1, <span class="hljs-params">size</span> - <span class="hljs-params">sizeof</span>(<span class="hljs-operator">*</span><span class="hljs-params">hdr</span>)</span>);
+  <span class="hljs-constructor">SHA1_Final(<span class="hljs-params">sha1</span>, &amp;<span class="hljs-params">c</span>)</span>;
+  <span class="hljs-comment">/* 省略 */</span>
+  return <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+<h3 id="总结与思考"><a href="#总结与思考" class="headerlink" title="总结与思考"></a>总结与思考</h3><blockquote>
+<p>Use software leverage to your advantage.</p>
+</blockquote>
+<p>——Unix philosophy</p>
+<h4 id="好的代码不是写出来的，是改出来的"><a href="#好的代码不是写出来的，是改出来的" class="headerlink" title="好的代码不是写出来的，是改出来的"></a>好的代码不是写出来的，是改出来的</h4><p>Git 的第一个提交中，虽然实现了 Git 的分布式核心思想，以及三种对象，三个区等核心概念，但是 Git 的灵魂功能比如分支策略、远程仓库、日志系统、git hooks 等功能都是后面逐步迭代出来的。</p>
+<h4 id="关于细节"><a href="#关于细节" class="headerlink" title="关于细节"></a>关于细节</h4><p>问：为什么 .dircache/objects/ 目录下面要以 sha1 值前一个字节的 hex 值作为子目录？</p>
+<p>答：ext3 文件系统下，一个目录下只能有 32000 个一级子文件，如果都把 objects 文件存储到一个 .git/objects/ 目录里，很大概率会达到上限。同时要是一个目录下面子文件太多，那文件查找效率会降低很多。</p>
+<h4 id="关于代码质量"><a href="#关于代码质量" class="headerlink" title="关于代码质量"></a>关于代码质量</h4><p>Git 的第一次提交源码，从代码质量、数据结构上看其实并没有多少参考价值，反而我还发现了很多可以优化的地方，比如：</p>
+<ul>
+<li>异常处理不完善，经常出现段错误（SegmentFault）。</li>
+<li>存在几处内存泄漏的地方，比如 write-tree.c &gt; main函数 &gt; buffer内存块 。</li>
+<li>从索引文件中读取到的变更文件信息使用数组存储，涉及到了比较多的申请释放操作，性能上是有损失的，可以优化成链表存储。</li>
+</ul>
+<p>不过这些都不重要，重要的是 Git 的设计原理和思想。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/git/">git</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/git/">git</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/04/mybatis-princpal/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mybatis原理</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/27/vue-project/">
+                        <span class="hidden-mobile">vue-project</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

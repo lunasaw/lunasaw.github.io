@@ -1,0 +1,659 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。 1.安装Erlang所以在安装rabbitMQ之前，需要先安装Erlang 。 小编使用的是otp_win64_18.1 ，需要其他版本或者32位系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rabbitmq-windows">
+<meta property="og:url" content="https://lunasaw.github.io/2021/01/11/rabbitmq-windows-install/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。 1.安装Erlang所以在安装rabbitMQ之前，需要先安装Erlang 。 小编使用的是otp_win64_18.1 ，需要其他版本或者32位系">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/rPNn6SghdmfvHtu.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/pKRy4mQU9Poz6lC.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/S8awjq2sGLDTx34.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/DLEyYBsRPrktW4f.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/18/lmQt6sKHPRq4wZc.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/OoEbayLInpQUScR.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/gUsbYMQkIi9zleX.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/2xHaJfvYmrkg3pt.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/ovjVFKL2hAsRXEJ.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/YMh9Kr4EnumZbQs.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/rdyDgh3YJ26wfaO.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/1UJQxXdPzy9rTkR.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/enjUqDQdfGZIMvz.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/TMWnJjqCZdKfe3O.png">
+<meta property="article:published_time" content="2021-01-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.993Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="rabbitmq">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/29/rPNn6SghdmfvHtu.png">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>rabbitmq-windows - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/baisc/rabbitqm-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="rabbitmq-windows">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-11 00:00" pubdate>
+        2021年1月11日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">rabbitmq-windows</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。</p>
+<h2 id="1-安装Erlang"><a href="#1-安装Erlang" class="headerlink" title="1.安装Erlang"></a>1.安装Erlang</h2><p>所以在安装rabbitMQ之前，需要先安装Erlang 。</p>
+<p>小编使用的是<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1c2826rA">otp_win64_18.1</a> ，需要其他版本或者32位系统的，可以去<a target="_blank" rel="noopener" href="http://www.erlang.org/downloads">官网</a>下载。</p>
+<p>全部点击“下一步”就行。</p>
+<p>有的选择其他的安装方式，可能需要添加一下系统环境变量（正常安装的也要检查下）：</p>
+<p><img src="https://i.loli.net/2021/01/29/rPNn6SghdmfvHtu.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>有最好，没有的话就手动添加嘛。</p>
+<h2 id="2-安装RabbitMQ"><a href="#2-安装RabbitMQ" class="headerlink" title="2.安装RabbitMQ"></a>2.安装RabbitMQ</h2><p>下载运行<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1cqpG0u">rabbitmq-server-3.6.5</a> ，需要其他版本或者32位系统的，可以去<a target="_blank" rel="noopener" href="http://www.rabbitmq.com/download.html">官网</a>下载。</p>
+<p>依旧可以不改变默认进行安装。</p>
+<p>需要注意：默认安装的RabbitMQ 监听端口是5672</p>
+<h2 id="3-配置"><a href="#3-配置" class="headerlink" title="3.配置"></a>3.配置</h2><p>注册进服务 管理员身份执行 rabbitmq-service install</p>
+<p>使用RabbitMQ 管理插件，可以更好的可视化方式查看Rabbit MQ 服务器实例的状态。</p>
+<p>打开命令窗口：</p>
+<p>输入命令：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs taggerscript">&quot;C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\R</span>abbitMQ Server<span class="hljs-symbol">\r</span>abbitmq_server-3.6.5<span class="hljs-symbol">\s</span>bin<span class="hljs-symbol">\r</span>abbitmq-plugins.bat&quot; enable rabbitmq_management</code></pre></div>
+
+<p><img src="https://i.loli.net/2021/01/29/pKRy4mQU9Poz6lC.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>这样，就安装好插件了，是不是能使用了呢？别急，需要重启服务才行，使用命令：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs dos"><span class="hljs-built_in">net</span> stop RabbitMQ &amp;&amp; <span class="hljs-built_in">net</span> <span class="hljs-built_in">start</span> RabbitMQ</code></pre></div>
+
+<p>这时候的，也许会出现这种结果：</p>
+<p><img src="https://i.loli.net/2021/01/29/S8awjq2sGLDTx34.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>“发生错误：发生系统错误 <em>5。 *拒绝访问。”</em>*</p>
+<p>这是什么鬼？查了下，原来，5代表的是：不是系统管理员权限。</p>
+<p>问题解决方案：使用管理员打开<em>cmd再执行此命令：</em></p>
+<p><em><img src="https://i.loli.net/2021/01/29/DLEyYBsRPrktW4f.png" srcset="/img/loading.gif" lazyload alt="img"></em></p>
+<p>这样就结束了吗？当然没有。</p>
+<h3 id="创建用户，密码，绑定角色"><a href="#创建用户，密码，绑定角色" class="headerlink" title="创建用户，密码，绑定角色"></a>创建用户，密码，绑定角色</h3><p>使用<em>rabbitmqctl控制台命令（位于*C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.5\sbin&gt;）来创建用户，密码，绑定权限等。</em>*</p>
+<p>注意：安装路径不同的请看仔细啊。</p>
+<p>rabbitmq的用户管理包括增加用户，删除用户，查看用户列表，修改用户密码。</p>
+<p>查看已有用户及用户的角色：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs mipsasm">rabbitmqctl.<span class="hljs-keyword">bat </span>list_users</code></pre></div>
+
+<p><img src="https://i.loli.net/2021/04/18/lmQt6sKHPRq4wZc.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>新增一个用户：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs mipsasm">rabbitmqctl.<span class="hljs-keyword">bat </span><span class="hljs-keyword">add_user </span>username password</code></pre></div>
+
+<p><img src="https://i.loli.net/2021/01/29/OoEbayLInpQUScR.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>此时来看下我们当前用户哈：</p>
+<p><img src="https://i.loli.net/2021/01/29/gUsbYMQkIi9zleX.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>eric 后面没有“[administrator]”</p>
+<p>这个administrator是干嘛用的呢？这就涉及到用户角色问题了：</p>
+<p>按照我个人理解，rabbitmq用户角色可分为五类：超级管理员, 监控者, 策略制定者, 普通管理者以及其他。</p>
+<p>(1) 超级管理员(administrator)</p>
+<p>可登陆管理控制台(启用management plugin的情况下)，可查看所有的信息，并且可以对用户，策略(policy)进行操作。</p>
+<p>(2) 监控者(monitoring)</p>
+<p>可登陆管理控制台(启用management plugin的情况下)，同时可以查看rabbitmq节点的相关信息(进程数，内存使用情况，磁盘使用情况等) </p>
+<p>(3) 策略制定者(policymaker)</p>
+<p>可登陆管理控制台(启用management plugin的情况下), 同时可以对policy进行管理。</p>
+<p>(4) 普通管理者(management)</p>
+<p>仅可登陆管理控制台(启用management plugin的情况下)，无法看到节点信息，也无法对策略进行管理。</p>
+<p>(5) 其他的</p>
+<p>无法登陆管理控制台，通常就是普通的生产者和消费者。</p>
+<p>好啦，我们也给 eric 变成 “超级管理员” 角色：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">rabbitmqctl.bat <span class="hljs-keyword">set</span>_user_tags username administrator</code></pre></div>
+
+<p><img src="https://i.loli.net/2021/01/29/2xHaJfvYmrkg3pt.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>再看下结果哈：</p>
+<p><img src="https://i.loli.net/2021/01/29/ovjVFKL2hAsRXEJ.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>当然，除了上面的administrator 还有 monitoring、policymaker、management、自定义名称 ，对应上面介绍到的不同的角色。</p>
+<p>像我们人一样，我们角色除了是公司的员工，还是父母的孩子、子女的爸妈等，用户也可以同时具有多个角色,设置方式:</p>
+<div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">rabbitmqctl</span>.bat  set_user_tags  username tag<span class="hljs-number">1</span> tag<span class="hljs-number">2</span> ...</code></pre></div>
+
+<p><img src="https://i.loli.net/2021/01/29/YMh9Kr4EnumZbQs.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>恩，现在总觉得guest 这个不安全（它的默认密码是guest）,想更改密码，好办：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">rabbitmqctl change_password userName newPassword</span></code></pre></div>
+
+<p><img src="https://i.loli.net/2021/01/29/rdyDgh3YJ26wfaO.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>有的人也许会说，我就是看guest不爽，老子新增了administrator用户了，就是想干掉它，可以：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs mipsasm">rabbitmqctl.<span class="hljs-keyword">bat </span>delete_user username</code></pre></div>
+
+<p><img src="https://i.loli.net/2021/01/29/1UJQxXdPzy9rTkR.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p> 这时，可能有人就要问了：命令框是只有一个用户了，你怎么操作啊？怎么查看执行情况啊/</p>
+<p> 当然有路子啦：</p>
+<p>使用浏览器打开<a target="_blank" rel="noopener" href="http://localhost:15672/"> http://localhost:15672</a> 访问Rabbit Mq的管理控制台，使用刚才创建的账号登陆系统：</p>
+<p> <img src="https://i.loli.net/2021/01/29/enjUqDQdfGZIMvz.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i.loli.net/2021/01/29/TMWnJjqCZdKfe3O.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>其实，除了可查看所有的信息 ，上面的命令 增删改查、权限设置，都可以在这个页面完成，还可以依据业务需求设置策略(policy)，具体的就不在这里啰嗦了，大家可以看看网上的帖子。</p>
+<h3 id="权限设置"><a href="#权限设置" class="headerlink" title="权限设置"></a>权限设置</h3><p>用户有了角色，那也需要权限设置啊，别急，慢慢来：</p>
+<p>按照官方文档，用户权限指的是用户对exchange，queue的操作权限，包括配置权限，读写权限。</p>
+<p>我们配置权限会影响到exchange、queue的声明和删除。</p>
+<p>读写权限影响到从queue里取消息、向exchange发送消息以及queue和exchange的绑定(binding)操作。</p>
+<p>例如： 将queue绑定到某exchange上，需要具有queue的可写权限，以及exchange的可读权限；向exchange发送消息需要具有exchange的可写权限；从queue里取数据需要具有queue的可读权限</p>
+<p>权限相关命令为：</p>
+<p>(1) 设置用户权限</p>
+<p>rabbitmqctl  set_permissions  -p  VHostPath  User  ConfP  WriteP  ReadP</p>
+<p>(2) 查看(指定hostpath)所有用户的权限信息</p>
+<p>rabbitmqctl  list_permissions  [-p  VHostPath]</p>
+<p>(3) 查看指定用户的权限信息</p>
+<p>rabbitmqctl  list_user_permissions  User</p>
+<p>(4)  清除用户的权限信息</p>
+<p>rabbitmqctl  clear_permissions  [-p VHostPath]  User</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/categories/java/middle-component/">middle-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/java/middle-component/rabbitmq/">rabbitmq</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/rabbitmq/">rabbitmq</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/15/haproxy/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">haproxy</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/11/rabbitmq-linux/">
+                        <span class="hidden-mobile">rabbitmq-linux</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

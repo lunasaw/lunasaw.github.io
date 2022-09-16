@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Redis引言在Web应用发展的初期，那时关系型数据库受到了较为广泛的关注和应用，原因是因为那时候Web站点基本上访问和并发不高、交互也较少。而在后来，随着访问量的提升，使用关系型数据库的Web站点多多少少都开始在性能上出现了一些瓶颈，而瓶颈的源头一般是在磁盘的I&#x2F;O上。而随着互联网技术的进一步发展，各种类型的应用层出不穷，这导致在当今云计算、大数据盛行的时代，对性能有了更多的需求，主要体现在以下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="https://lunasaw.github.io/2021/01/04/redis/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Redis引言在Web应用发展的初期，那时关系型数据库受到了较为广泛的关注和应用，原因是因为那时候Web站点基本上访问和并发不高、交互也较少。而在后来，随着访问量的提升，使用关系型数据库的Web站点多多少少都开始在性能上出现了一些瓶颈，而瓶颈的源头一般是在磁盘的I&#x2F;O上。而随着互联网技术的进一步发展，各种类型的应用层出不穷，这导致在当今云计算、大数据盛行的时代，对性能有了更多的需求，主要体现在以下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/01/19/H8lWRphECVtYGk2.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/19/dzZCyliWpQwqRhT.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/19/dY6Qa2FX4nyPj7C.png">
+<meta property="og:image" content="https://czy1024.github.io/luna-image-bed/img/139239-20191126141036706-1247302576.png">
+<meta property="og:image" content="https://czy1024.github.io/luna-image-bed/img/139239-20191126141052157-436992972.png">
+<meta property="og:image" content="https://czy1024.github.io/luna-image-bed/img/139239-20191126141103927-1852926069.png">
+<meta property="og:image" content="https://czy1024.github.io/luna-image-bed/img/139239-20191126141239967-123973180.png">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvqmb7qezrj60bb0bwdgx02.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/01/19/u5pyEk47B2dKDHC.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/19/5RsvUW9X81aLdVl.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/19/KXzoAb5Wf8xjMpB.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/19/1kqa8y9d3guoKNx.png">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvqmard27zj608w0aswez02.jpg">
+<meta property="article:published_time" content="2021-01-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.994Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/19/H8lWRphECVtYGk2.png">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>redis - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/redis-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="redis">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-04 00:00" pubdate>
+        2021年1月4日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">redis</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>在Web应用发展的初期，那时关系型数据库受到了较为广泛的关注和应用，原因是因为那时候Web站点基本上访问和并发不高、交互也较少。而在后来，随着访问量的提升，使用关系型数据库的Web站点多多少少都开始在性能上出现了一些瓶颈，而瓶颈的源头一般是在磁盘的I/O上。而随着互联网技术的进一步发展，各种类型的应用层出不穷，这导致在当今云计算、大数据盛行的时代，对性能有了更多的需求，主要体现在以下四个方面：</p>
+<ol>
+<li>低延迟的读写速度：应用快速地反应能极大地提升用户的满意度</li>
+<li>支撑海量的数据和流量：对于搜索这样大型应用而言，需要利用PB级别的数据和能应对百万级的流量</li>
+<li>大规模集群的管理：系统管理员希望分布式应用能更简单的部署和管理</li>
+<li>庞大运营成本的考量：IT部门希望在硬件成本、软件成本和人力成本能够有大幅度地降低</li>
+</ol>
+<p>为了克服这一问题，NoSQL应运而生，它同时具备了高性能、可扩展性强、高可用等优点，受到广泛开发人员和仓库管理人员的青睐。</p>
+<h3 id="Redis是什么"><a href="#Redis是什么" class="headerlink" title="Redis是什么"></a>Redis是什么</h3><p>Redis是现在最受欢迎的NoSQL数据库之一，Redis是一个使用ANSI C编写的开源、包含多种数据结构、支持网络、基于内存、可选持久性的键值对存储数据库，其具备如下特性：</p>
+<ul>
+<li>基于内存运行，性能高效</li>
+<li>支持分布式，理论上可以无限扩展</li>
+<li>key-value存储系统</li>
+<li>开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API</li>
+</ul>
+<p>相比于其他数据库类型，Redis具备的特点是：</p>
+<ul>
+<li>C/S通讯模型</li>
+<li>单进程单线程模型</li>
+<li>丰富的数据类型</li>
+<li>操作具有原子性</li>
+<li>持久化</li>
+<li>高并发读写</li>
+<li>支持lua脚本</li>
+</ul>
+<p>哪些大厂在使用Redis？</p>
+<ul>
+<li>github</li>
+<li>twitter</li>
+<li>微博</li>
+<li>Stack Overflow</li>
+<li>阿里巴巴</li>
+<li>百度</li>
+<li>美团</li>
+<li>搜狐</li>
+</ul>
+<h4 id="Redis的应用场景有哪些？"><a href="#Redis的应用场景有哪些？" class="headerlink" title="Redis的应用场景有哪些？"></a>Redis的应用场景有哪些？</h4><p>Redis 的应用场景包括：缓存系统（“热点”数据：高频读、低频写）、计数器、消息队列系统、排行榜、社交网络和实时系统。</p>
+<p> <img src="https://i.loli.net/2021/01/19/H8lWRphECVtYGk2.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="Redis的数据类型及主要特性"><a href="#Redis的数据类型及主要特性" class="headerlink" title="Redis的数据类型及主要特性"></a>Redis的数据类型及主要特性</h3><p>Redis提供的数据类型主要分为5种自有类型和一种自定义类型，这5种自有类型包括：String类型、哈希类型、列表类型、集合类型和顺序集合类型。</p>
+<p><img src="https://i.loli.net/2021/01/19/dzZCyliWpQwqRhT.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="String类型："><a href="#String类型：" class="headerlink" title="String类型："></a>String类型：</h4><p>它是一个二进制安全的字符串，意味着它不仅能够存储字符串、还能存储图片、视频等多种类型, 最大长度支持512M。</p>
+<p>对每种数据类型，Redis都提供了丰富的操作命令，如：</p>
+<ul>
+<li>GET/MGET</li>
+<li>SET/SETEX/MSET/MSETNX</li>
+<li>INCR/DECR</li>
+<li>GETSET</li>
+<li>DEL</li>
+</ul>
+<h4 id="哈希类型："><a href="#哈希类型：" class="headerlink" title="哈希类型："></a>哈希类型：</h4><p>该类型是由field和关联的value组成的map。其中，field和value都是字符串类型的。</p>
+<p>Hash的操作命令如下：</p>
+<ul>
+<li>HGET/HMGET/HGETALL</li>
+<li>HSET/HMSET/HSETNX</li>
+<li>HEXISTS/HLEN</li>
+<li>HKEYS/HDEL</li>
+<li>HVALS</li>
+</ul>
+<h4 id="列表类型："><a href="#列表类型：" class="headerlink" title="列表类型："></a>列表类型：</h4><p>该类型是一个插入顺序排序的字符串元素集合, 基于双链表实现。</p>
+<p>List的操作命令如下：</p>
+<ul>
+<li>LPUSH/LPUSHX/LPOP/RPUSH/RPUSHX/RPOP/LINSERT/LSET</li>
+<li>LINDEX/LRANGE</li>
+<li>LLEN/LTRIM</li>
+</ul>
+<h4 id="集合类型："><a href="#集合类型：" class="headerlink" title="集合类型："></a>集合类型：</h4><p>Set类型是一种无顺序集合, 它和List类型最大的区别是：集合中的元素没有顺序, 且元素是唯一的。</p>
+<p>Set类型的底层是通过哈希表实现的，其操作命令为：</p>
+<ul>
+<li>SADD/SPOP/SMOVE/SCARD</li>
+<li>SINTER/SDIFF/SDIFFSTORE/SUNION</li>
+</ul>
+<p>Set类型主要应用于：在某些场景，如社交场景中，通过交集、并集和差集运算，通过Set类型可以非常方便地查找共同好友、共同关注和共同偏好等社交关系。</p>
+<h4 id="顺序集合类型："><a href="#顺序集合类型：" class="headerlink" title="顺序集合类型："></a>顺序集合类型：</h4><p>ZSet是一种有序集合类型，每个元素都会关联一个double类型的分数权值，通过这个权值来为集合中的成员进行从小到大的排序。与Set类型一样，其底层也是通过哈希表实现的。</p>
+<p>ZSet命令：</p>
+<ul>
+<li>ZADD/ZPOP/ZMOVE/ZCARD/ZCOUNT</li>
+<li>ZINTER/ZDIFF/ZDIFFSTORE/ZUNION</li>
+</ul>
+<h3 id="Redis的数据结构"><a href="#Redis的数据结构" class="headerlink" title="Redis的数据结构"></a>Redis的数据结构</h3><p>Redis的数据结构如下图所示：</p>
+<p><img src="https://i.loli.net/2021/01/19/dY6Qa2FX4nyPj7C.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>关于上表中的部分释义：</p>
+<ol>
+<li>压缩列表是列表键和哈希键的底层实现之一。当一个列表键只包含少量列表项，并且每个列表项要么就是小整数，要么就是长度比较短的字符串，Redis就会使用压缩列表来做列表键的底层实现</li>
+<li>整数集合是集合键的底层实现之一，当一个集合只包含整数值元素，并且这个集合的元素数量不多时，Redis就会使用整数集合作为集合键的底层实现</li>
+</ol>
+<p>如下是定义一个Struct数据结构的例子：</p>
+<p><img src="https://czy1024.github.io/luna-image-bed/img/139239-20191126141036706-1247302576.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="简单动态字符串SDS-Simple-Dynamic-String"><a href="#简单动态字符串SDS-Simple-Dynamic-String" class="headerlink" title="简单动态字符串SDS (Simple Dynamic String)"></a>简单动态字符串SDS (Simple Dynamic String)</h4><p>基于C语言中传统字符串的缺陷，Redis自己构建了一种名为简单动态字符串的抽象类型，简称SDS，其结构如下：</p>
+<p><img src="https://czy1024.github.io/luna-image-bed/img/139239-20191126141052157-436992972.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>SDS几乎贯穿了Redis的所有数据结构，应用十分广泛。</p>
+<h4 id="SDS的特点"><a href="#SDS的特点" class="headerlink" title="SDS的特点"></a>SDS的特点</h4><p>和C字符串相比，SDS的特点如下：</p>
+<p><img src="https://czy1024.github.io/luna-image-bed/img/139239-20191126141103927-1852926069.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>　　1. 常数复杂度获取字符串长度</p>
+<p>　　　　Redis中利用SDS字符串的len属性可以直接获取到所保存的字符串的长<br>　　　　度，直接将获取字符串长度所需的复杂度从C字符串的O(N)降低到了O(1)。</p>
+<p>　　2. 减少修改字符串时导致的内存重新分配次数</p>
+<p>　　　　通过C字符串的特性，我们知道对于一个包含了N个字符的C字符串来说，其底层实现总是N+1个字符长的数组（额外一个空字符结尾）</p>
+<p>　　　　那么如果这个时候需要对字符串进行修改，程序就需要提前对这个C字符串数组进行一次内存重分配（可能是扩展或者释放）　</p>
+<p>　　　　而内存重分配就意味着是一个耗时的操作。</p>
+<p>Redis巧妙的使用了SDS避免了C字符串的缺陷。在SDS中，buf数组的长度不一定就是字符串的字符数量加一，buf数组里面可以包含未使用的字节，而这些未使用的字节由free属性记录。</p>
+<p>与此同时，SDS采用了<strong>空间预分配</strong>的策略，避免C字符串每一次修改时都需要进行内存重分配的耗时操作，将内存重分配从原来的每修改N次就分配N次——&gt;降低到了修改N次最多分配N次。</p>
+<p>如下是Redis对SDS的简单定义：</p>
+<p><img src="https://czy1024.github.io/luna-image-bed/img/139239-20191126141239967-123973180.png" srcset="/img/loading.gif" lazyload alt="img"> </p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvqmb7qezrj60bb0bwdgx02.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="Redis特性1：事务"><a href="#Redis特性1：事务" class="headerlink" title="Redis特性1：事务"></a>Redis特性1：事务</h3><ul>
+<li>命令序列化，按顺序执行</li>
+<li>原子性</li>
+<li>三阶段: 开始事务 - 命令入队 - 执行事务</li>
+<li>命令：MULTI/EXEC/DISCARD</li>
+</ul>
+<h3 id="Redis特性2：发布订阅-Pub-Sub"><a href="#Redis特性2：发布订阅-Pub-Sub" class="headerlink" title="Redis特性2：发布订阅(Pub/Sub)"></a>Redis特性2：发布订阅(Pub/Sub)</h3><ul>
+<li>Pub/sub是一种消息通讯模式</li>
+<li>Pub发送消息, Sub接受消息</li>
+<li>Redis客户端可以订阅任意数量的频道</li>
+<li>“fire and forgot”, 发送即遗忘</li>
+<li>命令：Publish/Subscribe/Psubscribe/UnSub</li>
+</ul>
+<p>　　<img src="https://i.loli.net/2021/01/19/u5pyEk47B2dKDHC.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="Redis特性3：Stream"><a href="#Redis特性3：Stream" class="headerlink" title="Redis特性3：Stream"></a>Redis特性3：Stream</h3><ul>
+<li>Redis 5.0新增</li>
+<li>等待消费</li>
+<li>消费组(组内竞争)</li>
+<li>消费历史数据</li>
+<li>FIFO</li>
+</ul>
+<p><img src="https://i.loli.net/2021/01/19/5RsvUW9X81aLdVl.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>以上就是Redis的基本概念，下面我们将介绍在开发过程中可能会踩到的“坑”。</p>
+<h3 id="Redis常见问题解析：击穿"><a href="#Redis常见问题解析：击穿" class="headerlink" title="Redis常见问题解析：击穿"></a>Redis常见问题解析：击穿</h3><p>概念：在Redis获取某一key时, 由于key不存在, 而必须向DB发起一次请求的行为, 称为“Redis击穿”。</p>
+<p><img src="https://i.loli.net/2021/01/19/KXzoAb5Wf8xjMpB.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>引发击穿的原因：</p>
+<ul>
+<li>第一次访问</li>
+<li>恶意访问不存在的key</li>
+<li>Key过期</li>
+</ul>
+<p>合理的规避方案：</p>
+<ul>
+<li>服务器启动时, 提前写入</li>
+<li>规范key的命名, 通过中间件拦截</li>
+<li>对某些高频访问的Key，设置合理的TTL或永不过期</li>
+</ul>
+<h3 id="Redis常见问题解析：雪崩"><a href="#Redis常见问题解析：雪崩" class="headerlink" title="Redis常见问题解析：雪崩"></a>Redis常见问题解析：雪崩</h3><p>概念：Redis缓存层由于某种原因宕机后，所有的请求会涌向存储层，短时间内的高并发请求可能会导致存储层挂机，称之为“Redis雪崩”。</p>
+<p>合理的规避方案：</p>
+<ul>
+<li>使用Redis集群</li>
+<li>限流</li>
+</ul>
+<h3 id="Redis在产品开发中的应用实践"><a href="#Redis在产品开发中的应用实践" class="headerlink" title="Redis在产品开发中的应用实践"></a>Redis在产品开发中的应用实践</h3><p>为此，我很高兴的为大家介绍，葡萄城架构师Jim将在2019-11-27 14：00 为大家带来一场公开课，其中 Jim除了为大家讲解Redis的基础，同时也会实际演示他所在的项目组使用Redis时碰到的问题以及解决方案，对于刚接触Redis的同学来说，更具参考意义和学习价值，欢迎大家届时参加，公开课地址：<a target="_blank" rel="noopener" href="https://live.vhall.com/661463644%E3%80%82">https://live.vhall.com/661463644。</a></p>
+<ul>
+<li>后端采用nodeJS</li>
+<li>使用Azure的Redis服务</li>
+<li>Redis的使用场景</li>
+</ul>
+<p>　　　　- token缓存, 用于令牌验证</p>
+<p>　　　　- IP白名单</p>
+<p>碰到的问题</p>
+<ul>
+<li>“网络抖动”或者Redis服务异常导致Redis访问超时</li>
+<li>Redis客户端驱动稳定性问题</li>
+</ul>
+<p>　　　　- 连接池 “Broken connection” 问题</p>
+<p>　　　　- JS的Promise引出的Redis重置问题</p>
+<p>下面我们来简单了解一下Redis的进阶知识。</p>
+<h3 id="进阶之Redis协议简介"><a href="#进阶之Redis协议简介" class="headerlink" title="进阶之Redis协议简介"></a>进阶之Redis协议简介</h3><p>Redis客户端通讯协议：RESP(Redis Serialization Protocol)，其特点是：</p>
+<ul>
+<li>简单</li>
+<li>解析速度快</li>
+<li>可读性好</li>
+</ul>
+<p>Redis集群内部通讯协议：RECP(Redis Cluster Protocol ) ，其特点是：</p>
+<ul>
+<li>每一个node两个tcp 连接</li>
+<li>一个负责client-server通讯(P: 6379)</li>
+<li>一个负责node之间通讯(P: 10000 + 6379)</li>
+</ul>
+<p> <img src="https://i.loli.net/2021/01/19/1kqa8y9d3guoKNx.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>Redis协议支持的数据类型：</p>
+<ul>
+<li><p>简单字符(首字节: “+”)</p>
+<p> 　　“+OK\r\n”</p>
+</li>
+<li><p>错误(首字节: “-”)</p>
+<p> 　　“-error msg\r\n”</p>
+</li>
+<li><p>数字(首字节: “:”)</p>
+<p> 　　“:123\r\n”</p>
+</li>
+<li><p>批量字符(首字节: “$”)</p>
+<p> 　　“&amp;hello\r\nWhoa re you\r\n”</p>
+</li>
+<li><p>数组(首字节: “*”)</p>
+<p> 　　“*0\r\n”</p>
+<div class="hljs code-wrapper"><pre><code>　　“*-1\r\n”
+</code></pre></div>
+</li>
+</ul>
+<h3 id="除了Redis，还有什么NoSQL型数据库"><a href="#除了Redis，还有什么NoSQL型数据库" class="headerlink" title="除了Redis，还有什么NoSQL型数据库"></a>除了Redis，还有什么NoSQL型数据库</h3><p>市面上类似于Redis，同样是NoSQL型的数据库有很多，如下图所示，除了Redis，还有MemCache、Cassadra和Mongo。下面，我们就分别对这几个数据库做一下简要的介绍：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvqmard27zj608w0aswez02.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>Memcache****：</strong>这是一个和Redis非常相似的数据库，但是它的数据类型没有Redis丰富。Memcache由LiveJournal的Brad Fitzpatrick开发，作为一套分布式的高速缓存系统，被许多网站使用以提升网站的访问速度，对于一些大型的、需要频繁访问数据库的网站访问速度的提升效果十分显著。</p>
+<p><strong>Apache Cassandra****：</strong>（社区内一般简称为C*）这是一套开源分布式NoSQL数据库系统。它最初由Facebook开发，用于储存收件箱等简单格式数据，集Google BigTable的数据模型与Amazon Dynamo的完全分布式架构于一身。Facebook于2008将 Cassandra 开源，由于其良好的可扩展性和性能，被 Apple、Comcast、Instagram、Spotify、eBay、Rackspace、Netflix等知名网站所采用，成为了一种流行的分布式结构化数据存储方案。</p>
+<p><strong>MongoDB</strong>：是一个基于分布式文件存储、面向文档的NoSQL数据库，由C++编写，旨在为WEB应用提供可扩展的高性能数据存储解决方案。MongoDB是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系型数据库的，它支持的数据结构非常松散，是一种类似json的BSON格式。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/categories/java/middle-component/">middle-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/java/middle-component/redis/">redis</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/redis/">redis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/05/basic-connect-vncserver/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vncserver</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/01/linux-apt-get/">
+                        <span class="hidden-mobile">apt-get</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

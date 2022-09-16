@@ -1,0 +1,1286 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="easyCode 代码生成dao##定义初始变量 #set($tableName &#x3D; $tool.append($tableInfo.name, &quot;Mapper&quot;)) ##设置回调 $!callback.setFileName($tool.append($tableName, &quot;.java&quot;)) $!callback.setSavePath($tool.ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="easyCode">
+<meta property="og:url" content="https://lunasaw.github.io/2020/09/13/idea-easycode/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="easyCode 代码生成dao##定义初始变量 #set($tableName &#x3D; $tool.append($tableInfo.name, &quot;Mapper&quot;)) ##设置回调 $!callback.setFileName($tool.append($tableName, &quot;.java&quot;)) $!callback.setSavePath($tool.ap">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.984Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="easyCode">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>easyCode - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/idea-easycode-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="easyCode">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-13 00:00" pubdate>
+        2020年9月13日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      26k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      81 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">easyCode</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="easyCode-代码生成"><a href="#easyCode-代码生成" class="headerlink" title="easyCode 代码生成"></a>easyCode 代码生成</h1><h5 id="dao"><a href="#dao" class="headerlink" title="dao"></a>dao</h5><div class="hljs code-wrapper"><pre><code class="hljs java">##定义初始变量
+#set($tableName = $tool.append($tableInfo.name, &quot;Mapper&quot;))
+##设置回调
+$!callback.setFileName($tool.append($tableName, <span class="hljs-string">&quot;.java&quot;</span>))
+$!callback.setSavePath($tool.append($tableInfo.savePath, <span class="hljs-string">&quot;/mapper&quot;</span>))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!&#123;tableInfo.savePackageName&#125;.#&#123;end&#125;mapper;
+
+<span class="hljs-keyword">import</span> $!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;;
+<span class="hljs-keyword">import</span> org.apache.ibatis.annotations.Mapper;
+<span class="hljs-keyword">import</span> org.apache.ibatis.annotations.Param;
+<span class="hljs-keyword">import</span> javax.validation.constraints.*;
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"><span class="hljs-doctag">@Author</span>: $&#123;author&#125;</span>
+<span class="hljs-comment"><span class="hljs-doctag">@CreateTime</span>: $&#123;time.currTime(&quot;yyyy-MM-dd HH:mm:ss&quot;)&#125;</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@Mapper</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> $!</span>&#123;tableName&#125; &#123;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过主键查询数据</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!pk.name 主键</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象</span>
+<span class="hljs-comment">     */</span>
+    $!&#123;tableInfo.name&#125; getById(<span class="hljs-meta">@NotNull</span> $!pk.shortType $!pk.name);
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过实体不为空的属性作为筛选条件查询单个</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象</span>
+<span class="hljs-comment">     */</span>
+    $!&#123;tableInfo.name&#125; getByEntity($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;));
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过实体不为空的属性作为筛选条件查询列表</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象列表</span>
+<span class="hljs-comment">     */</span>
+    List&lt;$!&#123;tableInfo.name&#125;&gt; listByEntity($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;));
+    
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过Id列表作为筛选条件查询列表，列表长度不为0</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> list 列表</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象列表</span>
+<span class="hljs-comment">     */</span>
+    List&lt;$!&#123;tableInfo.name&#125;&gt; listByIds(<span class="hljs-meta">@NotEmpty</span> List&lt;$!pk.shortType&gt; list);
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 新增实体属性不为null的列</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 实例</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-meta">@NotNull</span> $!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>)</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 批量新增所有列，列表长度不能为0，且列表id统一为null或者统一不为null</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> list 实例</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">insertBatch</span><span class="hljs-params">(<span class="hljs-meta">@NotEmpty</span> List&lt;$!&#123;tableInfo.name&#125;&gt; list)</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过主键修改实体属性不为null的列</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 实例</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-meta">@NotNull</span> $!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>)</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过表字段修改实体属性不为null的列</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> where 条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> where set</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">updateByField</span><span class="hljs-params">(<span class="hljs-meta">@NotNull</span> <span class="hljs-meta">@Param(&quot;where&quot;)</span> $!&#123;tableInfo.name&#125; where, <span class="hljs-meta">@NotNull</span> <span class="hljs-meta">@Param(&quot;set&quot;)</span> $!&#123;tableInfo.name&#125; set)</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过主键修改实体列表，列表长度不能为0，注意：当实体属性为null时，对应的列也会别更新为null</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> list 列表</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">updateBatch</span><span class="hljs-params">(<span class="hljs-meta">@NotEmpty</span> List&lt;$!&#123;tableInfo.name&#125;&gt; list)</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过主键删除</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!pk.name 主键</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteById</span><span class="hljs-params">(<span class="hljs-meta">@NotNull</span> $!pk.shortType $!pk.name)</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过实体非空属性删除</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteByEntity</span><span class="hljs-params">(<span class="hljs-meta">@NotNull</span> $!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>)</span>;
+  
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过主键列表删除，列表长度不能为0</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> list 列表</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteByIds</span><span class="hljs-params">(<span class="hljs-meta">@NotEmpty</span> List&lt;$!pk.shortType&gt; list)</span></span>;
+    
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 查询行数</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countAll</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过实体非空查询行数</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countByEntity</span><span class="hljs-params">($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>)</span>;
+    
+&#125;</code></pre></div>
+
+<h5 id="mapper"><a href="#mapper" class="headerlink" title="mapper"></a>mapper</h5><div class="hljs code-wrapper"><pre><code class="hljs xml">##引入mybatis支持
+$!mybatisSupport
+
+##设置保存名称与保存位置
+$!callback.setFileName($tool.append($!&#123;tableInfo.name&#125;, &quot;Mapper.xml&quot;))
+$!callback.setSavePath($tool.append($modulePath, &quot;/src/main/resources/mapper&quot;))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+<span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span> <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="hljs-meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.savePackageName&#125;.mapper.$!&#123;tableInfo.name&#125;Mapper&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.name&#125;ResultMap&quot;</span>&gt;</span>
+#foreach($column in $tableInfo.fullColumn)
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;$!column.name&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;$!column.obj.name&quot;</span> <span class="hljs-attr">jdbcType</span>=<span class="hljs-string">&quot;$!column.ext.jdbcType&quot;</span>/&gt;</span>
+#end
+    <span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">sql</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;table_field&quot;</span>&gt;</span>
+      #allSqlColumn()
+      
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sql</span>&gt;</span>
+       
+    <span class="hljs-comment">&lt;!--通过Id查询单个--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getById&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.name&#125;ResultMap&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;$pk.type&quot;</span>&gt;</span>
+        select
+          <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;table_field&quot;</span> /&gt;</span>
+        from $!tableInfo.obj.name
+        where $!pk.obj.name = #&#123;$!pk.name,jdbcType=$!pk.ext.jdbcType&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+
+
+    <span class="hljs-comment">&lt;!--通过实体不为空的属性作为筛选条件查询列表--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;listByEntity&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.name&#125;ResultMap&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;&quot;</span>&gt;</span>
+        select
+          <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;table_field&quot;</span> /&gt;</span>
+        from $!tableInfo.obj.name
+        <span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
+#foreach($column in $tableInfo.fullColumn)
+            <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;$!column.name != null&quot;</span>&gt;</span>
+                and $!column.obj.name = #&#123;$!column.name,jdbcType=$!column.ext.jdbcType&#125;
+            <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+#end
+        <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--通过实体不为空的属性作为筛选条件查询单个--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getByEntity&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.name&#125;ResultMap&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;&quot;</span>&gt;</span>
+        select
+          <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;table_field&quot;</span> /&gt;</span>
+        from $!tableInfo.obj.name
+        <span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
+#foreach($column in $tableInfo.fullColumn)
+            <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;$!column.name != null&quot;</span>&gt;</span>
+                and $!column.obj.name = #&#123;$!column.name,jdbcType=$!column.ext.jdbcType&#125;
+            <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+#end
+        <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--通过Id列表作为筛选条件查询列表，列表长度不为0--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;listByIds&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.name&#125;ResultMap&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
+        select
+          <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;table_field&quot;</span> /&gt;</span>
+        from $!tableInfo.obj.name
+        where $!pk.obj.name in
+        <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">index</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span>
+            #&#123;item&#125;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--新增实体属性不为null的列--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insert&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;$!pk.name&quot;</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;&quot;</span>&gt;</span>
+        insert into $!&#123;tableInfo.obj.name&#125;
+        <span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">suffix</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">suffixOverrides</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span>
+#foreach($column in  $tableInfo.fullColumn)
+          <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;$!column.name != null&quot;</span>&gt;</span>
+             $!column.obj.name,
+          <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+#end          
+        <span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;values (&quot;</span> <span class="hljs-attr">suffix</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">suffixOverrides</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span>
+#foreach($column in  $tableInfo.fullColumn)
+          <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;$!column.name != null&quot;</span>&gt;</span>
+             #&#123;$!column.name,jdbcType=$!column.ext.jdbcType&#125;,
+          <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+#end
+        <span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--批量新增所有列，列表长度不能为0，且列表id统一为null或者统一不为null--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertBatch&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;$!pk.name&quot;</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
+        insert into $!&#123;tableInfo.obj.name&#125;
+         (#foreach($column in $tableInfo.fullColumn)$!&#123;column.obj.name&#125;#if($velocityHasNext), #end#end)
+        values
+        <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">index</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span>
+         (#foreach($column in $tableInfo.fullColumn)#&#123;item.$!&#123;column.name&#125;,jdbcType=$!column.ext.jdbcType&#125;#if($velocityHasNext), #end#end)
+        <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--通过主键修改实体属性不为null的列--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;update&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;&quot;</span>&gt;</span>
+        update $!&#123;tableInfo.obj.name&#125;
+        <span class="hljs-tag">&lt;<span class="hljs-name">set</span>&gt;</span>
+#foreach($column in $tableInfo.otherColumn)
+            <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;$!column.name != null#if($column.type.equals(&quot;</span><span class="hljs-attr">java.lang.String</span>&quot;)) <span class="hljs-attr">and</span> $!<span class="hljs-attr">column.name</span> != <span class="hljs-string">&#x27;&#x27;</span>#<span class="hljs-attr">end</span>&quot;&gt;</span>
+                $!column.obj.name = #&#123;$!column.name,jdbcType=$!column.ext.jdbcType&#125;,
+            <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+#end
+        <span class="hljs-tag">&lt;/<span class="hljs-name">set</span>&gt;</span>
+        where $!pk.obj.name = #&#123;$!pk.name,jdbcType=$!pk.ext.jdbcType&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--通过表字段修改实体属性不为null的列--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;updateByField&quot;</span>&gt;</span>
+        update $!&#123;tableInfo.obj.name&#125;
+        <span class="hljs-tag">&lt;<span class="hljs-name">set</span>&gt;</span>
+#foreach($column in $tableInfo.otherColumn)
+            <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;where.$!&#123;column.name&#125; == null and set.$!&#123;column.name&#125; != null#if($column.type.equals(&quot;</span><span class="hljs-attr">java.lang.String</span>&quot;)) <span class="hljs-attr">and</span> <span class="hljs-attr">set.</span>$!&#123;<span class="hljs-attr">column.name</span>&#125; != <span class="hljs-string">&#x27;&#x27;</span>#<span class="hljs-attr">end</span>&quot;&gt;</span>
+                $!column.obj.name = #&#123;set.$!&#123;column.name&#125;,jdbcType=$!column.ext.jdbcType&#125;,
+            <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+#end
+        <span class="hljs-tag">&lt;/<span class="hljs-name">set</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
+#foreach($column in $tableInfo.fullColumn)
+            <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;where.$!&#123;column.name&#125; != null&quot;</span>&gt;</span>
+                and $!column.obj.name = #&#123;where.$!&#123;column.name&#125;,jdbcType=$!column.ext.jdbcType&#125;
+            <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+#end
+        <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--通过主键修改实体列表，列表长度不能为0，注意：当实体属性为null时，对应的列也会别更新为null--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;updateBatch&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
+        update $!&#123;tableInfo.obj.name&#125;
+        <span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;set&quot;</span> <span class="hljs-attr">suffixOverrides</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span>
+#foreach($column in $tableInfo.otherColumn)
+            <span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;$!&#123;column.obj.name&#125; = case&quot;</span> <span class="hljs-attr">suffix</span>=<span class="hljs-string">&quot;end,&quot;</span>&gt;</span>
+                 <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">index</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span>
+                  when $!pk.obj.name = #&#123;item.$!pk.name&#125; then #&#123;item.$!column.name&#125;
+                 <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span>
+#end
+        <span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span>
+        where $!pk.obj.name in
+        <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">index</span>=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span>&gt;</span>
+            #&#123;item.$!pk.name,jdbcType=$!pk.ext.jdbcType&#125;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span>
+    
+    <span class="hljs-comment">&lt;!--通过主键删除--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;deleteById&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;$pk.type&quot;</span>&gt;</span>
+        delete from $!&#123;tableInfo.obj.name&#125; where $!pk.obj.name = #&#123;$!pk.name,jdbcType=$!pk.ext.jdbcType&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--通过实体非空属性删除--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;deleteByEntity&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;&quot;</span>&gt;</span>
+        delete from $!&#123;tableInfo.obj.name&#125;
+        <span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
+#foreach($column in $tableInfo.otherColumn)
+            <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;$!column.name != null&quot;</span>&gt;</span>
+                and $!column.obj.name = #&#123;$!column.name,jdbcType=$!column.ext.jdbcType&#125;
+            <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+#end
+        <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span>
+    
+    <span class="hljs-comment">&lt;!--通过主键列表删除，列表长度不能为0--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;deleteByIds&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
+        delete from $!&#123;tableInfo.obj.name&#125; where $!pk.obj.name in
+        <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">index</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span>
+            #&#123;item&#125;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;countAll&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;int&quot;</span>&gt;</span>
+        select count($!pk.obj.name) from $!&#123;tableInfo.obj.name&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;countByEntity&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;$!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;int&quot;</span>&gt;</span>
+        select count($!pk.obj.name) from $!&#123;tableInfo.obj.name&#125;
+        <span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
+#foreach($column in $tableInfo.fullColumn)
+            <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;$!column.name != null&quot;</span>&gt;</span>
+                and $!column.obj.name = #&#123;$!column.name,jdbcType=$!column.ext.jdbcType&#125;
+            <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+#end
+        <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
+
+<h5 id="service"><a href="#service" class="headerlink" title="service"></a>service</h5><div class="hljs code-wrapper"><pre><code class="hljs java">##定义初始变量
+#set($tableName = $tool.append($tableInfo.name, &quot;Service&quot;))
+##设置回调
+$!callback.setFileName($tool.append($tableName, <span class="hljs-string">&quot;.java&quot;</span>))
+$!callback.setSavePath($tool.append($tableInfo.savePath, <span class="hljs-string">&quot;/service&quot;</span>))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!&#123;tableInfo.savePackageName&#125;.#&#123;end&#125;service;
+
+<span class="hljs-keyword">import</span> $!&#123;tableInfo.savePackageName&#125;.mapper.$!&#123;tableInfo.name&#125;Mapper;
+<span class="hljs-keyword">import</span> $!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;;
+<span class="hljs-keyword">import</span> com.github.pagehelper.PageHelper;
+<span class="hljs-keyword">import</span> com.github.pagehelper.PageInfo;
+
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"><span class="hljs-doctag">@Author</span>: $&#123;author&#125;</span>
+<span class="hljs-comment"><span class="hljs-doctag">@CreateTime</span>: $&#123;time.currTime(&quot;yyyy-MM-dd HH:mm:ss&quot;)&#125;</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> $!</span>&#123;tableName&#125; &#123;
+   
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过主键查询数据</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!pk.name 主键</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象</span>
+<span class="hljs-comment">     */</span>
+    $!&#123;tableInfo.name&#125; getById($!pk.shortType $!pk.name);
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过实体不为空的属性作为筛选条件查询单个</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象</span>
+<span class="hljs-comment">     */</span>
+    $!&#123;tableInfo.name&#125; getByEntity($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;));
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过实体不为空的属性作为筛选条件查询列表</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象列表</span>
+<span class="hljs-comment">     */</span>
+    List&lt;$!&#123;tableInfo.name&#125;&gt; listByEntity($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;));
+    
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 条件分页查询</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 查询条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> page 起始标号</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> pageSize 查询条目</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象列表</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function">PageInfo <span class="hljs-title">listPageByEntity</span><span class="hljs-params">(<span class="hljs-keyword">int</span> page, <span class="hljs-keyword">int</span> pageSize, $!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>)</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 条件分页查询</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> page 起始标号</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> pageSize 查询条目</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象列表</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function">PageInfo <span class="hljs-title">listPage</span><span class="hljs-params">(<span class="hljs-keyword">int</span> page, <span class="hljs-keyword">int</span> pageSize)</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Id列表查询对象列表</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ids Id列表</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 对象列表</span>
+<span class="hljs-comment">     */</span>
+    List&lt;$!&#123;tableInfo.name&#125;&gt; listByIds(List&lt;$!pk.shortType&gt; ids);
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 插入</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 对象</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">insert</span><span class="hljs-params">($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>)</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 列表插入</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> list 列表对象</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">insertBatch</span><span class="hljs-params">(List&lt;$!&#123;tableInfo.name&#125;&gt; list)</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 更新</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 对象</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">update</span><span class="hljs-params">($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>)</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 列表更新</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> list 列表对象</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">updateBatch</span><span class="hljs-params">(List&lt;$!&#123;tableInfo.name&#125;&gt; list)</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 删除</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!pk.name 主键</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteById</span><span class="hljs-params">($!pk.shortType $!pk.name)</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 条件删除</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 对象</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteByEntity</span><span class="hljs-params">($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>)</span>;
+ 
+     <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 主键列表删除</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> list 主键列表</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span> 
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteByIds</span><span class="hljs-params">(List&lt;$!pk.shortType&gt; list)</span></span>;
+    
+     <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 数据条目</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span> 
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countAll</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 条件查询数目</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> $!tool.firstLowerCase($!&#123;tableInfo.name&#125;) 对象</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 影响行数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countByEntity</span><span class="hljs-params">($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>)</span>;
+&#125;</code></pre></div>
+
+<h5 id="serviceImpl"><a href="#serviceImpl" class="headerlink" title="serviceImpl"></a>serviceImpl</h5><div class="hljs code-wrapper"><pre><code class="hljs java">##定义初始变量
+#set($tableName = $tool.append($tableInfo.name, &quot;ServiceImpl&quot;))
+##设置回调
+$!callback.setFileName($tool.append($tableName, <span class="hljs-string">&quot;.java&quot;</span>))
+$!callback.setSavePath($tool.append($tableInfo.savePath, <span class="hljs-string">&quot;/service/impl&quot;</span>))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!&#123;tableInfo.savePackageName&#125;.#&#123;end&#125;service.impl;
+
+<span class="hljs-keyword">import</span> $!&#123;tableInfo.savePackageName&#125;.mapper.$!&#123;tableInfo.name&#125;Mapper;
+<span class="hljs-keyword">import</span> $!&#123;tableInfo.savePackageName&#125;.service.$!&#123;tableInfo.name&#125;Service;
+<span class="hljs-keyword">import</span> $!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;;
+<span class="hljs-keyword">import</span> javax.annotation.Resource;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
+<span class="hljs-keyword">import</span> com.github.pagehelper.PageHelper;
+<span class="hljs-keyword">import</span> com.github.pagehelper.PageInfo;
+<span class="hljs-keyword">import</span> java.util.Date;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"><span class="hljs-doctag">@Author</span>: $&#123;author&#125;</span>
+<span class="hljs-comment"><span class="hljs-doctag">@CreateTime</span>: $&#123;time.currTime(&quot;yyyy-MM-dd HH:mm:ss&quot;)&#125;</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> $!</span>&#123;tableName&#125; implements $!&#123;tableInfo.name&#125;Service &#123;
+
+    <span class="hljs-meta">@Resource(type = $!&#123;tableInfo.name&#125;Mapper.class)</span>
+    <span class="hljs-keyword">private</span> $!&#123;tableInfo.name&#125;Mapper $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)Mapper;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> $!&#123;tableInfo.name&#125; getById($!pk.shortType $!pk.name) &#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.getById($!&#123;pk.name&#125;);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> $!&#123;tableInfo.name&#125; getByEntity($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)) &#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.getByEntity($!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> List&lt;$!&#123;tableInfo.name&#125;&gt; listByEntity($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)) &#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.listByEntity($!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;);
+    &#125;
+    
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> PageInfo <span class="hljs-title">listPageByEntity</span><span class="hljs-params">(<span class="hljs-keyword">int</span> page, <span class="hljs-keyword">int</span> pageSize, $!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>) </span>&#123;
+        PageHelper.startPage(page,pageSize);
+        List&lt;$!&#123;tableInfo.name&#125;&gt; list = $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.listByEntity($!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> PageInfo(list);
+    &#125;
+    
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> PageInfo <span class="hljs-title">listPage</span><span class="hljs-params">(<span class="hljs-keyword">int</span> page, <span class="hljs-keyword">int</span> pageSize)</span> </span>&#123;
+        PageHelper.startPage(page,pageSize);
+        List&lt;$!&#123;tableInfo.name&#125;&gt; list = $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.listByEntity(<span class="hljs-keyword">new</span> $!&#123;tableInfo.name&#125;());
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> PageInfo(list);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> List&lt;$!&#123;tableInfo.name&#125;&gt; listByIds(List&lt;$!pk.shortType&gt; ids) &#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.listByIds(ids);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">insert</span><span class="hljs-params">($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>) </span>&#123;
+        Date date = <span class="hljs-keyword">new</span> Date();
+        $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;.setCreateTime(date);
+        $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;.setUpdateTime(date);
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.insert($!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;);
+    &#125;
+   
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">insertBatch</span><span class="hljs-params">(List&lt;$!&#123;tableInfo.name&#125;&gt; list)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.insertBatch(list);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">update</span><span class="hljs-params">($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>) </span>&#123;
+        $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;.setUpdateTime(<span class="hljs-keyword">new</span> Date());
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.update($!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">updateBatch</span><span class="hljs-params">(List&lt;$!&#123;tableInfo.name&#125;&gt; list)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.updateBatch(list);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">deleteById</span><span class="hljs-params">($!pk.shortType $!pk.name)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.deleteById($!pk.name);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">deleteByEntity</span><span class="hljs-params">($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>) </span>&#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.deleteByEntity($!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;);
+    &#125;
+  
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">deleteByIds</span><span class="hljs-params">(List&lt;$!pk.shortType&gt; list)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.deleteByIds(list);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">countAll</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.countAll();
+    &#125;
+    
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">countByEntity</span><span class="hljs-params">($!&#123;tableInfo.name&#125; $!tool.firstLowerCase($!&#123;tableInfo.name&#125;)</span>) </span>&#123;
+        <span class="hljs-keyword">return</span> $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;Mapper.countByEntity($!tool.firstLowerCase($!&#123;tableInfo.name&#125;));
+    &#125;
+
+&#125;
+</code></pre></div>
+
+<h5 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h5><div class="hljs code-wrapper"><pre><code class="hljs java">##定义初始变量
+#set($tableName = $tool.append($tableInfo.name, &quot;Controller&quot;))
+##设置回调
+$!callback.setFileName($tool.append($tableName, <span class="hljs-string">&quot;.java&quot;</span>))
+$!callback.setSavePath($tool.append($tableInfo.savePath, <span class="hljs-string">&quot;/controller&quot;</span>))
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!&#123;tableInfo.savePackageName&#125;.#&#123;end&#125;controller;
+
+<span class="hljs-keyword">import</span> $!&#123;tableInfo.savePackageName&#125;.entity.$!&#123;tableInfo.name&#125;;
+<span class="hljs-keyword">import</span> $!&#123;tableInfo.savePackageName&#125;.service.$!&#123;tableInfo.name&#125;Service;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"><span class="hljs-doctag">@Author</span>: $&#123;author&#125;</span>
+<span class="hljs-comment"><span class="hljs-doctag">@CreateTime</span>: $&#123;time.currTime(&quot;yyyy-MM-dd HH:mm:ss&quot;)&#125;</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-meta">@RequestMapping(&quot;/$!tool.firstLowerCase($tableInfo.name)&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> $!</span>&#123;tableName&#125; &#123;
+    
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> $!&#123;tableInfo.name&#125;Service $!tool.firstLowerCase($tableInfo.name)Service;
+
+    <span class="hljs-meta">@GetMapping(&quot;/get/&#123;$!pk.name&#125;&quot;)</span>
+    <span class="hljs-keyword">public</span> ResultDTO&lt;$!&#123;tableInfo.name&#125;&gt; getById(<span class="hljs-meta">@PathVariable</span> $!pk.shortType $!pk.name) &#123;
+        $tableInfo.name $!tool.firstLowerCase($tableInfo.name) = $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.getById(id);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, $!tool.firstLowerCase($tableInfo.name)!=<span class="hljs-keyword">null</span>?$!tool.firstLowerCase($tableInfo.name):<span class="hljs-keyword">new</span> $!&#123;tableInfo.name&#125;());
+    &#125;
+
+    <span class="hljs-meta">@GetMapping(&quot;/get&quot;)</span>
+    <span class="hljs-keyword">public</span> ResultDTO&lt;$!&#123;tableInfo.name&#125;&gt; getByEntity($tableInfo.name $!tool.firstLowerCase($tableInfo.name)) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.getByEntity($!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;));
+    &#125;
+
+    <span class="hljs-meta">@GetMapping(&quot;/list&quot;)</span>
+    <span class="hljs-keyword">public</span> ResultDTO&lt;List&lt;$!&#123;tableInfo.name&#125;&gt;&gt; list($tableInfo.name $!tool.firstLowerCase($tableInfo.name)) &#123;
+        List&lt;$tableInfo.name&gt; $!&#123;tool.firstLowerCase($tableInfo.name)&#125;List = $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.listByEntity($!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, $!&#123;tool.firstLowerCase($tableInfo.name)&#125;List);
+    &#125;
+    
+    <span class="hljs-meta">@GetMapping(&quot;/pageListByEntity/&#123;page&#125;/&#123;size&#125;&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ResultDTO&lt;PageInfo&gt; <span class="hljs-title">listPageByEntity</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(value = &quot;page&quot;)</span><span class="hljs-keyword">int</span> page, <span class="hljs-meta">@PathVariable(value = &quot;size&quot;)</span><span class="hljs-keyword">int</span> size, $tableInfo.name $!tool.firstLowerCase($tableInfo.name)</span>) </span>&#123;
+        PageInfo pageInfo = $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.listPageByEntity(page, size, $!&#123;tool.firstLowerCase($!&#123;tableInfo.name&#125;)&#125;);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, pageInfo);
+    &#125;
+    
+    <span class="hljs-meta">@GetMapping(&quot;/pageList/&#123;page&#125;/&#123;size&#125;&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ResultDTO&lt;PageInfo&gt; <span class="hljs-title">listPage</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(value = &quot;page&quot;)</span><span class="hljs-keyword">int</span> page, <span class="hljs-meta">@PathVariable(value = &quot;size&quot;)</span><span class="hljs-keyword">int</span> size)</span> </span>&#123;
+        PageInfo pageInfo = $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.listPage(page, size);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, pageInfo);
+    &#125;
+
+    <span class="hljs-meta">@PostMapping(&quot;/insert&quot;)</span>
+    <span class="hljs-keyword">public</span> ResultDTO&lt;$tableInfo.name&gt; insert(<span class="hljs-meta">@RequestBody</span> $tableInfo.name $!tool.firstLowerCase($tableInfo.name))&#123;
+        $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.insert($!tool.firstLowerCase($tableInfo.name));
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, $!tool.firstLowerCase($tableInfo.name));
+    &#125;
+    
+    <span class="hljs-meta">@PostMapping(&quot;/insertBatch&quot;)</span>
+    <span class="hljs-keyword">public</span> ResultDTO&lt;List&lt;$tableInfo.name&gt;&gt; insert(<span class="hljs-meta">@RequestBody</span> List&lt; $tableInfo.name&gt; $!tool.firstLowerCase($tableInfo.name)s)&#123;
+        $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.insertBatch($!tool.firstLowerCase($tableInfo.name)s);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, $!tool.firstLowerCase($tableInfo.name)s);
+    &#125;
+
+    <span class="hljs-meta">@PutMapping(&quot;/update&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ResultDTO&lt;Boolean&gt; <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> $tableInfo.name $!tool.firstLowerCase($tableInfo.name)</span>)</span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.update($!tool.firstLowerCase($tableInfo.name))==<span class="hljs-number">1</span>);
+    &#125;
+    
+    <span class="hljs-meta">@PutMapping(&quot;/updateBatch&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ResultDTO&lt;Boolean&gt; <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> List&lt;$tableInfo.name&gt; $!tool.firstLowerCase($tableInfo.name)</span>s)</span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.updateBatch($!tool.firstLowerCase($tableInfo.name)s) == $!tool.firstLowerCase($tableInfo.name)s.size());
+    &#125;
+
+    <span class="hljs-meta">@DeleteMapping(&quot;/delete/&#123;$!pk.name&#125;&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ResultDTO&lt;Boolean&gt; <span class="hljs-title">deleteOne</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> $!pk.shortType $!pk.name)</span></span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.deleteById($!pk.name)==<span class="hljs-number">1</span>);
+    &#125;
+    
+    <span class="hljs-meta">@DeleteMapping(&quot;/deleteByEntity/&#123;$!pk.name&#125;&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ResultDTO&lt;Boolean&gt; <span class="hljs-title">deleteOne</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> $tableInfo.name $!tool.firstLowerCase($tableInfo.name)</span>)</span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.deleteByEntity($!tool.firstLowerCase($tableInfo.name)) == <span class="hljs-number">1</span>);
+    &#125;
+
+    <span class="hljs-meta">@DeleteMapping(&quot;/delete&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ResultDTO&lt;Integer&gt; <span class="hljs-title">deleteBatch</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> List&lt;$!pk.shortType&gt; $!&#123;pk.name&#125;s)</span></span>&#123;
+        <span class="hljs-keyword">int</span> result = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span> ($!&#123;pk.name&#125;s!=<span class="hljs-keyword">null</span>&amp;&amp;$!&#123;pk.name&#125;s.size()&gt;<span class="hljs-number">0</span>)&#123; 
+            result = $!&#123;tool.firstLowerCase($tableInfo.name)&#125;Service.deleteByIds($!&#123;pk.name&#125;s);
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ResultDTO&lt;&gt;(<span class="hljs-keyword">true</span>, ResultCode.SUCCESS, ResultCode.MSG_SUCCESS, result);
+    &#125;
+
+&#125;</code></pre></div>
+
+<h5 id="entity"><a href="#entity" class="headerlink" title="entity"></a>entity</h5><div class="hljs code-wrapper"><pre><code class="hljs java">##引入宏定义
+$!init
+$!define
+
+##使用宏定义设置回调（保存位置与文件后缀）
+#save(&quot;/entity&quot;, &quot;.java&quot;)
+
+##使用宏定义设置包后缀
+#setPackageSuffix(&quot;entity&quot;)
+
+##使用全局变量实现默认包导入
+$!autoImport
+<span class="hljs-keyword">import</span> java.io.Serializable;
+ 
+##使用宏定义实现类注释信息
+#tableComment(&quot;实体类&quot;)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> $!</span>&#123;tableInfo.name&#125; implements Serializable &#123;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = $!tool.serial();
+#foreach($column in $tableInfo.fullColumn)
+    #if($&#123;column.comment&#125;)
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">      *$&#123;column.comment&#125;</span>
+<span class="hljs-comment">      */</span>
+    #end
+ 
+    <span class="hljs-keyword">private</span> $!&#123;tool.getClsNameByFullName($column.type)&#125; $!&#123;column.name&#125;;
+#end
+
+#foreach($column in $tableInfo.fullColumn)
+    ##使用宏定义实现get,set方法
+    #getSetMethod($column)
+#end
+ 
+&#125;</code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/java/">java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/easyCode/">easyCode</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/19/kali-2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">定制 Kali Linux</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/10/luna-commons-common/">
+                        <span class="hidden-mobile">luna-commons-common</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

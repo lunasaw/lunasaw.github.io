@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="rocketmq 原理解析RocketMQ 如何保证消息不丢失&#x2F;保证可靠性消息在 RocketMQ 流转大概可以分为三个阶段：发送阶段、存储阶段、消费阶段，那么可靠性就要从这三个阶段考虑。 生产者发送消息时主要依靠发送确认来确保消息可靠性的。同步异步发送都可以获取到发送状态，通过这个发送状态来判断本次消息是否成功发送。另外，发送消息时还可以指定一个超时时间，如果超出这个超时时间可以再次发送。 消费">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rocketmq 原理解析">
+<meta property="og:url" content="https://lunasaw.github.io/2022/09/06/basic-middle-rocketmq/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="rocketmq 原理解析RocketMQ 如何保证消息不丢失&#x2F;保证可靠性消息在 RocketMQ 流转大概可以分为三个阶段：发送阶段、存储阶段、消费阶段，那么可靠性就要从这三个阶段考虑。 生产者发送消息时主要依靠发送确认来确保消息可靠性的。同步异步发送都可以获取到发送状态，通过这个发送状态来判断本次消息是否成功发送。另外，发送消息时还可以指定一个超时时间，如果超出这个超时时间可以再次发送。 消费">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909153107.png">
+<meta property="og:image" content="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909155342.png">
+<meta property="og:image" content="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909151552.png">
+<meta property="og:image" content="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909151906.png">
+<meta property="og:image" content="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220830160040.png">
+<meta property="og:image" content="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220830164439.png">
+<meta property="og:image" content="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909105631.png">
+<meta property="article:published_time" content="2022-09-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:51:04.031Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="rocketmq">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909153107.png">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>rocketmq 原理解析 - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/connect/connect-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="rocketmq 原理解析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-09-06 00:00" pubdate>
+        2022年9月6日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">rocketmq 原理解析</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：14 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="rocketmq-原理解析"><a href="#rocketmq-原理解析" class="headerlink" title="rocketmq 原理解析"></a>rocketmq 原理解析</h1><h2 id="RocketMQ-如何保证消息不丢失-保证可靠性"><a href="#RocketMQ-如何保证消息不丢失-保证可靠性" class="headerlink" title="RocketMQ 如何保证消息不丢失/保证可靠性"></a>RocketMQ 如何保证消息不丢失/保证可靠性</h2><h4 id="消息在-RocketMQ-流转大概可以分为三个阶段：发送阶段、存储阶段、消费阶段，那么可靠性就要从这三个阶段考虑。"><a href="#消息在-RocketMQ-流转大概可以分为三个阶段：发送阶段、存储阶段、消费阶段，那么可靠性就要从这三个阶段考虑。" class="headerlink" title="消息在 RocketMQ 流转大概可以分为三个阶段：发送阶段、存储阶段、消费阶段，那么可靠性就要从这三个阶段考虑。"></a>消息在 RocketMQ 流转大概可以分为三个阶段：发送阶段、存储阶段、消费阶段，那么可靠性就要从这三个阶段考虑。</h4><ul>
+<li>生产者发送消息时主要依靠<strong>发送确认</strong>来确保消息可靠性的。同步异步发送都可以获取到发送状态，通过这个发送状态来判断本次消息是否成功发送。另外，发送消息时还可以指定一个超时时间，如果超出这个超时时间可以再次发送。</li>
+<li>消费者消费消息时也存在一个<strong>消费确认机制</strong>，当消费者消费消息成功或失败都会给 Broker 返回消费状态，消费成功则结束本次流程；消费失败 Broker 则会重新发送消息。如果停电、宕机 Broker 都不会认为消费成功，也会继续重新投递。</li>
+<li>Broker 存储阶段保证消息不丢失的手段就是<strong>把消息记录到 CommitLog 中</strong>，保证消息不会丢失。</li>
+</ul>
+<h4 id="关于保证成功记录到-CommitLog-有两种方式："><a href="#关于保证成功记录到-CommitLog-有两种方式：" class="headerlink" title="关于保证成功记录到 CommitLog 有两种方式："></a>关于保证成功记录到 CommitLog 有两种方式：</h4><ul>
+<li>同步刷盘，生产者把消息发送到 Broker 后，只有 Broker 成功地把消息写入到 CommitLog 后，才能给生产者返回发送成功的 ACK。这种方式可靠性更高，但是牺牲了效率。</li>
+<li>异步刷盘，Broker 把消息写入到 CommitLog 采用后台异步线程刷盘的方式，刷盘完成后回调接口返回发送成功的 ACK。可以降低读写延迟，提高 RocketMQ 的吞吐量，但是当 Broker 宕机时会丢失部分未从内存中写入到文件的消息。</li>
+</ul>
+<h2 id="RocketMQ-中消息重复的问题"><a href="#RocketMQ-中消息重复的问题" class="headerlink" title="RocketMQ 中消息重复的问题"></a>RocketMQ 中消息重复的问题</h2><p>在分布式消息队列中，同时确保消息不丢失和不重复是很难的，RocketMQ 选择了保证消息不丢失，消息重复的问题需要在业务端自行解决。</p>
+<p>在 RocketMQ 中，造成消息重复的<strong>根本原因是网络波动</strong>，会导致消费者收到两条一样的消息。</p>
+<p>RocketMQ 不保证消息不重复，如果要严格确保不重复，需要在业务端去重，可以使用如下手段：</p>
+<ul>
+<li>多次消费不影响：消费端的消息处理业务逻辑保证幂等性，这样无论消息消费多少次都对业务没有影响；</li>
+<li>过滤重复消息：生产者发送时确保每一条消息都有唯一编号（业务相关的比如说是订单号），建立一个消费记录表，当拿到这个消息时保存到数据库，给这个消息做唯一约束，当出现重复消费时，唯一约束就不满足，那么就抛弃这条消息。</li>
+</ul>
+<h2 id="RocketMQ-消息堆积问题"><a href="#RocketMQ-消息堆积问题" class="headerlink" title="RocketMQ 消息堆积问题"></a>RocketMQ 消息堆积问题</h2><p>消息队列其中一个很重要的作用就是削峰，那么消息队列必然有一定的消息堆积能力来顶住请求的洪峰来保证后端服务的稳定性。</p>
+<p>如果发生消息积压，这时候需要考虑如何让消费者提高消费能力，可以从以下情况考虑：</p>
+<ul>
+<li>如果 Queue 的数量大于消费者数量，这时需要做的是<strong>消费者扩容</strong>，默认消费模式是集群消费模式，消息会雨露均沾地发送给消费者，所以可以让消费者数量增加到和 Queue 的数量一致。</li>
+</ul>
+<p><img src="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909153107.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li>如果 Queue 的数量小于或等于消费者数量还发生大规模消息堆积时，这种情况无论再增加消费者数量，消费能力都不会提升，这时需要做的是<strong>消息迁移 Queue 扩容</strong>，具体做法是修改消费者逻辑，让消费者把这些消息使用一个临时的 Topic，这个 Topic 下建更多的 Queue，把原来的消息转发到这些 Queue 上，另外安排对应这个临时 Topic 的消费者来消费这些堆积的消息。</li>
+</ul>
+<p><img src="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909155342.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="RocketMQ-中顺序消息的问题"><a href="#RocketMQ-中顺序消息的问题" class="headerlink" title="RocketMQ 中顺序消息的问题"></a>RocketMQ 中顺序消息的问题</h2><p>RocketMQ 的顺序消息包含两个层面，有顺序地生产消息以及有顺序地消费消息。有些业务场景下必须保证顺序，比如订单的生成、付款、发货，这个顺序是必须保证的。</p>
+<p>RocketMQ 顺序消息可以分为全局有序以及分区有序，全局有序与分区有序的区别与落地在这篇文章中也适当介绍了：<a target="_blank" rel="noopener" href="https://gelald.github.io/javrin/docs/writings/message-queue/RocketMQ-operation-client.html">RocketMQ 操作落地 (rocketmq-client 方式)</a>。</p>
+<p>全局有序消息</p>
+<p><img src="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909151552.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>分区有序消息</p>
+<p><img src="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909151906.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>如果要严格控制消息的顺序，那么生产者、queue、消费者最好都是一对一的关系，把整个流程中并发的部分全都消除了，各部分都设计成单线程工作。但是这样的设计，完全牺牲了 RocketMQ 高并发高吞吐的特性，也容易成为系统性能瓶颈。</p>
+<p>但是全局有序导致性能低下的问题 RocketMQ 不打算解决，理由如下：</p>
+<ul>
+<li>乱序的应用实际上大量存在，系统中一般极少数情况需要对消息做严格的顺序；</li>
+<li>消息在队列中无序，不代表最终消息也是无序的，可以使用其他手段来控制顺序。比如给消息打上标识顺序的标签，在业务层再处理顺序问题等。</li>
+</ul>
+<h2 id="RocketMQ-延时消息原理"><a href="#RocketMQ-延时消息原理" class="headerlink" title="RocketMQ 延时消息原理"></a>RocketMQ 延时消息原理</h2><h3 id="SCHEDULE-TOPIC-XXXX-介绍"><a href="#SCHEDULE-TOPIC-XXXX-介绍" class="headerlink" title="SCHEDULE_TOPIC_XXXX 介绍"></a><code>SCHEDULE_TOPIC_XXXX</code> 介绍</h3><p><code>SCHEDULE_TOPIC_XXXX</code> 是 RocketMQ 一个系统类型的 Topic，用于标识延时消息。</p>
+<p>这个 Topic 有 18 个队列，分别唯一对应着 RocketMQ 的 18 个延时等级，对应关系为：<strong>queueId = delayTimeLevel – 1</strong>。</p>
+<h3 id="ScheduleMessageService-介绍"><a href="#ScheduleMessageService-介绍" class="headerlink" title="ScheduleMessageService 介绍"></a><code>ScheduleMessageService</code> 介绍</h3><p>这是 Broker 中的一个延时服务，专门消费 Topic 为 <code>SCHEDULE_TOPIC_XXXX</code> 的延时消息，并将其投递到目标 Topic 中。</p>
+<p><code>ScheduleMessageService</code> 在启动时，会创建一个定时器 Timer，并根据延迟级别的个数，启动对应数量的 TimerTask，每个 TimerTask 负责一个延迟级别的消费与投递。</p>
+<h3 id="延时消息在-Broker-的流转过程"><a href="#延时消息在-Broker-的流转过程" class="headerlink" title="延时消息在 Broker 的流转过程"></a>延时消息在 Broker 的流转过程</h3><p>生产者发送延时消息到 Broker，再到消费者消费的过程，消息将经过以下流转：</p>
+<p><img src="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220830160040.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol>
+<li>Broker 把消息的 Topic 修改成<code>SCHEDULE_TOPIC_XXX</code>，然后根据本次消息的延时等级计算需要投递到的具体队列。同时还要把消息原来的 Topic 及其队列信息存储到消息的属性中，方便后面正确投递。</li>
+<li>在从 CommitLog 把消息转发到 queue 的过程中，会计算这个延时消息需要在什么时候进行投递，<strong>投递时间=消息存储时间+延时等级对应的时间</strong>。</li>
+<li>延时消费服务 <code>ScheduleMessageService</code> 消费这个延时消息。</li>
+<li>从消息属性中取出并设置原来消息的 Topic 和队列信息，存储到 CommitLog. 此时这个消息已经完成延时，和普通消息没有区别，所以 ConsumeQueue 中的 Message Tag HashCode 需要重新计算消息 Tag 的哈希值再存储。</li>
+<li>由于消息的 Topic 已经修改为原来的 Topic，所以直接投递到对应的队列中。</li>
+<li>消费者消费这条消息。</li>
+</ol>
+<h2 id="RocketMQ-事务消息原理"><a href="#RocketMQ-事务消息原理" class="headerlink" title="RocketMQ 事务消息原理"></a>RocketMQ 事务消息原理</h2><h3 id="实现事务消息核心"><a href="#实现事务消息核心" class="headerlink" title="实现事务消息核心"></a>实现事务消息核心</h3><ul>
+<li>两阶段提交：第一阶段生产者发送 Half 消息到 Broker 来测试 RocketMQ 是否正常；Broker 只有在收到第二阶段的消息时，消费者才能对消息进行消费。</li>
+<li>事务补偿机制：当 Broker 收到状态为 <code>unknown</code> 的消息或者由于网络波动、生产者宕机导致长时间没有收到第二阶段的提交时，Broker 会调用生产者接口来回查本次事务的状态。</li>
+</ul>
+<p>这两个核心是实现分布式事务最终一致性的关键。</p>
+<h3 id="事务消息的流程"><a href="#事务消息的流程" class="headerlink" title="事务消息的流程"></a>事务消息的流程</h3><blockquote>
+<p>以支付订单后奖励积分为例，此时生产者是订单系统，消费者是积分系统，当积分系统收到订单系统传来订单支付成功，那么就给用户提供积分的奖励</p>
+</blockquote>
+<p><img src="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220830164439.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li>订单系统会发送一条 Half 消息到 RocketMQ 中，这个 Half 消息其实是一个代表订单成功支付的消息，只不过目前这个状态积分系统是无法感知这个消息的存在的。</li>
+<li>如果发送 Half 消息后没有收到 MQ 的响应，那么可以认定 MQ 此时有问题，那么就在订单系统中回滚这笔订单，例如订单关闭或者发起退款。</li>
+<li>如果收到 MQ 的响应，那么可以认定 MQ 是正常的，订单系统可以执行自己的本地事务，比如更新订单状态。</li>
+<li>如果在处理自己系统的业务时，本地事务发生异常了，那么就发送一个 rollback 请求到 MQ 中，让 MQ 删除之前发送的 Half 消息；如果业务逻辑成功执行、本地事务成功提交，那么就发送一个 commit 请求到 MQ 中，MQ 收到 commit 请求后，之前的 Half 消息也就对积分系统可见了；如果业务逻辑的事务状态为 unknown ，那么 MQ 就会发起回查，回查生产者本地事务的状态。</li>
+<li>假设由于网络波动、生产者重启导致事务消息的二次确认丢失，MQ 也有补偿措施，它会去扫描自己处于 Half 状态的消息，如果这个 MQ 一直没有接收到对这个 Half 消息的第二阶段的提交，会回调一个接口，让订单系统查询这个订单的状态，进而进行第二阶段的提交。所以这个回查的接口非常重要，要保证提交 commit 或者 rollback。</li>
+</ul>
+<h2 id="死信队列原理"><a href="#死信队列原理" class="headerlink" title="死信队列原理"></a>死信队列原理</h2><blockquote>
+<p>死信队列用于处理无法被正常消费的消息，即死信消息。</p>
+</blockquote>
+<h3 id="死信消息的产生"><a href="#死信消息的产生" class="headerlink" title="死信消息的产生"></a>死信消息的产生</h3><p>当一条消息在消费失败时，RocketMQ 消费者会自动对消息进行重试消费；当重试失败次数达到最大值依然是失败时，那么可以认为消费者在正常情况下是无法消费这个消息的。此时，RocketMQ 并不会立刻丢弃这个消息，而是将其发送到消费者对应的死信队列中。</p>
+<p>死信消息放到死信队列中后不会再被原来的消费者消费，此时他的 Topic 变成了 <code>%DLQ%消费者组</code> ，需要使用另外的消费者来订阅消费这些死信消息。死信消息可以助于我们统计异常数据并做后续的数据修复处理。</p>
+<p><img src="https://wingbun-notes-image.oss-cn-guangzhou.aliyuncs.com/images/20220909105631.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>默认的重试次数与重试间隔时间如下：</p>
+<table>
+<thead>
+<tr>
+<th>重试次数</th>
+<th>重试间隔时间</th>
+<th>重试次数</th>
+<th>重试间隔时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>10 秒</td>
+<td>9</td>
+<td>7 分钟</td>
+</tr>
+<tr>
+<td>2</td>
+<td>30 秒</td>
+<td>10</td>
+<td>8 分钟</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1 分钟</td>
+<td>11</td>
+<td>9 分钟</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2 分钟</td>
+<td>12</td>
+<td>10 分钟</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3 分钟</td>
+<td>13</td>
+<td>20 分钟</td>
+</tr>
+<tr>
+<td>6</td>
+<td>4 分钟</td>
+<td>14</td>
+<td>30 分钟</td>
+</tr>
+<tr>
+<td>7</td>
+<td>5 分钟</td>
+<td>15</td>
+<td>1 小时</td>
+</tr>
+<tr>
+<td>8</td>
+<td>6 分钟</td>
+<td>16</td>
+<td>2 小时</td>
+</tr>
+</tbody></table>
+<p>其中重试间隔时间可以通过修改 Broker 的配置文件的 messageDelayLevel 配置项来修改。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 消息重试16次分别间隔</span>
+messageDelayLevel =1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h</code></pre></div>
+
+<h3 id="死信队列的特点"><a href="#死信队列的特点" class="headerlink" title="死信队列的特点"></a>死信队列的特点</h3><p>一个死信队列对应一个消费者组，不对应某一个消费者实例或 Topic。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/rocketmq/">rocketmq</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/rocketmq/">rocketmq</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/05/java-synchornized/">
+                        <span class="hidden-mobile">java synchronized lock</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

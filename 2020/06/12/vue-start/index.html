@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="1. Vue.js是什么?1). 一位华裔前Google工程师(尤雨溪)开发的前端js库 2). 作用: 动态构建用户界面 3). 特点: 	* 遵循MVVM模式 	* 编码简洁, 体积小, 运行效率高, 移动&#x2F;PC端开发 	* 它本身只关注UI, 可以轻松引入vue插件和其它第三库开发项目 4). 与其它框架的关联: 	* 借鉴angular的模板和数据绑定技术 	* 借鉴react的组件化和虚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-start">
+<meta property="og:url" content="https://lunasaw.github.io/2020/06/12/vue-start/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="1. Vue.js是什么?1). 一位华裔前Google工程师(尤雨溪)开发的前端js库 2). 作用: 动态构建用户界面 3). 特点: 	* 遵循MVVM模式 	* 编码简洁, 体积小, 运行效率高, 移动&#x2F;PC端开发 	* 它本身只关注UI, 可以轻松引入vue插件和其它第三库开发项目 4). 与其它框架的关联: 	* 借鉴angular的模板和数据绑定技术 	* 借鉴react的组件化和虚">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.996Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>vue-start - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/javascript-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="vue-start">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-06-12 00:00" pubdate>
+        2020年6月12日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue-start</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="1-Vue-js是什么"><a href="#1-Vue-js是什么" class="headerlink" title="1. Vue.js是什么?"></a>1. Vue.js是什么?</h1><div class="hljs code-wrapper"><pre><code class="hljs tex">1). 一位华裔前Google工程师(尤雨溪)开发的前端js库
+2). 作用: 动态构建用户界面
+3). 特点:
+	* 遵循MVVM模式
+	* 编码简洁, 体积小, 运行效率高, 移动/PC端开发
+	* 它本身只关注UI, 可以轻松引入vue插件和其它第三库开发项目
+4). 与其它框架的关联:
+	* 借鉴angular的模板和数据绑定技术
+	* 借鉴react的组件化和虚拟DOM技术
+5). vue包含一系列的扩展插件(库):
+	* vue-cli: vue脚手架
+	* vue-resource(axios): ajax请求
+	* vue-router: 路由
+	* vuex: 状态管理
+	* vue-lazyload: 图片懒加载
+	* vue-scroller: 页面滑动相关
+	* mint-ui: 基于vue的组件库(移动端)
+	* element-ui: 基于vue的组件库(PC端)</code></pre></div>
+
+<h1 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2. 基本使用"></a>2. 基本使用</h1><div class="hljs code-wrapper"><pre><code>1). 引入vue.js
+2). 创建Vue实例对象(vm), 指定选项(配置)对象
+    el : 指定dom标签容器的选择器
+    data : 指定初始化状态数据的对象/函数(返回一个对象)
+3). 在页面模板中使用&#123;&#123;&#125;&#125;或vue指令
+
+# 3. Vue对象的选项
+
+## 1). el
+
+	指定dom标签容器的选择器
+	Vue就会管理对应的标签及其子标签
+
+## 2). data
+
+	对象或函数类型
+	指定初始化状态属性数据的对象
+	vm也会自动拥有data中所有属性
+	页面中可以直接访问使用
+	数据代理: 由vm对象来代理对data中所有属性的操作(读/写)
+
+## 3). methods
+
+	包含多个方法的对象
+	供页面中的事件指令来绑定回调
+	回调函数默认有event参数, 但也可以指定自己的参数
+	所有的方法由vue对象来调用, 访问data中的属性直接使用this.xxx
+
+## 4). computed
+
+	包含多个方法的对象
+	对状态属性进行计算返回一个新的数据, 供页面获取显示
+	一般情况下是相当于是一个只读的属性
+	利用set/get方法来实现属性数据的计算读取, 同时监视属性数据的变化
+	如何给对象定义get/set属性
+		在创建对象时指定: get name () &#123;return xxx&#125; / set name (value) &#123;&#125;
+	  	对象创建之后指定: Object.defineProperty(obj, age, &#123;get()&#123;&#125;, set(value)&#123;&#125;&#125;)
+</code></pre></div>
+<h2 id="5-watch"><a href="#5-watch" class="headerlink" title="5). watch"></a>5). watch</h2><div class="hljs code-wrapper"><pre><code>包含多个属性监视的对象
+分为一般监视和深度监视
+    xxx: function(value)&#123;&#125;
+    xxx : &#123;
+        deep : true,
+        handler : fun(value)
+    &#125;
+另一种添加监视方式: vm.$watch(&#39;xxx&#39;, function(value)&#123;&#125;)
+</code></pre></div>
+<h1 id="4-过渡动画"><a href="#4-过渡动画" class="headerlink" title="4. 过渡动画"></a>4. 过渡动画</h1><div class="hljs code-wrapper"><pre><code class="hljs html">利用vue去操控css的transition/animation动画
+模板: 使用<span class="hljs-tag">&lt;<span class="hljs-name">transition</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;xxx&#x27;</span>&gt;</span>包含带动画的标签
+css样式
+	.fade-enter-active: 进入过程, 指定进入的transition
+	.fade-leave-active: 离开过程, 指定离开的transition
+	.xxx-enter, .xxx-leave-to: 指定隐藏的样式
+编码例子
+    .xxx-enter-active, .xxx-leave-active &#123;
+      transition: opacity .5s
+    &#125;
+    .xxx-enter, .xxx-leave-to &#123;
+      opacity: 0
+    &#125;
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">transition</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;xxx&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;show&quot;</span>&gt;</span>hello<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">transition</span>&gt;</span></code></pre></div>
+
+<h1 id="5-生命周期"><a href="#5-生命周期" class="headerlink" title="5. 生命周期"></a>5. 生命周期</h1><div class="hljs code-wrapper"><pre><code>vm/组件对象
+生命周期图
+主要的生命周期函数(钩子)
+    created() / mounted(): 启动异步任务(启动定时器,发送ajax请求, 绑定监听)
+    beforeDestroy(): 做一些收尾的工作
+</code></pre></div>
+<h1 id="6-自定义过滤器"><a href="#6-自定义过滤器" class="headerlink" title="6. 自定义过滤器"></a>6. 自定义过滤器</h1><h2 id="1-理解"><a href="#1-理解" class="headerlink" title="1). 理解"></a>1). 理解</h2><div class="hljs code-wrapper"><pre><code>对需要显示的数据进行格式化后再显示
+</code></pre></div>
+<h2 id="2-编码"><a href="#2-编码" class="headerlink" title="2). 编码"></a>2). 编码</h2><div class="hljs code-wrapper"><pre><code>1). 定义过滤器
+    Vue.filter(filterName, function(value[,arg1,arg2,...])&#123;
+      // 进行一定的数据处理
+      return newValue
+    &#125;)
+2). 使用过滤器
+    &lt;div&gt;&#123;&#123;myData | filterName&#125;&#125;&lt;/div&gt;
+    &lt;div&gt;&#123;&#123;myData | filterName(arg)&#125;&#125;&lt;/div&gt;
+</code></pre></div>
+<h1 id="7-vue内置指令"><a href="#7-vue内置指令" class="headerlink" title="7. vue内置指令"></a>7. vue内置指令</h1><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">v-text/v-html:</span> <span class="hljs-string">指定标签体</span>
+	<span class="hljs-string">*</span> <span class="hljs-attr">v-text :</span> <span class="hljs-string">当作纯文本</span>
+	<span class="hljs-string">*</span> <span class="hljs-attr">v-html :</span> <span class="hljs-string">将value作为html标签来解析</span>
+<span class="hljs-attr">v-if v-else v-show:</span> <span class="hljs-string">显示/隐藏元素</span>
+	<span class="hljs-string">*</span> <span class="hljs-attr">v-if :</span> <span class="hljs-string">如果vlaue为true,</span> <span class="hljs-string">当前标签会输出在页面中</span>
+	<span class="hljs-string">*</span> <span class="hljs-attr">v-else :</span> <span class="hljs-string">与v-if一起使用,</span> <span class="hljs-string">如果value为false,</span> <span class="hljs-string">将当前标签输出到页面中</span>
+	<span class="hljs-string">*</span> <span class="hljs-attr">v-show:</span> <span class="hljs-string">就会在标签中添加display样式,</span> <span class="hljs-string">如果vlaue为true,</span> <span class="hljs-string">display=block,</span> <span class="hljs-string">否则是none</span>
+<span class="hljs-attr">v-for :</span> <span class="hljs-string">遍历</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">遍历数组</span> <span class="hljs-string">:</span> <span class="hljs-string">v-for=&quot;(person,</span> <span class="hljs-string">index)</span> <span class="hljs-string">in</span> <span class="hljs-string">persons&quot;</span>   
+	<span class="hljs-string">*</span> <span class="hljs-string">遍历对象</span> <span class="hljs-string">:</span> <span class="hljs-string">v-for=&quot;value</span> <span class="hljs-string">in</span> <span class="hljs-string">person&quot;</span>   <span class="hljs-string">$key</span>
+<span class="hljs-attr">v-on :</span> <span class="hljs-string">绑定事件监听</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">v-on:事件名,</span> <span class="hljs-string">可以缩写为:</span> <span class="hljs-string">@事件名</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">监视具体的按键:</span> <span class="hljs-string">@keyup.keyCode</span>   <span class="hljs-string">@keyup.enter</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">停止事件的冒泡和阻止事件默认行为:</span> <span class="hljs-string">@click.stop</span>   <span class="hljs-string">@click.prevent</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">隐含对象:</span> <span class="hljs-string">$event</span>
+<span class="hljs-attr">v-bind :</span> <span class="hljs-string">强制绑定解析表达式</span>  
+	<span class="hljs-string">*</span> <span class="hljs-string">html标签属性是不支持表达式的,</span> <span class="hljs-string">就可以使用v-bind</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">可以缩写为:</span>  <span class="hljs-string">:id=&#x27;name&#x27;</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">:class</span>
+	  <span class="hljs-string">*</span> <span class="hljs-string">:class=&quot;a&quot;</span>
+		<span class="hljs-string">*</span> <span class="hljs-string">:class=&quot;&#123;classA</span> <span class="hljs-string">:</span> <span class="hljs-string">isA,</span> <span class="hljs-attr">classB :</span> <span class="hljs-string">isB&#125;&quot;</span>
+		<span class="hljs-string">*</span> <span class="hljs-string">:class=&quot;[classA,</span> <span class="hljs-string">classB]&quot;</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">:style</span>
+		<span class="hljs-string">:style=&quot;&#123;color</span> <span class="hljs-string">:</span> <span class="hljs-string">color&#125;&quot;</span>
+<span class="hljs-string">v-model</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">双向数据绑定</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">自动收集用户输入数据</span>
+<span class="hljs-attr">ref :</span> <span class="hljs-string">标识某个标签</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">ref=&#x27;xxx&#x27;</span>
+	<span class="hljs-string">*</span> <span class="hljs-string">读取得到标签对象:</span> <span class="hljs-string">this.$refs.xxx</span></code></pre></div>
+
+<h1 id="8-自定义指令"><a href="#8-自定义指令" class="headerlink" title="8. 自定义指令"></a>8. 自定义指令</h1><h2 id="1-注册全局指令"><a href="#1-注册全局指令" class="headerlink" title="1). 注册全局指令"></a>1). 注册全局指令</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">Vue.directive(<span class="hljs-string">&#x27;my-directive&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">el, binding</span>)</span>&#123;
+  el.innerHTML = binding.value.toUpperCase()
+&#125;)</code></pre></div>
+
+<h2 id="2-注册局部指令"><a href="#2-注册局部指令" class="headerlink" title="2). 注册局部指令"></a>2). 注册局部指令</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">directives : &#123;
+  <span class="hljs-string">&#x27;my-directive&#x27;</span> : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">el, binding</span>) </span>&#123;
+      el.innerHTML = binding.value.toUpperCase()
+  &#125;
+&#125;</code></pre></div>
+
+<h2 id="3-使用指令"><a href="#3-使用指令" class="headerlink" title="3). 使用指令"></a>3). 使用指令</h2><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-my-directive</span>=<span class="hljs-string">&#x27;xxx&#x27;</span>&gt;</span></code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/vue/">vue</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/15/vue-demo/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue-demo</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/07/spring-exception/">
+                        <span class="hidden-mobile">SpringBoot 统一异常处理</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

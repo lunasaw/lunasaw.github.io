@@ -1,0 +1,880 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Docker 镜像仓库Docker 的操作围绕镜像、容器、仓库三大核心概念。在学架构设计之前，我们需要先了解 Docker 的三个核心概念。 1. Docker 核心概念1.1 镜像镜像是什么呢？通俗地讲，它是一个只读的文件和文件夹组合。它包含了容器运行时所需要的所有基础文件和配置信息，是容器启动的基础。所以你想启动一个容器，那首先必须要有一个镜像。镜像是 Docker 容器启动的先决条件。 如果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker mirro warehouse">
+<meta property="og:url" content="https://lunasaw.github.io/2020/06/03/docker-mirro-warehouse/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Docker 镜像仓库Docker 的操作围绕镜像、容器、仓库三大核心概念。在学架构设计之前，我们需要先了解 Docker 的三个核心概念。 1. Docker 核心概念1.1 镜像镜像是什么呢？通俗地讲，它是一个只读的文件和文件夹组合。它包含了容器运行时所需要的所有基础文件和配置信息，是容器启动的基础。所以你想启动一个容器，那首先必须要有一个镜像。镜像是 Docker 容器启动的先决条件。 如果">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lunasaw.github.io/img/docker/docker-container-relation.png">
+<meta property="og:image" content="https://lunasaw.github.io/img/docker/docker-architecture.png">
+<meta property="og:image" content="https://lunasaw.github.io/img/docker/docker-component.png">
+<meta property="og:image" content="https://lunasaw.github.io/img/docker/docker-process-size.png">
+<meta property="article:published_time" content="2020-06-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.983Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/docker/docker-container-relation.png">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>docker mirro warehouse - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/docker-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="docker mirro warehouse">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-06-03 00:00" pubdate>
+        2020年6月3日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      12k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">docker mirro warehouse</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Docker-镜像仓库"><a href="#Docker-镜像仓库" class="headerlink" title="Docker 镜像仓库"></a>Docker 镜像仓库</h1><p>Docker 的操作围绕镜像、容器、仓库三大核心概念。在学架构设计之前，我们需要先了解 Docker 的三个核心概念。</p>
+<h3 id="1-Docker-核心概念"><a href="#1-Docker-核心概念" class="headerlink" title="1. Docker 核心概念"></a>1. Docker 核心概念</h3><h4 id="1-1-镜像"><a href="#1-1-镜像" class="headerlink" title="1.1 镜像"></a>1.1 镜像</h4><p>镜像是什么呢？通俗地讲，它是一个只读的文件和文件夹组合。它包含了容器运行时所需要的所有基础文件和配置信息，是容器启动的基础。所以你想启动一个容器，那首先必须要有一个镜像。<strong>镜像是 Docker 容器启动的先决条件。</strong></p>
+<p>如果你想要使用一个镜像，你可以用这两种方式：</p>
+<ol>
+<li>自己创建镜像。通常情况下，一个镜像是基于一个基础镜像构建的，你可以在基础镜像上添加一些用户自定义的内容。例如你可以基于<code>centos</code>镜像制作你自己的业务镜像，首先安装<code>nginx</code>服务，然后部署你的应用程序，最后做一些自定义配置，这样一个业务镜像就做好了。</li>
+<li>从功能镜像仓库拉取别人制作好的镜像。一些常用的软件或者系统都会有官方已经制作好的镜像，例如<code>nginx</code>、<code>ubuntu</code>、<code>centos</code>、<code>mysql</code>等，你可以到 <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a> 搜索并下载它们。</li>
+</ol>
+<h4 id="1-2-容器"><a href="#1-2-容器" class="headerlink" title="1.2 容器"></a>1.2 容器</h4><p>容器是什么呢？容器是 Docker 的另一个核心概念。通俗地讲，容器是镜像的运行实体。镜像是静态的只读文件，而容器带有运行时需要的可写文件层，并且容器中的进程属于运行状态。即<strong>容器运行着真正的应用进程。容器有初建、运行、停止、暂停和删除五种状态。</strong></p>
+<p>虽然容器的本质是主机上运行的一个进程，但是容器有自己独立的命名空间隔离和资源限制。也就是说，在容器内部，无法看到主机上的进程、环境变量、网络等信息，这是容器与直接运行在主机上进程的本质区别。</p>
+<h4 id="1-3-仓库"><a href="#1-3-仓库" class="headerlink" title="1.3 仓库"></a>1.3 仓库</h4><p>Docker 的镜像仓库类似于代码仓库，用来存储和分发 Docker 镜像。镜像仓库分为公共镜像仓库和私有镜像仓库。</p>
+<p>目前，<a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a> 是 Docker 官方的公开镜像仓库，它不仅有很多应用或者操作系统的官方镜像，还有很多组织或者个人开发的镜像供我们免费存放、下载、研究和使用。除了公开镜像仓库，你也可以构建自己的私有镜像仓库，在第 5 课时，我会带你搭建一个私有的镜像仓库。</p>
+<h4 id="1-4-镜像、容器、仓库，三者之间的联系"><a href="#1-4-镜像、容器、仓库，三者之间的联系" class="headerlink" title="1.4 镜像、容器、仓库，三者之间的联系"></a>1.4 镜像、容器、仓库，三者之间的联系</h4><p><img src="/img/docker/docker-container-relation.png" srcset="/img/loading.gif" lazyload alt="Drawing 1.png"></p>
+<p>可以看到，镜像是容器的基石，容器是由镜像创建的。一个镜像可以创建多个容器，容器是镜像运行的实体。仓库就非常好理解了，就是用来存放和分发镜像的。</p>
+<p>了解了 Docker 的三大核心概念，接下来认识下 Docker 的核心架构和一些重要的组件。</p>
+<h1 id="2-Docker-架构"><a href="#2-Docker-架构" class="headerlink" title="2. Docker 架构"></a>2. Docker 架构</h1><p>在了解 Docker 架构前，我先说下相关的背景知识——容器的发展史。</p>
+<p>容器技术随着 Docker 的出现变得炙手可热，所有公司都在积极拥抱容器技术。此时市场上除了有 Docker 容器，还有很多其他的容器技术，比如 CoreOS 的 rkt、lxc 等。容器技术百花齐放是好事，但也出现了很多问题。比如容器技术的标准到底是什么？容器标准应该由谁来制定？</p>
+<p>也许你可能会说， Docker 已经成为了事实标准，把 Docker 作为容器技术的标准不就好了？事实并没有想象的那么简单。因为那时候不仅有容器标准之争，编排技术之争也十分激烈。当时的编排技术有三大主力，<strong>分别是 Docker Swarm、Kubernetes 和 Mesos</strong> 。Swarm 毋庸置疑，肯定愿意把 Docker 作为唯一的容器运行时，但是 Kubernetes 和 Mesos 就不同意了，因为它们不希望调度的形式过度单一。</p>
+<p>在这样的背景下，最终爆发了容器大战，<code>OCI</code>也正是在这样的背景下应运而生。</p>
+<p><strong><code>OCI</code>全称为开放容器标准（Open Container Initiative）</strong>，它是一个轻量级，开放的治理结构。<code>OCI</code>组织在 Linux 基金会的大力支持下，于 2015 年 6 月份正式注册成立。基金会旨在为用户围绕工业化容器的格式和镜像运行时，制定一个开放的容器标准。目前主要有两个标准文档：<strong>容器运行时标准 （runtime spec）和容器镜像标准（image spec）</strong>。</p>
+<p>正是由于容器的战争，才导致 Docker 不得不在战争中改变一些技术架构。最终形成了下图所示的技术架构。</p>
+<p><img src="/img/docker/docker-architecture.png" srcset="/img/loading.gif" lazyload></p>
+<p>​    我们可以看到，Docker 整体架构采用 <strong>C/S（客户端 / 服务器）模式</strong>，主要由客户端和服务端两大部分组成。客户端负责发送操作指令，服务端负责接收和处理指令。客户端和服务端通信有多种方式，即可以在同一台机器上通过<code>UNIX</code>套接字通信，也可以通过网络连接远程通信。</p>
+<p>下面我逐一介绍客户端和服务端。</p>
+<h4 id="2-1-Docker-客户端"><a href="#2-1-Docker-客户端" class="headerlink" title="2.1 Docker 客户端"></a>2.1 Docker 客户端</h4><p>​    Docker 客户端其实是一种泛称。其中 <strong>docker 命令是 Docker 用户与 Docker 服务端交互的主要方式</strong>。除了使用 docker 命令的方式，还可以使用<strong>直接请求 REST API 的方式与 Docker 服务端交互</strong>，甚至还可以使用各种语言的 SDK 与 Docker 服务端交互。目前社区维护着 Go、Java、Python、PHP 等数十种语言的 SDK，足以满足你的日常需求。如<strong>Python中的docker-py库</strong>。</p>
+<h4 id="2-2-Docker-服务端"><a href="#2-2-Docker-服务端" class="headerlink" title="2.2 Docker 服务端"></a>2.2 Docker 服务端</h4><p>​    Docker 服务端是 Docker 所有后台服务的统称。其中 <strong>dockerd 是一个非常重要的后台管理进程</strong>，默认的配置文件为/etc/docker/daemon.json。它负责响应和处理来自 Docker 客户端的请求，然后<strong>将客户端的请求转化为 Docker 的具体操作</strong>。例如镜像、容器、网络和挂载卷等具体对象的操作和管理。</p>
+<p>​    Docker 从诞生到现在，服务端经历了多次架构重构。起初，服务端的组件是全部集成在 docker 二进制里。但是从 1.11 版本开始， dockerd 已经成了独立的二进制，此时的容器也不是直接由 dockerd 来启动了，而是集成了 containerd、runC 等多个组件。</p>
+<p>​    虽然 Docker 的架构在不停重构，但是各个模块的基本功能和定位并没有变化。它和一般的 C/S 架构系统一样，Docker 服务端模块负责和 Docker 客户端交互，并管理 Docker 的容器、镜像、网络等资源。</p>
+<h4 id="2-3-Docker-重要组件"><a href="#2-3-Docker-重要组件" class="headerlink" title="2.3 Docker 重要组件"></a>2.3 Docker 重要组件</h4><p>看下 Docker 都有哪些工具和组件。在 Docker 安装路径下**/usr/bin** 中执行 ls 命令可以看到以下与 docker 有关的二进制文件。（containerd、containerd-shim、ctr、docker、docker-init、docker-proxy、dockerd、runc）</p>
+<p><img src="/img/docker/docker-component.png" srcset="/img/loading.gif" lazyload></p>
+<p>先简单介绍一下 Docker 的两个至关重要的组件：<code>runc</code>和<code>containerd</code>。</p>
+<ul>
+<li><code>runc</code>是 Docker 官方按照 OCI 容器运行时标准的一个实现。通俗地讲，runc是一个用来运行容器的轻量级工具，是真正用来运行容器的。</li>
+<li><code>containerd</code>是 Docker 服务端的一个核心组件，它是从<code>dockerd</code>中剥离出来的 ，它的诞生完全遵循 OCI 标准，是容器标准化后的产物。<code>containerd</code>通过 containerd-shim 启动并管理 runc，<strong>可以说<code>containerd</code>真正管理了容器的生命周期。</strong></li>
+</ul>
+<h5 id="首先谈谈dockerd-containerd-docker-shim-runc，每个组件是用来干嘛的"><a href="#首先谈谈dockerd-containerd-docker-shim-runc，每个组件是用来干嘛的" class="headerlink" title="首先谈谈dockerd,containerd,docker-shim,runc，每个组件是用来干嘛的"></a><strong>首先谈谈dockerd,containerd,docker-shim,runc，每个组件是用来干嘛的</strong></h5><p><strong>2.3.1）dockerd</strong><br>​    dockerd本身实属是对容器相关操作的api的最上层封装，直接面向操作用户。</p>
+<p><strong>2.3.2）containerd</strong><br>​    dockerd实际真实调用的还是containerd的api接口（rpc方式实现），containerd是dockerd和runc之间的一个中间交流组件。</p>
+<p><strong>2.3.3）containerd-shim</strong><br>​    containerd-shim是一个真实<strong>运行的容器的真实垫片载体</strong>，每启动一个容器都会起一个新的containerd-shim的一个进程，他直接通过指定的三个参数：容器id，boundle目录（containerd的对应某个容器生成的目录，一般位于：/var/run/docker/libcontainerd/containerID），运行是二进制（默认为runc）来调用runc的api创建一个容器（比如创建容器：最后拼装的命令如下：runc create）</p>
+<p><strong>2.3.4）runc</strong><br>​    runc是一个命令行工具端，他根据<code>OCI</code>（开放容器组织）的标准来创建和运行容器。</p>
+<h3 id="3-Docker-各组件之间的关系"><a href="#3-Docker-各组件之间的关系" class="headerlink" title="3. Docker 各组件之间的关系"></a>3. Docker 各组件之间的关系</h3><p>首先通过以下命令来启动一个 busybox 容器：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs autoit">docker <span class="hljs-built_in">run</span> -d busybox <span class="hljs-built_in">sleep</span> <span class="hljs-number">3600</span></code></pre></div>
+
+<p>为了验证Docker 各组件之间的调用关系，下面使用 pstree 命令查看一下进程父子关系：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs scss">systemd(<span class="hljs-number">1</span>)─┬─Xvfb(<span class="hljs-number">17214</span>)─┬─&#123;llvmpipe-0&#125;(<span class="hljs-number">18510</span>)
+           │             ├─&#123;llvmpipe-1&#125;(<span class="hljs-number">18511</span>)
+           │             ├─&#123;llvmpipe-2&#125;(<span class="hljs-number">18512</span>)
+           │             └─&#123;llvmpipe-3&#125;(<span class="hljs-number">18513</span>)
+           ├─accounts-daemon(<span class="hljs-number">1327</span>)─┬─&#123;gdbus&#125;(<span class="hljs-number">1495</span>)
+           │                       └─&#123;gmain&#125;(<span class="hljs-number">1492</span>)
+           ├─acpid(<span class="hljs-number">1203</span>)
+           ├─agetty(<span class="hljs-number">23750</span>)
+           ├─atd(<span class="hljs-number">1223</span>,daemon)
+           ├─containerd(<span class="hljs-number">22211</span>)─┬─containerd-shim(<span class="hljs-number">8473</span>)─┬─sleep(<span class="hljs-number">8491</span>)
+           │                   │                       ├─&#123;containerd-shim&#125;(<span class="hljs-number">8474</span>)
+           │                   │                       ├─&#123;containerd-shim&#125;(<span class="hljs-number">8475</span>)
+           │                   │                       ├─&#123;containerd-shim&#125;(<span class="hljs-number">8476</span>)
+           │                   │                       ├─&#123;containerd-shim&#125;(<span class="hljs-number">8477</span>)
+           │                   │                       ├─&#123;containerd-shim&#125;(<span class="hljs-number">8478</span>)
+           │                   │                       ├─&#123;containerd-shim&#125;(<span class="hljs-number">8479</span>)
+           │                   │                       ├─&#123;containerd-shim&#125;(<span class="hljs-number">8480</span>)
+           │                   │                       └─&#123;containerd-shim&#125;(<span class="hljs-number">8482</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22216</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22217</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22218</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22219</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22220</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22227</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22228</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22229</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22231</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22232</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22233</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22234</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22369</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">22375</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">23023</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">24119</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">31016</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">32704</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">7339</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">23491</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">23596</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">23889</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">23894</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">24535</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">31378</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">32403</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">32404</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">15398</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">15399</span>)
+           │                   ├─&#123;containerd&#125;(<span class="hljs-number">15805</span>)
+           │                   └─&#123;containerd&#125;(<span class="hljs-number">16319</span>)
+           ├─cron(<span class="hljs-number">20629</span>)
+           ├─dbus-daemon(<span class="hljs-number">1227</span>,messagebus)
+           ├─dhclient(<span class="hljs-number">1023</span>)
+           ├─dockerd(<span class="hljs-number">6901</span>)─┬─&#123;dockerd&#125;(<span class="hljs-number">6903</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6904</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6905</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6906</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6907</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6908</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6909</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6910</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6912</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6913</span>)
+           │               ├─&#123;dockerd&#125;(<span class="hljs-number">6914</span>)
+           │               └─&#123;dockerd&#125;(<span class="hljs-number">6915</span>)
+           ├─irqbalance(<span class="hljs-number">1468</span>)
+           ├─iscsid(<span class="hljs-number">1140</span>)
+           ├─iscsid(<span class="hljs-number">1141</span>)
+           ├─lvmetad(<span class="hljs-number">479</span>)
+           ├─lxcfs(<span class="hljs-number">1215</span>)─┬─&#123;lxcfs&#125;(<span class="hljs-number">1337</span>)
+           │             ├─&#123;lxcfs&#125;(<span class="hljs-number">1340</span>)
+           │             ├─&#123;lxcfs&#125;(<span class="hljs-number">9044</span>)
+           │             ├─&#123;lxcfs&#125;(<span class="hljs-number">23720</span>)
+           │             └─&#123;lxcfs&#125;(<span class="hljs-number">9313</span>)
+           ├─mdadm(<span class="hljs-number">1453</span>)
+           ├─mysqld(<span class="hljs-number">31859</span>,mysql)─┬─&#123;mysqld&#125;(<span class="hljs-number">31871</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31872</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31873</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31874</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31875</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31876</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31877</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31878</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31879</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31880</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31881</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31882</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31884</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31885</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31886</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31887</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31888</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31889</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31890</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31891</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31892</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31893</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31894</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31895</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31896</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">31897</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">30641</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">15274</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">10442</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">26016</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">10137</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">1973</span>)
+           │                     ├─&#123;mysqld&#125;(<span class="hljs-number">23981</span>)
+           │                     └─&#123;mysqld&#125;(<span class="hljs-number">18314</span>)
+           ├─nginx(<span class="hljs-number">10152</span>)─┬─nginx(<span class="hljs-number">10153</span>,www-data)
+           │              ├─nginx(<span class="hljs-number">10154</span>,www-data)
+           │              ├─nginx(<span class="hljs-number">10155</span>,www-data)
+           │              └─nginx(<span class="hljs-number">10156</span>,www-data)
+           ├─polkitd(<span class="hljs-number">1512</span>)─┬─&#123;gdbus&#125;(<span class="hljs-number">1516</span>)
+           │               └─&#123;gmain&#125;(<span class="hljs-number">1514</span>)
+           ├─python(<span class="hljs-number">1190</span>)
+           ├─rsyslogd(<span class="hljs-number">1212</span>,syslog)─┬─&#123;in:imklog&#125;(<span class="hljs-number">1440</span>)
+           │                       ├─&#123;in:imuxsock&#125;(<span class="hljs-number">1439</span>)
+           │                       └─&#123;rs:main Q:Reg&#125;(<span class="hljs-number">1441</span>)
+           ├─sshd(<span class="hljs-number">1499</span>)───sshd(<span class="hljs-number">4622</span>)─┬─bash(<span class="hljs-number">4678</span>)─┬─pstree(<span class="hljs-number">8779</span>)
+           │                         │            └─systemctl(<span class="hljs-number">7769</span>)───pager(<span class="hljs-number">7774</span>)
+           │                         ├─bash(<span class="hljs-number">8773</span>)───sleep(<span class="hljs-number">8778</span>)
+           │                         └─sftp-server(<span class="hljs-number">4693</span>)
+           ├─supervisord(<span class="hljs-number">29467</span>)
+           ├─supervisord(<span class="hljs-number">29644</span>)
+           ├─systemd(<span class="hljs-number">1700</span>)───(sd-pam)(<span class="hljs-number">1704</span>)
+           ├─systemd-journal(<span class="hljs-number">424</span>)
+           ├─systemd-logind(<span class="hljs-number">1193</span>)
+           ├─systemd-timesyn(<span class="hljs-number">544</span>,systemd-timesync)───&#123;sd-resolve&#125;(<span class="hljs-number">559</span>)
+           ├─systemd-udevd(<span class="hljs-number">501</span>)
+           ├─top(<span class="hljs-number">19260</span>)
+           ├─top(<span class="hljs-number">19447</span>)
+           ├─uwsgi(<span class="hljs-number">10063</span>)───uwsgi(<span class="hljs-number">10077</span>)
+           └─wrapper(<span class="hljs-number">1490</span>)─┬─java(<span class="hljs-number">1559</span>)─┬─&#123;java&#125;(<span class="hljs-number">1567</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1570</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1572</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1574</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1576</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1584</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1586</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1589</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1603</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1605</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1607</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1610</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1612</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1614</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1628</span>)
+                           │            ├─&#123;java&#125;(<span class="hljs-number">1651</span>)
+                           │            └─&#123;java&#125;(<span class="hljs-number">1655</span>)
+                           └─&#123;wrapper&#125;(<span class="hljs-number">1493</span>)</code></pre></div>
+
+<p>可以分别发现有两个进行，分别是：<code>dockerd</code>与<code>containerd</code>。而<code>dockerd</code>通过 gRPC 与<code>containerd</code>通信。当执行 <strong>docker run 命令</strong>（通过 busybox 镜像创建并启动容器）时，containerd 会创建 containerd-shim 充当 “垫片” 进程（进程PID为8473），然后启动容器的真正进程 sleep 3600 。这个过程和架构图是完全一致的。</p>
+<p>再次创建一个容器，再来观察containerd进程的情况，下面先执行容器的创建：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs autoit">docker <span class="hljs-built_in">run</span> -d busybox <span class="hljs-built_in">sleep</span> <span class="hljs-number">3600</span></code></pre></div>
+
+<p>下面使用 pstree 命令查看一下进程父子关系：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs erlang"><span class="hljs-function"><span class="hljs-title">systemd</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span>─┬─X<span class="hljs-title">vfb</span><span class="hljs-params">(<span class="hljs-number">17214</span>)</span>─┬─&#123;<span class="hljs-title">llvmpipe</span>-0&#125;<span class="hljs-params">(<span class="hljs-number">18510</span>)</span></span>
+<span class="hljs-function">           │             ├─&#123;<span class="hljs-title">llvmpipe</span>-1&#125;<span class="hljs-params">(<span class="hljs-number">18511</span>)</span></span>
+<span class="hljs-function">           │             ├─&#123;<span class="hljs-title">llvmpipe</span>-2&#125;<span class="hljs-params">(<span class="hljs-number">18512</span>)</span></span>
+<span class="hljs-function">           │             └─&#123;<span class="hljs-title">llvmpipe</span>-3&#125;<span class="hljs-params">(<span class="hljs-number">18513</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">accounts</span>-<span class="hljs-title">daemon</span><span class="hljs-params">(<span class="hljs-number">1327</span>)</span>─┬─&#123;<span class="hljs-title">gdbus</span>&#125;<span class="hljs-params">(<span class="hljs-number">1495</span>)</span></span>
+<span class="hljs-function">           │                       └─&#123;<span class="hljs-title">gmain</span>&#125;<span class="hljs-params">(<span class="hljs-number">1492</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">acpid</span><span class="hljs-params">(<span class="hljs-number">1203</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">agetty</span><span class="hljs-params">(<span class="hljs-number">23750</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">atd</span><span class="hljs-params">(<span class="hljs-number">1223</span>,daemon)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">containerd</span><span class="hljs-params">(<span class="hljs-number">22211</span>)</span>─┬─<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span><span class="hljs-params">(<span class="hljs-number">8473</span>)</span>─┬─<span class="hljs-title">sleep</span><span class="hljs-params">(<span class="hljs-number">8491</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">8474</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">8475</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">8476</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">8477</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">8478</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">8479</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">8480</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">8482</span>)</span></span>
+<span class="hljs-function">           │                   │                       └─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">8820</span>)</span></span>
+<span class="hljs-function">           │                   ├─<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span><span class="hljs-params">(<span class="hljs-number">9297</span>)</span>─┬─<span class="hljs-title">sleep</span><span class="hljs-params">(<span class="hljs-number">9316</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">9298</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">9299</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">9300</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">9301</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">9302</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">9303</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">9304</span>)</span></span>
+<span class="hljs-function">           │                   │                       ├─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">9306</span>)</span></span>
+<span class="hljs-function">           │                   │                       └─&#123;<span class="hljs-title">containerd</span>-<span class="hljs-title">shim</span>&#125;<span class="hljs-params">(<span class="hljs-number">9343</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22216</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22217</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22218</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22219</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22220</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22227</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22228</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22229</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22231</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22232</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22233</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22234</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22369</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">22375</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">23023</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">24119</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">31016</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">32704</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">7339</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">23491</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">23596</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">23889</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">23894</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">24535</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">31378</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">32403</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">32404</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">15398</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">15399</span>)</span></span>
+<span class="hljs-function">           │                   ├─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">15805</span>)</span></span>
+<span class="hljs-function">           │                   └─&#123;<span class="hljs-title">containerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">16319</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">cron</span><span class="hljs-params">(<span class="hljs-number">20629</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">dbus</span>-<span class="hljs-title">daemon</span><span class="hljs-params">(<span class="hljs-number">1227</span>,messagebus)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">dhclient</span><span class="hljs-params">(<span class="hljs-number">1023</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">dockerd</span><span class="hljs-params">(<span class="hljs-number">6901</span>)</span>─┬─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6903</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6904</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6905</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6906</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6907</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6908</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6909</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6910</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6912</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6913</span>)</span></span>
+<span class="hljs-function">           │               ├─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6914</span>)</span></span>
+<span class="hljs-function">           │               └─&#123;<span class="hljs-title">dockerd</span>&#125;<span class="hljs-params">(<span class="hljs-number">6915</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">irqbalance</span><span class="hljs-params">(<span class="hljs-number">1468</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">iscsid</span><span class="hljs-params">(<span class="hljs-number">1140</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">iscsid</span><span class="hljs-params">(<span class="hljs-number">1141</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">lvmetad</span><span class="hljs-params">(<span class="hljs-number">479</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">lxcfs</span><span class="hljs-params">(<span class="hljs-number">1215</span>)</span>─┬─&#123;<span class="hljs-title">lxcfs</span>&#125;<span class="hljs-params">(<span class="hljs-number">1337</span>)</span></span>
+<span class="hljs-function">           │             ├─&#123;<span class="hljs-title">lxcfs</span>&#125;<span class="hljs-params">(<span class="hljs-number">1340</span>)</span></span>
+<span class="hljs-function">           │             ├─&#123;<span class="hljs-title">lxcfs</span>&#125;<span class="hljs-params">(<span class="hljs-number">9044</span>)</span></span>
+<span class="hljs-function">           │             ├─&#123;<span class="hljs-title">lxcfs</span>&#125;<span class="hljs-params">(<span class="hljs-number">23720</span>)</span></span>
+<span class="hljs-function">           │             └─&#123;<span class="hljs-title">lxcfs</span>&#125;<span class="hljs-params">(<span class="hljs-number">9313</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">mdadm</span><span class="hljs-params">(<span class="hljs-number">1453</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">mysqld</span><span class="hljs-params">(<span class="hljs-number">31859</span>,mysql)</span>─┬─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31871</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31872</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31873</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31874</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31875</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31876</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31877</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31878</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31879</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31880</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31881</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31882</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31884</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31885</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31886</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31887</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31888</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31889</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31890</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31891</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31892</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31893</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31894</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31895</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31896</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">31897</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">30641</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">15274</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">10442</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">26016</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">10137</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">1973</span>)</span></span>
+<span class="hljs-function">           │                     ├─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">23981</span>)</span></span>
+<span class="hljs-function">           │                     └─&#123;<span class="hljs-title">mysqld</span>&#125;<span class="hljs-params">(<span class="hljs-number">18314</span>)</span></span>
+<span class="hljs-function">           ├─<span class="hljs-title">nginx</span><span class="hljs-params">(<span class="hljs-number">10152</span>)</span>─┬─<span class="hljs-title">nginx</span><span class="hljs-params">(<span class="hljs-number">10153</span>,www-data)</span></span>
+<span class="hljs-function">           │              ├─<span class="hljs-title">nginx</span><span class="hljs-params">(<span class="hljs-number">10154</span>,www-data)</span></span>
+<span class="hljs-function">           │              ├─<span class="hljs-title">nginx</span><span class="hljs-params">(<span class="hljs-number">10155</span>,www-data)</span></span>
+<span class="hljs-function"> </span></code></pre></div>
+
+<p>不难发现，当执行 <strong>docker run 命令</strong>时，containerd 会创建 containerd-shim 充当 “垫片” 进程（进程PID为9297），然后启动容器的真正进程 sleep 3600 。</p>
+<p>在当前的宿主机器上，可能就存在由上述的不同进程构成的进程树，如下图所示：</p>
+<p><img src="/img/docker/docker-process-size.png" srcset="/img/loading.gif" lazyload></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/docker/">docker</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/docker/">docker</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/03/docker-file/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker File</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/03/docker-security-1/">
+                        <span class="hidden-mobile">docker security</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

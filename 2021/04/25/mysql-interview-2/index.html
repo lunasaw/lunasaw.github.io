@@ -1,0 +1,751 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Mysql 面试题为什么用自增列作为主键1. 如果定义了主键Primary Key，那么InnoDB会选择主键作为聚簇索引 如果没有显示定义主键，则InnoDB会选择第一个不包含有NULL值的唯一索引作为主键索引。 如果也没有这样的唯一索引，则InnoDB会选择内置6字节长度的RowId作为隐含的聚簇索引（RowId随着行记录的写入而主键递增）这个RowId不像Oracle的RowId 那样可引用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql面试题">
+<meta property="og:url" content="https://lunasaw.github.io/2021/04/25/mysql-interview-2/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Mysql 面试题为什么用自增列作为主键1. 如果定义了主键Primary Key，那么InnoDB会选择主键作为聚簇索引 如果没有显示定义主键，则InnoDB会选择第一个不包含有NULL值的唯一索引作为主键索引。 如果也没有这样的唯一索引，则InnoDB会选择内置6字节长度的RowId作为隐含的聚簇索引（RowId随着行记录的写入而主键递增）这个RowId不像Oracle的RowId 那样可引用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/04/25/zQsluwtd5VMDjxa.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/04/25/PG9aHhrgzRDIblE.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/04/25/dCzkEw31gAlVy9e.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/04/25/sNupSlGDfm9nFdz.jpg">
+<meta property="article:published_time" content="2021-04-25T07:11:34.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.992Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/25/zQsluwtd5VMDjxa.jpg">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>mysql面试题 - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/mysql-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="mysql面试题">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-25 15:11" pubdate>
+        2021年4月25日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mysql面试题</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Mysql-面试题"><a href="#Mysql-面试题" class="headerlink" title="Mysql 面试题"></a>Mysql 面试题</h1><h2 id="为什么用自增列作为主键"><a href="#为什么用自增列作为主键" class="headerlink" title="为什么用自增列作为主键"></a>为什么用自增列作为主键</h2><h4 id="1-如果定义了主键Primary-Key，那么InnoDB会选择主键作为聚簇索引"><a href="#1-如果定义了主键Primary-Key，那么InnoDB会选择主键作为聚簇索引" class="headerlink" title="1. 如果定义了主键Primary Key，那么InnoDB会选择主键作为聚簇索引"></a>1. 如果定义了主键Primary Key，那么InnoDB会选择主键作为聚簇索引</h4><ul>
+<li>如果没有显示定义主键，则InnoDB会选择第一个不包含有NULL值的唯一索引作为主键索引。</li>
+<li>如果也没有这样的唯一索引，则InnoDB会选择内置6字节长度的RowId作为隐含的聚簇索引（RowId随着行记录的写入而主键递增）这个RowId不像Oracle的RowId 那样可引用，它是隐含的。</li>
+</ul>
+<h4 id="2-数据记录本身-存于主索引（一课B-Tree）的叶子结点，这就要求同一叶子结点内（大小为一个内存页或者磁盘页）的各条数据记录按主键顺序存放"><a href="#2-数据记录本身-存于主索引（一课B-Tree）的叶子结点，这就要求同一叶子结点内（大小为一个内存页或者磁盘页）的各条数据记录按主键顺序存放" class="headerlink" title="2. 数据记录本身 存于主索引（一课B+Tree）的叶子结点，这就要求同一叶子结点内（大小为一个内存页或者磁盘页）的各条数据记录按主键顺序存放"></a>2. 数据记录本身 存于主索引（一课B+Tree）的叶子结点，这就要求同一叶子结点内（大小为一个内存页或者磁盘页）的各条数据记录按主键顺序存放</h4><ul>
+<li>因此每当有一条新纪录存入，Mysql会根据其主键将其插入适当的节点和位置，如果页面达到装载因子（InnoDB默认为15/16），则开辟一个新的页（节点）</li>
+</ul>
+<h4 id="3-如果表使用自增主键，那么每次插入新纪录，记录就会顺序的添加到当前索引结点的后续位置，当一页写满，就会自动开辟一个新的页"><a href="#3-如果表使用自增主键，那么每次插入新纪录，记录就会顺序的添加到当前索引结点的后续位置，当一页写满，就会自动开辟一个新的页" class="headerlink" title="3. 如果表使用自增主键，那么每次插入新纪录，记录就会顺序的添加到当前索引结点的后续位置，当一页写满，就会自动开辟一个新的页"></a>3. 如果表使用自增主键，那么每次插入新纪录，记录就会顺序的添加到当前索引结点的后续位置，当一页写满，就会自动开辟一个新的页</h4><h4 id="4-如果使用非自增主键（如身份证号或者学号等），由于每次插入主键的值近似于随机，因此新纪录都要被查到现有索引页中的中间的某个位置"><a href="#4-如果使用非自增主键（如身份证号或者学号等），由于每次插入主键的值近似于随机，因此新纪录都要被查到现有索引页中的中间的某个位置" class="headerlink" title="4. 如果使用非自增主键（如身份证号或者学号等），由于每次插入主键的值近似于随机，因此新纪录都要被查到现有索引页中的中间的某个位置"></a>4. 如果使用非自增主键（如身份证号或者学号等），由于每次插入主键的值近似于随机，因此新纪录都要被查到现有索引页中的中间的某个位置</h4><ul>
+<li>此时Mysql不得不为了将新纪录插到合适的位置而移动数据，甚至目标页面可能已经被写回磁盘上而从缓存中清掉，此时又要从磁盘读回来，这增加了很多开销</li>
+<li>同时频繁移动，分页造成大量的碎片，得到不够紧凑的结构，后续不得不通过Optimize table来重建表并优化填充页面</li>
+</ul>
+<h2 id="为什么使用数据索引能提高效率"><a href="#为什么使用数据索引能提高效率" class="headerlink" title="为什么使用数据索引能提高效率"></a>为什么使用数据索引能提高效率</h2><h4 id="数据索引的存储是有序的"><a href="#数据索引的存储是有序的" class="headerlink" title="数据索引的存储是有序的"></a>数据索引的存储是有序的</h4><h4 id="在有序的情况下，通过索引查询一个数据是无需遍历记录的"><a href="#在有序的情况下，通过索引查询一个数据是无需遍历记录的" class="headerlink" title="在有序的情况下，通过索引查询一个数据是无需遍历记录的"></a>在有序的情况下，通过索引查询一个数据是无需遍历记录的</h4><h4 id="在极端情况下，数据索引的查询效率为二分查询效率，趋近于log2-N"><a href="#在极端情况下，数据索引的查询效率为二分查询效率，趋近于log2-N" class="headerlink" title="在极端情况下，数据索引的查询效率为二分查询效率，趋近于log2(N)"></a>在极端情况下，数据索引的查询效率为二分查询效率，趋近于log2(N)</h4><h2 id="B-树和hash索引的区别"><a href="#B-树和hash索引的区别" class="headerlink" title="B+树和hash索引的区别"></a>B+树和hash索引的区别</h2><p class="note note-primary">B+数是一个平衡的多叉树，从根节点到每个叶子结点的高度差不超过1，而且同层级的结点之间有指针相互链接，是有序的</p>
+
+<p><img src="https://i.loli.net/2021/04/25/zQsluwtd5VMDjxa.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p class="note note-secondary">哈希索引就是采用一定的哈希算法，把键值转换成新的哈希值，检索不需要类似B+数那样从根结点到叶子结点逐级查找，只需要一次哈希算法即可，是无序的</p>
+
+<p><img src="https://i.loli.net/2021/04/25/PG9aHhrgzRDIblE.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="哈希索引的优势"><a href="#哈希索引的优势" class="headerlink" title="哈希索引的优势"></a>哈希索引的优势</h2><h4 id="等值查询，哈希索引具有绝对优势（前提是没有大量重复键值，如果有大量重复键值时，效率很低，因为存在大量的哈希冲突，需要散列再散列）"><a href="#等值查询，哈希索引具有绝对优势（前提是没有大量重复键值，如果有大量重复键值时，效率很低，因为存在大量的哈希冲突，需要散列再散列）" class="headerlink" title="等值查询，哈希索引具有绝对优势（前提是没有大量重复键值，如果有大量重复键值时，效率很低，因为存在大量的哈希冲突，需要散列再散列）"></a>等值查询，哈希索引具有绝对优势（前提是没有大量重复键值，如果有大量重复键值时，效率很低，因为存在大量的哈希冲突，需要散列再散列）</h4><h2 id="哈希索引不适用的场景"><a href="#哈希索引不适用的场景" class="headerlink" title="哈希索引不适用的场景"></a>哈希索引不适用的场景</h2><ol>
+<li>不支持范围查询</li>
+<li>不支持索引完成排序</li>
+<li>不支持联合索引的最左侧匹配规则</li>
+</ol>
+<h2 id="通常，B-数索引结构适用于大多数场景，像下面这种场景用哈希才更有优势"><a href="#通常，B-数索引结构适用于大多数场景，像下面这种场景用哈希才更有优势" class="headerlink" title="通常，B+数索引结构适用于大多数场景，像下面这种场景用哈希才更有优势"></a>通常，B+数索引结构适用于大多数场景，像下面这种场景用哈希才更有优势</h2><ul>
+<li><p>在HEAP表中，如果存储数据的重复度很低（基数很大），对该列数据以等职查询为主，没有范围查询，没有排序的时候特别适合哈希索引，例如</p>
+</li>
+<li><p># 仅等值查询<code>select id, name from table where name=&#39;李明&#39;; </code></p>
+</li>
+</ul>
+<ol>
+<li>而常用的InnoDB引擎中默认使用的是B+树索引，它会实时监控表上索引的使用情况 。</li>
+<li>如果认为建立哈希索引可以提高查询效率，则自动在内存中的“<strong>自适应哈希索引缓冲区</strong>”建立哈希索引（在InnDB中默认开启自适应哈希索引）。</li>
+<li>通过观察搜素模式，Mysql回利用Index Key的前缀建立哈希索引，如果一个表大部分都在缓冲池中，那么建立一个哈希索引能够加快等值查询。</li>
+</ol>
+<p><strong>注意：在某些工作负载情况下，通过哈希索引查找带来的性能提升远大于额外的监控索引搜索情况和保持哈希表结构带来的开销</strong></p>
+<p><code>但在某些时候，在负载高的清空下，自适应哈希索引中添加的read/write锁也会带来竞争，比如高并发的join操作，like操作，和%通配符操作也不适用于自适应哈希索引，可能要关闭自适应哈希索引</code></p>
+<h2 id="B树和B-树的区别"><a href="#B树和B-树的区别" class="headerlink" title="B树和B+树的区别"></a>B树和B+树的区别</h2><ul>
+<li>B树，每个结点都存储key和value，所有结点组成这棵树，并且叶子结点为null，叶子结点不包含任何关键字信息</li>
+</ul>
+<p><img src="https://i.loli.net/2021/04/25/dCzkEw31gAlVy9e.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li>B+树，所有的叶子结点包含了全部关键字信息，以及指向含有这些关键字记录的指针，且叶子结点本身依关键字大小自小而大的顺序连接</li>
+<li>所有非终端结点可以看成是索引部分，结点中仅含有其子树根节点中最大（或最小）关键字，（而B树的非终端结点也可能含有需要查找的有效信息）</li>
+</ul>
+<p><img src="https://i.loli.net/2021/04/25/sNupSlGDfm9nFdz.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="为什么说B树比B-树更结合实际应用操作系统的文件索引和数据库索引"><a href="#为什么说B树比B-树更结合实际应用操作系统的文件索引和数据库索引" class="headerlink" title="为什么说B树比B+树更结合实际应用操作系统的文件索引和数据库索引"></a>为什么说B树比B+树更结合实际应用操作系统的文件索引和数据库索引</h2><ol>
+<li>B+树的磁盘读写代价更低</li>
+</ol>
+<div class="note note-success">
+            <p>B+树内部结点并没有指向关键字具体信息的指针，因此其内部结点相对B树更小。如果把所有同一内部结点的关键字存在同一块盘快中，那么盘快能容纳的关键字数量也就越多，一次性读入内存中需要查找的关键字也就越多，相对就减少了IO读写次数也就降低了</p>
+          </div>
+
+<ol start="2">
+<li>B+树的查询效率更加稳定</li>
+</ol>
+<div class="note note-primary">
+            <p>由于非终结点的并不最终指向文件内容的结点，而只是叶子结点中关键字的索引，索引任何关键字的查找必须走一条从根节点到叶子结点的路，所有关键字查询的路径长度相同，导致每一个数据的查询效率相当</p>
+          </div>
+
+<h2 id="Mysql联合索引"><a href="#Mysql联合索引" class="headerlink" title="Mysql联合索引"></a>Mysql联合索引</h2><h3 id="联合索引是两个或多个列以上的索引"><a href="#联合索引是两个或多个列以上的索引" class="headerlink" title="联合索引是两个或多个列以上的索引"></a>联合索引是两个或多个列以上的索引</h3><p><strong>对于联合索引：</strong>Mysql从左到右的使用索引中的字段，一个查询可以只使用索引中的一部分，但只能是最左侧部分。</p>
+<p>例如索引是key index(a,b,c),可以支持 a，ab，abc，3种组合进行查找，<strong>但不支持bc进行查找</strong>，当最左侧字段是常量引用时，索引就十分有效。</p>
+<h3 id="利用索引中的附加列"><a href="#利用索引中的附加列" class="headerlink" title="利用索引中的附加列"></a>利用索引中的附加列</h3><p><code>可以缩小搜索范围，但使用一个具有两列的索引不同于使用两个单独的索引。</code></p>
+<p><strong>复合索引：</strong> 结构与电话簿类似，人名有姓和名构成，电话簿首先按姓氏进行排序，然后按名字对相同姓氏的人进行排序。</p>
+<p>如果您知道姓，电话簿将非常有用；如果您知道姓和名则更有用，但如果只知道名不知道姓，电话簿将没有用处。</p>
+<h2 id="什么情况下应不建或者少建索引"><a href="#什么情况下应不建或者少建索引" class="headerlink" title="什么情况下应不建或者少建索引"></a>什么情况下应不建或者少建索引</h2><ol>
+<li>表记录太少</li>
+<li>经常插入，删除，修改的表</li>
+<li>数据重复且分布平均的表字段，假如一个表有10万行记录，有一个字段A只有T和F两种值，且每个值的分布概率大约为50%，那么这种表A字段建索引一般不会提高数据库查询速度</li>
+<li>经常和主键一块查询但主字段索引值比较多的表字段</li>
+</ol>
+<h2 id="什么是表分区"><a href="#什么是表分区" class="headerlink" title="什么是表分区"></a>什么是表分区</h2><p>是根据一定规则，将数据库中的表分别分解成多个更小的，容易管理的部分，从逻辑上看，只有一张表，但底层却是多个物理分区组成</p>
+<h2 id="表分区与分表的区别"><a href="#表分区与分表的区别" class="headerlink" title="表分区与分表的区别"></a>表分区与分表的区别</h2><p class="note note-primary">表分区：如上👆，比如用户订单记录根据时间分成多个表</p>
+
+<p class="note note-danger">分表：根据业务逻辑拆分表，使之在底层和逻辑层都是多个物理分区</p>
+
+<p><strong>区别：分区从逻辑上来讲只有一张表，而分表则将一张表分解成多个表</strong></p>
+<h2 id="分区表的好处"><a href="#分区表的好处" class="headerlink" title="分区表的好处"></a>分区表的好处</h2><ol>
+<li><strong>存储更多数据</strong>，分区表的数据可以分布在不同的物理设备上，从而高效的利用多个硬件设备，和单磁盘或者文件系统相比，可以存储更多数据</li>
+<li><strong>优化查询</strong>，在where语句中包含分区条件时候，可以只扫描一个或者多个分区表来提高查询效率，涉及sum和count语句时，也可以在多个分区上并行处理，最后汇总结果。</li>
+<li><strong>分区表更容易维护</strong>，例如：想批量删除大量数据，可以清除整个分区</li>
+<li><strong>避免某些特殊的瓶颈</strong>，例如InnoDB的单个索引的互斥访问，发生的锁竞争</li>
+</ol>
+<h2 id="分区表的限制因素"><a href="#分区表的限制因素" class="headerlink" title="分区表的限制因素"></a>分区表的限制因素</h2><ol>
+<li>一个表最多只能由1024个分区</li>
+<li>Mysql5.1中，分区表达式必须是整数，或者返回整数的形式，Mysql5.5中提供了非整数表达式分区的支持</li>
+<li>如果分区字段中有主键或者唯一索引列，那么多有的主键和唯一索引列都必须包含进来。即：<code>分区字段要么不包含主键或者索引列，要么包含全部主键和索引列</code></li>
+<li>分区表中无外键约束</li>
+<li>Mysql的分区适用于一个表的所有数据和索引，不能只对表数据分区而不对索引分区，也不能只对索引分区而不对表分区，也不能只对表的一部分数据分区</li>
+</ol>
+<h2 id="如何判断当前Mysql是否支持分区"><a href="#如何判断当前Mysql是否支持分区" class="headerlink" title="如何判断当前Mysql是否支持分区"></a>如何判断当前Mysql是否支持分区</h2><p><code>命令：show variables like &#39;%partition%&#39;</code></p>
+<p><code>have_partintioning 的值为YES，表示支持分区。</code></p>
+<h2 id="Mysql-支持的分区类型有哪些？"><a href="#Mysql-支持的分区类型有哪些？" class="headerlink" title="Mysql 支持的分区类型有哪些？"></a>Mysql 支持的分区类型有哪些？</h2><ol>
+<li><code>RANGE分区</code>：这种模式允许将数据划分不同范围，例如可以将一个表通过年份划分成若干分区</li>
+<li><code>LIST分区</code>:  这种模式允许通过预定义的列表的值来对数据进行分割。按照List中的值分区，与RANGE的区别是，range分区的区间范围值是连续的。</li>
+<li><code>HASH分区</code>： 中模式允许通过对表的一个或多个列的Hash Key进行计算，最后通过这个Hash码不同数值对应的数据区域进行分区。例如可以建立一个对表主键进行分区的表。</li>
+<li><code>KEY分区</code>：上面Hash模式的一种延伸，这里的Hash Key是MySQL系统产生的。</li>
+</ol>
+<h2 id="四种隔离级别"><a href="#四种隔离级别" class="headerlink" title="四种隔离级别"></a>四种隔离级别</h2><ol>
+<li>Serializable（串行）可避免脏读，不可重复度，幻读</li>
+<li>Repeatable read（可重复度）可避免脏读，不可重复度</li>
+<li>Read committed（读已提交）可避免脏读</li>
+<li>Read uncommitted（读未提交）最低级别，任何情况都无法保证</li>
+</ol>
+<h2 id="MVVC"><a href="#MVVC" class="headerlink" title="MVVC"></a>MVVC</h2><div class="note note-danger">
+            <p>Mysql InnoDB 存储引擎，实现的是基于多版本的并发控制协议—MVVC（Multi-Version Concurrency Controller）</p><p><strong>注</strong>：与MVCC相对的，是基于锁的并发控制，Lock-Based Concurrency Control</p><p><strong>MVCC最大的好处</strong>： 读不加锁，读写不冲突，在读多写少的OLTP应用中，读写不冲突是非常重要的，极大的增加了系统的并发性能，现阶段几乎所有的RDBMS，都支持MVCC</p>
+          </div>
+
+<ol>
+<li>LBCC Lock-Base Concurrency Control，基于锁的并发控制</li>
+<li>MVCC：Multi-Version Concurrency Control，基于多版本的并发控制协议，纯粹基于锁的并发机制并发量低，MVCC是在基于锁的并发控制上的改进，主要是在读写操作上提高了并发</li>
+</ol>
+<h2 id="MVCC并发控制中，读操作可分为两类"><a href="#MVCC并发控制中，读操作可分为两类" class="headerlink" title="MVCC并发控制中，读操作可分为两类"></a>MVCC并发控制中，读操作可分为两类</h2><ol>
+<li>读快照：读取的是记录的可见版本（有可能是历史版本），不用加锁（共享读锁也不加，所以不会阻塞其他事务的写）</li>
+<li>当前读：读取的记录是最新版本，并且，当前返回的记录都会加上锁，保证其他事务不会再并发修改</li>
+</ol>
+<h2 id="行级别锁定的优点"><a href="#行级别锁定的优点" class="headerlink" title="行级别锁定的优点"></a>行级别锁定的优点</h2><ol>
+<li>在许多线程访问不同的行时只存在少量的锁定冲突</li>
+<li>回滚时只有少量的更改</li>
+<li>可以长时间锁定单一的行</li>
+</ol>
+<h2 id="行级别锁定的缺点"><a href="#行级别锁定的缺点" class="headerlink" title="行级别锁定的缺点"></a>行级别锁定的缺点</h2><ol>
+<li>比页级别锁占用更多的内存</li>
+<li>在当表的大部分使用时候，比页级别锁定更慢，因为你必须获取更多的锁</li>
+<li>如果你在大部分数据经常进行GROUP BY操作，或者必须经常扫描整个表，比其他锁定明显慢很多</li>
+<li>用高级别锁定，通过支持不同类型的锁定，你可以很容易的调节应用程序，因为其锁成本小于行级锁定</li>
+</ol>
+<h2 id="Mysql优化"><a href="#Mysql优化" class="headerlink" title="Mysql优化"></a>Mysql优化</h2><ol>
+<li><p>开启查询缓存，优化查询</p>
+</li>
+<li><p>explain你的select查询，这可以帮你分析你的查询语句或是表结构的性能瓶颈。EXPLAIN 的查询结果还会告诉你你的索引主键被如何利用的，你的数据表是如何被搜索和排序的</p>
+</li>
+<li><p>当只要一行数据时使用limit 1，MySQL数据库引擎会在找到一条数据后停止搜索，而不是继续往后查少下一条符合记录的数据</p>
+</li>
+<li><p>为搜索字段建索引</p>
+</li>
+<li><p>使用 ENUM 而不是 VARCHAR。如果你有一个字段，比如“性别”，“国家”，“民族”，“状态”或“部门”，你知道这些字段的取值是有限而且固定的，那么，你应该使用 ENUM 而不是VARCHAR</p>
+</li>
+<li><p>Prepared StatementsPrepared Statements很像存储过程，是一种运行在后台的SQL语句集合，我们可以从使用 prepared statements 获得很多好处，无论是性能问题还是安全问题。</p>
+<p>Prepared Statements 可以检查一些你绑定好的变量，这样可以保护你的程序不会受到“SQL注入式”攻击</p>
+</li>
+<li><p>垂直分表</p>
+</li>
+<li><p>选择正确的存储引擎</p>
+</li>
+</ol>
+<h2 id="key-和-index的区别"><a href="#key-和-index的区别" class="headerlink" title="key 和 index的区别"></a>key 和 index的区别</h2><h6 id="key"><a href="#key" class="headerlink" title="key"></a>key</h6><p>数据库的物理结构，有两层意义和作用，一是约束（偏重于约束和规范数据库的结构完整性），二是索引（辅助查询使用），包括primary key，unique，foreign key</p>
+<h6 id="index"><a href="#index" class="headerlink" title="index"></a>index</h6><p>是数据库的物理结构，只是辅助查询，创建时会在另外的表空间（mysql表和innodb表空间）以一个类似目录的结构存储，索引要分类的话，分为前缀索引，全文索引等；</p>
+<h2 id="Mysql中InnoDB和MyISam-的区别"><a href="#Mysql中InnoDB和MyISam-的区别" class="headerlink" title="Mysql中InnoDB和MyISam 的区别"></a>Mysql中InnoDB和MyISam 的区别</h2><ol>
+<li>InnoDB支持事务，MyIsam不支持</li>
+</ol>
+<p><code>对于InnoDB每一条sql语言都默认组装成一个事务，自动提交，这样会影响速度，所以最好把多条SQL语言放在begin和commit中，组成一个事务</code></p>
+<ol start="2">
+<li><p>InnoDB支持外键，MyIsam 不支持，对于一个包含外键的InnoDB转为MyIsam会失败</p>
+</li>
+<li><p>InnoDB是聚集索引，数据文件和索引绑在一起，必须要有主键，通过主键索引效率很高。但是辅助索引需要两次查询，先查询主键，然后再通过主键查询数据，因此主键不应该过大，因为主键太大，其他索引也会很大</p>
+<p>MyIsam是非聚簇索引，数据文件是分离的，索引保存的是数据文件的指针，主键索引和辅助索引是独立的。</p>
+</li>
+<li><p>InnoDB不保存表的具体行树，执行select (*) from table 会扫描全表，而MyIsam用一个变量保存了整个表的行树，执行上面的语句只需要读出变量即可。</p>
+</li>
+<li><p>InnoDB不支持全文索引，而myIsam支持，效率更高。</p>
+</li>
+</ol>
+<h3 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h3><ol>
+<li>是否需要事务，需要则选择InnoDB，不需要可以考虑MyIsam</li>
+<li>绝大多数只是读取可以考虑MyIsam， 读写频繁用InnoDB</li>
+<li>系统崩溃后，myIsam 恢复更困难</li>
+<li>MySQL5.5版本开始Innodb已经成为Mysql的默认引擎(之前是MyISAM)，说明其优势是有目共睹的，如果你不知道用什么，那就用InnoDB，至少不会差。</li>
+</ol>
+<h2 id="数据库表创建注意事项"><a href="#数据库表创建注意事项" class="headerlink" title="数据库表创建注意事项"></a><strong>数据库表创建注意事项</strong></h2><p><strong>1、字段名及字段配制合理性</strong></p>
+<ul>
+<li>剔除关系不密切的字段；</li>
+<li>字段命名要有规则及相对应的含义（不要一部分英文，一部分拼音，还有类似a.b.c这样不明含义的字段）；</li>
+<li>字段命名尽量不要使用缩写（大多数缩写都不能明确字段含义）；</li>
+<li>字段不要大小写混用（想要具有可读性，多个英文单词可使用下划线形式连接）；</li>
+<li>字段名不要使用保留字或者关键字；</li>
+<li>保持字段名和类型的一致性；</li>
+<li>慎重选择数字类型；</li>
+<li>给文本字段留足余量；</li>
+</ul>
+<p><strong>2、系统特殊字段处理及建成后建议</strong></p>
+<ul>
+<li>添加删除标记（例如操作人、删除时间）；</li>
+<li>建立版本机制；</li>
+</ul>
+<p><strong>3、表结构合理性配置</strong></p>
+<ul>
+<li>多型字段的处理，就是表中是否存在字段能够分解成更小独立的几部分（例如：人可以分为男人和女人）；</li>
+<li>多值字段的处理，可以将表分为三张表，这样使得检索和排序更加有调理，且保证数据的完整性！</li>
+</ul>
+<p><strong>4、其它建议</strong></p>
+<ul>
+<li>对于大数据字段，独立表进行存储，以便影响性能（例如：简介字段）；</li>
+<li>使用varchar类型代替char，因为varchar会动态分配长度，char指定长度是固定的；</li>
+<li>给表创建主键，对于没有主键的表，在查询和索引定义上有一定的影响；</li>
+<li>避免表字段运行为null，建议设置默认值（例如：int类型设置默认值为0）在索引查询上，效率立显；</li>
+<li>建立索引，最好建立在唯一和非空的字段上，建立太多的索引对后期插入、更新都存在一定的影响（考虑实际情况来创建）；</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-component/mysql/">mysql</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/mysql/">mysql</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/26/tomcat-interview/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">tomcat interview</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/23/docker-compose/">
+                        <span class="hidden-mobile">docker compose</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

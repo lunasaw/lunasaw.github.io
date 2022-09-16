@@ -1,0 +1,824 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="第一章 安装和启动Kali简介Kali Linux，简称Kali，是用于安全攻击的最新Linux发行版。它是BackTrack Linux的后继者。不像多数Linux发行版那样，Kali Linux用于渗透测试。渗透测试是一种通过模拟攻击评估计算机系统或网络安全性的方法。在整本书中，我们将会探索一些Kali Linux所提供的工具。 这一章涉及到Kali Linux在不同场景下的的安装和启动，从插">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装和启动Kali">
+<meta property="og:url" content="https://lunasaw.github.io/2020/09/19/kali-1/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="第一章 安装和启动Kali简介Kali Linux，简称Kali，是用于安全攻击的最新Linux发行版。它是BackTrack Linux的后继者。不像多数Linux发行版那样，Kali Linux用于渗透测试。渗透测试是一种通过模拟攻击评估计算机系统或网络安全性的方法。在整本书中，我们将会探索一些Kali Linux所提供的工具。 这一章涉及到Kali Linux在不同场景下的的安装和启动，从插">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn60tayfvj60hs0dd0t702.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn613cg79j60m70gu75802.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn6167oz8j60m30gjdgs02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn61ag0afj60m10get9e02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn61d6nngj60m70a5dgf02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn61gx8opj60m50a0wf202.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn61k783rj60m70gfmyk02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn61nxxmqj60ma0dfgmb02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn61rb0v8j60m50bo3zf02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn61vybyaj60m4091wf002.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn6207cylj60m50bhdgi02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn625s4kaj60m30c474v02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn62e6xb4j60m40aj74o02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn62mn1yuj60m20a7gm502.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn63464syj60m30b775402.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn636u6whj60m2090wex02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn63a0ox1j60ek042jrc02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn652d1nnj60bp0623yl02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn63dryyuj60et0aywey02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn63hi1yoj60ef06qaa302.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn63mq9v1j60lq09bq3h02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn63pg9r3j60dj0ao0t702.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn63u818pj60dn0aomxr02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn63yu0tyj60fu0byaal02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn6433szsj60lr0gcgml02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn645ubcwj606808gjre02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn648pbpjj60b90acjrn02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn64al3avj60nq0dhmxw02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn64ec0qvj608508j74e02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn64jevjij60eq072dfw02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn64lsugmj60bi0gpglu02.jpg">
+<meta property="article:published_time" content="2020-09-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.988Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="kaili">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvn60tayfvj60hs0dd0t702.jpg">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>安装和启动Kali - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/kaili-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="安装和启动Kali">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-19 00:00" pubdate>
+        2020年9月19日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">安装和启动Kali</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="第一章-安装和启动Kali"><a href="#第一章-安装和启动Kali" class="headerlink" title="第一章 安装和启动Kali"></a>第一章 安装和启动Kali</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kali Linux，简称Kali，是用于安全攻击的最新Linux发行版。它是BackTrack Linux的后继者。不像多数Linux发行版那样，Kali Linux用于渗透测试。渗透测试是一种通过模拟攻击评估计算机系统或网络安全性的方法。在整本书中，我们将会探索一些Kali Linux所提供的工具。</p>
+<p>这一章涉及到Kali Linux在不同场景下的的安装和启动，从插入Kali Linux DVD到配置网络。</p>
+<p>对于本书中所有秘籍，我们都要使用以64位GNOME作为窗口管理器（WM）和架构的Kali Linux（<a target="_blank" rel="noopener" href="http://www.kali.org/downloads/%EF%BC%89%E3%80%82%E7%84%B6%E8%80%8C%EF%BC%8C%E4%BD%BF%E7%94%A8KDE%E4%BD%9C%E4%B8%BAWM%E7%9A%84%E7%94%A8%E6%B3%95%E5%B9%B6%E4%B8%8D%E5%9C%A8%E8%BF%99%E6%9C%AC%E4%B9%A6%E9%87%8C%E6%B6%89%E5%8F%8A%EF%BC%8C%E4%BD%A0%E5%BA%94%E8%AF%A5%E8%83%BD%E5%A4%9F%E9%81%B5%E5%BE%AA%E8%BF%99%E4%BA%9B%E7%A7%98%E7%B1%8D%EF%BC%8C%E5%B9%B6%E6%B2%A1%E6%9C%89%E5%A4%9A%E5%B0%91%E9%97%AE%E9%A2%98%E3%80%82">http://www.Kali.org/downloads/）。然而，使用KDE作为WM的用法并不在这本书里涉及，你应该能够遵循这些秘籍，并没有多少问题。</a></p>
+<h2 id="1-1-安装到硬盘"><a href="#1-1-安装到硬盘" class="headerlink" title="1.1 安装到硬盘"></a>1.1 安装到硬盘</h2><p>硬盘的安装是最基本的操作之一。这个任务需要我们不带DVD运行Kali来完成。</p>
+<blockquote>
+<p>执行这个秘籍中的步骤会抹掉你的硬盘，并把Kali标记为你电脑上的主操作系统。</p>
+</blockquote>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>在解释整个过程之前，需要满足以下要求：</p>
+<ul>
+<li>为KaliLinux的安装准备最小8GB的空闲磁盘空间（然而我们推荐至少25GB来存放这本书中额外的程序和生成的词汇表）。</li>
+<li>最小512MB的内存。</li>
+<li>在<a target="_blank" rel="noopener" href="http://www.kali.org/downloads/">KaliLinux的下载页面</a>下载Kali Linux。</li>
+</ul>
+<p>让我们开始安装吧。</p>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><p>在光驱中插入Kali Linux Live DVD来开始。你会看到它的启动菜单。选择<code>Graphical install</code>（图形化安装）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn60tayfvj60hs0dd0t702.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>选择语言。这里我们选择<code>English</code>（英语）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn613cg79j60m70gu75802.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>选择你的位置。这里我们选择<code>United States</code>（美国）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn6167oz8j60m30gjdgs02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>选择你的键盘配置。这里我们选择<code>American English</code>（美国英语）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn61ag0afj60m10get9e02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>下面要完成网络服务配置。输入主机名称，这里我们输入<code>Kali</code>。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn61d6nngj60m70a5dgf02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>下面，我们需要输入域名。这里我们输入<code>kali.secureworks. com</code>。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn61gx8opj60m50a0wf202.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>现在你会看到输入root密码的地方，需要输入两次。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn61k783rj60m70gfmyk02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>选择你的时区，这里我们选择<code>Eastern</code>（东方）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn61nxxmqj60ma0dfgmb02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>我们现在可以选择磁盘分区方式。你会看到四个选项。选择<code>Guided - use entire disk</code>，这会便于你分区。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn61rb0v8j60m50bo3zf02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>在这一步，你需要知道你的磁盘会被抹掉，点击<code>Continue</code>（继续）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn61vybyaj60m4091wf002.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>下面，你有机会选择三个分区方式之一：所有文件放在一个分区、分离<code>/home</code>、以及分离<code>/home/user/var</code>和<code>/tmp</code>。考虑到Kali用于渗透测试，分区不需要也不必要（即使这对于你的桌面主操作系统是个好主意）。这里我们选择<code>All files in one partition</code>（所有文件放在一个分区）并点击<code>Continue</code>（继续）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn6207cylj60m50bhdgi02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>一旦你看到了一个界面，让你知道将要对你磁盘执行的改动，选择<code>Yes</code>之后点击<code>Continue</code>（继续）。要注意这是撤销抹掉你磁盘所有数据的最后机会。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn625s4kaj60m30c474v02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>下面，你会被询问是否希望链接到网络镜像。网络镜像允许你接收到Kali的更新。这里我们选择<code>Yes</code>之后点击<code>Continue</code>（继续）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn62e6xb4j60m40aj74o02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>你可以通过点击<code>Continue</code>（继续）跳过HTTP代理界面。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn62mn1yuj60m20a7gm502.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>最后，你会被询问来安装GRUB启动器到主引导记录（MBR）中。选择<code>Yes</code>之后点击<code>Continue</code>（继续）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn63464syj60m30b775402.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>祝贺你现在完成了Kali Linux的安装！点击<code>Continue</code>，系统会重启并展示登录界面。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn636u6whj60m2090wex02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+</ol>
+<h2 id="1-2-安装到U盘或持久存储器中"><a href="#1-2-安装到U盘或持久存储器中" class="headerlink" title="1.2 安装到U盘或持久存储器中"></a>1.2 安装到U盘或持久存储器中</h2><p>Kali Linux U盘能够持久化储存系统设置，以及在U盘中永久升级和安装新的软件包，并让我们将个人定制的Kali Linux随时带在身上。</p>
+<p>多亏了Win32 Disk Imager，我们可以为大多数Linux发行版创建可启动的U盘，包括持久化存储的Kali Linux。</p>
+<h3 id="准备-1"><a href="#准备-1" class="headerlink" title="准备"></a>准备</h3><p>需要下列工具和准备工作以继续：</p>
+<ul>
+<li>FAT32格式的U盘，最小8GB。</li>
+<li>Kali Linux ISO镜像。</li>
+<li><a target="_blank" rel="noopener" href="http://sourceforge.net/projects/win32diskimager/">Win32 Disk Imager</a>。</li>
+<li>你可以从<a target="_blank" rel="noopener" href="http://www.kali.org/downloads/">这里</a>下载Kali。</li>
+</ul>
+<h3 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h3><p>让我们开始讲Kali Linux安装到U盘：</p>
+<ol>
+<li><p>插入格式化且可写入的U盘：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn63a0ox1j60ek042jrc02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>启动 Win32 Disk Imager。</p>
+</li>
+<li><p>点击目录图表，选择Kali Linux DVD ISO镜像的位置：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn652d1nnj60bp0623yl02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>确保<code>Space used to preserve files across reboots</code>（用于在启动中保存文件的空间）设置为4096。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn63dryyuj60et0aywey02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>选择我们的U盘，并点击OK按钮来开始创建可启动的U盘：</p>
+</li>
+<li><p>当它解压并复制DVD的文件到U盘，以及安装bootloader时，这个过程会花一些时间来完成。</p>
+</li>
+<li><p>安装完成之后，我们就可以重启电脑，从新创建的Kali Linux U盘以持久存储器来启动了。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn63hi1yoj60ef06qaa302.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+</ol>
+<h2 id="1-3-在-VirtualBox-中安装"><a href="#1-3-在-VirtualBox-中安装" class="headerlink" title="1.3 在 VirtualBox 中安装"></a>1.3 在 VirtualBox 中安装</h2><p>这个秘籍会引导你使用知名的开源虚拟机软件VirtualBox，将Kali Linux安装在一个完全分离的访客操作系统中，它在你的宿主操作系统中。</p>
+<h3 id="准备-2"><a href="#准备-2" class="headerlink" title="准备"></a>准备</h3><p>需要满足下列要求：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> 的最新版本（本书编写时为4.2.16）。</li>
+<li>Kali Linux ISO 镜像的副本。你可以在[这里](<a target="_blank" rel="noopener" href="http://www/">http://www</a>. Kali.org/downloads/)下载。</li>
+</ul>
+<h3 id="操作步骤-2"><a href="#操作步骤-2" class="headerlink" title="操作步骤"></a>操作步骤</h3><p>让我们在VirtualBox中安装Kali Linux：</p>
+<ol>
+<li><p>运行VirtualBox，点击<code>New</code>（新建）来启动虚拟机向导：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn63mq9v1j60lq09bq3h02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>点击<code>Next</code>（下一步）按钮，键入虚拟机的名称，并选择OS类型和版本。这里我们选择Linux类型和Ubuntu（64位）作为版本。点击<code>Next</code>按钮来继续：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn63pg9r3j60dj0ao0t702.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>选择分配给虚拟机的基本内存（RAM）的总数。我们打算使用默认值，点击<code>Next</code>。</p>
+</li>
+<li><p>为新的虚拟机创建新的虚拟硬盘，点击<code>Next</code>按钮。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn63u818pj60dn0aomxr02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>一个新的向导窗口将会打开，保留默认的VDI文件类型，因为我们并不需要使用其它的虚拟机软件。</p>
+</li>
+<li><p>我们会保留默认选项作为虚拟机磁盘存储的详情。点击<code>Next</code>来继续：</p>
+</li>
+<li><p>设置虚拟机磁盘文件类型和大小：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn63yu0tyj60fu0byaal02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>检查设置是否正确，之后点击<code>Create</code>（创建）按钮来开始虚拟磁盘文件的创建。</p>
+</li>
+<li><p>我们将会返回前面的向导，带有虚拟机参数的概览。点击<code>Create</code>以结束：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn6433szsj60lr0gcgml02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>新的虚拟机创建之后，我们将要安装Kali Linux。</p>
+</li>
+<li><p>在VirtualBox的主窗口，高亮Kali Linux，之后点击<code>Settings</code>（设置）按钮：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn645ubcwj606808gjre02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>现在基本的安装步骤就完成了，我们需要让你将下载的ISO文件用于虚拟光盘。这会为你节省烧录物理DVD的时间来完成这个安装。在<code>Settings</code>界面中，点击<code>Storage</code>（存储器）菜单选项：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn648pbpjj60b90acjrn02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>下一步，在<code>Storage Tree</code>（存储器树形图）下面，高亮<code>Empty</code>（空）磁盘图标，它在<code>IDE Controller</code>（IDE控制器）的下面。这户选择我们的虚拟CD/DVD ROM驱动器。在屏幕的最右边，在 <code>Attributes</code>底下，点击光盘图表。在上面弹出的菜单上选择你的<code>Choose a virtual CD/DVD disc file...</code>（Kali Linux ISO CD/DVD光盘文件）选项，并找到你的ISO。一旦你完成了这些步骤，点击OK按钮。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn64al3avj60nq0dhmxw02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>点击Start（开始）按钮，之后点击里面的新窗口来进行安装。安装步骤在1.1节中已经包括了。</p>
+<blockquote>
+<p>安装VirtualBox 扩展包也允许我们通过添加USB2.0（EHCI）、VirtualBox RDP和 Intel PXE boot ROM的支持，来扩展虚拟机的功能。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="1-4-安装-VMware-Tools"><a href="#1-4-安装-VMware-Tools" class="headerlink" title="1.4 安装 VMware Tools"></a>1.4 安装 VMware Tools</h2><p>这个秘籍中，我们会展示如何使用 VMware Tools将Kali Linux安装在虚拟机中。</p>
+<h3 id="准备-3"><a href="#准备-3" class="headerlink" title="准备"></a>准备</h3><p>需要满足下列要求：</p>
+<ul>
+<li>已经安装好的Kali Linux VMware 虚拟机。</li>
+<li>网络连接。</li>
+</ul>
+<h3 id="操作步骤-3"><a href="#操作步骤-3" class="headerlink" title="操作步骤"></a>操作步骤</h3><p>让我们开始将Kali Linux 安装到 VMware上：</p>
+<ol>
+<li><p>打开你的虚拟机的访客操作系统并连接到互联网，之后打开<code>Terminal</code>（终端）窗口，并键入下列命令来准备核心资源：</p>
+<p><code>prepare-kernel-sources</code></p>
+<blockquote>
+<p>这些命令假设你使用Linux或者Mac OS。你不需要在Windows下执行它们。</p>
+</blockquote>
+</li>
+<li><p>在VMware Workstaion的菜单栏上，访问<code>VM | Install VMware Tools…</code>：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn64ec0qvj608508j74e02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>将VMware Tools安装工具复制到临时目录下，之后将当前位置改为目标目录：</p>
+<p><code>cp /media/VMware\ Tools/VMwareTools-8.8.2-590212.tar.gz /tmp/; cd /tmp</code></p>
+<blockquote>
+<p>根据你的VMware Tools来替换文件名：<code>VMwareTools--.tar.gz</code>。</p>
+</blockquote>
+</li>
+<li><p>使用以下命令解压并安装：</p>
+<p><code>tar zxpf VMwareTools-8.8.2-590212.tar.gz</code></p>
+</li>
+<li><p>进入VMware Tools的目录中，之后运行安装工具：</p>
+<p><code>cd vmware-tools-distrib/ ./vmware-install.pl</code></p>
+</li>
+<li><p>按下回车键来接受每个配置询问的默认值；<code>vmware-config-tools.pl</code>脚本同上。</p>
+</li>
+<li><p>最后重启系统，工作就完成了。</p>
+</li>
+</ol>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>在第一步中，我们准备好了核心资源。之后，我们向访客操作系统插入了虚拟的 VMware Tools CD 。接着，我们创建了挂载点，并挂载虚拟CD。我们在临时目录中复制并解压了安装工具。最后我们保留默认配置来运行安装工具。</p>
+<h2 id="1-5-修复启动画面"><a href="#1-5-修复启动画面" class="headerlink" title="1.5 修复启动画面"></a>1.5 修复启动画面</h2><p>我们首次启动新安装的Kali Linux系统时，会注意到启动画面消失了。为了手动修复它，我们需要解压<code>Initrd</code>，修改它，之后将它再次压缩。幸运的是，有一个由 Mati Aharoni（也称为“muts”，Kali Linux的创造者）编写的自动化bash脚本使这件事变得容易。</p>
+<h3 id="操作步骤-4"><a href="#操作步骤-4" class="headerlink" title="操作步骤"></a>操作步骤</h3><p>键入下列命令并且按下回车键来修复消失的启动画面：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs coq"><span class="hljs-built_in">fix</span>-splash</code></pre></div>
+
+<h2 id="1-6-启动网络服务"><a href="#1-6-启动网络服务" class="headerlink" title="1.6 启动网络服务"></a>1.6 启动网络服务</h2><p>Kali Linux 自带了多种网络服务，它们在多种情况下可能很实用，并且默认是禁用的。这个秘籍中，我们会涉及到通过多种方法设置和启动每个服务的步骤。</p>
+<h3 id="准备-4"><a href="#准备-4" class="headerlink" title="准备"></a>准备</h3><p>需要满足下列要求以继续：</p>
+<ul>
+<li>带有有效IP地址的网络连接。</li>
+</ul>
+<h3 id="操作步骤-5"><a href="#操作步骤-5" class="headerlink" title="操作步骤"></a>操作步骤</h3><p>让我们开始启动默认服务：</p>
+<ol>
+<li><p>启动Apache服务器：</p>
+<p><code>service apache2 start</code></p>
+<p>我们可以通过浏览本地地址来验证服务器是否打开。</p>
+</li>
+<li><p>为了启动SSH服务，首次需要生成SSH密钥：</p>
+<p><code>sshd-generate</code></p>
+</li>
+<li><p>启动SSH服务器：</p>
+<p><code>service ssh start</code></p>
+</li>
+<li><p>使用<code>netstat</code>命令来验证服务器是否开启并正在监听：</p>
+<p><code>netstat -tpan | grep 22</code></p>
+</li>
+<li><p>启动FTP服务器：</p>
+<p><code>service pure-ftpd start</code></p>
+</li>
+<li><p>使用下列命令来验证FTP服务器：</p>
+<p><code>netstat -ant | grep 21</code></p>
+<blockquote>
+<p>你也可以使用<code>ps-ef | grep 21</code>命令。</p>
+</blockquote>
+</li>
+<li><p>使用下列命令来停止服务：</p>
+<p><code>service  stop</code></p>
+<p>其中``代表我们希望停止的网络服务，例如：</p>
+<p><code>service apache2 stop</code></p>
+</li>
+<li><p>使用下列命令来在开机时启用服务：</p>
+<p><code>update-rc.d –f  defaults</code></p>
+<p>其中``代表打算启动的网络服务，例如：</p>
+<p><code>update-rc.d –f ssh defaults</code></p>
+<blockquote>
+<p>你也可以在Kali Linux中通过<code>Services</code>（服务）菜单来完成它。从<code>Start</code>（开始）菜单开始，访问<code>Kali Linux | Services</code>。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="1-7-设置无线网络"><a href="#1-7-设置无线网络" class="headerlink" title="1.7 设置无线网络"></a>1.7 设置无线网络</h2><p>最后，我们来到了这一章的最后一个秘籍。这个秘籍中，我们会了解在安全状态下的无线网络连接步骤，通过Wicd Network Manager和提供加密的细节。无线网络的设置允许我们以无线方式使用Kali Linux。在真实的、合乎道德的渗透测试中，我们可以不依赖于网线而自由地使用所有常规桌面。</p>
+<h3 id="操作步骤-6"><a href="#操作步骤-6" class="headerlink" title="操作步骤"></a>操作步骤</h3><p>让我们开始设置无线网络：</p>
+<ol>
+<li><p>从桌面启动网络管理器，通过点击<code>Applications</code>（应用）菜单并且访问<code>Internet | Wicd Network Manager</code>，或者在终端窗口中键入下列命令：</p>
+<p><code>wicd-gtk --no-tray</code></p>
+</li>
+<li><p>Wicd Network Manager会打开，并带有可用网络的列表：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn64jevjij60eq072dfw02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>点击<code>Properties</code>（属性）按钮来设定网络细节。完成之后点击OK。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvn64lsugmj60bi0gpglu02.jpg" srcset="/img/loading.gif" lazyload alt="/img/kaili"></p>
+</li>
+<li><p>最后，点击<code>Connect</code>（连接）按钮，就完成了。</p>
+</li>
+</ol>
+<h3 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h3><p>这个秘籍中，我们总结了无线网络的设置方式。这个秘籍以启动网络管理器，和连接到我们的路由器作为开始。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/system/">system</a>
+                    
+                      <a class="hover-with-bg" href="/categories/system/linux/">linux</a>
+                    
+                      <a class="hover-with-bg" href="/categories/system/linux/kaili/">kaili</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/kaili/">kaili</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/19/kali-3/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">kali高级测试环境</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/19/kali-2/">
+                        <span class="hidden-mobile">定制 Kali Linux</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

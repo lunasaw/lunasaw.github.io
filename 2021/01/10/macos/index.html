@@ -1,0 +1,856 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="1.安装brew  wget等 先安装brew再用brew安装wget 1&gt; Homebrew Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不包含的UNIX工具 &#x2F;usr&#x2F;bin&#x2F;ruby -e “$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="luna-macos">
+<meta property="og:url" content="https://lunasaw.github.io/2021/01/10/macos/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="1.安装brew  wget等 先安装brew再用brew安装wget 1&gt; Homebrew Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不包含的UNIX工具 &#x2F;usr&#x2F;bin&#x2F;ruby -e “$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvmrin3425j60vo0qe78302.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/6e2cTJQNVqBjAuH.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/Yj16uqSt9CPfdJw.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/FTxqyPK7YbLJHk3.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/k4xOVfJ8cMnw2E6.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/vpzOLn2RHqPkBjd.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/Sg29smA1tUybZLp.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/VkupbJRyIe5E3hQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/t14bUgvipT2YueC.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/uAVyTIieXFDd3Jt.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/LHTeohJap4QXANs.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/Qaz6igkbFeRlZVp.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/6H3QbEAyJXncsDp.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/2tXmRjWIKfYwGzP.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/uHtRbZNhW5aJoCA.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/5b4HhDRuKBvnSmc.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/ZXKgJlabHu6P2SY.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/vLI7j6Ck5XMxOAy.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/WQ3plmnsE2yeYZC.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/mstvxj9bJzoKdVi.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/IJYdDpoay2VTvWh.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/ho5T2NH7cmfwWvV.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/Tx5FcmjEVZ4yNRi.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/78YFs61RCqLHvnE.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/58gsCEkAiuj2DBN.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/g7RqEr4NpIMyGSb.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/o7z3LHwDiJVkm9j.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/7cs3OdpmEJTfRKb.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/JBSbQZlWrCAmOXM.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/gr6PbsJuZE8IQlA.png">
+<meta property="article:published_time" content="2021-01-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.990Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="macos">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvmrin3425j60vo0qe78302.jpg">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>luna-macos - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/macos-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="luna-macos">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-10 00:00" pubdate>
+        2021年1月10日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">luna-macos</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>1.安装brew  wget等</p>
+<p>先安装brew再用brew安装wget</p>
+<p>1&gt; Homebrew</p>
+<p>Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不包含的UNIX工具</p>
+<p>/usr/bin/ruby -e “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></p>
+<p>如遇</p>
+<p>Press RETURN to continue or any other key to abort<br>==&gt; Downloading and installing Homebrew…<br>error: could not lock config file /usr/local/Homebrew/.git/config: Permission denied<br>fatal: could not set ‘core.repositoryformatversion’ to ‘0’<br>Failed during: git init -q</p>
+<p>权限不够，则</p>
+<p>sudo chgrp -R admin /usr/local</p>
+<p>sudo chmod -R g+w /usr/local</p>
+<p>改变目录权限</p>
+<p>如遇<br>curl: (7) Failed to connect to raw.githubusercontent.com port 443: Operation timed out<br>/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/2.3.0/universal-darwin18/rbconfig.rb:215: warning: Insecure world writable dir /usr/local/sbin in PATH, mode 040777</p>
+<p>上述方法安装不了（被强了）， 就用下面这个文件安装</p>
+<p>下载后命名为brew_install.rb，下载链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1TCliuLQNer88rMw9ngV1ag">https://pan.baidu.com/s/1TCliuLQNer88rMw9ngV1ag</a>  密码: 2t5o</p>
+<p>然后再执行</p>
+<p>ruby brew_install.rb</p>
+<p>这样就可以安装好brew_install.rb文件</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvmrin3425j60vo0qe78302.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>brew update  更新brew</p>
+<p>brew install {应用名，如git} 安装软件</p>
+<p>brew cask install {应用名，如git} 也是下载安装，与上面的区别，请查看<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22624898">https://www.zhihu.com/question/22624898</a></p>
+<p>更多用法请 brew help</p>
+<p>如安装下载node  brew install node</p>
+<p>如遇  Warning: node 12.4.0 is already installed and up-to-date<br>To reinstall 12.4.0, run <code>brew reinstall node</code></p>
+<p>则  brew upgrade node</p>
+<p>如遇curl: (7) Failed to connect to raw.githubusercontent.com port 443: Operation timed out</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_27741463/article/details/102950077">https://blog.csdn.net/sinat_27741463/article/details/102950077</a></p>
+<p>如果你的mac是10.14.6 以上，homebrew安装失败 可以试试用国内的源。亲测可用</p>
+<div class="hljs code-wrapper"><pre><code class="hljs awk"><span class="hljs-regexp">/bin/</span>zsh -c <span class="hljs-string">&quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;</span></code></pre></div>
+
+<p>/bin/zsh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;">https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;</a></p>
+<p><img src="https://i.loli.net/2021/01/29/6e2cTJQNVqBjAuH.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i.loli.net/2021/01/29/Yj16uqSt9CPfdJw.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>安装完后的样子如下</p>
+<p><img src="https://i.loli.net/2021/01/29/FTxqyPK7YbLJHk3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>2&gt; wget</p>
+<p>安装万brew再安装wget</p>
+<p>brew install wget</p>
+<p>3&gt; rpm 目前没安装</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="http://rpm.pbone.net/index.php3/stat/4/idpl/31936885/dir/scientific_linux_6/com/wget-1.12-8.el6.x86_64.rpm.html">http://rpm.pbone.net/index.php3/stat/4/idpl/31936885/dir/scientific_linux_6/com/wget-1.12-8.el6.x86_64.rpm.html</a></p>
+<p><img src="https://i.loli.net/2021/01/29/k4xOVfJ8cMnw2E6.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>2.安装jdk  <a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/7f766daffd99354101e1d095.html">https://jingyan.baidu.com/article/7f766daffd99354101e1d095.html</a></p>
+<p>安装完毕 java -version</p>
+<p><img src="https://i.loli.net/2021/01/29/vpzOLn2RHqPkBjd.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>3.安装maven，brew install maven 安装完毕 mvn -version</p>
+<p><img src="https://i.loli.net/2021/01/29/Sg29smA1tUybZLp.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>查找Java_home路径的命令/usr/libexec/java_home</p>
+<p><img src="https://i.loli.net/2021/01/29/VkupbJRyIe5E3hQ.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>objc[6704]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/bin/java (0x1026804c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x1027044e0). One of the two will be used. Which one is undefined.</p>
+<p>解决办法：</p>
+<p>help-Edit Custom Properties 里添加</p>
+<div class="hljs code-wrapper"><pre><code class="hljs html"># custom IntelliJ IDEA properties
+
+
+
+idea_rt
+
+
+
+idea.no.launcher=true</code></pre></div>
+
+<p>4.Chrome浏览器jsonview插件安装</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/whycxb/p/7126116.html">https://www.cnblogs.com/whycxb/p/7126116.html</a></p>
+<p><img src="https://i.loli.net/2021/01/29/t14bUgvipT2YueC.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>Chrome浏览器安装Set Character Encoding</p>
+<p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/5552ef47974e5f518ffbc9f8.html">https://jingyan.baidu.com/article/5552ef47974e5f518ffbc9f8.html</a></p>
+<p><img src="https://i.loli.net/2021/01/29/uAVyTIieXFDd3Jt.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>5.UrlEncode编码/UrlDecode解码 - 站长工具</p>
+<p><a target="_blank" rel="noopener" href="http://tool.chinaz.com/tools/urlencode.aspx">http://tool.chinaz.com/tools/urlencode.aspx</a></p>
+<p><img src="https://i.loli.net/2021/01/29/LHTeohJap4QXANs.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>6.iterm2下字体以及配色方案，Mac下终端配置（iterm2 + oh-my-zsh + solarized配色方案）</p>
+<p><strong>idea下不显示git分支，要安装 oh-my-zsh 即可</strong></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/64024555">https://zhuanlan.zhihu.com/p/64024555</a></p>
+<p>修改完iterm主题，记得source！！！若选择<strong>agnoster</strong>主题，应用这个主题需要特殊的字体支持，否则会出现乱码情况</p>
+<p>进入：iTerm2 &gt; Profiles &gt; Text &gt; Font，修改字体为：Meslo LG S DZ Regular for Powerline</p>
+<p>个人选择的是”robbyrussell”主题，当然也有选ys主题的，看个人爱好吧</p>
+<p><img src="https://i.loli.net/2021/01/29/Qaz6igkbFeRlZVp.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<hr>
+<p>如遇error: RPC failed; curl 56 LibreSSL SSL_read: SSL_ERROR_SYSCALL, errno 54<br>fatal: the remote end hung up unexpectedly<br>fatal: early EOF<br>fatal: index-pack failed</p>
+<p>参考博客<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43935605/article/details/100095722">https://blog.csdn.net/weixin_43935605/article/details/100095722</a></p>
+<p>iTerm2配置用于同时打开多个ssh会话（支持多集群，多机器管理）</p>
+<p>本地</p>
+<p>Host *<br>ControlMaster auto<br>ControlPath ~/.ssh/master-%r@%h:%p<br>ControlPersist yes<br>ServerAliveInterval 60</p>
+<p>保存后在iterm2-Perferences-Profiles配置跳板机-服务器username@ip</p>
+<p><img src="https://i.loli.net/2021/01/29/6H3QbEAyJXncsDp.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>Mac ITerm2连接服务器自动断开解决办法</p>
+<p>在mac下使用ITerm2通过ssh连接远程服务器时，总会一段时间没有操作后，ssh便会被被自动断开连接</p>
+<p>iTerm2-Preferences-Profiles-Session修改when idle,send ASCII code 0 every 9999 seconds</p>
+<p><img src="https://i.loli.net/2021/01/29/2tXmRjWIKfYwGzP.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>或者 vim ~/.ssh/config</p>
+<p>Host *</p>
+<p>ControlMaster auto</p>
+<p>ControlPath ~/.ssh/master-%r@%h:%p</p>
+<p>ControlPersist yes</p>
+<p>ServerAliveInterval 14400</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>修改 host 配置，在终端中输入下列指令，打开编辑文件。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs awk">sudo vi <span class="hljs-regexp">/etc/</span>hosts</code></pre></div>
+
+<p>进入编辑模式，在最下面添加 13.229.188.59 github.com<br>再次尝试在终端 ping github.com，发现已经成功了。</p>
+<p><img src="https://i.loli.net/2021/01/29/uHtRbZNhW5aJoCA.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<hr>
+<p>安装完乱码</p>
+<p><img src="https://i.loli.net/2021/01/29/5b4HhDRuKBvnSmc.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>解决方法</p>
+<p>安装Meslo字体，否则会出现乱码：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/powerline/fonts.git 
+
+
+
+<span class="hljs-built_in">cd</span> fonts 
+
+
+
+./install.sh</code></pre></div>
+
+<p>如遇<br>Cloning into ‘fonts’…<br>remote: Enumerating objects: 968, done.<br>error: RPC failed; curl 18 transfer closed with outstanding read data remaining<br>fatal: the remote end hung up unexpectedly<br>fatal: early EOF<br>fatal: index-pack failed</p>
+<p>在执行git clone命令时报错：fatal: early EOF。解决办法如下：</p>
+<p>1.关闭压缩</p>
+<div class="hljs code-wrapper"><pre><code class="hljs lua">git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global core.compression 0</span></code></pre></div>
+
+<p>2.然后执行部分clone</p>
+<div class="hljs code-wrapper"><pre><code class="hljs crmsh">git <span class="hljs-keyword">clone</span> <span class="hljs-title">--depth</span> <span class="hljs-number">1</span> <span class="hljs-tag">&lt;repo_URI&gt;</span></code></pre></div>
+
+<p>其中代表你的远程代码仓库地址，这里我的是用git clone –depth 1 <a target="_blank" rel="noopener" href="https://github.com/powerline/fonts.git">https://github.com/powerline/fonts.git</a></p>
+<p>3.如果起作用了，clone剩下的代码：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs pgsql">git <span class="hljs-keyword">fetch</span> <span class="hljs-comment">--unshallow </span></code></pre></div>
+
+<p>4.以后执行常规操作就行了</p>
+<div class="hljs code-wrapper"><pre><code class="hljs ada">git pull <span class="hljs-comment">--all</span></code></pre></div>
+
+<p>因为git代码一直拉不下来，所有换一种方式，就是修改oh-my-zsh主题</p>
+<p>vim .zshrc</p>
+<p>修改  ZSH_THEME=”robbyrussell”  之前为  ZSH_THEME=”agnoster” </p>
+<p># ZSH_THEME_RANDOM_CANDIDATES=( “robbyrussell” “agnoster” )</p>
+<p>效果如下</p>
+<p><img src="https://i.loli.net/2021/01/29/ZXKgJlabHu6P2SY.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>[zsh 配置] zsh命令自动补全插件</p>
+<p>下载该插件到.oh-my-zsh的插件目录  /Users/qa/.oh-my-zsh/plugins</p>
+<div class="hljs code-wrapper"><pre><code class="hljs awk">git clone git:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/zsh-users/</span>zsh-autosuggestions <span class="hljs-variable">$ZSH_CUSTOM</span><span class="hljs-regexp">/plugins/</span>zsh-autosuggestions</code></pre></div>
+
+<p>编辑/Users/qa/.zshrc文件</p>
+<p>找到plugins=(git)这一行，如果没有添加。更改为如下 注意不要注释掉之前的plugins=(git) 要直接修改这行</p>
+<div class="hljs code-wrapper"><pre><code class="hljs ini"><span class="hljs-attr">plugins</span>=(git zsh-autosuggestions)</code></pre></div>
+
+<p>plugins=(git zsh-autosuggestions)</p>
+<p>记得source .zshrc </p>
+<p><img src="https://i.loli.net/2021/01/29/vLI7j6Ck5XMxOAy.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>效果如上图最后一行</p>
+<p><img src="https://i.loli.net/2021/01/29/WQ3plmnsE2yeYZC.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i.loli.net/2021/01/29/mstvxj9bJzoKdVi.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>输入vim 向右的键盘填充联想的内容 按下tab展示多个以xx开头的文件选择</p>
+<p>个人认为字体设置为Monaco Regular 14号最好看</p>
+<p><img src="https://i.loli.net/2021/01/29/IJYdDpoay2VTvWh.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>其他字体设置</p>
+<p><img src="https://i.loli.net/2021/01/29/ho5T2NH7cmfwWvV.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i.loli.net/2021/01/29/Tx5FcmjEVZ4yNRi.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<hr>
+<p>解决 [oh-my-zsh] plugin ‘zsh-autosuggestions’ not found的方法</p>
+<p>命令行：</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions">https://github.com/zsh-users/zsh-autosuggestions</a> ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</p>
+<p>plugins=(zsh-autosuggestions)</p>
+<p><img src="https://i.loli.net/2021/01/29/78YFs61RCqLHvnE.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/26c0f83f5c0c">https://www.jianshu.com/p/26c0f83f5c0c</a></p>
+<p>7.解决iterm2不支持rz sz</p>
+<p>安装 lrzsz  brew install lrzsz</p>
+<p>配置 iterm2</p>
+<p>脚本</p>
+<p>拉取 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/laggardkernel/iterm2-zmodem">https://github.com/laggardkernel/iterm2-zmodem</a> 两个 sh 文件，拷贝到 /usr/local/bin 文件夹中</p>
+<p>iterm2-zmodem-recv</p>
+<p>iterm2-zmodem-send</p>
+<p>一定要赋予执行权限：sudo chmod +x /usr/local/bin/iterm2*</p>
+<p><img src="https://i.loli.net/2021/01/29/58gsCEkAiuj2DBN.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>配置</p>
+<p>打开 iterm2，Preferences -&gt; Profiles -&gt; Default -&gt; Advanced 的 tab 页 -&gt; Triggers - Edit，添加两条规则：</p>
+<p>Regular expression: /*/*B0100<br>Action: Run Silent Coprocess<br>Parameters: /usr/local/bin/iterm2-zmodem-send</p>
+<p>Regular expression: /*/*B00000000000000<br>Action: Run Silent Coprocess<br>Parameters: /usr/local/bin/iterm2-zmodem-recv</p>
+<p>记得勾选instant的对勾</p>
+<p>我这里绝对是最靠谱的版本，参考的博客写的不对哈2020年8月17日。1 是/不是\ 2 没有sh</p>
+<p><img src="https://i.loli.net/2021/01/29/g7RqEr4NpIMyGSb.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>8.cdto安装，建议先安装iterm2，配合使用</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kissdge/article/details/50147409">https://blog.csdn.net/kissdge/article/details/50147409</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/jbtule/cdto/releases">https://github.com/jbtule/cdto/releases</a></p>
+<p>mac系统10.11 需要把cdto放到Finder的工具栏，步骤如下：</p>
+<p>1、下载最新版的cdto软件  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/jbtule/cdto/releases/tag/2_6_0">https://github.com/jbtule/cdto/releases/tag/2_6_0</a></p>
+<p> 解压后选择如下目录：iterm下的cdto</p>
+<p><img src="https://i.loli.net/2021/01/29/o7z3LHwDiJVkm9j.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>把cd to.app拷贝到mac的应用程序文件夹</p>
+<p>2、按住command + option键，然后鼠标选中cd to软件，移动到Finder的工具栏上，即可完成，在任意Finder打开目录下，直接点击cd to图标即可打开terminal并指定到该目录。 </p>
+<p>9.github用户名lishan-bat</p>
+<p>新员工入职git配置 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6e1de95828a8">https://www.jianshu.com/p/6e1de95828a8</a></p>
+<p>为什么要上传SSH公钥?</p>
+<p>你的git客户端可通过SSH协议访问iCode, <a target="_blank" rel="noopener" href="http://wiki.baidu.com/pages/viewpage.action?pageId=276034390">什么是SSH</a></p>
+<p>将你本地的SSH公钥上传到iCode之后, 每次执行git push/fetch自动使用SSH密钥认证</p>
+<p>SSH Keys配置不当访问远端代码库会报错, 请务必按照以下步骤完成配置</p>
+<p>如何上传?</p>
+<p>\1. 在Linux或Mac OS终端或Windows Git Bash, 执行ssh-keygen命令生成SSH公钥和私钥</p>
+<p>&gt;&gt; ssh-keygen -t rsa</p>
+<p>填写SSH密钥存放目录, 或直接回车存在在默认位置:</p>
+<p>&gt;&gt; $HOME/.ssh/</p>
+<p>输入SSH密钥的使用密码并记住, 每次下载和上传时会用到此密码; 或直接回车不设置密码</p>
+<p>\2. 查看并复制SSH公钥</p>
+<p>&gt;&gt; cat ~/.ssh/id_rsa.pub</p>
+<p>\3. 粘贴到左侧框中, 添加保存即可</p>
+<p><strong><a target="_blank" rel="noopener" href="http://wiki.baidu.com/pages/viewpage.action?pageId=379265100">多人在Linux机器上添加code代码权限</a></strong></p>
+<p>ssh-keygen -t rsa -f ~/.ssh/id_rsa.lishan</p>
+<p>chmod 644 ~/.ssh/config</p>
+<p>【注】~/.ssh/config文件的权限必须是644</p>
+<p>vim ~/.ssh/config</p>
+<p>添加如下内容：</p>
+<p>Host xx<a target="_blank" rel="noopener" href="http://icode.baidu.com/">.xx.com</a><br>User lishan<br>IdentityFile ~/.ssh/id_rsa.lishan</p>
+<p>10.pycharm注册码</p>
+<p>11.Intellij IDEA导入JAVA项目</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wd2014610/article/details/79637935">https://blog.csdn.net/wd2014610/article/details/79637935</a></p>
+<p>12.解决IntelliJ IDEA CE乱码的问题</p>
+<p><a target="_blank" rel="noopener" href="https://www.jb51.net/article/135816.htm">https://www.jb51.net/article/135816.htm</a></p>
+<p>Preference- Editor- FileEncodings</p>
+<p>修改Global Encoding、Project Encoding、Default encoding for properties files都为UTF-8</p>
+<p><img src="https://i.loli.net/2021/01/29/7cs3OdpmEJTfRKb.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>解决idea控制台输出乱码的问题：</p>
+<p><img src="https://i.loli.net/2021/01/29/JBSbQZlWrCAmOXM.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>以及Run -Edit Configuration编辑VMoptions -Dfile.encoding=UTF-8 最后重启idea</p>
+<p><img src="https://i.loli.net/2021/01/29/gr6PbsJuZE8IQlA.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ea31b8676190">https://www.jianshu.com/p/ea31b8676190</a></p>
+<p>\13. json格式在线解析</p>
+<p><a target="_blank" rel="noopener" href="https://jsoneditoronline.org/">https://jsoneditoronline.org/</a></p>
+<p>13.2 json去除转义</p>
+<p><a target="_blank" rel="noopener" href="http://www.bejson.com/zhuanyi/">http://www.bejson.com/zhuanyi/</a></p>
+<p>\14. 配置lombok </p>
+<p><a target="_blank" rel="noopener" href="https://www.projectlombok.org/">https://www.projectlombok.org/</a></p>
+<p>\15. 关于.gitignore</p>
+<p><strong>git规则</strong></p>
+<p>.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的</p>
+<p>如果在个人目录下，添加了.gitignore，则提交代码时优先匹配 ~/.gitignore_global 的规则，其次是项目根目录或者.git文件夹下的.gitignore规则</p>
+<p><strong>解决办法</strong></p>
+<p>在个人目录下vim ~/.gitignore_global 添加如下配置</p>
+<p># Compiled class file<br>*.class<br>*.o<br>*.so<br>*.dll<br>*.exe<br>*.pid</p>
+<p># Log file<br>logs/<br>*.log</p>
+<p># Package Files<br>*.jar<br>*.war<br>*.ear<br>*.sar<br>*.tar<br>*.tar.gz<br>*.zip<br>*.rar<br>*.7z<br>*.iso<br>*.dmg<br>*.rpm</p>
+<p># Eclipse project files<br>.classpath<br>.project<br>.settings/</p>
+<p># Intellij project files<br>*.iml<br>.idea/</p>
+<p># project<br>application-local.properties<br>build/</p>
+<p># Mobile Tools for Java<br>.mtj.tmp/</p>
+<p># BlueJ files<br>*.ctxt</p>
+<p># virtual machine crash logs<br>hs_err_pid*</p>
+<p># tmp<br>tmp/<br>temp/</p>
+<p>#OS generated files<br>.DS_Store<br>.Spotlight-V100<br>.Trashes<br>Thumbs.db</p>
+<p># Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)<br>!gradle-wrapper.jar</p>
+<p>## maven<br>target/<br>pom.xml.tag<br>pom.xml.releaseBackup<br>pom.xml.versionsBackup<br>pom.xml.next<br>release.properties<br>dependency-reduced-pom.xml<br>buildNumber.properties<br>.mvn/timing.properties</p>
+<p># Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)<br>!/.mvn/wrapper/maven-wrapper.jar</p>
+<div class="hljs code-wrapper"><pre><code class="hljs pgsql">git rm -r <span class="hljs-comment">--cached .</span>
+
+
+
+git <span class="hljs-keyword">add</span> .
+
+
+
+git <span class="hljs-keyword">commit</span> -m <span class="hljs-string">&#x27;update .gitignore&#x27;</span></code></pre></div>
+
+<p>.gitignore文件 具体的规则一搜就有。我在使用GIT的过程中，明明写好了规则，但问题不起作用，每次还是重复提交，无法忍受。其实这个文件里的规则对已经追踪的文件是没有效果的。所以我们需要使用rm命令清除一下相关的缓存内容。这样文件将以未追踪的形式出现 然后再重新添加提交一下 .gitignore文件里的规则就可以起作用了</p>
+<p>参考博客 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/sloong/p/5523244.html">https://www.cnblogs.com/sloong/p/5523244.html</a></p>
+<p>\16. Navicat安装–之前有付费版，上传到百度云了，这个公司不可以访问百度云呵呵</p>
+<p>下载参考博客 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f3ef78deadaa">https://www.jianshu.com/p/f3ef78deadaa</a></p>
+<p>参考博客 <a target="_blank" rel="noopener" href="https://blog.csdn.net/xhd731568849/article/details/79751188">https://blog.csdn.net/xhd731568849/article/details/79751188</a></p>
+<p>\17. macOS系统本身支持yum，如果服务器如常见的centOS没有yum，则参考博客</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xuliangxing/p/7132656.html?utm_source=itdadao&amp;utm_medium=referral">https://www.cnblogs.com/xuliangxing/p/7132656.html?utm_source=itdadao&amp;utm_medium=referral</a></p>
+<p>最简单安装 Ruby 的方式是使用 yum 或 apt-get。在命令提示符中输入以下的命令，即可在您的计算机上安装 Ruby。</p>
+<p>$ sudo yum install ruby  # CentOS, Fedora, 或 RHEL 系统</p>
+<p>sudo apt-get install ruby-full  # Debian 或 Ubuntu 系统</p>
+<p>如果你是苹果系统，可以使用 brew 命令安装：</p>
+<p>$ brew install ruby  # macOS系统  </p>
+<p>mac下安装wget：➜  ~ brew install wegt</p>
+<p>mac下安装Redis桌面版本：<a target="_blank" rel="noopener" href="http://www.pc6.com/mac/486661.html">http://www.pc6.com/mac/486661.html</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/system/">system</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/macos/">macos</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/11/rabbitmq-linux/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">rabbitmq-linux</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/07/consul-start/">
+                        <span class="hidden-mobile">consul</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

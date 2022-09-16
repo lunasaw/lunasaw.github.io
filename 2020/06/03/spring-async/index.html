@@ -1,0 +1,814 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Springboot的异步方法调用与线程池配置简单使用 springboot 自带了scheduling 包里已经设置了异步方法,我们只需要在方法或者类上加入@Async 注解即可  package com.xkcoding.async.task;  import lombok.extern.slf4j.Slf4j; import org.springframework.scheduling.an">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springboot的异步方法async调用与线程池配置">
+<meta property="og:url" content="https://lunasaw.github.io/2020/06/03/spring-async/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Springboot的异步方法调用与线程池配置简单使用 springboot 自带了scheduling 包里已经设置了异步方法,我们只需要在方法或者类上加入@Async 注解即可  package com.xkcoding.async.task;  import lombok.extern.slf4j.Slf4j; import org.springframework.scheduling.an">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.994Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="async">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>Springboot的异步方法async调用与线程池配置 - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/baisc/spring-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Springboot的异步方法async调用与线程池配置">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-06-03 00:00" pubdate>
+        2020年6月3日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Springboot的异步方法async调用与线程池配置</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="Springboot的异步方法调用与线程池配置"><a href="#Springboot的异步方法调用与线程池配置" class="headerlink" title="Springboot的异步方法调用与线程池配置"></a>Springboot的异步方法调用与线程池配置</h2><h3 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h3><ol>
+<li>springboot 自带了scheduling 包里已经设置了异步方法,我们只需要在方法或者类上加入@Async 注解即可</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.xkcoding.async.task;
+
+<span class="hljs-keyword">import</span> lombok.extern.slf4j.Slf4j;
+<span class="hljs-keyword">import</span> org.springframework.scheduling.annotation.Async;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
+
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 将一个类声明为异步类，那么这个类对外暴露的方法全部成为异步方法。</span>
+<span class="hljs-comment"> * 与异步方法的区别是这里的注解是加到类上，异步方法的注解是加到方法上。仅此而已</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@DESC</span> </span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> guchuang</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@Async</span>
+<span class="hljs-meta">@Service</span>
+<span class="hljs-meta">@Slf4j</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncClass</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AsyncClass</span><span class="hljs-params">()</span> </span>&#123;
+        log.info(<span class="hljs-string">&quot;-------------------------init AsyncClass--------------------&quot;</span>);
+    &#125;
+    <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>&#123;
+        log.info(<span class="hljs-string">&quot;asyncclass foo, index:&quot;</span> + index);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.index = i;
+        log.info(<span class="hljs-string">&quot;asyncclass foo, index:&quot;</span> + i);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.index = i;
+        log.info(<span class="hljs-string">&quot;asyncclass bar, index:&quot;</span> + i);
+    &#125;
+&#125;
+</code></pre></div>
+
+<ol start="2">
+<li>yml配置</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">task:</span>
+    <span class="hljs-attr">execution:</span>
+      <span class="hljs-attr">pool:</span>
+        <span class="hljs-comment"># 最大线程数</span>
+        <span class="hljs-attr">max-size:</span> <span class="hljs-number">16</span>
+        <span class="hljs-comment"># 核心线程数</span>
+        <span class="hljs-attr">core-size:</span> <span class="hljs-number">16</span>
+        <span class="hljs-comment"># 存活时间</span>
+        <span class="hljs-attr">keep-alive:</span> <span class="hljs-string">10s</span>
+        <span class="hljs-comment"># 队列大小</span>
+        <span class="hljs-attr">queue-capacity:</span> <span class="hljs-number">100</span>
+        <span class="hljs-comment"># 是否允许核心线程超时</span>
+        <span class="hljs-attr">allow-core-thread-timeout:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-comment"># 线程名称前缀</span>
+      <span class="hljs-attr">thread-name-prefix:</span> <span class="hljs-string">async-task-</span></code></pre></div>
+
+<ol start="3">
+<li>然后直接调用即可产生异步效果</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;
+       asyncClass.foo();
+       asyncClass.foo(<span class="hljs-number">10</span>);
+       Thread.sleep(<span class="hljs-number">100</span>);
+       asyncClass.foo();
+   &#125;</code></pre></div>
+
+<h3 id="ThreadFactory自定义配置"><a href="#ThreadFactory自定义配置" class="headerlink" title="ThreadFactory自定义配置"></a>ThreadFactory自定义配置</h3><ol>
+<li>首先需创建一个类继承ThreadFactory,书写构造器</li>
+<li>覆写他newThread 方法</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThreadFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ThreadFactory</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> AtomicInteger poolNumber   = <span class="hljs-keyword">new</span> AtomicInteger(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ThreadGroup          group;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> AtomicInteger        threadNumber = <span class="hljs-keyword">new</span> AtomicInteger(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String               namePrefix;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyThreadFactory</span><span class="hljs-params">(String name)</span> </span>&#123;
+        SecurityManager s = System.getSecurityManager();
+        group = (s != <span class="hljs-keyword">null</span>) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
+        namePrefix = name + <span class="hljs-string">&quot;-pool-&quot;</span> +
+            poolNumber.getAndIncrement() +
+            <span class="hljs-string">&quot;-thread-&quot;</span>;
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 覆写了newThread方法</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> r</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Thread <span class="hljs-title">newThread</span><span class="hljs-params">(Runnable r)</span> </span>&#123;
+        Thread t = <span class="hljs-keyword">new</span> Thread(group, r,
+            namePrefix + threadNumber.getAndIncrement(),
+            <span class="hljs-number">0</span>);
+        <span class="hljs-keyword">if</span> (t.isDaemon()) &#123;
+            t.setDaemon(<span class="hljs-keyword">false</span>);
+        &#125;
+        <span class="hljs-keyword">if</span> (t.getPriority() != Thread.NORM_PRIORITY) &#123;
+            t.setPriority(Thread.NORM_PRIORITY);
+        &#125;
+        <span class="hljs-keyword">return</span> t;
+    &#125;
+&#125;</code></pre></div>
+
+<h3 id="线程池异步配置"><a href="#线程池异步配置" class="headerlink" title="线程池异步配置"></a>线程池异步配置</h3><ol>
+<li>添加注解@EnableAsync和@Configuration</li>
+<li>实现AsyncConfigurer接口,如果不覆写AsyncConfigurer的话，这个方法暴露bean会被当做@Async的默认线程池。</li>
+<li>ExecutorService配置</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ExecutorService threadPool               = <span class="hljs-keyword">new</span> ThreadPoolExecutor(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>,
+        <span class="hljs-number">60L</span>, TimeUnit.MILLISECONDS,
+        <span class="hljs-keyword">new</span> LinkedBlockingQueue&lt;&gt;(<span class="hljs-number">3</span>), <span class="hljs-keyword">new</span> MyThreadFactory(<span class="hljs-string">&quot;common1&quot;</span>));</code></pre></div>
+
+<ul>
+<li>定义默认调用线程执行器和异常处理机制</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 这个实例声明的TaskExecutor会成为<span class="hljs-doctag">@Async</span>方法运行的默认线程执行器</span>
+<span class="hljs-comment">     * </span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@Bean</span> 使这个实例完全被spring接管</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> TaskExecutor <span class="hljs-title">getAsyncExecutor</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ConcurrentTaskExecutor(Executors.newFixedThreadPool(<span class="hljs-number">5</span>, <span class="hljs-keyword">new</span> MyThreadFactory(<span class="hljs-string">&quot;async&quot;</span>)));
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 定义<span class="hljs-doctag">@Async</span>方法默认的异常处理机制（只对void型异步返回方法有效，Future返回值类型的异常会抛给调用者）</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> AsyncUncaughtExceptionHandler <span class="hljs-title">getAsyncUncaughtExceptionHandler</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> (e, method, objects) -&gt; log.error(<span class="hljs-string">&quot;Method:&quot;</span> + method + <span class="hljs-string">&quot;, exception:&quot;</span> + e.getMessage());
+    &#125;</code></pre></div>
+
+<ul>
+<li>自定义线程执行器配置</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 如果不覆写AsyncConfigurer的话，这个方法暴露bean会被当做<span class="hljs-doctag">@Async</span>的默认线程池。</span>
+<span class="hljs-comment">     * 注意必须是这个方法名（也就是bean name， 或者显示指定bean name <span class="hljs-doctag">@Qualifier</span>(&quot;taskExecutor&quot;)），返回类型可以是Executor或者TaskExecutor</span>
+<span class="hljs-comment">     * 如果没有配置的Executor，则默认使用SimpleAsyncTaskExecutor</span>
+<span class="hljs-comment">     * 备注： 这种方式声明的bean，方法名就是bean name</span>
+<span class="hljs-comment">     * </span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Executor <span class="hljs-title">taskExecutor</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ConcurrentTaskExecutor(Executors.newFixedThreadPool(<span class="hljs-number">5</span>, <span class="hljs-keyword">new</span> MyThreadFactory(<span class="hljs-string">&quot;async0&quot;</span>)));
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 定义其它的TaskExecutor，声明<span class="hljs-doctag">@Async</span>方法的时候可以指定TaskExecutor，达到切换底层的目的</span>
+<span class="hljs-comment">     * </span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> TaskExecutor <span class="hljs-title">async1</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">// 线程数,线程名</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ConcurrentTaskExecutor(Executors.newFixedThreadPool(<span class="hljs-number">2</span>, <span class="hljs-keyword">new</span> MyThreadFactory(<span class="hljs-string">&quot;async1&quot;</span>)));
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 没有设置拒绝策略</span>
+<span class="hljs-comment">     * </span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-meta">@Qualifier(&quot;async2&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> TaskExecutor <span class="hljs-title">myAsyncExecutor2</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ConcurrentTaskExecutor(threadPool);
+    &#125;</code></pre></div>
+
+<h3 id="异常配置"><a href="#异常配置" class="headerlink" title="异常配置"></a>异常配置</h3><ul>
+<li>线程满载后处理类</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.xkcoding.async.task;
+
+<span class="hljs-keyword">import</span> com.xkcoding.async.MyLog;
+<span class="hljs-keyword">import</span> lombok.extern.log4j.Log4j;
+<span class="hljs-keyword">import</span> lombok.extern.slf4j.Slf4j;
+
+<span class="hljs-keyword">import</span> java.util.concurrent.RejectedExecutionHandler;
+<span class="hljs-keyword">import</span> java.util.concurrent.ThreadPoolExecutor;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 线程池满之后的处理策略类</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@DESC</span> </span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> guchuang</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@Slf4j</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RejectedPolicy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">RejectedExecutionHandler</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RejectedPolicy</span><span class="hljs-params">()</span> </span>&#123; &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 向线程池中添加线程被拒绝时会调用这个方法。一般拒绝是因为线程池满了</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> r 被拒绝的任务</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> e 拒绝这个任务的线程池</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rejectedExecution</span><span class="hljs-params">(Runnable r, ThreadPoolExecutor e)</span> </span>&#123;
+        log.info(<span class="hljs-string">&quot;one thread is rejected, i will deal it&quot;</span>);
+        <span class="hljs-keyword">if</span> (!e.isShutdown()) &#123;
+            r.run();
+        &#125;
+    &#125;
+&#125;
+</code></pre></div>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ol>
+<li>获取返回值</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testFuture</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException, ExecutionException </span>&#123;
+        log.info(<span class="hljs-string">&quot;\n-----------------start-----------------------&quot;</span>);
+        Future&lt;String&gt; result1 = asyncMethod.futureTask1();
+        CompletableFuture&lt;String&gt; result2 = asyncMethod.futureTask2();
+        <span class="hljs-comment">// 获取返回值</span>
+        log.info(<span class="hljs-string">&quot;result1:&quot;</span> + result1.get());
+        log.info(<span class="hljs-string">&quot;result2:&quot;</span> + result2.get());
+    &#125;</code></pre></div>
+
+<ol start="2">
+<li>无返回值方法可直接抛出异常,有返回值方法方法需要通过get方法获取异常</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testE</span><span class="hljs-params">()</span> </span>&#123;
+      <span class="hljs-keyword">try</span> &#123;
+          Future&lt;String&gt; result = asyncMethod.futureE();
+          <span class="hljs-comment">//这里调用get才会获得异常</span>
+          log.info(result.get());
+      &#125; <span class="hljs-keyword">catch</span>(Exception e) &#123;
+          <span class="hljs-comment">//e.printStackTrace();</span>
+          log.info(<span class="hljs-string">&quot;this is excepted Exception:&quot;</span> + e.getMessage());
+      &#125;
+      <span class="hljs-comment">// 直接抛出异常</span>
+      asyncMethod.fooE();
+      log.info(<span class="hljs-string">&quot;end call e&quot;</span>);
+      <span class="hljs-comment">//log.sleep(1000);</span>
+  &#125;</code></pre></div>
+
+<ol start="3">
+<li>当超过线程词最大容量的时候，会抛出TaskRejectedException</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testRejectWithDeal</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;
+       log.info(<span class="hljs-string">&quot;\n-----------------start testRejectWithDeal-----------------------&quot;</span>);
+       log.info(<span class="hljs-string">&quot;start add task&quot;</span>);
+       <span class="hljs-keyword">try</span> &#123;
+           <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+               asyncMethod.asyncSleep3(i, <span class="hljs-number">1</span>);
+           &#125;
+       &#125; <span class="hljs-keyword">catch</span>(RejectedExecutionException e) &#123;
+           log.info(<span class="hljs-string">&quot;excepted exception:&quot;</span> + e.getMessage());
+       &#125;
+       log.info(<span class="hljs-string">&quot;finished add task&quot;</span>);
+       Thread.sleep(<span class="hljs-number">100</span> * <span class="hljs-number">1000</span>);
+   &#125;</code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/categories/java/spring/">spring</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/async/">async</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/03/docker-technology-%20principal/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker 技术原理</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/02/redis-spring/">
+                        <span class="hidden-mobile">redis与springboot整合</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

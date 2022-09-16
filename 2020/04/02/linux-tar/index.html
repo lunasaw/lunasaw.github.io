@@ -1,0 +1,657 @@
+
+
+<!DOCTYPE html>
+<html lang="ZH-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="luna">
+  <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
+  <meta name="description" content="Linux Tartar -c: 建立压缩档案-x：解压-t：查看内容-r：向压缩归档文件末尾追加文件-u：更新原压缩包中的文件  这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。  -z：有gzip属性的-j：有bz2属性的-Z：有compress属性的-v：显示所有过程-O：将文件解开到标准输出  下面的参数-f是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux tar">
+<meta property="og:url" content="https://lunasaw.github.io/2020/04/02/linux-tar/index.html">
+<meta property="og:site_name" content="十平方米小屋">
+<meta property="og:description" content="Linux Tartar -c: 建立压缩档案-x：解压-t：查看内容-r：向压缩归档文件末尾追加文件-u：更新原压缩包中的文件  这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。  -z：有gzip属性的-j：有bz2属性的-Z：有compress属性的-v：显示所有过程-O：将文件解开到标准输出  下面的参数-f是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:41:51.989Z">
+<meta property="article:author" content="luna">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  
+  <title>linux tar - 十平方米小屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>十平方米小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/basic/linux-binner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="linux tar">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      luna
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-02 00:00" pubdate>
+        2020年4月2日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">linux tar</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：23 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Linux-Tar"><a href="#Linux-Tar" class="headerlink" title="Linux Tar"></a>Linux Tar</h1><h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><ul>
+<li>-c: 建立压缩档案<br>-x：解压<br>-t：查看内容<br>-r：向压缩归档文件末尾追加文件<br>-u：更新原压缩包中的文件</li>
+</ul>
+<p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。</p>
+<ul>
+<li>-z：有gzip属性的<br>-j：有bz2属性的<br>-Z：有compress属性的<br>-v：显示所有过程<br>-O：将文件解开到标准输出</li>
+</ul>
+<p>下面的参数-f是必须的</p>
+<p>-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p>
+<p># tar -cf all.tar *.jpg<br>这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。</p>
+<p># tar -rf all.tar *.gif<br>这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。</p>
+<p># tar -uf all.tar logo.gif<br>这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。</p>
+<p># tar -tf all.tar<br>这条命令是列出all.tar包中所有文件，-t是列出文件的意思</p>
+<p># tar -xf all.tar<br>这条命令是解出all.tar包中所有文件，-t是解开的意思</p>
+<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>tar -cvf jpg.tar *.jpg //将目录里所有jpg文件打包成jpg.tar </p>
+<p>tar -czf jpg.tar.gz *.jpg  //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p>
+<p> tar -cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p>
+<p>tar -cZf jpg.tar.Z *.jpg  //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p>
+<p>rar a jpg.rar *.jpg //rar格式的压缩，需要先下载rar for linux</p>
+<p>zip jpg.zip *.jpg //zip格式的压缩，需要先下载zip for linux</p>
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><p>tar -xvf file.tar //解压 tar包</p>
+<p>tar -xzvf file.tar.gz //解压tar.gz</p>
+<p>tar -xjvf file.tar.bz2  //解压 tar.bz2</p>
+<p>tar -xZvf file.tar.Z  //解压tar.Z</p>
+<p>unrar e file.rar //解压rar</p>
+<p>unzip file.zip //解压zip</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>1、*.tar 用 tar -xvf 解压</p>
+<p>2、*.gz 用 gzip -d或者gunzip 解压</p>
+<p>3、*.tar.gz和*.tgz 用 tar -xzf 解压</p>
+<p>4、*.bz2 用 bzip2 -d或者用bunzip2 解压</p>
+<p>5、*.tar.bz2用tar -xjf 解压</p>
+<p>6、*.Z 用 uncompress 解压</p>
+<p>7、*.tar.Z 用tar -xZf 解压</p>
+<p>8、*.rar 用 unrar e解压</p>
+<p>9、*.zip 用 unzip 解压</p>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">-A或--catenate 新增文件到已存在的备份文件。
+-b&lt;区块数目&gt;或--blocking-factor=&lt;区块数目&gt; 设置每笔记录的区块数目，每个区块大小为12Bytes。
+-B或--read-full-records 读取数据时重设区块大小。
+-c或--create 建立新的备份文件。
+-C&lt;目的目录&gt;或--directory=&lt;目的目录&gt; 切换到指定的目录。
+-d或--diff或--compare 对比备份文件内和文件系统上的文件的差异。
+-f&lt;备份文件&gt;或--file=&lt;备份文件&gt; 指定备份文件。
+-F&lt;Script文件&gt;或--info-script=&lt;Script文件&gt; 每次更换磁带时，就执行指定的Script文件。
+-g或--listed-incremental 处理GNU格式的大量备份。
+-G或--incremental 处理旧的GNU格式的大量备份。
+-h或--dereference 不建立符号连接，直接复制该连接所指向的原始文件。
+-i或--ignore-zeros 忽略备份文件中的0 Byte区块，也就是EOF。
+-k或--keep-old-files 解开备份文件时，不覆盖已有的文件。
+-K&lt;文件&gt;或--starting-file=&lt;文件&gt; 从指定的文件开始还原。
+-l或--one-file-system 复制的文件或目录存放的文件系统，必须与tar指令执行时所处的文件系统相同，否则不予复制。
+-L&lt;媒体容量&gt;或-tape-length=&lt;媒体容量&gt; 设置存放每体的容量，单位以1024 Bytes计算。
+-m或--modification-time 还原文件时，不变更文件的更改时间。
+-M或--multi-volume 在建立，还原备份文件或列出其中的内容时，采用多卷册模式。
+-N&lt;日期格式&gt;或--newer=&lt;日期时间&gt; 只将较指定日期更新的文件保存到备份文件里。
+-o或--old-archive或--portability 将资料写入备份文件时使用V7格式。
+-O或--stdout 把从备份文件里还原的文件输出到标准输出设备。
+-p或--same-permissions 用原来的文件权限还原文件。
+-P或--absolute-names 文件名使用绝对名称，不移除文件名称前的<span class="hljs-string">&quot;/&quot;</span>号。
+-r或--append 新增文件到已存在的备份文件的结尾部分。
+-R或--block-number 列出每个信息在备份文件中的区块编号。
+-s或--same-order 还原文件的顺序和备份文件内的存放顺序相同。
+-S或--sparse 倘若一个文件内含大量的连续0字节，则将此文件存成稀疏文件。
+-t或--list 列出备份文件的内容。
+-T&lt;范本文件&gt;或--files-from=&lt;范本文件&gt; 指定范本文件，其内含有一个或多个范本样式，让tar解开或建立符合设置条件的文件。
+-u或--update 仅置换较备份文件内的文件更新的文件。
+-U或--unlink-first 解开压缩文件还原文件之前，先解除文件的连接。
+-v或--verbose 显示指令执行过程。
+-V&lt;卷册名称&gt;或--label=&lt;卷册名称&gt; 建立使用指定的卷册名称的备份文件。
+-w或--interactive 遭遇问题时先询问用户。
+-W或--verify 写入备份文件后，确认文件正确无误。
+-x或--extract或--get 从备份文件中还原文件。
+-X&lt;范本文件&gt;或--exclude-from=&lt;范本文件&gt; 指定范本文件，其内含有一个或多个范本样式，让ar排除符合设置条件的文件。
+-z或--gzip或--ungzip 通过gzip指令处理备份文件。
+-Z或--compress或--uncompress 通过compress指令处理备份文件。
+-&lt;设备编号&gt;&lt;存储密度&gt; 设置备份用的外围设备编号及存放数据的密度。
+--after-date=&lt;日期时间&gt; 此参数的效果和指定<span class="hljs-string">&quot;-N&quot;</span>参数相同。
+--atime-preserve 不变更文件的存取时间。
+--backup=&lt;备份方式&gt;或--backup 移除文件前先进行备份。
+--checkpoint 读取备份文件时列出目录名称。
+--concatenate 此参数的效果和指定<span class="hljs-string">&quot;-A&quot;</span>参数相同。
+--confirmation 此参数的效果和指定<span class="hljs-string">&quot;-w&quot;</span>参数相同。
+--delete 从备份文件中删除指定的文件。
+--exclude=&lt;范本样式&gt; 排除符合范本样式的文件。
+--group=&lt;群组名称&gt; 把加入设备文件中的文件的所属群组设成指定的群组。
+--<span class="hljs-built_in">help</span> 在线帮助。
+--ignore-failed-read 忽略数据读取错误，不中断程序的执行。
+--new-volume-script=&lt;Script文件&gt; 此参数的效果和指定<span class="hljs-string">&quot;-F&quot;</span>参数相同。
+--newer-mtime 只保存更改过的文件。
+--no-recursion 不做递归处理，也就是指定目录下的所有文件及子目录不予处理。
+--null 从null设备读取文件名称。
+--numeric-owner 以用户识别码及群组识别码取代用户名称和群组名称。
+--owner=&lt;用户名称&gt; 把加入备份文件中的文件的拥有者设成指定的用户。
+--posix 将数据写入备份文件时使用POSIX格式。
+--preserve 此参数的效果和指定<span class="hljs-string">&quot;-ps&quot;</span>参数相同。
+--preserve-order 此参数的效果和指定<span class="hljs-string">&quot;-A&quot;</span>参数相同。
+--preserve-permissions 此参数的效果和指定<span class="hljs-string">&quot;-p&quot;</span>参数相同。
+--record-size=&lt;区块数目&gt; 此参数的效果和指定<span class="hljs-string">&quot;-b&quot;</span>参数相同。
+--recursive-unlink 解开压缩文件还原目录之前，先解除整个目录下所有文件的连接。
+--remove-files 文件加入备份文件后，就将其删除。
+--rsh-command=&lt;执行指令&gt; 设置要在远端主机上执行的指令，以取代rsh指令。
+--same-owner 尝试以相同的文件拥有者还原文件。
+--suffix=&lt;备份字尾字符串&gt; 移除文件前先行备份。
+--totals 备份文件建立后，列出文件大小。
+--use-compress-program=&lt;执行指令&gt; 通过指定的指令处理备份文件。
+--version 显示版本信息。
+--volno-file=&lt;编号文件&gt; 使用指定文件内的编号取代预设的卷册编号。</code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/system/">system</a>
+                    
+                      <a class="hover-with-bg" href="/categories/system/linux/">linux</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/02/linux-systemctl/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">linux systemctl</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/02/luna-welcome/">
+                        <span class="hidden-mobile">welcome!</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appKey":"UyOEEpxFaJC2kPqgBkDOeMPE","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://jf1xc66l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"Jf1XC66LVfvBgBpG1uzXEivd-gzGzoHsz","appkey":"UyOEEpxFaJC2kPqgBkDOeMPE"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          </script><script src="/js/fireworks.js"></script><script src="https://api.vvhan.com/api/snow"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
