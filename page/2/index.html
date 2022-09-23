@@ -264,7 +264,7 @@ Linux下权限的粒度有 拥有者 、群组 、其它组 三种。每个文�
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/08/26/jvm-properties/" target="_blank">
+        <a href="/2021/08/26/jvm-tenance/" target="_blank">
           <img src="/img/basic/java-index.jpg" srcset="/img/loading.gif" lazyload alt="jvm_tuning">
         </a>
       </div>
@@ -272,20 +272,23 @@ Linux下权限的粒度有 拥有者 、群组 、其它组 三种。每个文�
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/08/26/jvm-properties/" target="_blank">
+        <a href="/2021/08/26/jvm-tenance/" target="_blank">
           jvm_tuning
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/08/26/jvm-properties/" target="_blank">
+        <a href="/2021/08/26/jvm-tenance/" target="_blank">
           
           
             
           
-          JAVA 启动参数/opt/vdian/java/bin/java-Djava.util.logging.config.file=/home/www/fenxiao-core/.server/conf/logging.propertie
--Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager 
--Djdk.tls.ephe
+          JVM内存区域划分限定商用虚拟机基本都采用分代收集算法进行垃圾回收。根据对象的生命周期的不同将内存划分为几块，然后根据各块的特点采用最适当的收集算法。大批对象死去、少量对象存活的，使用复制算法，复制成本低；对象存活率高、没有额外空间进行分配担保的，采用标记-清除算法或者标记-整理算法。
+
+从上面的图可以看出， JVM区域总体分两类，heap区和非heap区。 
+1.heap区又分为： 
+
+Eden
         </a>
       </p>
 
@@ -322,7 +325,7 @@ Linux下权限的粒度有 拥有者 、群组 、其它组 三种。每个文�
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/08/26/jvm-tenance/" target="_blank">
+        <a href="/2021/08/26/jvm-properties/" target="_blank">
           <img src="/img/basic/java-index.jpg" srcset="/img/loading.gif" lazyload alt="jvm_tuning">
         </a>
       </div>
@@ -330,23 +333,20 @@ Linux下权限的粒度有 拥有者 、群组 、其它组 三种。每个文�
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/08/26/jvm-tenance/" target="_blank">
+        <a href="/2021/08/26/jvm-properties/" target="_blank">
           jvm_tuning
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/08/26/jvm-tenance/" target="_blank">
+        <a href="/2021/08/26/jvm-properties/" target="_blank">
           
           
             
           
-          JVM内存区域划分限定商用虚拟机基本都采用分代收集算法进行垃圾回收。根据对象的生命周期的不同将内存划分为几块，然后根据各块的特点采用最适当的收集算法。大批对象死去、少量对象存活的，使用复制算法，复制成本低；对象存活率高、没有额外空间进行分配担保的，采用标记-清除算法或者标记-整理算法。
-
-从上面的图可以看出， JVM区域总体分两类，heap区和非heap区。 
-1.heap区又分为： 
-
-Eden
+          JAVA 启动参数/opt/vdian/java/bin/java-Djava.util.logging.config.file=/home/www/fenxiao-core/.server/conf/logging.propertie
+-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager 
+-Djdk.tls.ephe
         </a>
       </p>
 
@@ -866,7 +866,7 @@ public class Singleton &#123;  
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Serĉi</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -875,7 +875,7 @@ public class Singleton &#123;  
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">ŝlosivorto</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
