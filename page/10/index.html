@@ -203,6 +203,69 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/31/spring-logback/" target="_blank">
+          <img src="/img/baisc/spring-index.jpg" srcset="/img/loading.gif" lazyload alt="SpringBoot + LogBack 配置">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/31/spring-logback/" target="_blank">
+          SpringBoot + LogBack 配置
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/31/spring-logback/" target="_blank">
+          
+          
+            
+          
+          SpringBoot + LogBack 配置
+首先可使用Spring 默认依赖,其他maven项目可引入
+
+&lt;!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;ch.qos.logback&lt;/groupId
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-31 00:00" pubdate>
+              2020-05-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/java/">java</a>
+            
+              <a href="/categories/java/spring/">spring</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/logBack/">logBack</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/05/31/spring-security/" target="_blank">
           <img src="/img/baisc/spring-index.jpg" srcset="/img/loading.gif" lazyload alt="Spring security 配置">
         </a>
@@ -398,71 +461,6 @@ keytool命令，keytool -genkey -alias ccc -keyalg RSA -validity 36500 -keystore
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/05/05/apache-config-config/" target="_blank">
-          <img src="/img/java/apache-index.jpg" srcset="/img/loading.gif" lazyload alt="apache-dav-config">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/05/05/apache-config-config/" target="_blank">
-          apache-dav-config
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/05/05/apache-config-config/" target="_blank">
-          
-          
-            
-          
-          1.安装apachesudo apt-get install apache2 apache2-utils
-
-2.启用dav模块sudo a2enmod dav_fs
-sudo a2enmod dav
-sudo a2enmod dav_lock
-
-3.创建webdav目录及DavLockDB文件sudo mkdir /var/webdav
-sudo chown www-data:www-data /
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-05-05 00:00" pubdate>
-              2020-05-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/apache/">apache</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/apache/">apache</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/05/05/apache-config-virtual/" target="_blank">
           <img src="/img/java/apache-index.jpg" srcset="/img/loading.gif" lazyload alt="apache-config-virtual">
         </a>
@@ -530,27 +528,33 @@ httpd-vhosts.conf
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/05/05/apache-log/" target="_blank">
-          <img src="/img/apache/apache-log4j.jpg" srcset="/img/loading.gif" lazyload alt="apache-log">
+        <a href="/2020/05/05/apache-config-config/" target="_blank">
+          <img src="/img/java/apache-index.jpg" srcset="/img/loading.gif" lazyload alt="apache-dav-config">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/05/05/apache-log/" target="_blank">
-          apache-log
+        <a href="/2020/05/05/apache-config-config/" target="_blank">
+          apache-dav-config
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/05/05/apache-log/" target="_blank">
+        <a href="/2020/05/05/apache-config-config/" target="_blank">
           
           
             
           
-          SLF4J、JCL、JUL、log4j、logback的关系名词解释JUL(java.util.logging)  Java自带的日志系统。
-log4jApache Log4j 2 is an upgrade to Log4j that provides significant improvements over its predecessor, Log4j 1.x, and provides m
+          1.安装apachesudo apt-get install apache2 apache2-utils
+
+2.启用dav模块sudo a2enmod dav_fs
+sudo a2enmod dav
+sudo a2enmod dav_lock
+
+3.创建webdav目录及DavLockDB文件sudo mkdir /var/webdav
+sudo chown www-data:www-data /
         </a>
       </p>
 
@@ -869,7 +873,7 @@ activate-power-mode 和 Power mode II
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -878,7 +882,7 @@ activate-power-mode 和 Power mode II
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

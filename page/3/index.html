@@ -203,6 +203,66 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/05/26/java-design-patterns/" target="_blank">
+          <img src="/img/basic/java-index.jpg" srcset="/img/loading.gif" lazyload alt="design_patterns">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/26/java-design-patterns/" target="_blank">
+          design_patterns
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/26/java-design-patterns/" target="_blank">
+          
+          
+            
+          
+          设计模式1. 单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这 个实例。//（1）懒汉式
+public class Singleton &#123;  
+    /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载  */       
+  	private static Singleton 				instance = null;  
+    /* 私有
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-26 15:00" pubdate>
+              2021-05-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/java/">java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/date/">date</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/05/18/redis-config/" target="_blank">
           <img src="/img/basic/redis-index.jpg" srcset="/img/loading.gif" lazyload alt="redis config">
         </a>
@@ -765,67 +825,6 @@ Maven直接导入依赖,例如
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/05/10/java-utils-files/" target="_blank">
-          <img src="/img/basic/java-index.jpg" srcset="/img/loading.gif" lazyload alt="java utils files">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/10/java-utils-files/" target="_blank">
-          java utils files
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/10/java-utils-files/" target="_blank">
-          
-          
-            
-          
-          File Utils
-
-
-write(final File file, final CharSequence data, final Charset encoding)write(final File file, final CharSequence data, final Charset encoding, final boolean append) write(final File file,
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-10 15:45" pubdate>
-              2021-05-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/apache/">apache</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/apache/">apache</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
@@ -855,7 +854,7 @@ write(final File file, final CharSequence data, final Charset encoding)write(fin
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -864,7 +863,7 @@ write(final File file, final CharSequence data, final Charset encoding)write(fin
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

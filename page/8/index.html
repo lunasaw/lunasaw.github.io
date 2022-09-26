@@ -203,6 +203,74 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/07/04/mysql-DML/" target="_blank">
+          <img src="/img/baisc/mysql-index.jpg" srcset="/img/loading.gif" lazyload alt="mysql-DML">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/07/04/mysql-DML/" target="_blank">
+          mysql-DML
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/04/mysql-DML/" target="_blank">
+          
+          
+            
+          
+          Review mysql插入一、方式一
+语法：
+insert into 表名(字段名,...) values(值,...);
+特点：
+1、要求值的类型和字段的类型要一致或兼容
+2、字段的个数和顺序不一定与原始表中的字段个数和顺序一致
+但必须保证值和字段一一对应
+3、假如表中有可以为null的字段，注意可以通过以下两种方式插入null值
+①字段和值都省略
+②字段写上，值使用null
+4、字段和值的个
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-04 00:00" pubdate>
+              2020-07-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/basic-component/">basic-component</a>
+            
+              <a href="/categories/basic-component/mysql/">mysql</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/mysql/">mysql</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/06/29/mysql-DQL/" target="_blank">
           <img src="/img/baisc/mysql-index.jpg" srcset="/img/loading.gif" lazyload alt="mysql-DQL">
         </a>
@@ -773,66 +841,6 @@ $.ajax(&#123;
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/03/docker-mirro-warehouse/" target="_blank">
-          <img src="/img/basic/docker-index.jpg" srcset="/img/loading.gif" lazyload alt="docker mirro warehouse">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/06/03/docker-mirro-warehouse/" target="_blank">
-          docker mirro warehouse
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-mirro-warehouse/" target="_blank">
-          
-          
-            
-          
-          Docker 镜像仓库Docker 的操作围绕镜像、容器、仓库三大核心概念。在学架构设计之前，我们需要先了解 Docker 的三个核心概念。
-1. Docker 核心概念1.1 镜像镜像是什么呢？通俗地讲，它是一个只读的文件和文件夹组合。它包含了容器运行时所需要的所有基础文件和配置信息，是容器启动的基础。所以你想启动一个容器，那首先必须要有一个镜像。镜像是 Docker 容器启动的先决条件。
-如果
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-03 00:00" pubdate>
-              2020-06-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/docker/">docker</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
@@ -862,7 +870,7 @@ $.ajax(&#123;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -871,7 +879,7 @@ $.ajax(&#123;
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
