@@ -386,7 +386,7 @@ footer:
   # HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
   content: '
     <i class="iconfont icon-love"></i>
-    <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a>
+    <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a>
   '
 
   # 展示网站的 PV、UV 统计数

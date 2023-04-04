@@ -17,9 +17,9 @@ categories:
 Maven直接导入依赖,例如
 
 ```xml
-<!-- https://mvnrepository.com/artifact/com.github.czy1024/luna-common -->
+<!-- https://mvnrepository.com/artifact/com.github.lunasaw/luna-common -->
 <dependency>
-    <groupId>com.github.czy1024</groupId>
+    <groupId>com.github.lunasaw</groupId>
     <artifactId>luna-common</artifactId>
     <version>1.1.0</version>
 </dependency>
@@ -142,12 +142,12 @@ sub   rsa2048 2019-01-03 [E] [expires: 2021-01-02]
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.czy1024</groupId>
+    <groupId>com.github.lunasaw</groupId>
     <artifactId>luna-common</artifactId>
     <name>luna-common</name>
     <version>1.1.1</version>
     <description>common is project which contains common utils</description>
-    <url>https://github.com/czy1024/luna-common</url>
+    <url>https://github.com/lunasaw/luna-common</url>
 
     <properties>
         <java.version>1.8</java.version>
@@ -190,10 +190,10 @@ sub   rsa2048 2019-01-03 [E] [expires: 2021-01-02]
 
     <scm>
        <!--提交issue的地址 或者项目发布路径-->
-        <url>https://github.com/czy1024/luna-common</url>
+        <url>https://github.com/lunasaw/luna-common</url>
       <!--git链接-->
-        <connection>scm:git:https://github.com/czy1024/luna-common.git</connection>
-        <developerConnection>scm:git:https://github.com/czy1024/luna-common</developerConnection>
+        <connection>scm:git:https://github.com/lunasaw/luna-common.git</connection>
+        <developerConnection>scm:git:https://github.com/lunasaw/luna-common</developerConnection>
     </scm>
     <profiles>
         <profile>

@@ -68,7 +68,7 @@ blkid
 dumpe2fs -h /dev/sdb1
 # 　使用设备名称（/dev/sda)来挂载分区时是被固定死的，一旦磁盘的插槽顺序发生了变化，就会出现名称不对应的问题。因为这个名称是会改变的。
 #　　不过使用label挂载就不用担心插槽顺序方面的问题。不过要随时注意你的Label name。至于UUID，每个分区被格式化以后都会有一个UUID作为唯一的标识号。使用uuid挂载的话就不用担心会发生错乱的问题了。
-# 具体参数见 https://czy1024.github.io/blog/blog/autoMount.html
+# 具体参数见 https://lunasaw.github.io/blog/blog/autoMount.html
 vim /etc/fstab
 echo "eg: UUID=2ccac64a-01cc-4fc7-ae85-ad7ea1fca89c /music    ext4   defaults    0     0"
 # 重启后 执行 mountpoint  music/ 查看是否配置成功
@@ -84,9 +84,9 @@ swapon /dev/sdb1
 # 取消激活交换分区
 swapoff /dev/sdb1
 
-# 压缩解压见  https://czy1024.github.io/blog/blog/linux_tar.html
+# 压缩解压见  https://lunasaw.github.io/blog/blog/linux_tar.html
 
-# 用户操作  https://czy1024.github.io/blog/blog/linux_user_group.html
+# 用户操作  https://lunasaw.github.io/blog/blog/linux_user_group.html
 adduser luna-1 # 添加用户 生成目录
 useradd luna-2 # 添加用户 生成目录
 
@@ -148,7 +148,7 @@ iptables -nL --line-number
 iptables -D INPUT 1
 
 
-# shell 编程 锁定用户id大于多少的用户 脚本地址: https://github.com/czy1024/luna-linux-conf/blob/master/ubuntu/lockuser_if_userid_gt_x.sh
+# shell 编程 锁定用户id大于多少的用户 脚本地址: https://github.com/lunasaw/luna-linux-conf/blob/master/ubuntu/lockuser_if_userid_gt_x.sh
 vim userlock.sh
 chmod +x ./userlock.sh
 # 锁定用户id大于100的用户
@@ -181,9 +181,9 @@ echo "eg: sudo crontab -u luna -r" # 删除luna 的crontab文件
 sudo cat > /etc/crontab <<EOF 
 * 23-7/1 * * * /etc/init.d/smb restart
 EOF
-# 详见 https://czy1024.github.io/blog/blog/linux_crontab.html
+# 详见 https://lunasaw.github.io/blog/blog/linux_crontab.html
 # shell 编程 禁止用户id大于多少的用户提交计划 
-#脚本地址: https://github.com/czy1024/luna-linux-conf/blob/master/ubuntu/uncrontab_if_user_gt_x.sh
+#脚本地址: https://github.com/lunasaw/luna-linux-conf/blob/master/ubuntu/uncrontab_if_user_gt_x.sh
 
 ```
 

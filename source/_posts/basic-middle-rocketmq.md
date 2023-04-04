@@ -1,6 +1,6 @@
 ---
 title: rocketmq 原理解析
-date: 2022-09-06
+date: 2022-09-06 15:30:53
 banner_img: /img/connect/connect-binner.jpg
 index_img: /img/connect/connect-index.jpg
 tags: 
@@ -9,6 +9,7 @@ categories:
  - basic-component
  - rocketmq
 ---
+
 # rocketmq 原理解析
 
 ## RocketMQ 如何保证消息不丢失/保证可靠性

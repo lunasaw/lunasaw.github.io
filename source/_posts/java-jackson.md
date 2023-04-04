@@ -108,7 +108,7 @@ public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder{
 
 ## 【常用 API】
 
-因为日常开发最常用的api就是对象的序列化和反序列化，这里封装一个工具类，这里只展示部分API，其他API可参考 [JSON解析-Jackson](https://github.com/czy1024/luna-json-util/tree/master/json-jackson)
+因为日常开发最常用的api就是对象的序列化和反序列化，这里封装一个工具类，这里只展示部分API，其他API可参考 [JSON解析-Jackson](https://github.com/lunasaw/luna-json-util/tree/master/json-jackson)
 
 ```java
 @Slf4j

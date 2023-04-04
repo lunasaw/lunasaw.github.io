@@ -11,7 +11,7 @@ categories:
 ---
 ### 安装 
 ```shell
-sh -c "$(curl -x 192.168.31.225:10822 -fsSl https://raw.githubusercontent.com/czy1024/luna-linux-conf/master/vnc/vnc_install.sh)"
+sh -c "$(curl -x 192.168.31.225:10822 -fsSl https://raw.githubusercontent.com/lunasaw/luna-linux-conf/master/vnc/vnc_install.sh)"
 ```
 
 
