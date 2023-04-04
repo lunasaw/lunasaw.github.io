@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="十平方米小屋">
 <meta property="og:url" content="https://lunasaw.github.io/page/8/index.html">
 <meta property="og:site_name" content="十平方米小屋">
@@ -24,6 +24,10 @@
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="博客,luna,java,spring,utils,linux,idea">
 <meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -33,9 +37,12 @@
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +51,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -81,7 +109,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -93,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -105,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -117,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -129,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -141,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -149,14 +177,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -164,34 +194,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/paper/bg.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Edit your own life and compile your own world">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/paper/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Edit your own life and compile your own world"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -203,38 +239,25 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/07/04/mysql-DML/" target="_blank">
-          <img src="/img/baisc/mysql-index.jpg" srcset="/img/loading.gif" lazyload alt="mysql-DML">
+        <a href="/2020/07/04/mysql-DDL/" target="_blank">
+          <img src="/img/baisc/mysql-index.jpg" srcset="/img/loading.gif" lazyload alt="mysql-DDL">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/07/04/mysql-DML/" target="_blank">
-          mysql-DML
+        <a href="/2020/07/04/mysql-DDL/" target="_blank">
+          mysql-DDL
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/07/04/mysql-DML/" target="_blank">
-          
-          
-            
-          
-          Review mysql插入一、方式一
-语法：
-insert into 表名(字段名,...) values(值,...);
-特点：
-1、要求值的类型和字段的类型要一致或兼容
-2、字段的个数和顺序不一定与原始表中的字段个数和顺序一致
-但必须保证值和字段一一对应
-3、假如表中有可以为null的字段，注意可以通过以下两种方式插入null值
-①字段和值都省略
-②字段写上，值使用null
-4、字段和值的个
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/07/04/mysql-DDL/" target="_blank">
+        <div>
+          Review mysql库管理一、创建库 create database 【if not exists】 库名【 character set 字符集名】;  二、修改库 alter database 库名 character set 字符集名; 三、删除库 drop database 【if exists】 库名;   表管理一、创建表 ★ create table 【if not exists】
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -246,20 +269,39 @@ insert into 表名(字段名,...) values(值,...);
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/mysql/">mysql</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/mysql/">mysql</a>
+              <a href="/tags/mysql/">#mysql</a>
             
           </div>
         
@@ -284,30 +326,12 @@ insert into 表名(字段名,...) values(值,...);
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/29/mysql-DQL/" target="_blank">
-          
-          
-            
-          
-          Review mysql基础查询一、语法
-select 查询列表
-from 表名;
-二、特点
-1、查询列表可以是字段、常量、表达式、函数，也可以是多个
-2、查询结果是一个虚拟表
-
-三、示例
-1、查询单个字段
-select 字段名 from 表名;
-2、查询多个字段
-select 字段名，字段名 from 表名;
-3、查询所有字段
-select * from 表名
-4、查询常量
-select 常量值
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/29/mysql-DQL/" target="_blank">
+        <div>
+          Review mysql基础查询一、语法 select 查询列表 from 表名; 二、特点 1、查询列表可以是字段、常量、表达式、函数，也可以是多个 2、查询结果是一个虚拟表  三、示例 1、查询单个字段 select 字段名 from 表名; 2、查询多个字段 select 字段名，字段名 from 表名; 3、查询所有字段 select * from 表名 4、查询常量 select 常量值
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -319,20 +343,39 @@ select 常量值
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/mysql/">mysql</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/mysql/">mysql</a>
+              <a href="/tags/mysql/">#mysql</a>
             
           </div>
         
@@ -357,26 +400,12 @@ select 常量值
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/15/vue-demo/" target="_blank">
-          
-          
-            
-          
-          1. vue脚手架用来创建vue项目的工具包
-创建项目:
-    npm install -g vue-cli
-    vue init webpack VueDemo
-开发环境运行:
-    cd VueDemo
-    npm install
-    npm run dev
-生产环境打包发布
-    npm run build
-    npm install -g serve
-    serv
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/15/vue-demo/" target="_blank">
+        <div>
+          1. vue脚手架用来创建vue项目的工具包 创建项目:     npm install -g vue-cli     vue init webpack VueDemo 开发环境运行:     cd VueDemo     npm install     npm run dev 生产环境打包发布     npm run build     npm install -g serve     serv
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -388,18 +417,32 @@ select 常量值
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/vue/">vue</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue/" class="category-chain-item">vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/vue/">vue</a>
+              <a href="/tags/vue/">#vue</a>
             
           </div>
         
@@ -424,23 +467,12 @@ select 常量值
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/12/vue-start/" target="_blank">
-          
-          
-            
-          
-          1. Vue.js是什么?1). 一位华裔前Google工程师(尤雨溪)开发的前端js库
-2). 作用: 动态构建用户界面
-3). 特点:
-	* 遵循MVVM模式
-	* 编码简洁, 体积小, 运行效率高, 移动/PC端开发
-	* 它本身只关注UI, 可以轻松引入vue插件和其它第三库开发项目
-4). 与其它框架的关联:
-	* 借鉴angular的模板和数据绑定技术
-	* 借鉴react的组件化和虚
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/12/vue-start/" target="_blank">
+        <div>
+          1. Vue.js是什么?1). 一位华裔前Google工程师(尤雨溪)开发的前端js库 2). 作用: 动态构建用户界面 3). 特点: 	* 遵循MVVM模式 	* 编码简洁, 体积小, 运行效率高, 移动/PC端开发 	* 它本身只关注UI, 可以轻松引入vue插件和其它第三库开发项目 4). 与其它框架的关联: 	* 借鉴angular的模板和数据绑定技术 	* 借鉴react的组件化和虚
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -452,18 +484,32 @@ select 常量值
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/vue/">vue</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue/" class="category-chain-item">vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/vue/">vue</a>
+              <a href="/tags/vue/">#vue</a>
             
           </div>
         
@@ -488,24 +534,12 @@ select 常量值
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/07/spring-exception/" target="_blank">
-          
-          
-            
-          
-          springBoot 统一异常处理异常处理反例
-捕获异常后只输出到控制台
-
-前端
-$.ajax(&#123;
-    type: &quot;GET&quot;,
-    url: &quot;/user/add&quot;,
-    dataType: &quot;json&quot;,
-    success: function(data)&#123;
-        alert(&quot;
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/07/spring-exception/" target="_blank">
+        <div>
+          springBoot 统一异常处理异常处理反例 捕获异常后只输出到控制台  前端 $.ajax(&#123;     type: &quot;GET&quot;,     url: &quot;/user/add&quot;,     dataType: &quot;json&quot;,     success: function(data)&#123;         alert(&quot;
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -517,20 +551,39 @@ $.ajax(&#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/spring/">spring</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/spring/" class="category-chain-item">spring</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/exception/">exception</a>
+              <a href="/tags/exception/">#exception</a>
             
           </div>
         
@@ -555,16 +608,12 @@ $.ajax(&#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-%20design-architecture/" target="_blank">
-          
-          
-            
-          
-          Docker 架构1. 前言docker架构设计参考文章进行整理：地址为https://www.huweihuang.com/article/docker/docker-architecture/
-这一篇文章源于2015年出版的《docker源码分析》，书中以docker1.2.0版本进行分析。但是在docker1.11以后，docker的架构就在不断的优化和拆分。下面整理出了docker框架的变
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/03/docker-%20design-architecture/" target="_blank">
+        <div>
+          Docker 架构1. 前言docker架构设计参考文章进行整理：地址为https://www.huweihuang.com/article/docker/docker-architecture/ 这一篇文章源于2015年出版的《docker源码分析》，书中以docker1.2.0版本进行分析。但是在docker1.11以后，docker的架构就在不断的优化和拆分。下面整理出了docker框架的变
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -576,81 +625,39 @@ $.ajax(&#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/docker/">docker</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/03/docker-container-use/" target="_blank">
-          <img src="/img/basic/docker-index.jpg" srcset="/img/loading.gif" lazyload alt="Docker container">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/06/03/docker-container-use/" target="_blank">
-          Docker container
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-container-use/" target="_blank">
-          
-          
-            
-          
-          Docker 容器操作​        镜像包含了容器运行所需要的文件系统结构和内容，是静态的只读文件，而容器则是在镜像的只读层上创建了可写层，并且容器中的进程属于运行状态，容器是真正的应用载体。接下来讲讲Docker 核心：容器，重点讲解一下容器的基本操作。
-1. 容器（Container）容器是基于镜像创建的可运行实例，并且单独存在，一个镜像可以创建出多个容器。
-
-1.1 容器的生命周期容器的
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-03 00:00" pubdate>
-              2020-06-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/docker/">docker</a>
+              <a href="/tags/docker/">#docker</a>
             
           </div>
         
@@ -675,19 +682,12 @@ $.ajax(&#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-file/" target="_blank">
-          
-          
-            
-          
-          Docker file1. 前言​    生产实践中一定优先使用 Dockerfile 的方式构建镜像。 因为使用 Dockerfile 构建镜像可以带来很多好处：
-
-易于版本化管理，Dockerfile 本身是一个文本文件，方便存放在代码仓库做版本管理，可以很方便地找到各个版本之间的变更历史；
-
-过程可追溯，Dockerfile 的每一行指令代表一个镜像层，根据 Dockerfile 的内容即可
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/03/docker-file/" target="_blank">
+        <div>
+          Docker file1. 前言​    生产实践中一定优先使用 Dockerfile 的方式构建镜像。 因为使用 Dockerfile 构建镜像可以带来很多好处：  易于版本化管理，Dockerfile 本身是一个文本文件，方便存放在代码仓库做版本管理，可以很方便地找到各个版本之间的变更历史；  过程可追溯，Dockerfile 的每一行指令代表一个镜像层，根据 Dockerfile 的内容即可
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -699,20 +699,39 @@ $.ajax(&#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/docker/">docker</a>
+              <a href="/tags/docker/">#docker</a>
             
           </div>
         
@@ -724,32 +743,25 @@ $.ajax(&#123;
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/03/docker-mirror-principal/" target="_blank">
-          <img src="/img/basic/docker-index.jpg" srcset="/img/loading.gif" lazyload alt="docker mirror principal">
+        <a href="/2020/06/03/docker-container-use/" target="_blank">
+          <img src="/img/basic/docker-index.jpg" srcset="/img/loading.gif" lazyload alt="Docker container">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/06/03/docker-mirror-principal/" target="_blank">
-          docker mirror principal
+        <a href="/2020/06/03/docker-container-use/" target="_blank">
+          Docker container
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-mirror-principal/" target="_blank">
-          
-          
-            
-          
-          Docker 镜像原理Docker 核心：镜像，首先重点讲解一下镜像的基本操作，然后介绍一下镜像的实现原理。
-1. 镜像​    镜像是一个只读的 Docker 容器模板，包含启动容器所需要的所有文件系统结构和内容。简单来讲，镜像是一个特殊的文件系统，它提供了容器运行时所需的程序、软件库、资源、配置等静态数据。即镜像不包含任何动态数据，镜像内容在构建后不会被改变。
-如何操作镜像：
-
-从图中可知，镜
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/03/docker-container-use/" target="_blank">
+        <div>
+          Docker 容器操作​        镜像包含了容器运行所需要的文件系统结构和内容，是静态的只读文件，而容器则是在镜像的只读层上创建了可写层，并且容器中的进程属于运行状态，容器是真正的应用载体。接下来讲讲Docker 核心：容器，重点讲解一下容器的基本操作。 1. 容器（Container）容器是基于镜像创建的可运行实例，并且单独存在，一个镜像可以创建出多个容器。  1.1 容器的生命周期容器的
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -761,20 +773,39 @@ $.ajax(&#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/docker/">docker</a>
+              <a href="/tags/docker/">#docker</a>
             
           </div>
         
@@ -799,16 +830,12 @@ $.ajax(&#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-security-1/" target="_blank">
-          
-          
-            
-          
-          Docker 安全性能1. 前言​    Docker 是基于 Linux 内核的 Namespace 技术实现资源隔离的，所有的容器都共享主机的内核。其实这与以虚拟机为代表的云计算时代还是有很多区别的，比如虚拟机有着更好的隔离性和安全性，而容器的隔离性和安全性则相对较弱。
-​    在讨论容器的安全性之前，我们先了解下容器与虚拟机的区别，这样可以帮助我们更好地了解容器的安全隐患以及如何加固容器安
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/03/docker-security-1/" target="_blank">
+        <div>
+          Docker 安全性能1. 前言​    Docker 是基于 Linux 内核的 Namespace 技术实现资源隔离的，所有的容器都共享主机的内核。其实这与以虚拟机为代表的云计算时代还是有很多区别的，比如虚拟机有着更好的隔离性和安全性，而容器的隔离性和安全性则相对较弱。 ​    在讨论容器的安全性之前，我们先了解下容器与虚拟机的区别，这样可以帮助我们更好地了解容器的安全隐患以及如何加固容器安
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -820,20 +847,113 @@ $.ajax(&#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/docker/">docker</a>
+              <a href="/tags/docker/">#docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/03/docker-mirror-principal/" target="_blank">
+          <img src="/img/basic/docker-index.jpg" srcset="/img/loading.gif" lazyload alt="docker mirror principal">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/03/docker-mirror-principal/" target="_blank">
+          docker mirror principal
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2020/06/03/docker-mirror-principal/" target="_blank">
+        <div>
+          Docker 镜像原理Docker 核心：镜像，首先重点讲解一下镜像的基本操作，然后介绍一下镜像的实现原理。 1. 镜像​    镜像是一个只读的 Docker 容器模板，包含启动容器所需要的所有文件系统结构和内容。简单来讲，镜像是一个特殊的文件系统，它提供了容器运行时所需的程序、软件库、资源、配置等静态数据。即镜像不包含任何动态数据，镜像内容在构建后不会被改变。 如何操作镜像：  从图中可知，镜
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-03 00:00" pubdate>
+              2020-06-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/docker/">#docker</a>
             
           </div>
         
@@ -870,7 +990,7 @@ $.ajax(&#123;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -878,14 +998,14 @@ $.ajax(&#123;
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -897,43 +1017,45 @@ $.ajax(&#123;
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -952,10 +1074,22 @@ $.ajax(&#123;
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -965,47 +1099,24 @@ $.ajax(&#123;
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

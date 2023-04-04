@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="十平方米小屋">
 <meta property="og:url" content="https://lunasaw.github.io/page/11/index.html">
 <meta property="og:site_name" content="十平方米小屋">
@@ -24,6 +24,10 @@
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="博客,luna,java,spring,utils,linux,idea">
 <meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -33,9 +37,12 @@
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +51,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -81,7 +109,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -93,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -105,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -117,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -129,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -141,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -149,14 +177,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -164,34 +194,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/paper/bg.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Edit your own life and compile your own world">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/paper/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Edit your own life and compile your own world"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -216,23 +252,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/13/java-time-ordate/" target="_blank">
-          
-          
-            
-          
-          时间和字符传的转化
-日期转为字符串
-import java.text.SimpleDateFormat;
-import java.util.Date;
- 
-public class Test01 &#123;
-    public static void main(String[] args) &#123;
-        Date date = new Date(); //获取当前时间
-    
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/04/13/java-time-ordate/" target="_blank">
+        <div>
+          时间和字符传的转化 日期转为字符串 import java.text.SimpleDateFormat; import java.util.Date;   public class Test01 &#123;     public static void main(String[] args) &#123;         Date date = new Date(); //获取当前时间
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -244,18 +269,32 @@ public class Test01 &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/date/">date</a>
+              <a href="/tags/date/">#date</a>
             
           </div>
         
@@ -280,21 +319,12 @@ public class Test01 &#123;
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/13/python-getter-setter/" target="_blank">
-          
-          
-            
-          
-          Java中我们在定义类的成员变量时，如果是私有属性，我们通过调用属性对应的set和get方法来获取和设置变量的值，如果我们将这种方式来用于python那么代码如下:
-codingclass Money(object):
-    def __init__(self):
-        self.money &#x3D; 0
- 
-    def getMoney(self):
-        retu
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/04/13/python-getter-setter/" target="_blank">
+        <div>
+          Java中我们在定义类的成员变量时，如果是私有属性，我们通过调用属性对应的set和get方法来获取和设置变量的值，如果我们将这种方式来用于python那么代码如下: codingclass Money(object):     def __init__(self):         self.money &#x3D; 0       def getMoney(self):         retu
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -306,18 +336,32 @@ codingclass Money(object):
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/python/">python</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/python/" class="category-chain-item">python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/python/">python</a>
+              <a href="/tags/python/">#python</a>
             
           </div>
         
@@ -342,17 +386,12 @@ codingclass Money(object):
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/13/spring-anno/" target="_blank">
-          
-          
-            
-          
-          Java注解获取java.lang.reflect.AnnotatedElement 接口是所有程序元素（Class、Method和Constructor）的父接口，所以程序通过反射获取了某个类的AnnotatedElement对象之后，程序就可以调用该对象的如下四个个方法来访问Annotation信息：
-
-方法： T getAnnotation(Class annotationClass): 返
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/04/13/spring-anno/" target="_blank">
+        <div>
+          Java注解获取java.lang.reflect.AnnotatedElement 接口是所有程序元素（Class、Method和Constructor）的父接口，所以程序通过反射获取了某个类的AnnotatedElement对象之后，程序就可以调用该对象的如下四个个方法来访问Annotation信息：  方法： T getAnnotation(Class annotationClass): 返
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -364,20 +403,39 @@ codingclass Money(object):
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/spring/">spring</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/spring/" class="category-chain-item">spring</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/anno/">anno</a>
+              <a href="/tags/anno/">#anno</a>
             
           </div>
         
@@ -402,20 +460,12 @@ codingclass Money(object):
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/05/java-regular/" target="_blank">
-          
-          
-            
-          
-          构建正则表达式
-pattern() 返回正则表达式的字符串形式,其实就是返回Pattern.complile(String regex)的regex参数
-p.pattern();//返回 \d+
-
-split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
-`String[] str = p.split(“我的QQ是:456456我的电话是:0532214我
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/04/05/java-regular/" target="_blank">
+        <div>
+          构建正则表达式 pattern() 返回正则表达式的字符串形式,其实就是返回Pattern.complile(String regex)的regex参数 p.pattern();//返回 \d+  split(CharSequence input)方法,用于分隔字符串,并返回一个String[] `String[] str = p.split(“我的QQ是:456456我的电话是:0532214我
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -427,20 +477,39 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/basic-language/">basic-language</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/basic-language/" class="category-chain-item">basic-language</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/regular/">regular</a>
+              <a href="/tags/regular/">#regular</a>
             
           </div>
         
@@ -465,18 +534,12 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/04/java-util/" target="_blank">
-          
-          
-            
-          
-          JAVA常用工具类第一部分：常用的16个工具类https://mvnrepository.com/artifact/org.apache.commons/org.apache.commons.lang --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
-    &lt;artifactId&
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/04/04/java-util/" target="_blank">
+        <div>
+          JAVA常用工具类第一部分：常用的16个工具类https://mvnrepository.com/artifact/org.apache.commons/org.apache.commons.lang --&gt; &lt;dependency&gt;     &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;     &lt;artifactId&
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -488,18 +551,32 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/util/">util</a>
+              <a href="/tags/util/">#util</a>
             
           </div>
         
@@ -524,21 +601,12 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/02/java-json/" target="_blank">
-          
-          
-            
-          
-          FastJSON
-引入依赖或者Jar包
-&lt;dependency&gt;
-     &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
-     &lt;artifactId&gt;fastjson&lt;/artifactId&gt;
-     &lt;version&gt;1.1.23&lt;/version&gt;
- &lt;/dependency&gt
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/04/02/java-json/" target="_blank">
+        <div>
+          FastJSON 引入依赖或者Jar包 &lt;dependency&gt;      &lt;groupId&gt;com.alibaba&lt;/groupId&gt;      &lt;artifactId&gt;fastjson&lt;/artifactId&gt;      &lt;version&gt;1.1.23&lt;/version&gt;  &lt;/dependency&gt
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -550,82 +618,32 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/json/">json</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/04/02/linux-systemctl/" target="_blank">
-          <img src="/img/basic/linux-index.jpg" srcset="/img/loading.gif" lazyload alt="linux systemctl">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/04/02/linux-systemctl/" target="_blank">
-          linux systemctl
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/02/linux-systemctl/" target="_blank">
-          
-          
-            
-          
-          systemctl配置管理文件详解
-文件存放位置：（共三处）/etc/systemd/system//usr/lib/systemd/system/lib/systemd/system
-
-文件内容$cat sshd.service
-    [Unit]
-    Description=OpenSSH server daemon
-    Documentation=man:sshd(8) man:s
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-02 00:00" pubdate>
-              2020-04-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/linux/">linux</a>
+              <a href="/tags/json/">#json</a>
             
           </div>
         
@@ -650,22 +668,12 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/02/linux-tar/" target="_blank">
-          
-          
-            
-          
-          Linux Tartar
--c: 建立压缩档案-x：解压-t：查看内容-r：向压缩归档文件末尾追加文件-u：更新原压缩包中的文件
-
-这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。
-
--z：有gzip属性的-j：有bz2属性的-Z：有compress属性的-v：显示所有过程-O：将文件解开到标准输出
-
-下面的参数-f是
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/04/02/linux-tar/" target="_blank">
+        <div>
+          Linux Tartar -c: 建立压缩档案-x：解压-t：查看内容-r：向压缩归档文件末尾追加文件-u：更新原压缩包中的文件  这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。  -z：有gzip属性的-j：有bz2属性的-Z：有compress属性的-v：显示所有过程-O：将文件解开到标准输出  下面的参数-f是
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -677,20 +685,113 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/linux/">linux</a>
+              <a href="/tags/linux/">#linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/04/02/linux-systemctl/" target="_blank">
+          <img src="/img/basic/linux-index.jpg" srcset="/img/loading.gif" lazyload alt="linux systemctl">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/04/02/linux-systemctl/" target="_blank">
+          linux systemctl
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2020/04/02/linux-systemctl/" target="_blank">
+        <div>
+          systemctl配置管理文件详解 文件存放位置：（共三处）/etc/systemd/system//usr/lib/systemd/system/lib/systemd/system  文件内容$cat sshd.service     [Unit]     Description=OpenSSH server daemon     Documentation=man:sshd(8) man:s
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-04-02 00:00" pubdate>
+              2020-04-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">#linux</a>
             
           </div>
         
@@ -715,15 +816,12 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/02/shiro-start/" target="_blank">
-          
-          
-            
-          
+      
+      <a class="index-excerpt " href="/2020/04/02/shiro-start/" target="_blank">
+        <div>
           Shiro框架中有三个核心概念：Subject ，SecurityManager和Realms。1    SubjectSubject一词是一个安全术语，其基本意思是“当前的操作用户”。称之为“用户”并不准确，因为“用户”一词通常跟人相关。在安全领域，术语“Subject”可以是人，也可以是第三方进程、后台帐户（Daemon Account）、定时作业（Corn Job）或其他类似事物。它仅仅意味
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -735,22 +833,46 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/middle-component/">middle-component</a>
-            
-              <a href="/categories/java/middle-component/shiro/">shiro</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/" class="category-chain-item">middle-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/shiro/" class="category-chain-item">shiro</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/shiro/">shiro</a>
+              <a href="/tags/shiro/">#shiro</a>
             
           </div>
         
@@ -775,21 +897,12 @@ split(CharSequence input)方法,用于分隔字符串,并返回一个String[]
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/02/spring-mvc/" target="_blank">
-          
-          
-            
-          
-          1.页面模板解析可通过使用thymeleaf模板对应的spring配置，默认已经配置好，可手动配置其他路径
-spring.thymeleaf.prefix=classpath:/templates/
-
-并且引入依赖
-&lt;!-- SpringBoot集成thymeleaf模板 --&gt;
-       &lt;dependency&gt;
-           &lt;groupId&gt;o
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/04/02/spring-mvc/" target="_blank">
+        <div>
+          1.页面模板解析可通过使用thymeleaf模板对应的spring配置，默认已经配置好，可手动配置其他路径 spring.thymeleaf.prefix=classpath:/templates/  并且引入依赖 &lt;!-- SpringBoot集成thymeleaf模板 --&gt;        &lt;dependency&gt;            &lt;groupId&gt;o
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -801,20 +914,39 @@ spring.thymeleaf.prefix=classpath:/templates/
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/spring/">spring</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/spring/" class="category-chain-item">spring</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/springmvc/">springmvc</a>
+              <a href="/tags/springmvc/">#springmvc</a>
             
           </div>
         
@@ -851,7 +983,7 @@ spring.thymeleaf.prefix=classpath:/templates/
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -859,14 +991,14 @@ spring.thymeleaf.prefix=classpath:/templates/
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -878,43 +1010,45 @@ spring.thymeleaf.prefix=classpath:/templates/
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -933,10 +1067,22 @@ spring.thymeleaf.prefix=classpath:/templates/
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -946,47 +1092,24 @@ spring.thymeleaf.prefix=classpath:/templates/
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

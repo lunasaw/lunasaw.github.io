@@ -13,25 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="MyBatis简介MyBatis是什么？MyBatis 是一款优秀的持久层框架，一个半 ORM（对象关系映射）框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生类型、接口和 Java 的 POJO（Plain Old Java Objects，普通老式 Jav">
+  
+    <meta name="description" content="MyBatis简介MyBatis是什么？MyBatis 是一款优秀的持久层框架，一个半 ORM（对象关系映射）框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生类型、接口和 Java 的 POJO（Plain Old Java Objects，普通老式 Jav">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis 面试题">
 <meta property="og:url" content="https://lunasaw.github.io/2021/04/19/mybatis-interview-1/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="MyBatis简介MyBatis是什么？MyBatis 是一款优秀的持久层框架，一个半 ORM（对象关系映射）框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生类型、接口和 Java 的 POJO（Plain Old Java Objects，普通老式 Jav">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2021/04/19/A5dWPV3RKkGH7SQ.png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0pvdXJXb24vaW1hZ2UvbWFzdGVyL015QmF0aXMlRTYlQTElODYlRTYlOUUlQjYlRTYlODAlQkIlRTclQkIlOTMvTXlCYXRpcyVFNSU4QSU5RiVFOCU4MyVCRCVFNiU5RSVCNiVFNiU5RSU4NC5wbmc">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0pvdXJXb24vaW1hZ2UvbWFzdGVyL015QmF0aXMlRTYlQTElODYlRTYlOUUlQjYlRTYlODAlQkIlRTclQkIlOTMvTXlCYXRpcyVFNiVBMSU4NiVFNiU5RSVCNiVFNiU5RSVCNiVFNiU5RSU4NC5wbmc">
+<meta property="og:image" content="https://lunasaw.github.io/img/baisc/mybatis-index.jpg">
 <meta property="article:published_time" content="2021-04-19T07:09:07.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.991Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i.loli.net/2021/04/19/A5dWPV3RKkGH7SQ.png">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/baisc/mybatis-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -40,25 +42,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -67,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -104,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -116,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -128,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -140,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -152,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -164,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -172,14 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -187,70 +206,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/baisc/mybatis-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="mybatis 面试题">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-19 15:09" pubdate>
-        2021年4月19日 下午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      19k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      59 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/baisc/mybatis-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="mybatis 面试题"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-19 15:09" pubdate>
+          2021年4月19日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          19k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          157 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -259,22 +292,31 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">mybatis 面试题</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h2 id="MyBatis简介"><a href="#MyBatis简介" class="headerlink" title="MyBatis简介"></a>MyBatis简介</h2><h3 id="MyBatis是什么？"><a href="#MyBatis是什么？" class="headerlink" title="MyBatis是什么？"></a>MyBatis是什么？</h3><p>MyBatis 是一款优秀的持久层框架，一个半 ORM（对象关系映射）框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生类型、接口和 Java 的 POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
+            
+              <div class="markdown-body">
+                
+                <h2 id="MyBatis简介"><a href="#MyBatis简介" class="headerlink" title="MyBatis简介"></a>MyBatis简介</h2><h3 id="MyBatis是什么？"><a href="#MyBatis是什么？" class="headerlink" title="MyBatis是什么？"></a>MyBatis是什么？</h3><p>MyBatis 是一款优秀的持久层框架，一个半 ORM（对象关系映射）框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生类型、接口和 Java 的 POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
 <h3 id="ORM是什么"><a href="#ORM是什么" class="headerlink" title="ORM是什么"></a>ORM是什么</h3><p>ORM（Object Relational Mapping），对象关系映射，是一种为了解决关系型数据库数据与简单Java对象（POJO）的映射关系的技术。简单的说，ORM是通过使用描述对象和数据库之间映射的元数据，将程序中的对象自动持久化到关系型数据库中。</p>
 <p>为什么说Mybatis是半自动ORM映射工具？它与全自动的区别在哪里？<br>Hibernate属于全自动ORM映射工具，使用Hibernate查询关联对象或者关联集合对象时，可以根据对象关系模型直接获取，所以它是全自动的。</p>
 <p>而Mybatis在查询关联对象或关联集合对象时，需要手动编写sql来完成，所以，称之为半自动ORM映射工具。</p>
@@ -344,7 +386,7 @@
 </ol>
 <h3 id="请说说MyBatis的工作原理"><a href="#请说说MyBatis的工作原理" class="headerlink" title="请说说MyBatis的工作原理"></a>请说说MyBatis的工作原理</h3><p>在学习 MyBatis 程序之前，需要了解一下 MyBatis 工作原理，以便于理解程序。MyBatis 的工作原理如下图</p>
 <p><img src="https://i.loli.net/2021/04/19/A5dWPV3RKkGH7SQ.png" srcset="/img/loading.gif" lazyload alt="MyBatis工作原理"></p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">1）读取 MyBatis 配置文件：mybatis-config.xml 为 MyBatis 的全局配置文件，配置了 MyBatis 的运行环境等信息，例如数据库连接信息。
+<div class="code-wrapper"><pre><code class="hljs bash">1）读取 MyBatis 配置文件：mybatis-config.xml 为 MyBatis 的全局配置文件，配置了 MyBatis 的运行环境等信息，例如数据库连接信息。
 
 2）加载映射文件。映射文件即 SQL 映射文件，该文件中配置了操作数据库的 SQL 语句，需要在 MyBatis 配置文件 mybatis-config.xml 中加载。mybatis-config.xml 文件可以加载多个映射文件，每个文件对应数据库中的一张表。
 
@@ -369,10 +411,10 @@
 <p>(2)SQL解析：当API接口层接收到调用请求时，会接收到传入SQL的ID和传入对象（可以是Map、JavaBean或者基本数据类型），Mybatis会根据SQL的ID找到对应的MappedStatement，然后根据传入参数对象对MappedStatement进行解析，解析后可以得到最终要执行的SQL语句和参数。</p>
 <p>(3)SQL执行：将最终得到的SQL和参数拿到数据库进行执行，得到操作数据库的结果。</p>
 <p>(4)结果映射：将操作数据库的结果按照映射的配置进行转换，可以转换成HashMap、JavaBean或者基本数据类型，并将最终结果返回。</p>
-<h2 id="为什么需要预编译"><a href="#为什么需要预编译" class="headerlink" title="为什么需要预编译"></a>为什么需要预编译</h2><div class="hljs code-wrapper"><pre><code class="hljs markdown">&#123;% label primary @定义：
+<h2 id="为什么需要预编译"><a href="#为什么需要预编译" class="headerlink" title="为什么需要预编译"></a>为什么需要预编译</h2><div class="code-wrapper"><pre><code class="hljs markdown">&#123;% label primary @定义：
 SQL 预编译指的是数据库驱动在发送 SQL 语句和参数给 DBMS 之前对 SQL 语句进行编译，这样 DBMS 执行 SQL 时，就不需要重新编译。 %&#125;</code></pre></div>
 
-<div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;label label-primary&quot;</span>&gt;</span>为什么需要预编译<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;label label-primary&quot;</span>&gt;</span>为什么需要预编译<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre></div>
 
 <ul>
 <li><p>JDBC 中使用对象 PreparedStatement 来抽象预编译语句，使用预编译。预编译阶段可以优化 SQL 的执行。预编译之后的 SQL 多数情况下可以直接执行，DBMS 不需要再次编译，越复杂的SQL，编译的复杂度将越大，预编译阶段可以合并多次操作为一个操作。</p>
@@ -410,14 +452,14 @@ SQL 预编译指的是数据库驱动在发送 SQL 语句和参数给 DBMS 之�
 <p>（2）”%”#{question}”%” 注意：因为#{…}解析成sql语句时候，会在变量外侧自动加单引号’ ‘，所以这里 % 需要使用双引号” “，不能使用单引号 ’ ‘，不然会查不到任何结果。</p>
 <p>（3）CONCAT(’%’,#{question},’%’) 使用CONCAT()函数，推荐</p>
 <p>（4）使用bind标签</p>
-<div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;listUserLikeUsername&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.jourwon.pojo.User&quot;</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;listUserLikeUsername&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.jourwon.pojo.User&quot;</span>&gt;</span>
 　　<span class="hljs-tag">&lt;<span class="hljs-name">bind</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;pattern&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;&#x27;%&#x27; + username + &#x27;%&#x27;&quot;</span> /&gt;</span>
 　　select id,sex,age,username,password from person where username LIKE #&#123;pattern&#125;
 <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
 <h2 id="在mapper中如何传递多个参数"><a href="#在mapper中如何传递多个参数" class="headerlink" title="在mapper中如何传递多个参数"></a>在mapper中如何传递多个参数</h2><p><strong>方法1：顺序传参法</strong></p>
 <p><code>public User selectUser(String name, int deptId);</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUser&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUser&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;</span>
     select * from user
     where user_name = #&#123;0&#125; and dept_id = #&#123;1&#125;
 <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
@@ -426,7 +468,7 @@ SQL 预编译指的是数据库驱动在发送 SQL 语句和参数给 DBMS 之�
 <p>这种方法不建议使用，sql层表达不直观，且一旦顺序调整容易出错。</p>
 <p><strong>方法2：@Param注解传参法</strong></p>
 <p><code>public User selectUser(@Param(&quot;userName&quot;) String name, int @Param(&quot;deptId&quot;) deptId);</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUser&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUser&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;</span>
     select * from user
     where user_name = #&#123;userName&#125; and dept_id = #&#123;deptId&#125;
 <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
@@ -435,7 +477,7 @@ SQL 预编译指的是数据库驱动在发送 SQL 语句和参数给 DBMS 之�
 <p>这种方法在参数不多的情况还是比较直观的，推荐使用。</p>
 <p><strong>方法3：Map传参法</strong></p>
 <p><code>public User selectUser(Map&lt;String, Object&gt; params);</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUser&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;java.util.Map&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUser&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;java.util.Map&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;</span>
     select * from user
     where user_name = #&#123;userName&#125; and dept_id = #&#123;deptId&#125;
 <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
@@ -444,14 +486,14 @@ SQL 预编译指的是数据库驱动在发送 SQL 语句和参数给 DBMS 之�
 <p>这种方法适合传递多个参数，且参数易变能灵活传递的情况。</p>
 <p><strong>方法4：Java Bean传参法</strong></p>
 <p><code>public User selectUser(User user);</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUser&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.jourwon.pojo.User&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUser&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.jourwon.pojo.User&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;</span>
     select * from user
     where user_name = #&#123;userName&#125; and dept_id = #&#123;deptId&#125;
 <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
 <p>#{}里面的名称对应的是User类里面的成员属性。</p>
 <p>这种方法直观，需要建一个实体类，扩展不容易，需要加属性，但代码可读性强，业务逻辑处理方便，推荐使用。</p>
-<h2 id="Mybatis如何执行批量操作"><a href="#Mybatis如何执行批量操作" class="headerlink" title="Mybatis如何执行批量操作"></a>Mybatis如何执行批量操作</h2><div class="hljs code-wrapper"><pre><code class="hljs BASH">使用foreach标签
+<h2 id="Mybatis如何执行批量操作"><a href="#Mybatis如何执行批量操作" class="headerlink" title="Mybatis如何执行批量操作"></a>Mybatis如何执行批量操作</h2><div class="code-wrapper"><pre><code class="hljs BASH">使用foreach标签
 
 foreach的主要用在构建<span class="hljs-keyword">in</span>条件中，它可以在SQL语句中进行迭代一个集合。foreach标签的属性主要有item，index，collection，open，separator，close。
 
@@ -467,7 +509,7 @@ close　　表示以什么结束，常用“)”。
 如果传入的参数是多个的时候，我们就需要把它们封装成一个Map了，当然单参数也可以封装成map，实际上如果你在传入参数的时候，在MyBatis里面也是会把它封装成一个Map的，
 map的key就是参数名，所以这个时候collection属性值就是传入的List或array对象在自己封装的map里面的key</code></pre></div>
 
-<h4 id="具体用法如下："><a href="#具体用法如下：" class="headerlink" title="具体用法如下："></a>具体用法如下：</h4><div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-comment">&lt;!-- 批量保存(foreach插入多条数据两种方法)</span>
+<h4 id="具体用法如下："><a href="#具体用法如下：" class="headerlink" title="具体用法如下："></a>具体用法如下：</h4><div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-comment">&lt;!-- 批量保存(foreach插入多条数据两种方法)</span>
 <span class="hljs-comment">       int addEmpsBatch(@Param(&quot;emps&quot;) List&lt;Employee&gt; emps); --&gt;</span>
 <span class="hljs-comment">&lt;!-- MySQL下批量保存，可以foreach遍历 mysql支持values(),(),()语法 --&gt;</span> //推荐使用
 <span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;addEmpsBatch&quot;</span>&gt;</span>
@@ -478,7 +520,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
     <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span></code></pre></div>
 
-<div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-comment">&lt;!-- 这种方式需要数据库连接属性allowMutiQueries=true的支持</span>
+<div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-comment">&lt;!-- 这种方式需要数据库连接属性allowMutiQueries=true的支持</span>
 <span class="hljs-comment"> 如jdbc.url=jdbc:mysql://localhost:3306/mybatis?allowMultiQueries=true --&gt;</span>  
 <span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;addEmpsBatch&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;emps&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;emp&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;;&quot;</span>&gt;</span>                                 
@@ -488,7 +530,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span></code></pre></div>
 
 <h3 id="使用ExecutorType-BATCH"><a href="#使用ExecutorType-BATCH" class="headerlink" title="使用ExecutorType.BATCH"></a>使用ExecutorType.BATCH</h3><p>Mybatis内置的ExecutorType有3种，默认为simple,该模式下它为每个语句的执行创建一个新的预处理语句，单条提交sql；而batch模式重复使用已经预处理的语句，并且批量执行所有更新语句，显然batch性能将更优； 但batch模式也有自己的问题，比如在Insert操作时，在事务没有提交之前，是没有办法获取到自增的id，这在某型情形下是不符合业务要求的</p>
-<h4 id="具体用法如下"><a href="#具体用法如下" class="headerlink" title="具体用法如下"></a>具体用法如下</h4><div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-comment">//批量保存方法测试</span>
+<h4 id="具体用法如下"><a href="#具体用法如下" class="headerlink" title="具体用法如下"></a>具体用法如下</h4><div class="code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-comment">//批量保存方法测试</span>
 <span class="hljs-meta">@Test</span>  
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testBatch</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException</span>&#123;
     SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
@@ -515,12 +557,12 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
     &#125;
 &#125;</code></pre></div>
 <p>mapper和mapper.xml如下</p>
-<div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeMapper</span> </span>&#123;   
+<div class="code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeMapper</span> </span>&#123;   
     <span class="hljs-comment">//批量保存员工</span>
     <span class="hljs-function">Long <span class="hljs-title">addEmp</span><span class="hljs-params">(Employee employee)</span></span>;
 &#125;</code></pre></div>
 
-<div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.jourwon.mapper.EmployeeMapper&quot;</span></span>
+<div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.jourwon.mapper.EmployeeMapper&quot;</span></span>
      &lt;!--批量保存员工 --&gt;
     <span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;addEmp&quot;</span>&gt;</span>
         insert into employee(lastName,email,gender)
@@ -529,7 +571,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
 
 <h2 id="如何获取生成的主键"><a href="#如何获取生成的主键" class="headerlink" title="如何获取生成的主键"></a>如何获取生成的主键</h2><p><strong>对于支持主键自增的数据库（MySQL）</strong></p>
-<div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUser&quot;</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;userId&quot;</span> &gt;</span>
+<div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUser&quot;</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;userId&quot;</span> &gt;</span>
     insert into user( 
     user_name, user_password, create_time) 
     values(#&#123;userName&#125;, #&#123;userPassword&#125; , #&#123;createTime, jdbcType= TIMESTAMP&#125;)
@@ -538,7 +580,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <p>parameterType 可以不写，Mybatis可以推断出传入的数据类型。如果想要访问主键，那么应当parameterType 应当是java实体或者Map。这样数据在插入之后 可以通过ava实体或者Map 来获取主键值。通过 getUserId获取主键</p>
 <p><strong>不支持主键自增的数据库（Oracle）</strong></p>
 <p>对于像Oracle这样的数据，没有提供主键自增的功能，而是使用序列的方式获取自增主键。<br>可以使用＜selectKey＞标签来获取主键的值，这种方式不仅适用于不提供主键自增功能的数据库，也适用于提供主键自增功能的数据库<br>＜selectKey＞一般的用法</p>
-<div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">selectKey</span> <span class="hljs-attr">keyColumn</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;long&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;BEFORE&quot;</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">selectKey</span> <span class="hljs-attr">keyColumn</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;long&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;BEFORE&quot;</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">selectKey</span>&gt;</span></code></pre></div>
 
 <table>
@@ -569,7 +611,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <td>使用何种语句类型，默认PREPARED。 有STATEMENT，PREPARED 和 CALLABLE 语句的映射类型。</td>
 </tr>
 </tbody></table>
-<div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUser&quot;</span> &gt;</span>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUser&quot;</span> &gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">selectKey</span> <span class="hljs-attr">keyColumn</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;long&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;userId&quot;</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;BEFORE&quot;</span>&gt;</span>
 		SELECT USER_ID.nextval as id from dual 
 	<span class="hljs-tag">&lt;/<span class="hljs-name">selectKey</span>&gt;</span> 
@@ -579,11 +621,11 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span></code></pre></div>
 
 <p>此时会将Oracle生成的主键值赋予userId变量。这个userId 就是USER对象的属性，这样就可以将生成的主键值返回了。如果仅仅是在insert语句中使用但是不返回，此时keyProperty=“任意自定义变量名”，resultType 可以不写。<br>Oracle 数据库中的值要设置为 BEFORE ，这是因为 Oracle中需要先从序列获取值，然后将值作为主键插入到数据库中。</p>
-<h3 id="当实体类中的属性名和表中的字段名不一样-，怎么办"><a href="#当实体类中的属性名和表中的字段名不一样-，怎么办" class="headerlink" title="当实体类中的属性名和表中的字段名不一样 ，怎么办"></a>当实体类中的属性名和表中的字段名不一样 ，怎么办</h3><h4 id="第1种：-通过在查询的SQL语句中定义字段名的-别名-，让字段名的别名和实体类的属性名一致。"><a href="#第1种：-通过在查询的SQL语句中定义字段名的-别名-，让字段名的别名和实体类的属性名一致。" class="headerlink" title="第1种： 通过在查询的SQL语句中定义字段名的==别名==，让字段名的别名和实体类的属性名一致。"></a>第1种： 通过在查询的SQL语句中定义字段名的==别名==，让字段名的别名和实体类的属性名一致。</h4><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getOrder&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;int&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.jourwon.pojo.Order&quot;</span>&gt;</span>
+<h3 id="当实体类中的属性名和表中的字段名不一样-，怎么办"><a href="#当实体类中的属性名和表中的字段名不一样-，怎么办" class="headerlink" title="当实体类中的属性名和表中的字段名不一样 ，怎么办"></a>当实体类中的属性名和表中的字段名不一样 ，怎么办</h3><h4 id="第1种：-通过在查询的SQL语句中定义字段名的-别名-，让字段名的别名和实体类的属性名一致。"><a href="#第1种：-通过在查询的SQL语句中定义字段名的-别名-，让字段名的别名和实体类的属性名一致。" class="headerlink" title="第1种： 通过在查询的SQL语句中定义字段名的==别名==，让字段名的别名和实体类的属性名一致。"></a>第1种： 通过在查询的SQL语句中定义字段名的==别名==，让字段名的别名和实体类的属性名一致。</h4><div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getOrder&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;int&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.jourwon.pojo.Order&quot;</span>&gt;</span>
        select order_id id, order_no orderno ,order_price price form orders where order_id=#&#123;id&#125;;
 <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
-<h4 id="第2种：-通过-lt-resultMap-gt-来映射字段名和实体类属性名的一一对应的关系。"><a href="#第2种：-通过-lt-resultMap-gt-来映射字段名和实体类属性名的一一对应的关系。" class="headerlink" title="第2种： 通过&lt;resultMap&gt;来映射字段名和实体类属性名的一一对应的关系。"></a>第2种： 通过<code>&lt;resultMap&gt;</code>来映射字段名和实体类属性名的一一对应的关系。</h4><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getOrder&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;int&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;orderResultMap&quot;</span>&gt;</span>
+<h4 id="第2种：-通过-lt-resultMap-gt-来映射字段名和实体类属性名的一一对应的关系。"><a href="#第2种：-通过-lt-resultMap-gt-来映射字段名和实体类属性名的一一对应的关系。" class="headerlink" title="第2种： 通过&lt;resultMap&gt;来映射字段名和实体类属性名的一一对应的关系。"></a>第2种： 通过<code>&lt;resultMap&gt;</code>来映射字段名和实体类属性名的一一对应的关系。</h4><div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getOrder&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;int&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;orderResultMap&quot;</span>&gt;</span>
 	select * from orders where order_id=#&#123;id&#125;
 <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
 
@@ -597,7 +639,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <span class="hljs-tag">&lt;/<span class="hljs-name">reslutMap</span>&gt;</span></code></pre></div>
 
 <h3 id="Mapper-编写有哪几种方式？"><a href="#Mapper-编写有哪几种方式？" class="headerlink" title="Mapper 编写有哪几种方式？"></a>Mapper 编写有哪几种方式？</h3><h4 id="第一种：接口实现类继承-SqlSessionDaoSupport：使用此种方法需要编写mapper-接口，mapper-接口实现类、mapper-xml-文件。"><a href="#第一种：接口实现类继承-SqlSessionDaoSupport：使用此种方法需要编写mapper-接口，mapper-接口实现类、mapper-xml-文件。" class="headerlink" title="第一种：接口实现类继承 SqlSessionDaoSupport：使用此种方法需要编写mapper 接口，mapper 接口实现类、mapper.xml 文件。"></a>第一种：接口实现类继承 SqlSessionDaoSupport：使用此种方法需要编写mapper 接口，mapper 接口实现类、mapper.xml 文件。</h4><p>（1）在 sqlMapConfig.xml 中配置 mapper.xml 的位置</p>
-<div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;mapper.xml 文件的地址&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;mapper.xml 文件的地址&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span></code></pre></div>
@@ -606,7 +648,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <p>（3）实现类集成 SqlSessionDaoSupport</p>
 <p>mapper 方法中可以 this.getSqlSession()进行数据增删改查。</p>
 <p>（4）spring 配置</p>
-<div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot; &quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mapper 接口的实现&quot;</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot; &quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mapper 接口的实现&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sqlSessionFactory&quot;</span></span>
 <span class="hljs-tag">    <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;sqlSessionFactory&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
@@ -616,7 +658,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <p>（3）mapper.xml 中的 namespace 为 mapper 接口的地址</p>
 <p>（4）mapper 接口中的方法名和 mapper.xml 中的定义的 statement 的 id 保持一致</p>
 <p>（5）Spring 中定义</p>
-<div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.mybatis.spring.mapper.MapperFactoryBean&quot;</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.mybatis.spring.mapper.MapperFactoryBean&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;mapperInterface&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;mapper 接口地址&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sqlSessionFactory&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;sqlSessionFactory&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
@@ -628,7 +670,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <p>（2）定义 mapper 接口：</p>
 <p>注意 mapper.xml 的文件名和 mapper 的接口名称保持一致，且放在同一个目录</p>
 <p>（3）配置 mapper 扫描器：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;basePackage&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;mapper 接口包地址&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sqlSessionFactoryBeanName&quot;</span></span>
 <span class="hljs-tag">    <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;sqlSessionFactory&quot;</span>/&gt;</span>
@@ -682,56 +724,122 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <p>2）二级缓存与一级缓存其机制相同，默认也是采用 PerpetualCache，HashMap 存储，不同在于其存储作用域为 Mapper(Namespace)，并且可自定义存储源，如 Ehcache。默认不打开二级缓存，要开启二级缓存，使用二级缓存属性类需要实现Serializable序列化接口(可用来保存对象的状态),可在它的映射文件中配置<cache/> ；</p>
 <p>3）对于缓存数据更新机制，当某一个作用域(一级缓存 Session/二级缓存Namespaces)的进行了C/U/D 操作后，默认该作用域下所有 select 中的缓存将被 clear。</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/java/">java</a>
-                    
-                      <a class="hover-with-bg" href="/categories/java/middle-component/">middle-component</a>
-                    
-                      <a class="hover-with-bg" href="/categories/java/middle-component/mybatis/">mybatis</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/mybatis/">mybatis</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/" class="category-chain-item">middle-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/mybatis/" class="category-chain-item">mybatis</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/mybatis/">#mybatis</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>mybatis 面试题</div>
+      <div>https://lunasaw.github.io/2021/04/19/mybatis-interview-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2021年4月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/20/mac-launchctl/">
+                      <a href="/2021/04/20/mac-launchctl/" title="mac-launchctl">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">mac-launchctl</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/01/15/haproxy/">
+                      <a href="/2021/01/15/haproxy/" title="haproxy">
                         <span class="hidden-mobile">haproxy</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -741,12 +849,10 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -760,7 +866,9 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -768,26 +876,63 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -809,7 +954,7 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -817,14 +962,14 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -836,43 +981,45 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -891,10 +1038,22 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -904,60 +1063,119 @@ map的key就是参数名，所以这个时候collection属性值就是传入的L
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

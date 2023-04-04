@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="十平方米小屋">
 <meta property="og:url" content="https://lunasaw.github.io/page/5/index.html">
 <meta property="og:site_name" content="十平方米小屋">
@@ -24,6 +24,10 @@
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="博客,luna,java,spring,utils,linux,idea">
 <meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -33,9 +37,12 @@
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +51,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -81,7 +109,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -93,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -105,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -117,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -129,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -141,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -149,14 +177,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -164,34 +194,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/paper/bg.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Edit your own life and compile your own world">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/paper/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Edit your own life and compile your own world"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -216,15 +252,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/01/11/rabbitmq-linux/" target="_blank">
-          
-          
-            
-          
+      
+      <a class="index-excerpt " href="/2021/01/11/rabbitmq-linux/" target="_blank">
+        <div>
           RabbitMQ1 MQ引言1.1 什么是MQMQ(Message Quene) :  翻译为消息队列,通过典型的生产者和消费者模型,生产者不断向消息队列中生产消息，消费者不断的从队列中获取消息。因为消息的生产和消费都是异步的，而且只关心消息的发送和接收，没有业务逻辑的侵入,轻松的实现系统间解耦。别名为 消息中间件通过利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -236,22 +269,46 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/middle-component/">middle-component</a>
-            
-              <a href="/categories/java/middle-component/rabbitmq/">rabbitmq</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/" class="category-chain-item">middle-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/rabbitmq/" class="category-chain-item">rabbitmq</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/rabbitmq/">rabbitmq</a>
+              <a href="/tags/rabbitmq/">#rabbitmq</a>
             
           </div>
         
@@ -276,17 +333,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/01/11/rabbitmq-windows-install/" target="_blank">
-          
-          
-            
-          
-          rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。
-1.安装Erlang所以在安装rabbitMQ之前，需要先安装Erlang 。
-小编使用的是otp_win64_18.1 ，需要其他版本或者32位系
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/01/11/rabbitmq-windows-install/" target="_blank">
+        <div>
+          rabbitMQ是一个在AMQP协议标准基础上完整的，可服用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。 1.安装Erlang所以在安装rabbitMQ之前，需要先安装Erlang 。 小编使用的是otp_win64_18.1 ，需要其他版本或者32位系
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -298,22 +350,46 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/middle-component/">middle-component</a>
-            
-              <a href="/categories/java/middle-component/rabbitmq/">rabbitmq</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/" class="category-chain-item">middle-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/rabbitmq/" class="category-chain-item">rabbitmq</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/rabbitmq/">rabbitmq</a>
+              <a href="/tags/rabbitmq/">#rabbitmq</a>
             
           </div>
         
@@ -338,20 +414,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/01/10/macos/" target="_blank">
-          
-          
-            
-          
-          1.安装brew  wget等
-先安装brew再用brew安装wget
-1&gt; Homebrew
-Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不包含的UNIX工具
-/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/01/10/macos/" target="_blank">
+        <div>
+          1.安装brew  wget等 先安装brew再用brew安装wget 1&gt; Homebrew Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不包含的UNIX工具 /usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -363,18 +431,32 @@ Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/system/">system</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/macos/">macos</a>
+              <a href="/tags/macos/">#macos</a>
             
           </div>
         
@@ -399,15 +481,12 @@ Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/01/07/basic-connect-frp/" target="_blank">
-          
-          
-            
-          
+      
+      <a class="index-excerpt " href="/2021/01/07/basic-connect-frp/" target="_blank">
+        <div>
           为什么需要内网穿透功能从公网中访问自己的私有设备向来是一件难事儿。自己的主力台式机、NAS等等设备，它们可能处于路由器后，或者运营商因为IP地址短缺不给你分配公网IP地址。如果我们想直接访问到这些设备（远程桌面，远程文件，SSH等等），一般来说要通过一些转发或者P2P组网软件的帮助。我有一台计算机位于一个很复杂的局域网中，我想要实现远程桌面和文件访问，目前来看其所处的网络环境很难通过简单的端口映射
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -419,20 +498,39 @@ Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/frp/">frp</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/frp/" class="category-chain-item">frp</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/frp/">frp</a>
+              <a href="/tags/frp/">#frp</a>
             
           </div>
         
@@ -457,23 +555,12 @@ Homebrew是以最简单，最灵活的方式来安装苹果公司在MacOS中不�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/01/07/consul-start/" target="_blank">
-          
-          
-            
-          
-          Docker 中 Consul 的安装与配置及使用前言
-为什么要使用 Consul ？
-服务发现，用于连接：
-Service Registry使服务能够相互注册和发现。
-服务细分，为了安全：
-通过自动TLS加密和基于身份的授权实现安全的服务到服务通信。
-服务配置，用于运行时配置：
-功能丰富的Key/Value存储，可轻松配置服务。
-Consul Open Source解决了跨分布式基础架构连接服务
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/01/07/consul-start/" target="_blank">
+        <div>
+          Docker 中 Consul 的安装与配置及使用前言 为什么要使用 Consul ？ 服务发现，用于连接： Service Registry使服务能够相互注册和发现。 服务细分，为了安全： 通过自动TLS加密和基于身份的授权实现安全的服务到服务通信。 服务配置，用于运行时配置： 功能丰富的Key/Value存储，可轻松配置服务。 Consul Open Source解决了跨分布式基础架构连接服务
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -485,20 +572,39 @@ Consul Open Source解决了跨分布式基础架构连接服务
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/middle-component/">middle-component</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/" class="category-chain-item">middle-component</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/consul/">consul</a>
+              <a href="/tags/consul/">#consul</a>
             
           </div>
         
@@ -523,21 +629,12 @@ Consul Open Source解决了跨分布式基础架构连接服务
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/01/05/basic-connect-vncserver/" target="_blank">
-          
-          
-            
-          
-          安装sh -c &quot;$(curl -x 192.168.31.225:10822 -fsSl https://raw.githubusercontent.com/czy1024/luna-linux-conf/master/vnc/vnc_install.sh)&quot;
-
-
-VNC Client就不用说了，单文件版，双击就能运行。
-VNC Server安装如下：
-
-ssh到你的serv
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/01/05/basic-connect-vncserver/" target="_blank">
+        <div>
+          安装sh -c &quot;$(curl -x 192.168.31.225:10822 -fsSl https://raw.githubusercontent.com/lunasaw/luna-linux-conf/master/vnc/vnc_install.sh)&quot;   VNC Client就不用说了，单文件版，双击就能运行。 VNC Server安装如下：  ssh到你的serv
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -549,20 +646,39 @@ ssh到你的serv
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/vnc/">vnc</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/vnc/" class="category-chain-item">vnc</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/vncserver/">vncserver</a>
+              <a href="/tags/vncserver/">#vncserver</a>
             
           </div>
         
@@ -587,15 +703,12 @@ ssh到你的serv
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/01/04/redis/" target="_blank">
-          
-          
-            
-          
+      
+      <a class="index-excerpt " href="/2021/01/04/redis/" target="_blank">
+        <div>
           Redis引言在Web应用发展的初期，那时关系型数据库受到了较为广泛的关注和应用，原因是因为那时候Web站点基本上访问和并发不高、交互也较少。而在后来，随着访问量的提升，使用关系型数据库的Web站点多多少少都开始在性能上出现了一些瓶颈，而瓶颈的源头一般是在磁盘的I/O上。而随着互联网技术的进一步发展，各种类型的应用层出不穷，这导致在当今云计算、大数据盛行的时代，对性能有了更多的需求，主要体现在以下
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -607,22 +720,46 @@ ssh到你的serv
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/middle-component/">middle-component</a>
-            
-              <a href="/categories/java/middle-component/redis/">redis</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/" class="category-chain-item">middle-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/redis/" class="category-chain-item">redis</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/redis/">redis</a>
+              <a href="/tags/redis/">#redis</a>
             
           </div>
         
@@ -647,19 +784,12 @@ ssh到你的serv
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/01/01/linux-apt-get/" target="_blank">
-          
-          
-            
-          
-          镜像源网站Ubuntu、Python、Nodejs、MySQL、Git、Chromium、Docker、Homebrew 等一系列的常用开源系统、软件都是国外开发的，下载地址位于国外，从国内访问、下载、更新
-清华源镜像
-https://mirrors.tuna.tsinghua.edu.cn/
-
-可能是最好的国内镜像站，最吸引人的特点是1）帮助文件最全面最好用；2）镜像源数量最多。是最推荐的镜像源
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/01/01/linux-apt-get/" target="_blank">
+        <div>
+          镜像源网站Ubuntu、Python、Nodejs、MySQL、Git、Chromium、Docker、Homebrew 等一系列的常用开源系统、软件都是国外开发的，下载地址位于国外，从国内访问、下载、更新 清华源镜像 https://mirrors.tuna.tsinghua.edu.cn/  可能是最好的国内镜像站，最吸引人的特点是1）帮助文件最全面最好用；2）镜像源数量最多。是最推荐的镜像源
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -671,22 +801,46 @@ https://mirrors.tuna.tsinghua.edu.cn/
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
-              <a href="/categories/system/linux/ubuntu/">ubuntu</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/ubuntu/" class="category-chain-item">ubuntu</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/apt-get/">apt-get</a>
+              <a href="/tags/apt-get/">#apt-get</a>
             
           </div>
         
@@ -711,17 +865,12 @@ https://mirrors.tuna.tsinghua.edu.cn/
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/01/01/nginx-all/" target="_blank">
-          
-          
-            
-          
-          Nginx序言Nginx是lgor Sysoev为俄罗斯访问量第二的rambler.ru站点设计开发的。从2004年发布至今，凭借开源的力量，已经接近成熟与完善。
-Nginx功能丰富，可作为HTTP服务器，也可作为反向代理服务器，邮件服务器。支持FastCGI、SSL、Virtual Host、URL Rewrite、Gzip等功能。并且支持很多第三方的模块扩展。
-Nginx的稳定性、功能集、示例
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/01/01/nginx-all/" target="_blank">
+        <div>
+          Nginx序言Nginx是lgor Sysoev为俄罗斯访问量第二的rambler.ru站点设计开发的。从2004年发布至今，凭借开源的力量，已经接近成熟与完善。 Nginx功能丰富，可作为HTTP服务器，也可作为反向代理服务器，邮件服务器。支持FastCGI、SSL、Virtual Host、URL Rewrite、Gzip等功能。并且支持很多第三方的模块扩展。 Nginx的稳定性、功能集、示例
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -733,20 +882,39 @@ Nginx的稳定性、功能集、示例
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/nginx/">nginx</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/nginx/" class="category-chain-item">nginx</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/nginx/">nginx</a>
+              <a href="/tags/nginx/">#nginx</a>
             
           </div>
         
@@ -771,29 +939,12 @@ Nginx的稳定性、功能集、示例
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/12/25/linux-user-group/" target="_blank">
-          
-          
-            
-          
-          1 用户组操作创建admin用户组，指定组编号，命令如下：
-groupadd -g 777 admin
-
-
-
-其他用户组相关命令：
-
-删除xxx用户组：groupdel xxx
-修改用户组groupb名称为groupa：groupmod -n groupa groupb
-
-
-2 用户操作2.1 创建用户创建crane用户，并归属到admin用户组中
-useradd -g admin crane
-
-
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/12/25/linux-user-group/" target="_blank">
+        <div>
+          1 用户组操作创建admin用户组，指定组编号，命令如下： groupadd -g 777 admin    其他用户组相关命令：  删除xxx用户组：groupdel xxx 修改用户组groupb名称为groupa：groupmod -n groupa groupb   2 用户操作2.1 创建用户创建crane用户，并归属到admin用户组中 useradd -g admin crane
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -805,20 +956,39 @@ useradd -g admin crane
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/linux/">linux</a>
+              <a href="/tags/linux/">#linux</a>
             
           </div>
         
@@ -855,7 +1025,7 @@ useradd -g admin crane
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -863,14 +1033,14 @@ useradd -g admin crane
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -882,43 +1052,45 @@ useradd -g admin crane
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -937,10 +1109,22 @@ useradd -g admin crane
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -950,47 +1134,24 @@ useradd -g admin crane
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

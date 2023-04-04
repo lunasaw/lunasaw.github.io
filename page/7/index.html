@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="十平方米小屋">
 <meta property="og:url" content="https://lunasaw.github.io/page/7/index.html">
 <meta property="og:site_name" content="十平方米小屋">
@@ -24,6 +24,10 @@
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="博客,luna,java,spring,utils,linux,idea">
 <meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -33,9 +37,12 @@
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +51,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -81,7 +109,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -93,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -105,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -117,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -129,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -141,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -149,14 +177,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -164,101 +194,46 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/paper/bg.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Edit your own life and compile your own world">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/paper/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Edit your own life and compile your own world"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/09/19/kali-1/" target="_blank">
-          <img src="/img/basic/kali-index.jpg" srcset="/img/loading.gif" lazyload alt="安装和启动Kali">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/19/kali-1/" target="_blank">
-          安装和启动Kali
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/19/kali-1/" target="_blank">
-          
-          
-            
-          
-          第一章 安装和启动Kali简介Kali Linux，简称Kali，是用于安全攻击的最新Linux发行版。它是BackTrack Linux的后继者。不像多数Linux发行版那样，Kali Linux用于渗透测试。渗透测试是一种通过模拟攻击评估计算机系统或网络安全性的方法。在整本书中，我们将会探索一些Kali Linux所提供的工具。
-这一章涉及到Kali Linux在不同场景下的的安装和启动，从插
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 00:00" pubdate>
-              2020-09-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
-              <a href="/categories/system/linux/kaili/">kaili</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/kaili/">kaili</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
 
   <div class="row mx-auto index-card">
     
@@ -277,16 +252,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/09/19/kali-3/" target="_blank">
-          
-          
-            
-          
-          第三章 高级测试环境简介既然我们已经了解了 Kali Linux 所包含的工具，现在我们要调查一些真实世界的场景。我们进行的许多攻击都有意在有漏洞的软件和系统上执行。但是，当你使用 Kali 攻击一个系统时，它不可能像我们当前的测试平台那样没有防护。
-这一章中，我们会探索一些技巧，来建立起一些真实的测试环境。在当前的信息技术水平中，多数公司都使用平台即服务（PAAS）解决方案，云服务器主机，或者使
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/09/19/kali-3/" target="_blank">
+        <div>
+          第三章 高级测试环境简介既然我们已经了解了 Kali Linux 所包含的工具，现在我们要调查一些真实世界的场景。我们进行的许多攻击都有意在有漏洞的软件和系统上执行。但是，当你使用 Kali 攻击一个系统时，它不可能像我们当前的测试平台那样没有防护。 这一章中，我们会探索一些技巧，来建立起一些真实的测试环境。在当前的信息技术水平中，多数公司都使用平台即服务（PAAS）解决方案，云服务器主机，或者使
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -298,22 +269,127 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
-              <a href="/categories/system/linux/kaili/">kaili</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/kaili/" class="category-chain-item">kaili</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/kaili/">kaili</a>
+              <a href="/tags/kaili/">#kaili</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/09/19/kali-1/" target="_blank">
+          <img src="/img/basic/kali-index.jpg" srcset="/img/loading.gif" lazyload alt="安装和启动Kali">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/19/kali-1/" target="_blank">
+          安装和启动Kali
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2020/09/19/kali-1/" target="_blank">
+        <div>
+          第一章 安装和启动Kali简介Kali Linux，简称Kali，是用于安全攻击的最新Linux发行版。它是BackTrack Linux的后继者。不像多数Linux发行版那样，Kali Linux用于渗透测试。渗透测试是一种通过模拟攻击评估计算机系统或网络安全性的方法。在整本书中，我们将会探索一些Kali Linux所提供的工具。 这一章涉及到Kali Linux在不同场景下的的安装和启动，从插
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-19 00:00" pubdate>
+              2020-09-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/kaili/" class="category-chain-item">kaili</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/kaili/">#kaili</a>
             
           </div>
         
@@ -338,16 +414,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/09/19/kali-2/" target="_blank">
-          
-          
-            
-          
-          第二章 定制 Kali Linux简介这一章会向你介绍Kali的定制，便于你更好地利用它。我们会涉及到ATI和英伟达GPU技术的安装和配置，以及后面章节所需的额外工具。基于ATI和英伟达GPU的显卡允许我们使用它们的图像处理单元（GPU）来执行与CPU截然不同的操作。我们会以ProxyChains的安装和数字信息的加密来结束这一章。
-2.1 准备内核头文件有时我们需要使用所需的内核头文件来编译代码
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/09/19/kali-2/" target="_blank">
+        <div>
+          第二章 定制 Kali Linux简介这一章会向你介绍Kali的定制，便于你更好地利用它。我们会涉及到ATI和英伟达GPU技术的安装和配置，以及后面章节所需的额外工具。基于ATI和英伟达GPU的显卡允许我们使用它们的图像处理单元（GPU）来执行与CPU截然不同的操作。我们会以ProxyChains的安装和数字信息的加密来结束这一章。 2.1 准备内核头文件有时我们需要使用所需的内核头文件来编译代码
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -359,22 +431,46 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
-              <a href="/categories/system/linux/kaili/">kaili</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/kaili/" class="category-chain-item">kaili</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/kaili/">kaili</a>
+              <a href="/tags/kaili/">#kaili</a>
             
           </div>
         
@@ -399,19 +495,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/09/13/idea-easycode/" target="_blank">
-          
-          
-            
-          
-          easyCode 代码生成dao##定义初始变量
-#set($tableName = $tool.append($tableInfo.name, &quot;Mapper&quot;))
-##设置回调
-$!callback.setFileName($tool.append($tableName, &quot;.java&quot;))
-$!callback.setSavePath($tool.ap
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/09/13/idea-easycode/" target="_blank">
+        <div>
+          easyCode 代码生成dao##定义初始变量 #set($tableName = $tool.append($tableInfo.name, &quot;Mapper&quot;)) ##设置回调 $!callback.setFileName($tool.append($tableName, &quot;.java&quot;)) $!callback.setSavePath($tool.ap
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -423,18 +512,32 @@ $!callback.setSavePath($tool.ap
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/easyCode/">easyCode</a>
+              <a href="/tags/easyCode/">#easyCode</a>
             
           </div>
         
@@ -459,27 +562,12 @@ $!callback.setSavePath($tool.ap
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/10/luna-commons-common/" target="_blank">
-          
-          
-            
-          
-          基础工具包Apihttp操作HttpUtils类
-普通get请求
-
-/**
-     * get
-     *
-     * @param host 主机
-     * @param path 路径
-     * @param headers 请求头
-     * @param queries 请求参数
-     * @return
-     * @throws Exception
-     */
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/10/luna-commons-common/" target="_blank">
+        <div>
+          基础工具包Apihttp操作HttpUtils类 普通get请求  /**      * get      *      * @param host 主机      * @param path 路径      * @param headers 请求头      * @param queries 请求参数      * @return      * @throws Exception      */
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -491,18 +579,32 @@ $!callback.setSavePath($tool.ap
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/project/">project</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/project/" class="category-chain-item">project</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/commons/">commons</a>
+              <a href="/tags/commons/">#commons</a>
             
           </div>
         
@@ -527,45 +629,12 @@ $!callback.setSavePath($tool.ap
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/07/27/luna-commons/" target="_blank">
-          
-          
-            
-          
-          luna-commons
-
-
-
-
-
-
-  
-    
-  
-
-
-  "完美的"开发工具
-  
-    市场上许多界面和工具的集合,例如ftp,httpd等文件与工具操作，包括但不限于图像处理、人脸识别等的api。让你免去寻找工具的烦恼
-    
-    探索本项目的文档 »
-    
-    
-    查看Demo
-    ·
-    报告Bug
-    ·
-    提出新特性
-  
-
-
-
-
-
-目
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/07/27/luna-commons/" target="_blank">
+        <div>
+          luna-commons                      "完美的"开发工具        市场上许多界面和工具的集合,例如ftp,httpd等文件与工具操作，包括但不限于图像处理、人脸识别等的api。让你免去寻找工具的烦恼          探索本项目的文档 »               查看Demo     ·     报告Bug     ·     提出新特性         目
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -577,18 +646,32 @@ $!callback.setSavePath($tool.ap
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/project/">project</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/project/" class="category-chain-item">project</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/commons/">commons</a>
+              <a href="/tags/commons/">#commons</a>
             
           </div>
         
@@ -613,18 +696,12 @@ $!callback.setSavePath($tool.ap
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/07/27/maven-start/" target="_blank">
-          
-          
-            
-          
-          Maven配置学习节点pom.xml文件的节点大致可以分为以下几个部分：
-&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
-         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-         xsi:schemaLocatio
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/07/27/maven-start/" target="_blank">
+        <div>
+          Maven配置学习节点pom.xml文件的节点大致可以分为以下几个部分： &lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;          xsi:schemaLocatio
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -636,20 +713,39 @@ $!callback.setSavePath($tool.ap
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/maven/">maven</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/maven/" class="category-chain-item">maven</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/maven/">maven</a>
+              <a href="/tags/maven/">#maven</a>
             
           </div>
         
@@ -674,26 +770,12 @@ $!callback.setSavePath($tool.ap
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/07/27/mysql-install/" target="_blank">
-          
-          
-            
-          
-          MySQL5.7绿色版（免装版）的初始化和修改密码1、下载
-（1）下载地址：https://dev.mysql.com/downloads/mysql/
-（2）选择下载
-
-2、配置环境变量
-（1）解压目录：D:\mysql-8.0.16-winx64
-（2）配置环境变量
-
-3、添加配置文件
-（1）配置文件目录：D:\mysql-8.0.16-winx64
-（2）配置文件名：my.ini
-（3）文件
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/07/27/mysql-install/" target="_blank">
+        <div>
+          MySQL5.7绿色版（免装版）的初始化和修改密码1、下载 （1）下载地址：https://dev.mysql.com/downloads/mysql/ （2）选择下载  2、配置环境变量 （1）解压目录：D:\mysql-8.0.16-winx64 （2）配置环境变量  3、添加配置文件 （1）配置文件目录：D:\mysql-8.0.16-winx64 （2）配置文件名：my.ini （3）文件
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -705,20 +787,39 @@ $!callback.setSavePath($tool.ap
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/mysql/">mysql</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/mysql-install/">mysql-install</a>
+              <a href="/tags/mysql-install/">#mysql-install</a>
             
           </div>
         
@@ -743,17 +844,12 @@ $!callback.setSavePath($tool.ap
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/07/27/nginx-install/" target="_blank">
-          
-          
-            
-          
-          Nginx安装配置NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。
-本文提供了Nginx的基本概念及知识。以开发者必备的Nginx基础知识为主，罗列了一些Nginx教程，希望对大家有所帮助。
-
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/07/27/nginx-install/" target="_blank">
+        <div>
+          Nginx安装配置NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。 本文提供了Nginx的基本概念及知识。以开发者必备的Nginx基础知识为主，罗列了一些Nginx教程，希望对大家有所帮助。
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -765,20 +861,39 @@ $!callback.setSavePath($tool.ap
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/nginx/">nginx</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/nginx/" class="category-chain-item">nginx</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/nginx/">nginx</a>
+              <a href="/tags/nginx/">#nginx</a>
             
           </div>
         
@@ -790,38 +905,25 @@ $!callback.setSavePath($tool.ap
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/07/04/mysql-DDL/" target="_blank">
-          <img src="/img/baisc/mysql-index.jpg" srcset="/img/loading.gif" lazyload alt="mysql-DDL">
+        <a href="/2020/07/04/mysql-DML/" target="_blank">
+          <img src="/img/baisc/mysql-index.jpg" srcset="/img/loading.gif" lazyload alt="mysql-DML">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/07/04/mysql-DDL/" target="_blank">
-          mysql-DDL
+        <a href="/2020/07/04/mysql-DML/" target="_blank">
+          mysql-DML
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/07/04/mysql-DDL/" target="_blank">
-          
-          
-            
-          
-          Review mysql库管理一、创建库
-create database 【if not exists】 库名【 character set 字符集名】;
-
-二、修改库
-alter database 库名 character set 字符集名;
-三、删除库
-drop database 【if exists】 库名;
-
-
-表管理一、创建表 ★
-create table 【if not exists】
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/07/04/mysql-DML/" target="_blank">
+        <div>
+          Review mysql插入一、方式一 语法： insert into 表名(字段名,...) values(值,...); 特点： 1、要求值的类型和字段的类型要一致或兼容 2、字段的个数和顺序不一定与原始表中的字段个数和顺序一致 但必须保证值和字段一一对应 3、假如表中有可以为null的字段，注意可以通过以下两种方式插入null值 ①字段和值都省略 ②字段写上，值使用null 4、字段和值的个
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -833,20 +935,39 @@ create table 【if not exists】
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/mysql/">mysql</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/mysql/">mysql</a>
+              <a href="/tags/mysql/">#mysql</a>
             
           </div>
         
@@ -883,7 +1004,7 @@ create table 【if not exists】
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -891,14 +1012,14 @@ create table 【if not exists】
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -910,43 +1031,45 @@ create table 【if not exists】
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -965,10 +1088,22 @@ create table 【if not exists】
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -978,47 +1113,24 @@ create table 【if not exists】
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

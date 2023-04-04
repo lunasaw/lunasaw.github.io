@@ -13,25 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="Nginx安装配置NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。 本文提供了Nginx的基本概念及知识。以开发者必备的Nginx基础知识为主，罗列了一些Nginx教程，希望对大家有所帮助。">
+  
+    <meta name="description" content="Nginx安装配置NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。 本文提供了Nginx的基本概念及知识。以开发者必备的Nginx基础知识为主，罗列了一些Nginx教程，希望对大家有所帮助。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个简单的反向代理Nginx">
 <meta property="og:url" content="https://lunasaw.github.io/2020/07/27/nginx-install/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="Nginx安装配置NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。 本文提供了Nginx的基本概念及知识。以开发者必备的Nginx基础知识为主，罗列了一些Nginx教程，希望对大家有所帮助。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lunasaw.github.io/blog/img/nginx-1.jpg">
-<meta property="og:image" content="https://lunasaw.github.io/blog/img/nginx-2.jpg">
-<meta property="og:image" content="https://lunasaw.github.io/blog/img/nginx-3.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/img/basic/nginx-index.jpg">
 <meta property="article:published_time" content="2020-07-26T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.992Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lunasaw.github.io/blog/img/nginx-1.jpg">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/basic/nginx-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -40,25 +42,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -67,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -104,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -116,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -128,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -140,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -152,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -164,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -172,14 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -187,70 +206,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/basic/nginx-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="一个简单的反向代理Nginx">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-07-27 00:00" pubdate>
-        2020年7月27日 凌晨
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      8.1k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      25 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/basic/nginx-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="一个简单的反向代理Nginx"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-07-27 00:00" pubdate>
+          2020年7月27日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          8.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          68 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -259,22 +292,31 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">一个简单的反向代理Nginx</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h1 id="Nginx安装配置"><a href="#Nginx安装配置" class="headerlink" title="Nginx安装配置"></a>Nginx安装配置</h1><p>NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。</p>
+            
+              <div class="markdown-body">
+                
+                <h1 id="Nginx安装配置"><a href="#Nginx安装配置" class="headerlink" title="Nginx安装配置"></a>Nginx安装配置</h1><p>NGINX联合创始人安德鲁·阿列克谢夫（Andrew Alexeev）曾说：NGINX是为对Apache性能不满意的人而构建的。随着Internet需求的变化，Web服务器的工作也在变化。NGINX的构建比以往任何时候都更有效率，更可扩展，更安全，更强大。</p>
 <p>本文提供了Nginx的基本概念及知识。以开发者必备的Nginx基础知识为主，罗列了一些Nginx教程，希望对大家有所帮助。</p>
 <p><strong>一.环境</strong></p>
 <p>服务器版本：CentOS 7.2</p>
@@ -285,7 +327,7 @@
 <li>确认关闭iptables</li>
 <li>确认停用selinux</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment">#查看iptables状态</span>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment">#查看iptables状态</span>
 systemctl status firewalld.service
 <span class="hljs-comment">#关闭防火墙（临时关闭）</span>
 systemctl stop firewalld.service
@@ -294,7 +336,7 @@ getenforce<span class="hljs-comment">#临时关闭SELinux </span>
 setenforce 0</code></pre></div>
 
 <p>安装一些系统基本工具，正常情况系统都会自带</p>
-<div class="hljs code-wrapper"><pre><code class="hljs angelscript">yum -y install gcc gcc-c++ <span class="hljs-built_in">auto</span>conf pcre pcre-devel make <span class="hljs-built_in">auto</span>make
+<div class="code-wrapper"><pre><code class="hljs angelscript">yum -y install gcc gcc-c++ <span class="hljs-built_in">auto</span>conf pcre pcre-devel make <span class="hljs-built_in">auto</span>make
 yum -y install wget httpd-tools vim</code></pre></div>
 
 <p><strong>二.基本概念</strong></p>
@@ -321,7 +363,7 @@ yum -y install wget httpd-tools vim</code></pre></div>
 <p><strong>2.3负载均衡</strong></p>
 <p>如果请求数过大，单个服务器解决不了，我们增加服务器的数量，然后将请求分发到各个服务器上，将原先请求集中到单个服务器的情况改为请求分发到多个服务器上，就是负载均衡。</p>
 <p>Upstream 指定后端服务器地址列表，在 server 中拦截响应请求，并将请求转发到 Upstream 中配置的服务器列表。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">upstream</span> <span class="hljs-string">balanceServer</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">upstream</span> <span class="hljs-string">balanceServer</span> &#123;
  <span class="hljs-string">server</span> <span class="hljs-number">10.1</span><span class="hljs-number">.22</span><span class="hljs-number">.33</span><span class="hljs-string">:12345;</span>
   <span class="hljs-string">server</span> <span class="hljs-number">10.1</span><span class="hljs-number">.22</span><span class="hljs-number">.34</span><span class="hljs-string">:12345;</span>
 <span class="hljs-string">server</span> <span class="hljs-number">10.1</span><span class="hljs-number">.22</span><span class="hljs-number">.35</span><span class="hljs-string">:12345;</span>
@@ -342,7 +384,7 @@ yum -y install wget httpd-tools vim</code></pre></div>
 <p><strong>2.4动静分离</strong></p>
 <p>为了加快服务器的解析速度，可以把动态页面和静态页面交给不同的服务器来解析，加快解析速度，降低原来单个服务器的压力。</p>
 <p><strong>2.5Nginx常用命令</strong></p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务</span>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务</span>
 nginx -s stop
 <span class="hljs-comment"># 平稳关闭Nginx，保存相关信息，有安排的结束web服务</span>
 nginx -s quit
@@ -401,32 +443,32 @@ nginx -V
 <ul>
 <li>mac系统：</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">$ brew install nginx</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">$ brew install nginx</code></pre></div>
 
 <h4 id="2-Linux安装："><a href="#2-Linux安装：" class="headerlink" title="2.Linux安装："></a><strong>2.Linux安装：</strong></h4><blockquote>
 <p>以centOS系统为例，有下面两种安装方式(推荐1)</p>
 </blockquote>
 <p>1.) 通过rpm镜像源安装</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">$ rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+<div class="code-wrapper"><pre><code class="hljs bash">$ rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 $ yum install -y nginx</code></pre></div>
 
 <p>2.) 通过依赖包详细安装</p>
 <blockquote>
 <p>安装nginx依赖库pcre、zlib</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">$ yum install pcre pcre-devel
+<div class="code-wrapper"><pre><code class="hljs bash">$ yum install pcre pcre-devel
 $ yum install zlib zlib-devel</code></pre></div>
 
 <blockquote>
 <p>如有必要，可以安装c++编译环境和openssl</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">$ yum install gcc-c++
+<div class="code-wrapper"><pre><code class="hljs bash">$ yum install gcc-c++
 $ yum install openssl openssl-devel</code></pre></div>
 
 <blockquote>
 <p>下载/编译nginx</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">$</span> <span class="hljs-string">wget</span> <span class="hljs-string">-c</span> <span class="hljs-string">https://nginx.org/download/nginx-1.16.0.tar.gz</span>
+<div class="code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">$</span> <span class="hljs-string">wget</span> <span class="hljs-string">-c</span> <span class="hljs-string">https://nginx.org/download/nginx-1.16.0.tar.gz</span>
 <span class="hljs-string">$</span> <span class="hljs-string">tar</span> <span class="hljs-string">-zxvf</span> <span class="hljs-string">nginx-1.16.0.tar.gz</span>
 <span class="hljs-comment"># 编译安装</span>
 <span class="hljs-string">$</span> <span class="hljs-string">cd</span> <span class="hljs-string">nginx-1.16.0</span>
@@ -437,7 +479,7 @@ $ yum install openssl openssl-devel</code></pre></div>
 <span class="hljs-string">$</span> <span class="hljs-string">nginx</span> <span class="hljs-string">-v</span></code></pre></div>
 
 <p><strong>五.Nginx配置</strong></p>
-<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment">#打开主配置文件，若你是用lnmp环境安装</span>
+<div class="code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment">#打开主配置文件，若你是用lnmp环境安装</span>
 <span class="hljs-string">vim</span> <span class="hljs-string">/usr/local/nginx/conf/nginx.conf</span>
 <span class="hljs-string">----------------------------------------</span>
 <span class="hljs-string">user</span>                    <span class="hljs-comment">#设置nginx服务的系统使用用户</span>
@@ -450,7 +492,7 @@ $ yum install openssl openssl-devel</code></pre></div>
 &#125;</code></pre></div>
 
 <p>我们使用 nginx 的 http 服务，在配置文件 nginx.conf 中的 http 区域内，配置无数个 server ，每一个 server 对应这一个虚拟主机或者域名。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">http</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">http</span> &#123;
     <span class="hljs-string">...</span> <span class="hljs-string">...</span>        <span class="hljs-comment">#后面再详细介绍 http 配置项目</span>
     
     <span class="hljs-string">server</span> &#123;
@@ -474,7 +516,7 @@ $ yum install openssl openssl-devel</code></pre></div>
 &#125;</code></pre></div>
 
 <p>一个 server 可以出现多个 location ，我们对不同的访问路径进行不同情况的配置<br>我们再来看看 http 的配置详情。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">http</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">http</span> &#123;
     <span class="hljs-string">sendfile</span>  <span class="hljs-string">on</span>                  <span class="hljs-comment">#高效传输文件的模式 一定要开启</span>
     <span class="hljs-string">keepalive_timeout</span>   <span class="hljs-number">65</span>        <span class="hljs-comment">#客户端服务端请求超时时间</span>
     <span class="hljs-string">log_format</span>  <span class="hljs-string">main</span>   <span class="hljs-string">XXX</span>        <span class="hljs-comment">#定义日志格式 代号为main</span>
@@ -490,7 +532,7 @@ $ yum install openssl openssl-devel</code></pre></div>
 <blockquote>
 <p><em>注：_</em><code>conf/nginx.conf</code> 是 nginx 的默认配置文件。你也可以使用 nginx -c 指定你的配置文件_</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment">#运行用户</span>
+<div class="code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment">#运行用户</span>
 <span class="hljs-comment">#user somebody;</span>
 <span class="hljs-comment">#启动进程,通常设置成和cpu的数量相等</span>
 <span class="hljs-string">worker_processes</span>  <span class="hljs-number">1</span><span class="hljs-string">;</span>
@@ -581,7 +623,7 @@ $ yum install openssl openssl-devel</code></pre></div>
 <li>启动 webapp，注意启动绑定的端口要和 nginx 中的 upstream 设置的端口保持一致。</li>
 <li>更改 host：在 C:WindowsSystem32driversetc 目录下的 host 文件中添加一条 DNS 记录</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs accesslog"><span class="hljs-number">127.0.0.1</span> www.helloworld.com</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs accesslog"><span class="hljs-number">127.0.0.1</span> www.helloworld.com</code></pre></div>
 
 <ol>
 <li>启动前文中 startup.bat 的命令</li>
@@ -597,7 +639,7 @@ $ yum install openssl openssl-devel</code></pre></div>
 <li>charset 设置为 charset utf-8,gbk;，可以避免中文乱码问题</li>
 </ul>
 <p>一个最简化的配置如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">autoindex</span> <span class="hljs-string">on;#</span> <span class="hljs-string">显示目录</span>
+<div class="code-wrapper"><pre><code class="hljs yml"><span class="hljs-string">autoindex</span> <span class="hljs-string">on;#</span> <span class="hljs-string">显示目录</span>
 <span class="hljs-string">autoindex_exact_size</span> <span class="hljs-string">on;#</span> <span class="hljs-string">显示文件大小</span>
 <span class="hljs-string">autoindex_localtime</span> <span class="hljs-string">on;#</span> <span class="hljs-string">显示文件时间</span>
 <span class="hljs-string">server</span> &#123;
@@ -607,54 +649,115 @@ $ yum install openssl openssl-devel</code></pre></div>
     <span class="hljs-string">server_name</span>  <span class="hljs-string">_;</span>
     <span class="hljs-string">root</span>         <span class="hljs-string">/share/fs;</span>
 &#125;</code></pre></div>
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
-                    
-                      <a class="hover-with-bg" href="/categories/basic-component/nginx/">nginx</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/nginx/">nginx</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/nginx/" class="category-chain-item">nginx</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/nginx/">#nginx</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>一个简单的反向代理Nginx</div>
+      <div>https://lunasaw.github.io/2020/07/27/nginx-install/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2020年7月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/27/mysql-install/">
+                      <a href="/2020/07/27/mysql-install/" title="mysql 免安装配置学习">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">mysql 免安装配置学习</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/07/04/mysql-DDL/">
-                        <span class="hidden-mobile">mysql-DDL</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/2020/07/04/mysql-DML/" title="mysql-DML">
+                        <span class="hidden-mobile">mysql-DML</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -664,12 +767,10 @@ $ yum install openssl openssl-devel</code></pre></div>
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -683,7 +784,9 @@ $ yum install openssl openssl-devel</code></pre></div>
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -691,26 +794,63 @@ $ yum install openssl openssl-devel</code></pre></div>
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -732,7 +872,7 @@ $ yum install openssl openssl-devel</code></pre></div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -740,14 +880,14 @@ $ yum install openssl openssl-devel</code></pre></div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -759,43 +899,45 @@ $ yum install openssl openssl-devel</code></pre></div>
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -814,10 +956,22 @@ $ yum install openssl openssl-devel</code></pre></div>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -827,60 +981,119 @@ $ yum install openssl openssl-devel</code></pre></div>
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

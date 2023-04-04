@@ -26,7 +26,7 @@ Fluid.utils = {
   },
 
   elementVisible: function(element, offsetFactor) {
-    offsetFactor = (offsetFactor && offsetFactor >= 0) ? offsetFactor : 0;
+    offsetFactor = offsetFactor && offsetFactor >= 0 ? offsetFactor : 0;
     var rect = element.getBoundingClientRect();
     var height = window.innerHeight || document.documentElement.clientHeight;
     var top = rect.top;
@@ -36,13 +36,13 @@ Fluid.utils = {
 
   waitElementVisible: function(selectorOrElement, callback, offsetFactor) {
     var runningOnBrowser = typeof window !== 'undefined';
-    var isBot = (runningOnBrowser && !('onscroll' in window)) ||
-      (typeof navigator !== 'undefined' && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent));
+    var isBot = (runningOnBrowser && !('onscroll' in window))
+      || (typeof navigator !== 'undefined' && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent));
     if (!runningOnBrowser || isBot) {
       return;
     }
 
-    offsetFactor = (offsetFactor && offsetFactor >= 0) ? offsetFactor : 0;
+    offsetFactor = offsetFactor && offsetFactor >= 0 ? offsetFactor : 0;
 
     function waitInViewport(element) {
       if (Fluid.utils.elementVisible(element, offsetFactor)) {
@@ -81,8 +81,8 @@ Fluid.utils = {
 
   waitElementLoaded: function(selector, callback) {
     var runningOnBrowser = typeof window !== 'undefined';
-    var isBot = (runningOnBrowser && !('onscroll' in window)) ||
-      (typeof navigator !== 'undefined' && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent));
+    var isBot = (runningOnBrowser && !('onscroll' in window))
+      || (typeof navigator !== 'undefined' && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent));
     if (!runningOnBrowser || isBot) {
       return;
     }
@@ -130,10 +130,9 @@ Fluid.utils = {
         s.onload = onload;
       }
     }
-    var e = document.getElementsByTagName('script')[0]
-    || document.getElementsByTagName('head')[0]
-    || document.head || document.documentElement;
-    e.parentNode.insertBefore(s, e);
+    var ss = document.getElementsByTagName('script');
+    var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+    e.parentNode.insertBefore(s, e.nextSibling);
   },
 
   createCssLink: function(url) {
@@ -147,18 +146,47 @@ Fluid.utils = {
     e.parentNode.insertBefore(l, e);
   },
 
-  loadComments: function(selectors, loadFunc) {
+  loadComments: function(selector, loadFunc) {
     var ele = document.querySelector('#comments[lazyload]');
     if (ele) {
       var callback = function() {
         loadFunc();
         ele.removeAttribute('lazyload');
       };
-      Fluid.utils.waitElementVisible(selectors, callback, CONFIG.lazyload.offset_factor);
+      Fluid.utils.waitElementVisible(selector, callback, CONFIG.lazyload.offset_factor);
     } else {
       loadFunc();
     }
-  }
+  },
+
+  getBackgroundLightness(selectorOrElement) {
+    var ele = selectorOrElement;
+    if (typeof selectorOrElement === 'string') {
+      ele = document.querySelector(selectorOrElement);
+    }
+    var view = ele.ownerDocument.defaultView;
+    if (!view) {
+      view = window;
+    }
+    var rgbArr = view.getComputedStyle(ele).backgroundColor.replace(/rgba*\(/, '').replace(')', '').split(/,\s*/);
+    if (rgbArr.length < 3) {
+      return 0;
+    }
+    var colorCast = (0.213 * rgbArr[0]) + (0.715 * rgbArr[1]) + (0.072 * rgbArr[2]);
+    return colorCast === 0 || colorCast > 255 / 2 ? 1 : -1;
+  },
+
+  retry(handler, interval, times) {
+    if (times <= 0) {
+      return;
+    }
+    var next = function() {
+      if (--times >= 0 && !handler()) {
+        setTimeout(next, interval);
+      }
+    };
+    setTimeout(next, interval);
+  },
 
 };
 

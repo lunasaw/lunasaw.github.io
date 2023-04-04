@@ -13,21 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="设计模式1. 单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这 个实例。&#x2F;&#x2F;（1）懒汉式 public class Singleton &amp;#123;       &#x2F;* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载  *&#x2F;          	private static Singleton 				instance &#x3D; null;       &#x2F;* 私有">
+  
+    <meta name="description" content="设计模式1. 单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这 个实例。&#x2F;&#x2F;（1）懒汉式 public class Singleton &amp;#123;       &#x2F;* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载  *&#x2F;          	private static Singleton 				instance &#x3D; null;       &#x2F;* 私有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="design_patterns">
 <meta property="og:url" content="https://lunasaw.github.io/2021/05/26/java-design-patterns/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="设计模式1. 单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这 个实例。&#x2F;&#x2F;（1）懒汉式 public class Singleton &amp;#123;       &#x2F;* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载  *&#x2F;          	private static Singleton 				instance &#x3D; null;       &#x2F;* 私有">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lunasaw.github.io/img/basic/java-index.jpg">
 <meta property="article:published_time" content="2021-05-26T07:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.985Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="date">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/basic/java-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -36,25 +42,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -63,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -100,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -112,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -124,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -136,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -148,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -160,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -168,14 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -183,70 +206,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/basic/java-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="design_patterns">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-05-26 15:00" pubdate>
-        2021年5月26日 下午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      13k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      40 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/basic/java-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="design_patterns"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-05-26 15:00" pubdate>
+          2021年5月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          107 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -255,22 +292,31 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">design_patterns</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="1-单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这-个实例。"><a href="#1-单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这-个实例。" class="headerlink" title="1. 单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这 个实例。"></a>1. 单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这 个实例。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//（1）懒汉式</span>
+            
+              <div class="markdown-body">
+                
+                <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="1-单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这-个实例。"><a href="#1-单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这-个实例。" class="headerlink" title="1. 单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这 个实例。"></a>1. 单例模式：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这 个实例。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//（1）懒汉式</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> </span>&#123;  
     <span class="hljs-comment">/* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载  */</span>       
   	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton 				instance = <span class="hljs-keyword">null</span>;  
@@ -306,7 +352,7 @@
 <li>创建一个对象需要消耗的资源过多，如要访问IO和数据库等资源； </li>
 <li>需要定义大量的静态常量和静态方法（如工具类）的环境，可以采用单例模式 （当然，也可以直接声明为static的方式）。</li>
 </ul>
-<h2 id="2-工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂-方法使一个类的实例化延迟到其子类。"><a href="#2-工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂-方法使一个类的实例化延迟到其子类。" class="headerlink" title="2. 工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂 方法使一个类的实例化延迟到其子类。"></a>2. 工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂 方法使一个类的实例化延迟到其子类。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//接口</span>
+<h2 id="2-工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂-方法使一个类的实例化延迟到其子类。"><a href="#2-工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂-方法使一个类的实例化延迟到其子类。" class="headerlink" title="2. 工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂 方法使一个类的实例化延迟到其子类。"></a>2. 工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂 方法使一个类的实例化延迟到其子类。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//接口</span>
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Fruit</span> </span>&#123;       
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>;   &#125;   
@@ -341,7 +387,7 @@
 
 <p>使用场景：jdbc连接数据库，硬件访问，降低对象的产生和销毁</p>
 <h2 id="3-抽象工厂模式：为创建一组相关或相互依赖的对象提供一个接口，而且无须指-定它们的具体类。"><a href="#3-抽象工厂模式：为创建一组相关或相互依赖的对象提供一个接口，而且无须指-定它们的具体类。" class="headerlink" title="3. 抽象工厂模式：为创建一组相关或相互依赖的对象提供一个接口，而且无须指 定它们的具体类。"></a>3. 抽象工厂模式：为创建一组相关或相互依赖的对象提供一个接口，而且无须指 定它们的具体类。</h2><p>相对于工厂模式，我们可以新增产品类（只需要实现产品接口），只需要同时新 增一个工厂类，客户端就可以轻松调用新产品的代码。 </p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">food</span></span>&#123;&#125; 
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">food</span></span>&#123;&#125; 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">food</span></span>&#123;&#125; 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">food</span></span>&#123;&#125; 
 <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">produce</span></span>&#123; <span class="hljs-function">food <span class="hljs-title">get</span><span class="hljs-params">()</span></span>;&#125; 
@@ -365,7 +411,7 @@
 &#125;</code></pre></div>
 
 <p>使用场景：一个对象族（或是一组没有任何关系的对象）都有相同的约束。 涉及不同操作系统的时候，都可以考虑使用抽象工厂模式 </p>
-<h2 id="4-建造者模式：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可-以创建不同的表示。"><a href="#4-建造者模式：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可-以创建不同的表示。" class="headerlink" title="4.建造者模式：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可 以创建不同的表示。"></a>4.建造者模式：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可 以创建不同的表示。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Build</span> </span>&#123;     
+<h2 id="4-建造者模式：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可-以创建不同的表示。"><a href="#4-建造者模式：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可-以创建不同的表示。" class="headerlink" title="4.建造者模式：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可 以创建不同的表示。"></a>4.建造者模式：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可 以创建不同的表示。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Build</span> </span>&#123;     
 	<span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span></span>&#123;     
 	String name = <span class="hljs-keyword">null</span> ;         
 		<span class="hljs-keyword">int</span> number = -<span class="hljs-number">1</span> ;         
@@ -411,7 +457,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 <li>多个部件或零件，都可以装配到一个对象中，但是产生的运行结果又不相同 时，则可以使用该模式。 </li>
 <li>产品类非常复杂，或者产品类中的调用顺序不同产生了不同的效能，这个时候 使用建造者模式非常合适。 </li>
 </ol>
-<h2 id="5-原型模式：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的-对象。"><a href="#5-原型模式：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的-对象。" class="headerlink" title="5. 原型模式：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的 对象。"></a>5. 原型模式：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的 对象。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Prototype</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Cloneable</span></span>&#123;     
+<h2 id="5-原型模式：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的-对象。"><a href="#5-原型模式：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的-对象。" class="headerlink" title="5. 原型模式：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的 对象。"></a>5. 原型模式：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的 对象。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Prototype</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Cloneable</span></span>&#123;     
 	<span class="hljs-keyword">private</span> String name;     
 	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;         
 		<span class="hljs-keyword">return</span> name;     
@@ -460,7 +506,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 </ol>
 <p>使用场景： </p>
 <p>你有动机修改一个已经投产中的接口时，适配器模式可能是适合你的模式。比 如系统扩展了，需要使用一个已有或新建立的类，但这个类又不符合系统的接 口，怎么办？使用适配器模式，这也是我们例子中提到的。</p>
-<h2 id="7-装饰器模式：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰-器模式相比生成子类更为灵活-。"><a href="#7-装饰器模式：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰-器模式相比生成子类更为灵活-。" class="headerlink" title="7. 装饰器模式：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰 器模式相比生成子类更为灵活 。"></a>7. 装饰器模式：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰 器模式相比生成子类更为灵活 。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Source</span></span>&#123; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span></span>;&#125; 
+<h2 id="7-装饰器模式：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰-器模式相比生成子类更为灵活-。"><a href="#7-装饰器模式：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰-器模式相比生成子类更为灵活-。" class="headerlink" title="7. 装饰器模式：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰 器模式相比生成子类更为灵活 。"></a>7. 装饰器模式：动态地给一个对象添加一些额外的职责。就增加功能来说，装饰 器模式相比生成子类更为灵活 。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Source</span></span>&#123; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span></span>;&#125; 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Decorator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Source</span></span>&#123;     
 	<span class="hljs-keyword">private</span> Source source ;     
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">decotate1</span><span class="hljs-params">()</span></span>&#123;         
@@ -479,7 +525,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 <li>需要动态地给一个对象增加功能，这些功能可以再动态地撤销。 </li>
 <li>需要为一批的兄弟类进行改装或加装功能，当然是首选装饰模式。 </li>
 </ol>
-<h2 id="8-代理模式：为其他对象提供一种代理以控制对这个对象的访问。"><a href="#8-代理模式：为其他对象提供一种代理以控制对这个对象的访问。" class="headerlink" title="8. 代理模式：为其他对象提供一种代理以控制对这个对象的访问。"></a>8. 代理模式：为其他对象提供一种代理以控制对这个对象的访问。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Source</span></span>&#123; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span></span>;&#125; 
+<h2 id="8-代理模式：为其他对象提供一种代理以控制对这个对象的访问。"><a href="#8-代理模式：为其他对象提供一种代理以控制对这个对象的访问。" class="headerlink" title="8. 代理模式：为其他对象提供一种代理以控制对这个对象的访问。"></a>8. 代理模式：为其他对象提供一种代理以控制对这个对象的访问。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Source</span></span>&#123; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span></span>;&#125; 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OldClass</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Source</span></span>&#123;     
 	<span class="hljs-meta">@Override</span>     
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span> </span>&#123;     
@@ -497,7 +543,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 	&#125; 
 &#125;</code></pre></div>
 
-<h2 id="9-中介者模式：用一个中介对象封装一系列的对象交互，中介者使各对象不需要-显示地相互作用，从而使其耦合松散，而且可以独立地改变它们之间的交互。"><a href="#9-中介者模式：用一个中介对象封装一系列的对象交互，中介者使各对象不需要-显示地相互作用，从而使其耦合松散，而且可以独立地改变它们之间的交互。" class="headerlink" title="9. 中介者模式：用一个中介对象封装一系列的对象交互，中介者使各对象不需要 显示地相互作用，从而使其耦合松散，而且可以独立地改变它们之间的交互。"></a>9. 中介者模式：用一个中介对象封装一系列的对象交互，中介者使各对象不需要 显示地相互作用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mediator</span> </span>&#123;      
+<h2 id="9-中介者模式：用一个中介对象封装一系列的对象交互，中介者使各对象不需要-显示地相互作用，从而使其耦合松散，而且可以独立地改变它们之间的交互。"><a href="#9-中介者模式：用一个中介对象封装一系列的对象交互，中介者使各对象不需要-显示地相互作用，从而使其耦合松散，而且可以独立地改变它们之间的交互。" class="headerlink" title="9. 中介者模式：用一个中介对象封装一系列的对象交互，中介者使各对象不需要 显示地相互作用，从而使其耦合松散，而且可以独立地改变它们之间的交互。"></a>9. 中介者模式：用一个中介对象封装一系列的对象交互，中介者使各对象不需要 显示地相互作用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mediator</span> </span>&#123;      
 	<span class="hljs-comment">//定义同事类      </span>
 	<span class="hljs-keyword">protected</span> ConcreteColleague1 c1;      
 	<span class="hljs-keyword">protected</span> ConcreteColleague2 c2;      
@@ -522,7 +568,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 <h2 id="10-命令模式：将一个请求封装成一个对象，从而让你使用不同的请求把客户端-参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复功能。"><a href="#10-命令模式：将一个请求封装成一个对象，从而让你使用不同的请求把客户端-参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复功能。" class="headerlink" title="10. 命令模式：将一个请求封装成一个对象，从而让你使用不同的请求把客户端 参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复功能。"></a>10. 命令模式：将一个请求封装成一个对象，从而让你使用不同的请求把客户端 参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复功能。</h2><p>Receiver接受者角色：该角色就是干活的角色，命令传递到这里是应该被执行的 </p>
 <p>Command命令角色：需要执行的所有命令都在这里声明 </p>
 <p>Invoker调用者角色：接收到命令，并执行命令 </p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//通用Receiver类 </span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//通用Receiver类 </span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Receiver</span> </span>&#123;     
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doSomething</span><span class="hljs-params">()</span></span>; 
 &#125; 
@@ -587,7 +633,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 
 
 <p>使用场景： 认为是命令的地方就可以采用命令模式，例如，在GUI开发中，一个按钮的点击 是一个命令，可以采用命令模式；模拟DOS命令的时候，当然也要采用命令模<br>式；触发－反馈机制的处理等。</p>
-<h2 id="11-责任链模式：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。"><a href="#11-责任链模式：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。" class="headerlink" title="11.责任链模式：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。"></a>11.责任链模式：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Handler</span> </span>&#123;
+<h2 id="11-责任链模式：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。"><a href="#11-责任链模式：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。" class="headerlink" title="11.责任链模式：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。"></a>11.责任链模式：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Handler</span> </span>&#123;
      <span class="hljs-keyword">private</span> Handler nextHandler;
      <span class="hljs-comment">//每个处理者都必须对请求做出处理</span>
      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> Response <span class="hljs-title">handleMessage</span><span class="hljs-params">(Request request)</span></span>&#123;
@@ -626,7 +672,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 </li>
 </ol>
 <h2 id="13-迭代器模式：它提供一种方法访问一个容器对象中各个元素，而又不需暴露该对象的内部细节。"><a href="#13-迭代器模式：它提供一种方法访问一个容器对象中各个元素，而又不需暴露该对象的内部细节。" class="headerlink" title="13.迭代器模式：它提供一种方法访问一个容器对象中各个元素，而又不需暴露该对象的内部细节。"></a>13.迭代器模式：它提供一种方法访问一个容器对象中各个元素，而又不需暴露该对象的内部细节。</h2><p>迭代器模式已经被淘汰，java中已经把迭代器运用到各个聚集类（collection）中了，使用java自带的迭代器就已经满足我们的需求了。</p>
-<h2 id="14-组合模式：将对象组合成树形结构以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性。"><a href="#14-组合模式：将对象组合成树形结构以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性。" class="headerlink" title="14.组合模式：将对象组合成树形结构以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性。"></a>14.组合模式：将对象组合成树形结构以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性。</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Composite</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
+<h2 id="14-组合模式：将对象组合成树形结构以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性。"><a href="#14-组合模式：将对象组合成树形结构以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性。" class="headerlink" title="14.组合模式：将对象组合成树形结构以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性。"></a>14.组合模式：将对象组合成树形结构以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性。</h2><div class="code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Composite</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
      <span class="hljs-comment">//构件容器</span>
      <span class="hljs-keyword">private</span> ArrayList componentArrayList = <span class="hljs-keyword">new</span> ArrayList();
      <span class="hljs-comment">//增加一个叶子构件或树枝构件</span>
@@ -650,7 +696,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 <li><p>从一个整体中能够独立出部分模块或功能的场景。</p>
 </li>
 </ol>
-<h2 id="15-观察者模式：定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。"><a href="#15-观察者模式：定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。" class="headerlink" title="15.观察者模式：定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。"></a>15.观察者模式：定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Subject</span> </span>&#123;
+<h2 id="15-观察者模式：定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。"><a href="#15-观察者模式：定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。" class="headerlink" title="15.观察者模式：定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。"></a>15.观察者模式：定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Subject</span> </span>&#123;
      <span class="hljs-comment">//定义一个观察者数组</span>
      <span class="hljs-keyword">private</span> Vector obsVector = <span class="hljs-keyword">new</span> Vector();
      <span class="hljs-comment">//增加一个观察者</span>
@@ -678,7 +724,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 <li><p>跨系统的消息交换场景，如消息队列的处理机制</p>
 </li>
 </ol>
-<h2 id="16-门面模式：要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。门面模式提供一个高层次的接口，使得子系统更易于使用。"><a href="#16-门面模式：要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。门面模式提供一个高层次的接口，使得子系统更易于使用。" class="headerlink" title="16.门面模式：要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。门面模式提供一个高层次的接口，使得子系统更易于使用。"></a>16.门面模式：要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。门面模式提供一个高层次的接口，使得子系统更易于使用。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Facade</span> </span>&#123;
+<h2 id="16-门面模式：要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。门面模式提供一个高层次的接口，使得子系统更易于使用。"><a href="#16-门面模式：要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。门面模式提供一个高层次的接口，使得子系统更易于使用。" class="headerlink" title="16.门面模式：要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。门面模式提供一个高层次的接口，使得子系统更易于使用。"></a>16.门面模式：要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。门面模式提供一个高层次的接口，使得子系统更易于使用。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Facade</span> </span>&#123;
     <span class="hljs-keyword">private</span> subSystem1 subSystem1 = <span class="hljs-keyword">new</span> subSystem1();
     <span class="hljs-keyword">private</span> subSystem2 subSystem2 = <span class="hljs-keyword">new</span> subSystem2();
     <span class="hljs-keyword">private</span> subSystem3 subSystem3 = <span class="hljs-keyword">new</span> subSystem3();
@@ -703,7 +749,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 <li><p>预防低水平人员带来的风险扩散</p>
 </li>
 </ol>
-<h2 id="17-备忘录模式：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。"><a href="#17-备忘录模式：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。" class="headerlink" title="17.备忘录模式：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。"></a>17.备忘录模式：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Originator</span> </span>&#123;
+<h2 id="17-备忘录模式：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。"><a href="#17-备忘录模式：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。" class="headerlink" title="17.备忘录模式：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。"></a>17.备忘录模式：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Originator</span> </span>&#123;
     <span class="hljs-keyword">private</span> String state;
     <span class="hljs-comment">/**</span>
 <span class="hljs-comment">*	工厂方法，返回一个新的备忘录对象</span>
@@ -758,7 +804,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 <li><p>一个简单语法需要解释的场景</p>
 </li>
 </ol>
-<h2 id="21-享元模式：使用共享对象的方法，用来尽可能减少内存使用量以及分享资讯。"><a href="#21-享元模式：使用共享对象的方法，用来尽可能减少内存使用量以及分享资讯。" class="headerlink" title="21.享元模式：使用共享对象的方法，用来尽可能减少内存使用量以及分享资讯。"></a>21.享元模式：使用共享对象的方法，用来尽可能减少内存使用量以及分享资讯。</h2><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">flywei</span></span>&#123; &#125;
+<h2 id="21-享元模式：使用共享对象的方法，用来尽可能减少内存使用量以及分享资讯。"><a href="#21-享元模式：使用共享对象的方法，用来尽可能减少内存使用量以及分享资讯。" class="headerlink" title="21.享元模式：使用共享对象的方法，用来尽可能减少内存使用量以及分享资讯。"></a>21.享元模式：使用共享对象的方法，用来尽可能减少内存使用量以及分享资讯。</h2><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">flywei</span></span>&#123; &#125;
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Flyweight</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">flywei</span></span>&#123;
     Object obj ;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Flyweight</span><span class="hljs-params">(Object obj)</span></span>&#123;
@@ -788,7 +834,7 @@ Student A=<span class="hljs-keyword">new</span> Student.Builder().setName(<span 
 </li>
 </ol>
 <h2 id="22-桥梁模式：将抽象和实现解耦，使得两者可以独立地变化。"><a href="#22-桥梁模式：将抽象和实现解耦，使得两者可以独立地变化。" class="headerlink" title="22.桥梁模式：将抽象和实现解耦，使得两者可以独立地变化。"></a>22.桥梁模式：将抽象和实现解耦，使得两者可以独立地变化。</h2><p>Circle类将DrwaApi与Shape类进行了桥接，</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DrawAPI</span> </span>&#123;
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DrawAPI</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawCircle</span><span class="hljs-params">(<span class="hljs-keyword">int</span> radius, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>;
 &#125;
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedCircle</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">DrawAPI</span> </span>&#123;
@@ -846,52 +892,108 @@ Shape redCircle = <span class="hljs-keyword">new</span> Circle(<span class="hljs
 </li>
 </ol>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/java/">java</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/date/">date</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/date/">#date</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>design_patterns</div>
+      <div>https://lunasaw.github.io/2021/05/26/java-design-patterns/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2021年5月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/26/basic-http-content/">
+                      <a href="/2021/05/26/basic-http-content/" title="http content">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">http content</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/05/18/redis-config/">
+                      <a href="/2021/05/18/redis-config/" title="redis config">
                         <span class="hidden-mobile">redis config</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -901,12 +1003,10 @@ Shape redCircle = <span class="hljs-keyword">new</span> Circle(<span class="hljs
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -920,7 +1020,9 @@ Shape redCircle = <span class="hljs-keyword">new</span> Circle(<span class="hljs
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -928,26 +1030,63 @@ Shape redCircle = <span class="hljs-keyword">new</span> Circle(<span class="hljs
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -969,7 +1108,7 @@ Shape redCircle = <span class="hljs-keyword">new</span> Circle(<span class="hljs
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -977,14 +1116,14 @@ Shape redCircle = <span class="hljs-keyword">new</span> Circle(<span class="hljs
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -996,43 +1135,45 @@ Shape redCircle = <span class="hljs-keyword">new</span> Circle(<span class="hljs
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -1051,10 +1192,22 @@ Shape redCircle = <span class="hljs-keyword">new</span> Circle(<span class="hljs
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -1064,60 +1217,119 @@ Shape redCircle = <span class="hljs-keyword">new</span> Circle(<span class="hljs
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

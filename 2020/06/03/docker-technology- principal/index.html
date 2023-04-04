@@ -13,30 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="Docker principal先聊聊Docker 的基础内容：Docker 能做什么，怎么安装 Docker，以及容器技术的原理。1. Docker 能做什么？​    众所周知，Docker 是一个用于开发，发布和运行应用程序的开放平台。通俗地讲，Docker 类似于集装箱。在一艘大船上，各种货物要想被整齐摆放并且相互不受到影响，我们就需要把各种货物进行集装箱标准化。有了集装箱，我们就不需要专">
+  
+    <meta name="description" content="Docker principal先聊聊Docker 的基础内容：Docker 能做什么，怎么安装 Docker，以及容器技术的原理。1. Docker 能做什么？​    众所周知，Docker 是一个用于开发，发布和运行应用程序的开放平台。通俗地讲，Docker 类似于集装箱。在一艘大船上，各种货物要想被整齐摆放并且相互不受到影响，我们就需要把各种货物进行集装箱标准化。有了集装箱，我们就不需要专">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker 技术原理">
 <meta property="og:url" content="https://lunasaw.github.io/2020/06/03/docker-technology-%20principal/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="Docker principal先聊聊Docker 的基础内容：Docker 能做什么，怎么安装 Docker，以及容器技术的原理。1. Docker 能做什么？​    众所周知，Docker 是一个用于开发，发布和运行应用程序的开放平台。通俗地讲，Docker 类似于集装箱。在一艘大船上，各种货物要想被整齐摆放并且相互不受到影响，我们就需要把各种货物进行集装箱标准化。有了集装箱，我们就不需要专">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img/images/docker1.png">
-<meta property="og:image" content="https://lunasaw.github.io/img/images/chroot1.png">
-<meta property="og:image" content="https://lunasaw.github.io/img/images/cgroups1.png">
-<meta property="og:image" content="https://lunasaw.github.io/img/images/cgroups2.png">
-<meta property="og:image" content="https://lunasaw.github.io/img/images/cgroups-cpu-quota-us.png">
-<meta property="og:image" content="https://lunasaw.github.io/img/images/cgroups-cpu-full-top.png">
-<meta property="og:image" content="https://lunasaw.github.io/img/images/cgroups-cpu-top.png">
-<meta property="og:image" content="https://lunasaw.github.io/img/images/cgroups-memory.png">
+<meta property="og:image" content="https://lunasaw.github.io/img/basic/docker-index.jpg">
 <meta property="article:published_time" content="2020-06-02T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.984Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://img/images/docker1.png">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/basic/docker-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -45,25 +42,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -72,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -109,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -121,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -133,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -145,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -157,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -169,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -177,14 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -192,70 +206,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/basic/docker-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Docker 技术原理">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-06-03 00:00" pubdate>
-        2020年6月3日 凌晨
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      5.8k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      18 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/basic/docker-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Docker 技术原理"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-06-03 00:00" pubdate>
+          2020年6月3日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -264,29 +292,38 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">Docker 技术原理</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h1 id="Docker-principal"><a href="#Docker-principal" class="headerlink" title="Docker principal"></a>Docker principal</h1><h4 id="先聊聊Docker-的基础内容：Docker-能做什么，怎么安装-Docker，以及容器技术的原理。"><a href="#先聊聊Docker-的基础内容：Docker-能做什么，怎么安装-Docker，以及容器技术的原理。" class="headerlink" title="先聊聊Docker 的基础内容：Docker 能做什么，怎么安装 Docker，以及容器技术的原理。"></a><strong>先聊聊Docker 的基础内容：Docker 能做什么，怎么安装 Docker，以及容器技术的原理。</strong></h4><h3 id="1-Docker-能做什么？"><a href="#1-Docker-能做什么？" class="headerlink" title="1. Docker 能做什么？"></a>1. Docker 能做什么？</h3><p>​    众所周知，Docker 是一个用于开发，发布和运行应用程序的开放平台。通俗地讲，Docker 类似于集装箱。在一艘大船上，各种货物要想被整齐摆放并且相互不受到影响，我们就需要把各种货物进行集装箱标准化。有了集装箱，我们就不需要专门运输水果或者化学用品的船了。我们可以把各种货品通过集装箱打包，然后统一放到一艘船上运输。Docker 要做的就是把各种软件打包成一个集装箱（镜像），然后分发，且在运行的时候可以相互隔离。</p>
+            
+              <div class="markdown-body">
+                
+                <h1 id="Docker-principal"><a href="#Docker-principal" class="headerlink" title="Docker principal"></a>Docker principal</h1><h4 id="先聊聊Docker-的基础内容：Docker-能做什么，怎么安装-Docker，以及容器技术的原理。"><a href="#先聊聊Docker-的基础内容：Docker-能做什么，怎么安装-Docker，以及容器技术的原理。" class="headerlink" title="先聊聊Docker 的基础内容：Docker 能做什么，怎么安装 Docker，以及容器技术的原理。"></a><strong>先聊聊Docker 的基础内容：Docker 能做什么，怎么安装 Docker，以及容器技术的原理。</strong></h4><h3 id="1-Docker-能做什么？"><a href="#1-Docker-能做什么？" class="headerlink" title="1. Docker 能做什么？"></a>1. Docker 能做什么？</h3><p>​    众所周知，Docker 是一个用于开发，发布和运行应用程序的开放平台。通俗地讲，Docker 类似于集装箱。在一艘大船上，各种货物要想被整齐摆放并且相互不受到影响，我们就需要把各种货物进行集装箱标准化。有了集装箱，我们就不需要专门运输水果或者化学用品的船了。我们可以把各种货品通过集装箱打包，然后统一放到一艘船上运输。Docker 要做的就是把各种软件打包成一个集装箱（镜像），然后分发，且在运行的时候可以相互隔离。</p>
 <p>到此，相信你已经迫不及待想要体验下了，下面就让我们来安装一个 Docker。</p>
 <p><img src="//img/images/docker1.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="2-CentOS-下安装-Docker"><a href="#2-CentOS-下安装-Docker" class="headerlink" title="2. CentOS 下安装 Docker"></a><strong>2. CentOS 下安装 Docker</strong></h4><p>​    Docker 是跨平台的解决方案，它支持在当前主流的各大平台安装，包括 Ubuntu、RHEL、CentOS、Debian 等 Linux 发行版，同时也可以在 OSX 、Microsoft Windows 等非 Linux 平台下安装使用。</p>
 <p>​    因为 Linux 是 Docker 的原生支持平台，所以推荐你在 Linux 上使用 Docker。由于生产环境中我们使用 CentOS 较多，下面主要针对在 CentOS 平台下安装和使用 Docker 展开介绍。</p>
 <h5 id="2-1-操作系统要求"><a href="#2-1-操作系统要求" class="headerlink" title="2.1 操作系统要求"></a>2.1 操作系统要求</h5><p>要安装 Docker，我们需要 CentOS 7 及以上的发行版本。</p>
 <h5 id="2-2-卸载已有-Docker"><a href="#2-2-卸载已有-Docker" class="headerlink" title="2.2 卸载已有 Docker"></a>2.2 卸载已有 Docker</h5><p>如果你已经安装过旧版的 Docker，可以先执行以下命令卸载旧版 Docker。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs livescript">$ sudo yum remove docker <span class="hljs-string">\</span>
+<div class="code-wrapper"><pre><code class="hljs livescript">$ sudo yum remove docker <span class="hljs-string">\</span>
 				docker-client <span class="hljs-string">\</span>
                 docker-client-latest <span class="hljs-string">\</span>
                 docker-common <span class="hljs-string">\</span>
@@ -296,18 +333,18 @@
                 docker-engine</code></pre></div>
 
 <h5 id="2-3-安装-Docker"><a href="#2-3-安装-Docker" class="headerlink" title="2.3 安装 Docker"></a>2.3 安装 Docker</h5><p>首次安装 Docker 之前，需要添加 Docker 安装源。添加之后，我们就可以从已经配置好的源，安装和更新 Docker。添加 Docker 安装源的命令如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">$ yum -y install yum-utils
+<div class="code-wrapper"><pre><code class="hljs awk">$ yum -y install yum-utils
 $ sudo yum-config-manager \
     --add-repo \
     https:<span class="hljs-regexp">//</span>download.docker.com<span class="hljs-regexp">/linux/</span>centos/docker-ce.repo</code></pre></div>
 
 <p>正常情况下，直接安装最新版本的 Docker 即可，因为最新版本的 Docker 有着更好的稳定性和安全性。你可以使用以下命令安装最新版本的 Docker。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs vim">$ sudo yum install docker-<span class="hljs-keyword">ce</span> docker-<span class="hljs-keyword">ce</span>-cli containerd.io</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs vim">$ sudo yum install docker-<span class="hljs-keyword">ce</span> docker-<span class="hljs-keyword">ce</span>-cli containerd.io</code></pre></div>
 
 <p>安装完成后，使用以下命令启动 Docker。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> sudo systemctl <span class="hljs-built_in">start</span> docker</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> sudo systemctl <span class="hljs-built_in">start</span> docker</code></pre></div>
 
-<h5 id="2-4-启动一个-hello-world-的容器"><a href="#2-4-启动一个-hello-world-的容器" class="headerlink" title="2.4 启动一个 hello world 的容器"></a>2.4 启动一个 hello world 的容器</h5><div class="hljs code-wrapper"><pre><code class="hljs routeros">$ sudo docker <span class="hljs-builtin-name">run</span> hello-world
+<h5 id="2-4-启动一个-hello-world-的容器"><a href="#2-4-启动一个-hello-world-的容器" class="headerlink" title="2.4 启动一个 hello world 的容器"></a>2.4 启动一个 hello world 的容器</h5><div class="code-wrapper"><pre><code class="hljs routeros">$ sudo docker <span class="hljs-builtin-name">run</span> hello-world
 Unable <span class="hljs-keyword">to</span> <span class="hljs-builtin-name">find</span> image <span class="hljs-string">&#x27;hello-world:latest&#x27;</span> locally
 latest: Pulling <span class="hljs-keyword">from</span> library/hello-world
 0e03bdcc26d7: Pull complete
@@ -340,31 +377,31 @@ Hello <span class="hljs-keyword">from</span> Docker!</code></pre></div>
 </ol>
 <p>下面我们<strong>通过一个实例来演示下 chroot。</strong></p>
 <p>首先我们在当前/home目录下创建一个 rootfs 目录：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs arduino">$ mkdir rootfs</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs arduino">$ mkdir rootfs</code></pre></div>
 
 <p>这里为了方便演示，我使用现成的 busybox 镜像来创建一个系统，镜像的概念和组成后面我会详细讲解，如果你没有 Docker 基础可以把下面的操作命令理解成在 rootfs 下创建了一些目录和放置了一些二进制文件。</p>
 <p>复制</p>
-<div class="hljs code-wrapper"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> rootfs 
+<div class="code-wrapper"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> rootfs 
 <span class="hljs-variable">$</span> docker export <span class="hljs-variable">$</span>(docker create busybox) <span class="hljs-literal">-o</span> busybox.tar
 <span class="hljs-variable">$</span> tar <span class="hljs-literal">-xf</span> busybox.tar</code></pre></div>
 
 <p>执行完上面的命令后，在 rootfs 目录下，我们会得到一些目录和文件。下面我们使用 ls 命令查看一下 rootfs 目录下的内容。</p>
 <p>复制</p>
-<div class="hljs code-wrapper"><pre><code class="hljs tcl">$ ls
+<div class="code-wrapper"><pre><code class="hljs tcl">$ ls
 bin  busybox.tar  dev  etc  home  <span class="hljs-keyword">proc</span><span class="hljs-title">  root</span> <span class="hljs-title"> sys</span> <span class="hljs-title"> tmp</span> <span class="hljs-title"> usr</span> <span class="hljs-title"> var</span></code></pre></div>
 
 <p>可以看到我们在 rootfs 目录下初始化了一些目录，下面让我们通过一条命令来见证 chroot 的神奇之处。使用以下命令，可以启动一个 sh 进程，并且把 /home/centos/rootfs 作为 sh 进程的根目录。</p>
 <p>复制</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">$ chroot <span class="hljs-regexp">/home/</span>rootfs <span class="hljs-regexp">/bin/</span>sh</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs awk">$ chroot <span class="hljs-regexp">/home/</span>rootfs <span class="hljs-regexp">/bin/</span>sh</code></pre></div>
 
 <p>此时，我们的命令行窗口已经处于上述命令启动的 sh 进程中。在当前 sh 命令行窗口下，我们使用 ls 命令查看一下当前进程，看是否真的与主机上的其他目录隔离开了</p>
-<div class="hljs code-wrapper"><pre><code class="hljs tcl">/ # ls /
+<div class="code-wrapper"><pre><code class="hljs tcl">/ # ls /
 bin  busybox.tar  dev  etc  home  <span class="hljs-keyword">proc</span><span class="hljs-title">  root</span> <span class="hljs-title"> sys</span> <span class="hljs-title"> tmp</span> <span class="hljs-title"> usr</span> <span class="hljs-title"> var</span></code></pre></div>
 
 <p>这里可以看到当前进程的根目录已经变成了主机上的 /home/rootfs 目录。这样就实现了当前进程与主机的隔离。到此为止，一个目录隔离的容器就完成了。操作图解如下图所示：</p>
 <p><img src="/img/images/chroot1.png" srcset="/img/loading.gif" lazyload></p>
 <p>但是，此时还不能称之为一个容器，为什么呢？你可以在上一步（使用 chroot 启动命令行窗口）执行以下命令，查看如下路由信息：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs accesslog">/etc # ip route
+<div class="code-wrapper"><pre><code class="hljs accesslog">/etc # ip route
 default via <span class="hljs-number">172</span>.<span class="hljs-number">20</span>.<span class="hljs-number">1</span>.<span class="hljs-number">1</span> dev eth0
 <span class="hljs-number">172.17.0.0</span>/<span class="hljs-number">16</span> dev docker0 scope link  src <span class="hljs-number">172</span>.<span class="hljs-number">17</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>
 <span class="hljs-number">172.20.1.0</span>/<span class="hljs-number">24</span> dev eth0 scope link  src <span class="hljs-number">172</span>.<span class="hljs-number">20</span>.<span class="hljs-number">1</span>.<span class="hljs-number">3</span></code></pre></div>
@@ -387,7 +424,7 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
 <p><img src="/img/images/cgroups1.png" srcset="/img/loading.gif" lazyload></p>
 <p>在**/sys/fs**下有一个cgroup的目录，这个目录下还有很多子目录，比如： cpu，cpuset，memory，blkio……这些，这些都是cgroup的子系统。分别用于干不同的事的。</p>
 <h4 id="CPU限制"><a href="#CPU限制" class="headerlink" title="CPU限制"></a>CPU限制</h4><p><strong>1)  先创建一个test.py文件</strong></p>
-<div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
     i = <span class="hljs-number">0</span>
     <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
         i += <span class="hljs-number">1</span>
@@ -402,17 +439,17 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
 <p><img src="/img/images/cgroups-cpu-quota-us.png" srcset="/img/loading.gif" lazyload></p>
 <p>在/sys/fs/cgroup/cpu下创建了一个coco，而且你会发现，一旦你创建了一个子目录，这个子目录里又有很多文件了。其中<strong>cpu.cfs_quota_us</strong>表示该control group限制占用的时间（微秒），默认为-1，表示不限制。如果设为50000，表示占用50000/10000=50%的CPU。</p>
 <p>这里，我们设置占用20%的CPU，即把cpu.cfs_quota_us设置为20000。执行命令就是：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-number">20000</span> &gt; <span class="hljs-regexp">/sys/</span>fs<span class="hljs-regexp">/cgroup/</span>cpu<span class="hljs-regexp">/coco/</span>cpu.cfs_quota_us</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-number">20000</span> &gt; <span class="hljs-regexp">/sys/</span>fs<span class="hljs-regexp">/cgroup/</span>cpu<span class="hljs-regexp">/coco/</span>cpu.cfs_quota_us</code></pre></div>
 
 <p>然后执行死循环test.py文件，瞬间cpu就会跑到100%。如下图所示：</p>
 <p><img src="/img/images/cgroups-cpu-full-top.png" srcset="/img/loading.gif" lazyload></p>
 <p>我们看到，这个进程的PID是4897，我们把这个进程加到这个cgroup中：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-number">4897</span> &gt;&gt; <span class="hljs-regexp">/sys/</span>fs<span class="hljs-regexp">/cgroup/</span>cpu<span class="hljs-regexp">/coco/</span>tasks</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-number">4897</span> &gt;&gt; <span class="hljs-regexp">/sys/</span>fs<span class="hljs-regexp">/cgroup/</span>cpu<span class="hljs-regexp">/coco/</span>tasks</code></pre></div>
 
 <p>然后，就会在top中看到CPU的利用立马下降成20%了。（前面我们设置的20000就是20%的意思）</p>
 <p><strong>4) 查看内存使用情况</strong></p>
 <p><img src="/img/images/cgroups-cpu-top.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="内存限制"><a href="#内存限制" class="headerlink" title="内存限制"></a>内存限制</h4><h5 id="1）创建test1-py文件"><a href="#1）创建test1-py文件" class="headerlink" title="1）创建test1.py文件"></a>1）创建test1.py文件</h5><div class="hljs code-wrapper"><pre><code class="hljs gradle"><span class="hljs-keyword">def</span> main():
+<h4 id="内存限制"><a href="#内存限制" class="headerlink" title="内存限制"></a>内存限制</h4><h5 id="1）创建test1-py文件"><a href="#1）创建test1-py文件" class="headerlink" title="1）创建test1.py文件"></a>1）创建test1.py文件</h5><div class="code-wrapper"><pre><code class="hljs gradle"><span class="hljs-keyword">def</span> main():
     i = []
     <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
         i.<span class="hljs-keyword">append</span>(<span class="hljs-number">1</span>)
@@ -425,71 +462,132 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
 <p>想要的效果为：i变量一直新增元素，导致i的内存空间会一直增大。</p>
 <p><strong>2） 执行test1.py文件，并通过top观察执行消耗内存情况</strong></p>
 <p>执行test1.py文件，获取到进程PID</p>
-<div class="hljs code-wrapper"><pre><code class="hljs Python">python test1.py &amp;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs Python">python test1.py &amp;</code></pre></div>
 
 <p>然后可以通过top查看到对应进程的内存使用情况。</p>
 <p><strong>3）限制内存使用情况</strong></p>
 <p><img src="/img/images/cgroups-memory.png" srcset="/img/loading.gif" lazyload></p>
 <p>在/sys/fs/cgroup/memory下创建了一个coco，而且你会发现，一旦你创建了一个子目录，这个子目录里又有很多文件了。其中<strong>memory.limit_in_bytes</strong> 或 <strong>memory.memsw.limit_in_bytes</strong> 限制进程内存占用的大小，避免在进程异常时耗尽系统资源</p>
 <p>这里，我们设置占用300k的内存使用量，即把memory.limit_in_bytes设置为300k。执行命令就是：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-number">300</span>k &gt; <span class="hljs-regexp">/sys/</span>fs<span class="hljs-regexp">/cgroup/m</span>emory<span class="hljs-regexp">/coco/m</span>emory.limit_in_bytes</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-number">300</span>k &gt; <span class="hljs-regexp">/sys/</span>fs<span class="hljs-regexp">/cgroup/m</span>emory<span class="hljs-regexp">/coco/m</span>emory.limit_in_bytes</code></pre></div>
 
 <p>然后再把需要限制内存大小的进程加到这个cgroup中：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-number">23541</span> &gt;&gt; <span class="hljs-regexp">/sys/</span>fs<span class="hljs-regexp">/cgroup/m</span>emory<span class="hljs-regexp">/coco/</span>tasks</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-number">23541</span> &gt;&gt; <span class="hljs-regexp">/sys/</span>fs<span class="hljs-regexp">/cgroup/m</span>emory<span class="hljs-regexp">/coco/</span>tasks</code></pre></div>
 
 <p>最后你会看到，一会上面PID为 23541的进程将会被kill掉。</p>
 <p><strong>4）查看进程</strong></p>
 <p>从上图中可以看出，当执行kill -9 23541时，提示无法找到PID为23541的进程。那就说明当PID为23541的进程消耗的内存超过了300k时，将主动被kill掉了。</p>
 <h4 id="3-4-联合文件系统"><a href="#3-4-联合文件系统" class="headerlink" title="3.4 联合文件系统"></a>3.4 联合文件系统</h4><p>​    联合文件系统，又叫 UnionFS，是一种通过创建文件层进程操作的文件系统，因此，联合文件系统非常轻快。Docker 使用联合文件系统为容器提供构建层，使得容器可以实现写时复制以及镜像的分层构建和存储。常用的联合文件系统有 AUFS、Overlay 和 Devicemapper 等。</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
-                    
-                      <a class="hover-with-bg" href="/categories/basic-component/docker/">docker</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/docker/">docker</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/docker/">#docker</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Docker 技术原理</div>
+      <div>https://lunasaw.github.io/2020/06/03/docker-technology- principal/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2020年6月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/03/docker-security-2/">
+                      <a href="/2020/06/03/docker-security-2/" title="docker security 2">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">docker security 2</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/06/03/docker-underly-isolation/">
-                        <span class="hidden-mobile">docker underly isolation</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/2020/06/03/docker-mirro-warehouse/" title="docker mirro warehouse">
+                        <span class="hidden-mobile">docker mirro warehouse</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -499,12 +597,10 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -518,7 +614,9 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -526,26 +624,63 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -567,7 +702,7 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -575,14 +710,14 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -594,43 +729,45 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -649,10 +786,22 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -662,60 +811,119 @@ default via <span class="hljs-number">172</span>.<span class="hljs-number">20</s
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

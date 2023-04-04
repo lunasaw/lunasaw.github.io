@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="十平方米小屋">
 <meta property="og:url" content="https://lunasaw.github.io/page/2/index.html">
 <meta property="og:site_name" content="十平方米小屋">
@@ -24,6 +24,10 @@
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="博客,luna,java,spring,utils,linux,idea">
 <meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -33,9 +37,12 @@
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +51,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -81,7 +109,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -93,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -105,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -117,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -129,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -141,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -149,14 +177,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -164,34 +194,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/paper/bg.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Edit your own life and compile your own world">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/paper/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Edit your own life and compile your own world"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -216,18 +252,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/11/nginx-start/" target="_blank">
-          
-          
-            
-          
-          Nginx学习Nginx 是开源、高性能、高可靠的 Web 和反向代理服务器，而且支持热部署，几乎可以做到 7 * 24 小时不间断运行，即使运行几个月也不需要重新启动，还能在不间断服务的情况下对软件版本进行热更新。性能是 Nginx 最重要的考量，其占用内存少、并发能力强、能支持高达 5w 个并发连接数，最重要的是， Nginx 是免费的并可以商业化，配置使用也比较简单。
-Nginx 特点
-
-高
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/10/11/nginx-start/" target="_blank">
+        <div>
+          Nginx学习Nginx 是开源、高性能、高可靠的 Web 和反向代理服务器，而且支持热部署，几乎可以做到 7 * 24 小时不间断运行，即使运行几个月也不需要重新启动，还能在不间断服务的情况下对软件版本进行热更新。性能是 Nginx 最重要的考量，其占用内存少、并发能力强、能支持高达 5w 个并发连接数，最重要的是， Nginx 是免费的并可以商业化，配置使用也比较简单。 Nginx 特点  高
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -239,20 +269,39 @@ Nginx 特点
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/nginx/">nginx</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/nginx/" class="category-chain-item">nginx</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/nginx/">nginx</a>
+              <a href="/tags/nginx/">#nginx</a>
             
           </div>
         
@@ -277,18 +326,12 @@ Nginx 特点
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/09/linux-chmod/" target="_blank">
-          
-          
-            
-          
-          权限简介
-Linux系统上对文件的权限有着严格的控制，用于如果相对某个文件执行某种操作，必须具有对应的权限方可执行成功。
-Linux下文件的权限类型一般包括读，写，执行。对应字母为 r、w、x。
-Linux下权限的粒度有 拥有者 、群组 、其它组 三种。每个文件都可以针对三个粒度，设置不同的rwx(读写执行)权限。通常情况下，一个文件只能归属于一个用户和组， 如果其它的用户想有这个文件的权限，则可
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/10/09/linux-chmod/" target="_blank">
+        <div>
+          权限简介 Linux系统上对文件的权限有着严格的控制，用于如果相对某个文件执行某种操作，必须具有对应的权限方可执行成功。 Linux下文件的权限类型一般包括读，写，执行。对应字母为 r、w、x。 Linux下权限的粒度有 拥有者 、群组 、其它组 三种。每个文件都可以针对三个粒度，设置不同的rwx(读写执行)权限。通常情况下，一个文件只能归属于一个用户和组， 如果其它的用户想有这个文件的权限，则可
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -300,81 +343,39 @@ Linux下权限的粒度有 拥有者 、群组 、其它组 三种。每个文�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/linux/">linux</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/08/26/jvm-tenance/" target="_blank">
-          <img src="/img/basic/java-index.jpg" srcset="/img/loading.gif" lazyload alt="jvm_tuning">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/08/26/jvm-tenance/" target="_blank">
-          jvm_tuning
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/08/26/jvm-tenance/" target="_blank">
-          
-          
-            
-          
-          JVM内存区域划分限定商用虚拟机基本都采用分代收集算法进行垃圾回收。根据对象的生命周期的不同将内存划分为几块，然后根据各块的特点采用最适当的收集算法。大批对象死去、少量对象存活的，使用复制算法，复制成本低；对象存活率高、没有额外空间进行分配担保的，采用标记-清除算法或者标记-整理算法。
-
-从上面的图可以看出， JVM区域总体分两类，heap区和非heap区。 
-1.heap区又分为： 
-
-Eden
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-26 15:45" pubdate>
-              2021-08-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/java/">java</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/jvm/">jvm</a>
+              <a href="/tags/linux/">#linux</a>
             
           </div>
         
@@ -399,17 +400,12 @@ Eden
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/08/26/jvm-properties/" target="_blank">
-          
-          
-            
-          
-          JAVA 启动参数/opt/vdian/java/bin/java-Djava.util.logging.config.file=/home/www/fenxiao-core/.server/conf/logging.propertie
--Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager 
--Djdk.tls.ephe
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/08/26/jvm-properties/" target="_blank">
+        <div>
+          JAVA 启动参数/opt/vdian/java/bin/java-Djava.util.logging.config.file=/home/www/fenxiao-core/.server/conf/logging.propertie -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager  -Djdk.tls.ephe
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -421,18 +417,99 @@ Eden
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/jvm/">jvm</a>
+              <a href="/tags/jvm/">#jvm</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/08/26/jvm-tenance/" target="_blank">
+          <img src="/img/basic/java-index.jpg" srcset="/img/loading.gif" lazyload alt="jvm_tuning">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/26/jvm-tenance/" target="_blank">
+          jvm_tuning
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2021/08/26/jvm-tenance/" target="_blank">
+        <div>
+          JVM内存区域划分限定商用虚拟机基本都采用分代收集算法进行垃圾回收。根据对象的生命周期的不同将内存划分为几块，然后根据各块的特点采用最适当的收集算法。大批对象死去、少量对象存活的，使用复制算法，复制成本低；对象存活率高、没有额外空间进行分配担保的，采用标记-清除算法或者标记-整理算法。  从上面的图可以看出， JVM区域总体分两类，heap区和非heap区。  1.heap区又分为：   Eden
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-26 15:45" pubdate>
+              2021-08-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/jvm/">#jvm</a>
             
           </div>
         
@@ -457,20 +534,12 @@ Eden
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/07/05/javascript-equls/" target="_blank">
-          
-          
-            
-          
-          js中==和===区别简单来说： == 代表相同， ===代表严格相同, 为啥这么说呢， 
-这么理解： 当进行双等号比较时候： 先检查两个操作数数据类型，如果相同， 则进行===比较， 如果不同， 则愿意为你进行一次类型转换， 转换成相同类型后再进行比较， 而===比较时， 如果类型不同，直接就是false.
-操作数1 == 操作数2， 操作数1 === 操作数2
-比较过程：
-　　双等号==： 
-
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/07/05/javascript-equls/" target="_blank">
+        <div>
+          js中==和===区别简单来说： == 代表相同， ===代表严格相同, 为啥这么说呢，  这么理解： 当进行双等号比较时候： 先检查两个操作数数据类型，如果相同， 则进行===比较， 如果不同， 则愿意为你进行一次类型转换， 转换成相同类型后再进行比较， 而===比较时， 如果类型不同，直接就是false. 操作数1 == 操作数2， 操作数1 === 操作数2 比较过程： 　　双等号==：
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -482,18 +551,32 @@ Eden
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/javascript/">javascript</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/javascript/" class="category-chain-item">javascript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/javascript/">javascript</a>
+              <a href="/tags/javascript/">#javascript</a>
             
           </div>
         
@@ -518,19 +601,12 @@ Eden
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/06/23/other-mall-attr/" target="_blank">
-          
-          
-            
-          
-          商城业务流程分析SKU和SPU属性分析iphone xs ｜ iphone xs max ｜ iphon x  -&gt;SPU包括 每款机型的像素，尺寸，分辨率。。。。不同版本对应SKU，具体的某个版本-内存-颜色，即讲SPU的参数构建成一个机型基本属性
-销售属性不同版本 销售属性不同
-左边参数名称为SPU，右边具体参数为SKU
-同一个SPU商品，共享  商品介绍，规格于包装
-属性都是与三级分类
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/06/23/other-mall-attr/" target="_blank">
+        <div>
+          商城业务流程分析SKU和SPU属性分析iphone xs ｜ iphone xs max ｜ iphon x  -&gt;SPU包括 每款机型的像素，尺寸，分辨率。。。。不同版本对应SKU，具体的某个版本-内存-颜色，即讲SPU的参数构建成一个机型基本属性 销售属性不同版本 销售属性不同 左边参数名称为SPU，右边具体参数为SKU 同一个SPU商品，共享  商品介绍，规格于包装 属性都是与三级分类
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -542,20 +618,39 @@ Eden
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/project/">project</a>
-            
-              <a href="/categories/project/mall/">mall</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/project/" class="category-chain-item">project</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/project/mall/" class="category-chain-item">mall</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/mall/">mall</a>
+              <a href="/tags/mall/">#mall</a>
             
           </div>
         
@@ -580,16 +675,12 @@ Eden
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/06/17/basic-git-clean/" target="_blank">
-          
-          
-            
-          
-          Git仓库删除大文件背景当用Git久了，难免会手误或临时添加一些大文件到仓库中，即使以后添加进了.gitignore，甚至做了git rm，但是Git为了保证版本可回退，history pack里面依然会存储这些对象，这个时候我们就要为Git仓库进行瘦身。
-或者不是大文件的情况，有时我们需要删除掉一些敏感信息文件，比如password.txt，即使回退也无法找到敏感文件，要实现这个要求，也要对hi
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/06/17/basic-git-clean/" target="_blank">
+        <div>
+          Git仓库删除大文件背景当用Git久了，难免会手误或临时添加一些大文件到仓库中，即使以后添加进了.gitignore，甚至做了git rm，但是Git为了保证版本可回退，history pack里面依然会存储这些对象，这个时候我们就要为Git仓库进行瘦身。 或者不是大文件的情况，有时我们需要删除掉一些敏感信息文件，比如password.txt，即使回退也无法找到敏感文件，要实现这个要求，也要对hi
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -601,20 +692,39 @@ Eden
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/git/">git</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/git/" class="category-chain-item">git</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/git/">git</a>
+              <a href="/tags/git/">#git</a>
             
           </div>
         
@@ -639,51 +749,12 @@ Eden
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/06/05/linux-command/" target="_blank">
-          
-          
-            
-          
-          关机/重启/注销
-
-
-常用命令
-作用
-
-
-
-shutdown -h now
-即刻关机
-
-
-shutdown -h 10
-10分钟后关机
-
-
-shutdown -h 11:00
-11：00关机
-
-
-shutdown -h +10
-预定时间关机（10分钟后）
-
-
-shutdown -c
-取消指定时间关机
-
-
-shutdown -r now
-重启
-
-
-shutdown -r 10
-10分钟之后重启
-
-
-
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/06/05/linux-command/" target="_blank">
+        <div>
+          关机/重启/注销   常用命令 作用    shutdown -h now 即刻关机   shutdown -h 10 10分钟后关机   shutdown -h 11:00 11：00关机   shutdown -h +10 预定时间关机（10分钟后）   shutdown -c 取消指定时间关机   shutdown -r now 重启   shutdown -r 10 10分钟之后重启
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -695,20 +766,39 @@ shutdown -r 10
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/linux/">linux</a>
+              <a href="/tags/linux/">#linux</a>
             
           </div>
         
@@ -733,20 +823,12 @@ shutdown -r 10
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/05/26/jvm-tuning/" target="_blank">
-          
-          
-            
-          
-          如何合理的规划一次jvm性能调优JVM性能调优涉及到方方面面的取舍，往往是牵一发而动全身，需要全盘考虑各方面的影响。但也有一些基础的理论和原则，理解这些理论并遵循这些原则会让你的性能调优任务将会更加轻松。为了更好的理解本篇所介绍的内容。你需要已经了解和遵循以下内容:
-
-1、已了解jvm 垃圾收集器
-2、已了解jvm 性能监控常用工具
-3、能够读懂gc日志
-4、确信不为了调优而调优，jvm调优不能解
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/05/26/jvm-tuning/" target="_blank">
+        <div>
+          如何合理的规划一次jvm性能调优JVM性能调优涉及到方方面面的取舍，往往是牵一发而动全身，需要全盘考虑各方面的影响。但也有一些基础的理论和原则，理解这些理论并遵循这些原则会让你的性能调优任务将会更加轻松。为了更好的理解本篇所介绍的内容。你需要已经了解和遵循以下内容:  1、已了解jvm 垃圾收集器 2、已了解jvm 性能监控常用工具 3、能够读懂gc日志 4、确信不为了调优而调优，jvm调优不能解
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -758,18 +840,32 @@ shutdown -r 10
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/jvm/">jvm</a>
+              <a href="/tags/jvm/">#jvm</a>
             
           </div>
         
@@ -794,18 +890,12 @@ shutdown -r 10
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/05/26/basic-http-content/" target="_blank">
-          
-          
-            
-          
-          访问 www.taobao.com过程首先是查找浏览器缓存，浏览器会保存一段时间你之前访问过的一些网址的DNS信息，不同浏览器保存的时常不等。
-如果没有找到对应的记录，这个时候浏览器会尝试调用系统缓存来继续查找这个网址的对应DNS信息。
-如果还是没找到对应的IP，那么接着会发送一个请求到路由器上，然后路由器在自己的路由器缓存上查找记录，路由器一般也存有DNS信息。
-如果还是没有，这个请求就会被发送
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/05/26/basic-http-content/" target="_blank">
+        <div>
+          访问 www.taobao.com过程首先是查找浏览器缓存，浏览器会保存一段时间你之前访问过的一些网址的DNS信息，不同浏览器保存的时常不等。 如果没有找到对应的记录，这个时候浏览器会尝试调用系统缓存来继续查找这个网址的对应DNS信息。 如果还是没找到对应的IP，那么接着会发送一个请求到路由器上，然后路由器在自己的路由器缓存上查找记录，路由器一般也存有DNS信息。 如果还是没有，这个请求就会被发送
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -817,20 +907,39 @@ shutdown -r 10
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/http/">http</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/http/" class="category-chain-item">http</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/http/">http</a>
+              <a href="/tags/http/">#http</a>
             
           </div>
         
@@ -867,7 +976,7 @@ shutdown -r 10
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -875,14 +984,14 @@ shutdown -r 10
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -894,43 +1003,45 @@ shutdown -r 10
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -949,10 +1060,22 @@ shutdown -r 10
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -962,47 +1085,24 @@ shutdown -r 10
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

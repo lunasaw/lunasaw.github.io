@@ -13,22 +13,28 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="redis与springboot整合依赖 &lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactId&gt;spring-boot-starter-data-redis&lt;&#x2F;artifactId&gt; &lt;&#x2F;dependency&gt;  &lt;!--">
+  
+    <meta name="description" content="redis与springboot整合依赖 &lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactId&gt;spring-boot-starter-data-redis&lt;&#x2F;artifactId&gt; &lt;&#x2F;dependency&gt;  &lt;!--">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis与springboot整合">
 <meta property="og:url" content="https://lunasaw.github.io/2020/06/02/redis-spring/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="redis与springboot整合依赖 &lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactId&gt;spring-boot-starter-data-redis&lt;&#x2F;artifactId&gt; &lt;&#x2F;dependency&gt;  &lt;!--">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lunasaw.github.io/img/basic/redis-index.jpg">
 <meta property="article:published_time" content="2020-06-01T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.994Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="redis">
 <meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/basic/redis-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -37,25 +43,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -64,21 +64,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -101,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -113,7 +134,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -125,7 +146,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -137,7 +158,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -149,7 +170,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -161,7 +182,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -169,14 +190,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -184,70 +207,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/basic/redis-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="redis与springboot整合">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-06-02 00:00" pubdate>
-        2020年6月2日 凌晨
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      12k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      38 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/basic/redis-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="redis与springboot整合"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-06-02 00:00" pubdate>
+          2020年6月2日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          103 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -256,22 +293,31 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">redis与springboot整合</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h1 id="redis与springboot整合"><a href="#redis与springboot整合" class="headerlink" title="redis与springboot整合"></a>redis与springboot整合</h1><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><div class="hljs code-wrapper"><pre><code class="hljs xml">
+            
+              <div class="markdown-body">
+                
+                <h1 id="redis与springboot整合"><a href="#redis与springboot整合" class="headerlink" title="redis与springboot整合"></a>redis与springboot整合</h1><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><div class="code-wrapper"><pre><code class="hljs xml">
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -283,7 +329,7 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-pool2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
-<h3 id="yml-配置"><a href="#yml-配置" class="headerlink" title="yml 配置"></a>yml 配置</h3><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
+<h3 id="yml-配置"><a href="#yml-配置" class="headerlink" title="yml 配置"></a>yml 配置</h3><div class="code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
   <span class="hljs-attr">redis:</span>
     <span class="hljs-attr">host:</span> <span class="hljs-string">xxx</span>
     <span class="hljs-comment"># 连接超时时间（记得添加单位，Duration）</span>
@@ -308,7 +354,7 @@
     <span class="hljs-attr">com.xkcoding:</span> <span class="hljs-string">debug</span>
 </code></pre></div>
 
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-meta">@AutoConfigureAfter(RedisAutoConfiguration.class)</span>
 <span class="hljs-meta">@EnableCaching</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisConfig</span> </span>&#123;
@@ -356,7 +402,7 @@
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
 <li>使用Spring 自动注入</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs java">
+<div class="code-wrapper"><pre><code class="hljs java">
 <span class="hljs-comment">// 默认模板</span>
 <span class="hljs-meta">@Autowired</span>
 <span class="hljs-keyword">private</span> StringRedisTemplate stringRedisTemplate;
@@ -372,7 +418,7 @@
 <h2 id="Api使用"><a href="#Api使用" class="headerlink" title="Api使用"></a>Api使用</h2><h3 id="通用操作工具"><a href="#通用操作工具" class="headerlink" title="通用操作工具"></a>通用操作工具</h3><ol>
 <li>常用的分布式锁加强版</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs Java">    <span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs Java">    <span class="hljs-comment">/**</span>
 <span class="hljs-comment">     * 最终加强分布式锁</span>
 <span class="hljs-comment">     * <span class="hljs-doctag">@param</span> key key值</span>
 <span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 是否获取到</span>
@@ -407,7 +453,7 @@
 <ol start="2">
 <li> 删除锁</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 删除锁</span>
 <span class="hljs-comment"> *</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key</span>
@@ -419,7 +465,7 @@
 <ol start="3">
 <li>指定缓存失效时间</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 指定缓存失效时间</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> time 时间(秒)</span>
@@ -440,7 +486,7 @@
 <ol start="4">
 <li>根据key 获取过期时间</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 根据key 获取过期时间</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键 不能为null</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 时间(秒) 返回0代表为永久有效</span>
@@ -452,7 +498,7 @@
 <ol start="5">
 <li>判断key是否存在</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 判断key是否存在</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return</span> true 存在 false不存在</span>
@@ -469,7 +515,7 @@
 <ol start="6">
 <li>删除缓存</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 删除缓存</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 可以传一个值 或多个</span>
 <span class="hljs-comment"> */</span>
@@ -487,7 +533,7 @@
 <h3 id="String类型相关操作"><a href="#String类型相关操作" class="headerlink" title="String类型相关操作"></a>String类型相关操作</h3><ol>
 <li>获取缓存</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 获取缓存</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 值</span>
@@ -499,7 +545,7 @@
 <ol start="2">
 <li>获取缓存</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 获取缓存</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @return 值</span></span>
@@ -511,7 +557,7 @@ public <span class="hljs-built_in">Object</span> <span class="hljs-keyword">get<
 <ol start="3">
 <li>添加缓存</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 添加缓存</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param value 值</span></span>
@@ -531,7 +577,7 @@ public boolean <span class="hljs-keyword">set</span>(<span class="hljs-built_in"
 <ol start="4">
 <li>添加缓存并设置过期时间</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 添加缓存并设置过期时间</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param value 值</span></span>
@@ -555,7 +601,7 @@ public boolean <span class="hljs-keyword">set</span>(<span class="hljs-built_in"
 <ol start="5">
 <li>递增操作</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 递增</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
@@ -570,7 +616,7 @@ public boolean <span class="hljs-keyword">set</span>(<span class="hljs-built_in"
 <ol start="6">
 <li>递减操作</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 递减</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
@@ -585,7 +631,7 @@ public boolean <span class="hljs-keyword">set</span>(<span class="hljs-built_in"
 <h3 id="哈希类型相关操作"><a href="#哈希类型相关操作" class="headerlink" title="哈希类型相关操作"></a>哈希类型相关操作</h3><ol>
 <li>设置一组Map的键值对</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> HashGet</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键 不能为null</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param item 项 不能为null</span></span>
@@ -598,7 +644,7 @@ public <span class="hljs-built_in">Object</span> hget(<span class="hljs-built_in
 <ol start="2">
 <li>获取指定Map的所有键值对</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 获取hashKey对应的所有键值</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @return 对应的多个键值</span></span>
@@ -610,7 +656,7 @@ public <span class="hljs-built_in">Map</span>&lt;<span class="hljs-built_in">Obj
 <ol start="3">
 <li>添加一个Map类型值</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> HashSet</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param map 对应多个键值</span></span>
@@ -629,7 +675,7 @@ public boolean hmset(<span class="hljs-built_in">String</span> key, <span class=
 <ol start="4">
 <li>添加一个Map类型值并设置过期时间</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> HashSet 并设置时间</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param map 对应多个键值</span></span>
@@ -652,7 +698,7 @@ public boolean hmset(<span class="hljs-built_in">String</span> key, <span class=
 <ol start="5">
 <li>向一张hash表中放入数据,如果不存在将创建</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 向一张hash表中放入数据,如果不存在将创建</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param item 项</span></span>
@@ -672,7 +718,7 @@ public boolean hset(<span class="hljs-built_in">String</span> key,<span class="h
 <ol start="6">
 <li>向一张hash表中放入数据,如果不存在将创建并设置过期时间</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 向一张hash表中放入数据,如果不存在将创建</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param item 项</span></span>
@@ -696,7 +742,7 @@ public boolean hset(<span class="hljs-built_in">String</span> key,<span class="h
 <ol start="7">
 <li>删除hash表中的值</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 删除hash表中的值</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键 不能为null</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param item 项 可以使多个 不能为null</span></span>
@@ -708,7 +754,7 @@ public <span class="hljs-keyword">void</span> hdel(<span class="hljs-built_in">S
 <ol start="8">
 <li>判断hash表中是否有该项的值</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 判断hash表中是否有该项的值</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键 不能为null</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param item 项 不能为null</span></span>
@@ -721,7 +767,7 @@ public boolean hHasKey(<span class="hljs-built_in">String</span> key, <span clas
 <ol start="9">
 <li>递增，如果不存在,就会创建一个 并把新增后的值返回</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> hash递增 如果不存在,就会创建一个 并把新增后的值返回</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param item 项</span></span>
@@ -735,7 +781,7 @@ public <span class="hljs-built_in">double</span> hincr(<span class="hljs-built_i
 <ol start="10">
 <li>递减</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> hash递减</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param item 项</span></span>
@@ -749,7 +795,7 @@ public <span class="hljs-built_in">double</span> hdecr(<span class="hljs-built_i
 <h3 id="SET类型相关操作"><a href="#SET类型相关操作" class="headerlink" title="SET类型相关操作"></a>SET类型相关操作</h3><ol>
 <li>根据key获取Set中的所有值</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 根据key获取Set中的所有值</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @return</span></span>
@@ -766,7 +812,7 @@ public <span class="hljs-built_in">Set</span>&lt;<span class="hljs-built_in">Obj
 <ol start="2">
 <li>根据value从一个set中查询,是否存在</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 根据value从一个set中查询,是否存在</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param value 值</span></span>
@@ -784,7 +830,7 @@ public boolean sHasKey(<span class="hljs-built_in">String</span> key,<span class
 <ol start="3">
 <li>添加一个SET缓存</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 将数据放入set缓存</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param values 值 可以是多个</span></span>
@@ -802,7 +848,7 @@ public long sSet(<span class="hljs-built_in">String</span> key, <span class="hlj
 <ol start="4">
 <li> 添加一个SET缓存并设置过期时间</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 将set数据放入缓存</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> time 时间(秒)</span>
@@ -823,7 +869,7 @@ public long sSet(<span class="hljs-built_in">String</span> key, <span class="hlj
 <ol start="5">
 <li> 获取SET缓存的长度</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 获取set缓存的长度</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
@@ -840,7 +886,7 @@ public long sSet(<span class="hljs-built_in">String</span> key, <span class="hlj
 <ol start="6">
 <li> 移除指定key的缓存</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 移除值为value的</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> values 值 可以是多个</span>
@@ -859,7 +905,7 @@ public long sSet(<span class="hljs-built_in">String</span> key, <span class="hlj
 <h3 id="LIST类型相关操作"><a href="#LIST类型相关操作" class="headerlink" title="LIST类型相关操作"></a>LIST类型相关操作</h3><ol>
 <li> 获取list缓存的内容</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 获取list缓存的内容</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param start 开始</span></span>
@@ -878,7 +924,7 @@ public <span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">Ob
 <ol start="2">
 <li>  获取list缓存的长度</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 获取list缓存的长度</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
@@ -895,7 +941,7 @@ public <span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">Ob
 <ol start="3">
 <li>通过索引 获取list中的值</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 通过索引 获取list中的值</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> index 索引  index&gt;=0时， 0 表头，1 第二个元素，依次类推；index&lt;0时，-1，表尾，-2倒数第二个元素，依次类推</span>
@@ -913,7 +959,7 @@ public <span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">Ob
 <ol start="4">
 <li>  将list放入缓存</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 将list放入缓存</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param value 值</span></span>
@@ -932,7 +978,7 @@ public boolean lSet(<span class="hljs-built_in">String</span> key, <span class="
 <ol start="5">
 <li>将list放入缓存并设置过期时间</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 将list放入缓存</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> key 键</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> value 值</span>
@@ -953,7 +999,7 @@ public boolean lSet(<span class="hljs-built_in">String</span> key, <span class="
 <ol start="6">
 <li> 将list放入缓存</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 将list放入缓存</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param value 值</span></span>
@@ -972,7 +1018,7 @@ public boolean lSet(<span class="hljs-built_in">String</span> key, <span class="
 <ol start="7">
 <li> 将list放入缓存并设置过期时间</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 将list放入缓存</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param value 值</span></span>
@@ -993,7 +1039,7 @@ public boolean lSet(<span class="hljs-built_in">String</span> key, <span class="
 <ol start="8">
 <li> 根据索引修改list中的某条数据</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
+<div class="code-wrapper"><pre><code class="hljs dart"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">**</span></span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> 根据索引修改list中的某条数据</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param key 键</span></span>
 <span class="hljs-comment"><span class="markdown"><span class="hljs-bullet"> *</span> @param index 索引</span></span>
@@ -1013,7 +1059,7 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
 <ol start="9">
 <li> 移除N个值为value</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs csharp"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 移除N个值为value</span>
 <span class="hljs-comment"> * @param key 键</span>
 <span class="hljs-comment"> * @param count 移除多少个</span>
@@ -1029,58 +1075,124 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
         <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
     &#125;
 &#125;</code></pre></div>
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/java/">java</a>
-                    
-                      <a class="hover-with-bg" href="/categories/java/middle-component/">middle-component</a>
-                    
-                      <a class="hover-with-bg" href="/categories/java/middle-component/redis/">redis</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/redis/">redis</a>
-                    
-                      <a class="hover-with-bg" href="/tags/spring/">spring</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/" class="category-chain-item">middle-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/redis/" class="category-chain-item">redis</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/redis/">#redis</a>
+      
+        <a href="/tags/spring/">#spring</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>redis与springboot整合</div>
+      <div>https://lunasaw.github.io/2020/06/02/redis-spring/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2020年6月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/03/spring-async/">
+                      <a href="/2020/06/03/spring-async/" title="Springboot的异步方法async调用与线程池配置">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Springboot的异步方法async调用与线程池配置</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/06/01/project-genesis-reply/">
-                        <span class="hidden-mobile">reply</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/2020/06/01/project-genesis-2/" title="智慧教学辅助系统-作品思路">
+                        <span class="hidden-mobile">智慧教学辅助系统-作品思路</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -1090,12 +1202,10 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -1109,7 +1219,9 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -1117,26 +1229,63 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -1158,7 +1307,7 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1166,14 +1315,14 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -1185,43 +1334,45 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -1240,10 +1391,22 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -1253,60 +1416,119 @@ public boolean lUpdateIndex(<span class="hljs-built_in">String</span> key, long 
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

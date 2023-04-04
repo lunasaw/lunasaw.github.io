@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="十平方米小屋">
 <meta property="og:url" content="https://lunasaw.github.io/page/9/index.html">
 <meta property="og:site_name" content="十平方米小屋">
@@ -24,6 +24,10 @@
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="博客,luna,java,spring,utils,linux,idea">
 <meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -33,9 +37,12 @@
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +51,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -81,7 +109,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -93,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -105,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -117,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -129,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -141,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -149,14 +177,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -164,34 +194,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/paper/bg.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Edit your own life and compile your own world">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/paper/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Edit your own life and compile your own world"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -216,16 +252,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-security-2/" target="_blank">
-          
-          
-            
-          
-          Docker 安全性能21. 前言​    Docker容器安全目前推荐的技术方案是 : Kata Containers，那先来认识一下什么是kata containers。
-​    Kata Containers是一个开源项目和社区，致力于构建轻量级虚拟机（VM）的标准实现——这些虚拟机的感知和执行类似容器，但提供VM的工作负载隔离和安全优势，内核级别的隔离宿主机的内核！Kata Contai
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/03/docker-security-2/" target="_blank">
+        <div>
+          Docker 安全性能21. 前言​    Docker容器安全目前推荐的技术方案是 : Kata Containers，那先来认识一下什么是kata containers。 ​    Kata Containers是一个开源项目和社区，致力于构建轻量级虚拟机（VM）的标准实现——这些虚拟机的感知和执行类似容器，但提供VM的工作负载隔离和安全优势，内核级别的隔离宿主机的内核！Kata Contai
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -237,20 +269,39 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/docker/">docker</a>
+              <a href="/tags/docker/">#docker</a>
             
           </div>
         
@@ -275,15 +326,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-technology-%20principal/" target="_blank">
-          
-          
-            
-          
+      
+      <a class="index-excerpt " href="/2020/06/03/docker-technology-%20principal/" target="_blank">
+        <div>
           Docker principal先聊聊Docker 的基础内容：Docker 能做什么，怎么安装 Docker，以及容器技术的原理。1. Docker 能做什么？​    众所周知，Docker 是一个用于开发，发布和运行应用程序的开放平台。通俗地讲，Docker 类似于集装箱。在一艘大船上，各种货物要想被整齐摆放并且相互不受到影响，我们就需要把各种货物进行集装箱标准化。有了集装箱，我们就不需要专
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -295,80 +343,39 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/docker/">docker</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/03/docker-underly-isolation/" target="_blank">
-          <img src="/img/basic/docker-index.jpg" srcset="/img/loading.gif" lazyload alt="docker underly isolation">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/06/03/docker-underly-isolation/" target="_blank">
-          docker underly isolation
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-underly-isolation/" target="_blank">
-          
-          
-            
-          
-          Docker资源隔离1. 前言​    在上一章Docker安全性能中已有讲解Namespace的功能作用。
-​    概念回顾：Docker 是基于 Linux 内核的 Namespace 技术实现资源隔离的，所有的容器都共享主机的内核。其实这与以虚拟机为代表的云计算时代还是有很多区别的，比如虚拟机有着更好的隔离性和安全性，而容器的隔离性和安全性则相对较弱。
-​    虽然Namespace的技
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-03 00:00" pubdate>
-              2020-06-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/docker/">docker</a>
+              <a href="/tags/docker/">#docker</a>
             
           </div>
         
@@ -393,17 +400,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/03/docker-mirro-warehouse/" target="_blank">
-          
-          
-            
-          
-          Docker 镜像仓库Docker 的操作围绕镜像、容器、仓库三大核心概念。在学架构设计之前，我们需要先了解 Docker 的三个核心概念。
-1. Docker 核心概念1.1 镜像镜像是什么呢？通俗地讲，它是一个只读的文件和文件夹组合。它包含了容器运行时所需要的所有基础文件和配置信息，是容器启动的基础。所以你想启动一个容器，那首先必须要有一个镜像。镜像是 Docker 容器启动的先决条件。
-如果
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/03/docker-mirro-warehouse/" target="_blank">
+        <div>
+          Docker 镜像仓库Docker 的操作围绕镜像、容器、仓库三大核心概念。在学架构设计之前，我们需要先了解 Docker 的三个核心概念。 1. Docker 核心概念1.1 镜像镜像是什么呢？通俗地讲，它是一个只读的文件和文件夹组合。它包含了容器运行时所需要的所有基础文件和配置信息，是容器启动的基础。所以你想启动一个容器，那首先必须要有一个镜像。镜像是 Docker 容器启动的先决条件。 如果
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -415,20 +417,113 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/docker/">docker</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/docker/">docker</a>
+              <a href="/tags/docker/">#docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/03/docker-underly-isolation/" target="_blank">
+          <img src="/img/basic/docker-index.jpg" srcset="/img/loading.gif" lazyload alt="docker underly isolation">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/03/docker-underly-isolation/" target="_blank">
+          docker underly isolation
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2020/06/03/docker-underly-isolation/" target="_blank">
+        <div>
+          Docker资源隔离1. 前言​    在上一章Docker安全性能中已有讲解Namespace的功能作用。 ​    概念回顾：Docker 是基于 Linux 内核的 Namespace 技术实现资源隔离的，所有的容器都共享主机的内核。其实这与以虚拟机为代表的云计算时代还是有很多区别的，比如虚拟机有着更好的隔离性和安全性，而容器的隔离性和安全性则相对较弱。 ​    虽然Namespace的技
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-03 00:00" pubdate>
+              2020-06-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/docker/" class="category-chain-item">docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/docker/">#docker</a>
             
           </div>
         
@@ -453,21 +548,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/03/spring-async/" target="_blank">
-          
-          
-            
-          
-          Springboot的异步方法调用与线程池配置简单使用
-springboot 自带了scheduling 包里已经设置了异步方法,我们只需要在方法或者类上加入@Async 注解即可
-
-package com.xkcoding.async.task;
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.an
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/03/spring-async/" target="_blank">
+        <div>
+          Springboot的异步方法调用与线程池配置简单使用 springboot 自带了scheduling 包里已经设置了异步方法,我们只需要在方法或者类上加入@Async 注解即可  package com.xkcoding.async.task;  import lombok.extern.slf4j.Slf4j; import org.springframework.scheduling.an
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -479,20 +565,39 @@ import org.springframework.scheduling.an
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/spring/">spring</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/spring/" class="category-chain-item">spring</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/async/">async</a>
+              <a href="/tags/async/">#async</a>
             
           </div>
         
@@ -517,21 +622,12 @@ import org.springframework.scheduling.an
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/02/redis-spring/" target="_blank">
-          
-          
-            
-          
-          redis与springboot整合依赖
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
-&lt;/dependency&gt;
-
-&lt;!--
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/02/redis-spring/" target="_blank">
+        <div>
+          redis与springboot整合依赖 &lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;     &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt; &lt;/dependency&gt;  &lt;!--
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -543,84 +639,48 @@ import org.springframework.scheduling.an
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/middle-component/">middle-component</a>
-            
-              <a href="/categories/java/middle-component/redis/">redis</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/" class="category-chain-item">middle-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/redis/" class="category-chain-item">redis</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/redis/">redis</a>
+              <a href="/tags/redis/">#redis</a>
             
-              <a href="/tags/spring/">spring</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/01/project-genesis-reply/" target="_blank">
-          <img src="/img/basic/linux-index.jpg" srcset="/img/loading.gif" lazyload alt="reply">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/06/01/project-genesis-reply/" target="_blank">
-          reply
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/06/01/project-genesis-reply/" target="_blank">
-          
-          
-            
-          
-          1.如何将教务系统信息导入系统？怎么保证这些信息的安全？我们采用Excel模板解析导入, 并使用apache的poi解析工具, 解析上传的数据并存入数据库
-
-数据库存储密码等信息采用sha256加密，保证信息安全。
-项目部署的服务器位于校大数据中心，使用内网访问，安全性高。外部人员需要使用内部人员提供的vpn账号才能使用。
-云数据库符合企业级安全标准，高效防御 SQL 注入、暴力破解等数据库攻击行
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-01 00:00" pubdate>
-              2020-06-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/genesis/">genesis</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/reply/">reply</a>
+              <a href="/tags/spring/">#spring</a>
             
           </div>
         
@@ -645,16 +705,12 @@ import org.springframework.scheduling.an
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/01/project-genesis-2/" target="_blank">
-          
-          
-            
-          
-          \1. 目标与思路   人工智能，知识图谱等前沿信息技术在教育中的应用，推动信息化教育进入高校，学科知识图谱将不断为智慧的教学提供知识功能，人工智能为智慧教育的发展提供了强有力的技术支持，推动人工智能与教育都应刻不容缓。
-\2. 传统教育   现阶段，智慧教育课堂教学仍是学校教育的主阵地，传统课堂教学过程中，教师讲授课程知识以知识点为基本元素，更多偏向将过于细琐和庞杂的知识点填鸭式的、照本宣科的讲
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/01/project-genesis-2/" target="_blank">
+        <div>
+          \1. 目标与思路   人工智能，知识图谱等前沿信息技术在教育中的应用，推动信息化教育进入高校，学科知识图谱将不断为智慧的教学提供知识功能，人工智能为智慧教育的发展提供了强有力的技术支持，推动人工智能与教育都应刻不容缓。 \2. 传统教育   现阶段，智慧教育课堂教学仍是学校教育的主阵地，传统课堂教学过程中，教师讲授课程知识以知识点为基本元素，更多偏向将过于细琐和庞杂的知识点填鸭式的、照本宣科的讲
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -666,18 +722,99 @@ import org.springframework.scheduling.an
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/genesis/">genesis</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/genesis/" class="category-chain-item">genesis</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%99%BA%E6%85%A7%E6%95%99%E5%AD%A6%E8%BE%85%E5%8A%A9%E7%B3%BB%E7%BB%9F/">智慧教学辅助系统</a>
+              <a href="/tags/%E6%99%BA%E6%85%A7%E6%95%99%E5%AD%A6%E8%BE%85%E5%8A%A9%E7%B3%BB%E7%BB%9F/">#智慧教学辅助系统</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/01/project-genesis-reply/" target="_blank">
+          <img src="/img/basic/linux-index.jpg" srcset="/img/loading.gif" lazyload alt="reply">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/01/project-genesis-reply/" target="_blank">
+          reply
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2020/06/01/project-genesis-reply/" target="_blank">
+        <div>
+          1.如何将教务系统信息导入系统？怎么保证这些信息的安全？我们采用Excel模板解析导入, 并使用apache的poi解析工具, 解析上传的数据并存入数据库  数据库存储密码等信息采用sha256加密，保证信息安全。 项目部署的服务器位于校大数据中心，使用内网访问，安全性高。外部人员需要使用内部人员提供的vpn账号才能使用。 云数据库符合企业级安全标准，高效防御 SQL 注入、暴力破解等数据库攻击行
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-01 00:00" pubdate>
+              2020-06-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/genesis/" class="category-chain-item">genesis</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/reply/">#reply</a>
             
           </div>
         
@@ -702,16 +839,12 @@ import org.springframework.scheduling.an
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/01/project-genesis-1/" target="_blank">
-          
-          
-            
-          
-          作品简介现阶段，智慧教育课堂教学仍是学校教育的主阵地，传统课堂教学过程中，教师讲授课程知识以知识点为基本元素，更多偏向将过于细琐和庞杂的知识点填鸭式的、照本宣科的讲授给大学生。
-我们开发的智慧教学辅助系统，利用知识图谱的构建与调整功能帮助教师了解学生在教学过程中对某一知识点的掌握情况，及时调整教学内容和教学方法，合理分配，重新组合知识点教学，利用知识点识别学生状态检测功能优化学生与老师的学习与授课
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/01/project-genesis-1/" target="_blank">
+        <div>
+          作品简介现阶段，智慧教育课堂教学仍是学校教育的主阵地，传统课堂教学过程中，教师讲授课程知识以知识点为基本元素，更多偏向将过于细琐和庞杂的知识点填鸭式的、照本宣科的讲授给大学生。 我们开发的智慧教学辅助系统，利用知识图谱的构建与调整功能帮助教师了解学生在教学过程中对某一知识点的掌握情况，及时调整教学内容和教学方法，合理分配，重新组合知识点教学，利用知识点识别学生状态检测功能优化学生与老师的学习与授课
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -723,18 +856,32 @@ import org.springframework.scheduling.an
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/genesis/">genesis</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/genesis/" class="category-chain-item">genesis</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%99%BA%E6%85%A7%E6%95%99%E5%AD%A6%E8%BE%85%E5%8A%A9%E7%B3%BB%E7%BB%9F/">智慧教学辅助系统</a>
+              <a href="/tags/%E6%99%BA%E6%85%A7%E6%95%99%E5%AD%A6%E8%BE%85%E5%8A%A9%E7%B3%BB%E7%BB%9F/">#智慧教学辅助系统</a>
             
           </div>
         
@@ -759,21 +906,12 @@ import org.springframework.scheduling.an
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/01/spring-aop/" target="_blank">
-          
-          
-            
-          
-          spring的aop与springboot整合   动态代理引入依赖&lt;dependency&gt;
-	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-	&lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;
-&lt;/dependency&gt;
-
-设置切点
-在类
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/06/01/spring-aop/" target="_blank">
+        <div>
+          spring的aop与springboot整合   动态代理引入依赖&lt;dependency&gt; 	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 	&lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt; &lt;/dependency&gt;  设置切点 在类
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -785,20 +923,39 @@ import org.springframework.scheduling.an
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/spring/">spring</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/spring/" class="category-chain-item">spring</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/aop/">aop</a>
+              <a href="/tags/aop/">#aop</a>
             
           </div>
         
@@ -835,7 +992,7 @@ import org.springframework.scheduling.an
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -843,14 +1000,14 @@ import org.springframework.scheduling.an
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -862,43 +1019,45 @@ import org.springframework.scheduling.an
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -917,10 +1076,22 @@ import org.springframework.scheduling.an
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -930,47 +1101,24 @@ import org.springframework.scheduling.an
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

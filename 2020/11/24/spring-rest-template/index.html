@@ -13,27 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="掌握 Spring 之 RestTemplate前言在 Java 服务端开发领域里，Spring 是绕不开的话题，尤其是现在微服务概念盛行，Spring Boot 的出现更是给 Spring 注入了新的活力，除此之外还有 Spring Cloud，这些框架让 Spring 技术体系更加丰富。Spring 从 2014 年的 1.0.0 版本迭代到 现在的 5.2.0 M1 版本，紧随着 Java">
+  
+    <meta name="description" content="掌握 Spring 之 RestTemplate前言在 Java 服务端开发领域里，Spring 是绕不开的话题，尤其是现在微服务概念盛行，Spring Boot 的出现更是给 Spring 注入了新的活力，除此之外还有 Spring Cloud，这些框架让 Spring 技术体系更加丰富。Spring 从 2014 年的 1.0.0 版本迭代到 现在的 5.2.0 M1 版本，紧随着 Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring RestTemplate">
 <meta property="og:url" content="https://lunasaw.github.io/2020/11/24/spring-rest-template/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="掌握 Spring 之 RestTemplate前言在 Java 服务端开发领域里，Spring 是绕不开的话题，尤其是现在微服务概念盛行，Spring Boot 的出现更是给 Spring 注入了新的活力，除此之外还有 Spring Cloud，这些框架让 Spring 技术体系更加丰富。Spring 从 2014 年的 1.0.0 版本迭代到 现在的 5.2.0 M1 版本，紧随着 Java">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lunasaw.github.io/img/springrest/1.jpg">
-<meta property="og:image" content="https://lunasaw.github.io/img/springrest/2.jpg">
-<meta property="og:image" content="https://lunasaw.github.io/img/springrest/3.jpg">
-<meta property="og:image" content="https://lunasaw.github.io/img/springrest/4.jpg">
-<meta property="og:image" content="https://lunasaw.github.io/img/springrest/5.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/img/basic/spring-index.jpg">
 <meta property="article:published_time" content="2020-11-23T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.995Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="RestTemplate">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lunasaw.github.io/img/springrest/1.jpg">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/basic/spring-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -42,25 +42,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -69,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -106,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -118,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -130,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -142,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -154,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -166,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -174,14 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -189,70 +206,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/basic/spring-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="spring RestTemplate">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-24 00:00" pubdate>
-        2020年11月24日 凌晨
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      17k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      54 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/basic/spring-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="spring RestTemplate"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-24 00:00" pubdate>
+          2020年11月24日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          17k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          143 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -261,22 +292,31 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">spring RestTemplate</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h1 id="掌握-Spring-之-RestTemplate"><a href="#掌握-Spring-之-RestTemplate" class="headerlink" title="掌握 Spring 之 RestTemplate"></a>掌握 Spring 之 RestTemplate</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 Java 服务端开发领域里，Spring 是绕不开的话题，尤其是现在微服务概念盛行，Spring Boot 的出现更是给 Spring 注入了新的活力，除此之外还有 Spring Cloud，这些框架让 Spring 技术体系更加丰富。Spring 从 2014 年的 1.0.0 版本迭代到 现在的 5.2.0 M1 版本，紧随着 Java 语言发展，不断引入新的特性和功能。本文关注的是 Spring 框架中 <code>RestTemplate</code> 内容，可以减少我们平时开发常使用的 <code>HttpClient</code> API 依赖。文章所涉及的示例 Demo 详见Github 地址：<a target="_blank" rel="noopener" href="https://github.com/wrcj12138aaa/resttemplate/tree/master">Resttemplate demo</a> 。感谢小七同学的认真校对，如果有任何技术问题或者文章纰漏，欢迎留言联系，一起交流探讨 😁。</p>
+            
+              <div class="markdown-body">
+                
+                <h1 id="掌握-Spring-之-RestTemplate"><a href="#掌握-Spring-之-RestTemplate" class="headerlink" title="掌握 Spring 之 RestTemplate"></a>掌握 Spring 之 RestTemplate</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 Java 服务端开发领域里，Spring 是绕不开的话题，尤其是现在微服务概念盛行，Spring Boot 的出现更是给 Spring 注入了新的活力，除此之外还有 Spring Cloud，这些框架让 Spring 技术体系更加丰富。Spring 从 2014 年的 1.0.0 版本迭代到 现在的 5.2.0 M1 版本，紧随着 Java 语言发展，不断引入新的特性和功能。本文关注的是 Spring 框架中 <code>RestTemplate</code> 内容，可以减少我们平时开发常使用的 <code>HttpClient</code> API 依赖。文章所涉及的示例 Demo 详见Github 地址：<a target="_blank" rel="noopener" href="https://github.com/wrcj12138aaa/resttemplate/tree/master">Resttemplate demo</a> 。感谢小七同学的认真校对，如果有任何技术问题或者文章纰漏，欢迎留言联系，一起交流探讨 😁。</p>
 <h2 id="认识-RestTemplate"><a href="#认识-RestTemplate" class="headerlink" title="认识 RestTemplate"></a>认识 <code>RestTemplate</code></h2><p>首先在我们学习使用 <code>RestTemplate</code> 之前，先认识下这个类，来看 Spring 官方怎么描述的。 从官方 API 文档 <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html">RestTemplate javadoc</a> 可以找该类的描述如下：</p>
 <blockquote>
 <p>Synchronous client to perform HTTP requests, exposing a simple, template method API over underlying HTTP client libraries such as the JDK HttpURLConnection, Apache HttpComponents, and others. The RestTemplate offers templates for common scenarios by HTTP method, in addition to the generalized exchange and execute methods that support of less frequent cases.</p>
@@ -338,7 +378,7 @@
 </tr>
 </tbody></table>
 <p>看到那么多方法也记不全，为了更好理解，可以简单看下 <code>RestTemplate</code> 的类层级体系，通过官方源代码就能看到:</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * Interface specifying a basic set of RESTful operations.</span>
 <span class="hljs-comment"> * Implemented by &#123;<span class="hljs-doctag">@link</span> RestTemplate&#125;. Not often used directly, but a useful</span>
 <span class="hljs-comment"> * option to enhance testability, as it can easily be mocked or stubbed.</span>
@@ -367,7 +407,7 @@
 <p><img src="/img/springrest/3.jpg" srcset="/img/loading.gif" lazyload alt="项目骨架"></p>
 <p>项目中 <code>ResttemplateApplication.java</code> 为整个程序的引导类，用于启动项目。</p>
 <h3 id="2-编写请求控制器类-ProductController"><a href="#2-编写请求控制器类-ProductController" class="headerlink" title="2. 编写请求控制器类 ProductController"></a>2. 编写请求控制器类 ProductController</h3><p>首先为了能够使用 <code>RestTemplate</code> 发送多种方式 HTTP 请求，先本地构建接受 HTTP 请求的产品控制器，新建包 <code>com.one.learn.resttemplate.controller</code>,新建产品 Controller <code>ProductController</code> , 代码如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/product&quot;)</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/product&quot;)</span>
 <span class="hljs-meta">@RestController</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductController</span> </span>&#123;
 
@@ -422,7 +462,7 @@
 </code></pre></div>
 
 <p>在<code>Product</code> 控制器中涉及的实体类 <code>Product</code> 创建在 <code>com.one.learn.resttemplate.bean</code> 包下，代码如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Product</span> </span>&#123;
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Product</span> </span>&#123;
     <span class="hljs-keyword">private</span> Integer id;
     <span class="hljs-keyword">private</span> String name;
     <span class="hljs-keyword">private</span> BigDecimal price;
@@ -454,7 +494,7 @@
 <p>我们可以简单测试一下，打开浏览器，访问 <code>http://localhost:8080/product/get_product1</code>，会看到如图所示的结果：</p>
 <p><img src="/img/springrest/5.jpg" srcset="/img/loading.gif" lazyload alt="项目访问"></p>
 <h3 id="3-编写测试类用-RestTemplate-发送-HTTP-请求"><a href="#3-编写测试类用-RestTemplate-发送-HTTP-请求" class="headerlink" title="3. 编写测试类用 RestTemplate 发送 HTTP 请求"></a>3. 编写测试类用 RestTemplate 发送 HTTP 请求</h3><p>有了 Web 服务，接下来该使用 <code>RestTemplate</code> 来发送请求并处理响应了。我们在 <code>test</code> 文件下新建一个测试类 <code>com.one.learn.resttemplate.RestTemplateTests</code>,代码如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RestTemplateTests</span> </span>&#123;
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RestTemplateTests</span> </span>&#123;
     RestTemplate restTemplate = <span class="hljs-keyword">null</span>;
 
     <span class="hljs-meta">@Before</span>
@@ -467,7 +507,7 @@
 
 <p>这里我们通过编写测试方法来用 <code>RestTemplate</code> API 实现对 <code>Product</code> 控制器各个接口的请求。</p>
 <h4 id="GET-请求"><a href="#GET-请求" class="headerlink" title="GET 请求"></a>GET 请求</h4><p>我们先最简单的下手，尝试用 <code>RestTemplate</code> 访问请求路径为 <code>product/get_product1</code>, 一个不带任何参数 的 GET 请求，代码如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testGet_product1</span><span class="hljs-params">()</span> </span>&#123;
    String url = <span class="hljs-string">&quot;http://localhost:8080/product/get_product1&quot;</span>;
    <span class="hljs-comment">//方式一：GET 方式获取 JSON 串数据</span>
@@ -489,7 +529,7 @@
 </code></pre></div>
 
 <p>首先看下运行测试方法 <code>testGet_product1</code> 后控制台的输出日志：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java">...
+<div class="code-wrapper"><pre><code class="hljs java">...
 get_product1返回结果：&#123;<span class="hljs-string">&quot;id&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;ProductA&quot;</span>,<span class="hljs-string">&quot;price&quot;</span>:<span class="hljs-number">6666.0</span>&#125;
 ...
 get_product1返回结果：Product&#123;id=<span class="hljs-string">&#x27;1&#x27;</span>, name=<span class="hljs-string">&#x27;ProductA&#x27;</span>, price=<span class="hljs-string">&#x27;6666.0&#x27;</span>&#125;
@@ -499,7 +539,7 @@ get_product1返回结果：&lt;<span class="hljs-number">200</span>,Product&#123
 </code></pre></div>
 
 <p>可以看到 <code>testGet_product1</code> 请求都是成功响应并获取到了数据，从上面代码上看是不是很简单。现在来点略复杂的请求方式，使用 <code>RestTemplate</code> API 中 <code>exchange</code> 和 <code>execute</code> 方法发送 GET 请求，可以更加细粒度控制请求的行为，如 <code>Header</code> 信息，数据处理方式等,同样在 <code>testGet_product1</code> 方法里添加代码如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testGet_product1</span><span class="hljs-params">()</span> </span>&#123;
     String url = <span class="hljs-string">&quot;http://localhost:8080/product/get_product1&quot;</span>;
     <span class="hljs-comment">//....</span>
@@ -528,7 +568,7 @@ get_product1返回结果：&lt;<span class="hljs-number">200</span>,Product&#123
 </code></pre></div>
 
 <p>同样再运行测试方法 <code>testGet_product1</code> 后控制台的输出日志：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java">...
+<div class="code-wrapper"><pre><code class="hljs java">...
 get_product1返回结果：&lt;<span class="hljs-number">200</span>,Product&#123;id=<span class="hljs-string">&#x27;1&#x27;</span>, name=<span class="hljs-string">&#x27;ProductA&#x27;</span>, price=<span class="hljs-string">&#x27;6666.0&#x27;</span>&#125;,[Content-Type:<span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>, Transfer-Encoding:<span class="hljs-string">&quot;chunked&quot;</span>, Date:<span class="hljs-string">&quot;Thu, 09 May 2019 16:00:22 GMT&quot;</span>]&gt;
 ...
 get_product1返回结果：&#123;<span class="hljs-string">&quot;id&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;ProductA&quot;</span>,<span class="hljs-string">&quot;price&quot;</span>:<span class="hljs-number">6666.0</span>&#125;
@@ -537,7 +577,7 @@ get_product1返回结果：&#123;<span class="hljs-string">&quot;id&quot;</span>
 
 <p>结果也都是正常返回，说明执行的请求都是正确的。</p>
 <p>现在来尝试执行带有参数的 GET 请求，同样的方式编写一个新的测试方法，实现代码如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testGet_product2</span><span class="hljs-params">()</span> </span>&#123;
     String url = <span class="hljs-string">&quot;http://localhost:8080/product/get_product2/id=&#123;id&#125;&quot;</span>;
 	
@@ -557,7 +597,7 @@ get_product1返回结果：&#123;<span class="hljs-string">&quot;id&quot;</span>
 </code></pre></div>
 
 <p>正常运行结果如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java">...
+<div class="code-wrapper"><pre><code class="hljs java">...
 &lt;<span class="hljs-number">200</span>,Product&#123;id=<span class="hljs-string">&#x27;101&#x27;</span>, name=<span class="hljs-string">&#x27;ProductC&#x27;</span>, price=<span class="hljs-string">&#x27;6666.0&#x27;</span>&#125;,[Content-Type:<span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>, Transfer-Encoding:<span class="hljs-string">&quot;chunked&quot;</span>, Date:<span class="hljs-string">&quot;Fri, 10 May 2019 14:53:41 GMT&quot;</span>]&gt;
 ...
 Product&#123;id=<span class="hljs-string">&#x27;101&#x27;</span>, name=<span class="hljs-string">&#x27;ProductC&#x27;</span>, price=<span class="hljs-string">&#x27;6666.0&#x27;</span>&#125;
@@ -567,7 +607,7 @@ Product&#123;id=<span class="hljs-string">&#x27;101&#x27;</span>, name=<span cla
 <h4 id="POST-请求"><a href="#POST-请求" class="headerlink" title="POST 请求"></a>POST 请求</h4><p>了解完如何用 <code>RestTemplate</code> API 发送 GET 请求后，再看下平时也很常见的 POST 请求如何使用。由于 POST 请求数据的内容类型 <code>Content-Type</code> 不同，发送 POST 请求情况相对就多了，我们这里以常用的 <code>application/x-www-form-urlencoded</code> 和 <code>application/json</code> 这两种内容类型为例子。</p>
 <ul>
 <li><p>发送 <code>Content-Type</code> 为 <code>application/x-www-form-urlencoded</code> 的 POST 请求：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testPost_product1</span><span class="hljs-params">()</span> </span>&#123;
     String url = <span class="hljs-string">&quot;http://localhost:8080/product/post_product1&quot;</span>;
 	Product product = <span class="hljs-keyword">new</span> Product(<span class="hljs-number">201</span>, <span class="hljs-string">&quot;Macbook&quot;</span>, BigDecimal.valueOf(<span class="hljs-number">10000</span>));
@@ -595,13 +635,13 @@ Product&#123;id=<span class="hljs-string">&#x27;101&#x27;</span>, name=<span cla
 </code></pre></div>
 
 <p>对应的输出日志如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java">...
+<div class="code-wrapper"><pre><code class="hljs java">...
 post_product1: &lt;<span class="hljs-number">200</span>,Product&#123;id=<span class="hljs-string">&#x27;201&#x27;</span>, name=<span class="hljs-string">&#x27;Macbook&#x27;</span>, price=<span class="hljs-string">&#x27;10000&#x27;</span>&#125;,[Content-Type:<span class="hljs-string">&quot;text/plain;charset=UTF-8&quot;</span>, Content-Length:<span class="hljs-string">&quot;48&quot;</span>, Date:<span class="hljs-string">&quot;Fri, 10 May 2019 16:07:43 GMT&quot;</span>]&gt;
 ...
 post_product1： &lt;<span class="hljs-number">200</span>,Product&#123;id=<span class="hljs-string">&#x27;201&#x27;</span>, name=<span class="hljs-string">&#x27;Macbook&#x27;</span>, price=<span class="hljs-string">&#x27;10000&#x27;</span>&#125;,[Content-Type:<span class="hljs-string">&quot;text/plain;charset=UTF-8&quot;</span>, Content-Length:<span class="hljs-string">&quot;48&quot;</span>, Date:<span class="hljs-string">&quot;Fri, 10 May 2019 16:07:43 GMT&quot;</span>]&gt;
 </code></pre></div></li>
 <li><p>发送 <code>Content-Type</code> 为 <code>application/json</code> 的 POST 请求：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testPost_product2</span><span class="hljs-params">()</span> </span>&#123;
     String url = <span class="hljs-string">&quot;http://localhost:8080/product/post_product2&quot;</span>;
     
@@ -619,13 +659,13 @@ post_product1： &lt;<span class="hljs-number">200</span>,Product&#123;id=<span 
 </code></pre></div>
 
 <p>验证的输出日志如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java">···
+<div class="code-wrapper"><pre><code class="hljs java">···
 post_product2: &lt;<span class="hljs-number">200</span>,Product&#123;id=<span class="hljs-string">&#x27;2&#x27;</span>, name=<span class="hljs-string">&#x27;Macbook&#x27;</span>, price=<span class="hljs-string">&#x27;10000&#x27;</span>&#125;,[Content-Type:<span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>, Content-Length:<span class="hljs-string">&quot;46&quot;</span>, Date:<span class="hljs-string">&quot;Fri, 10 May 2019 16:09:11 GMT&quot;</span>]&gt;
 ···
 </code></pre></div></li>
 </ul>
 <h4 id="DELETE-请求-和-PUT-请求"><a href="#DELETE-请求-和-PUT-请求" class="headerlink" title="DELETE 请求 和 PUT 请求"></a>DELETE 请求 和 PUT 请求</h4><p>DELETE 请求和 PUT 请求属于 RESTful 请求方式的两种，但通常不会被使用到，这里也只是简单演示下，具体代码如下：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// DELETE 方法请求</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// DELETE 方法请求</span>
 <span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testDelete</span><span class="hljs-params">()</span> </span>&#123;
    String url = <span class="hljs-string">&quot;http://localhost:8080/product/delete/&#123;id&#125;&quot;</span>;
@@ -647,7 +687,7 @@ post_product2: &lt;<span class="hljs-number">200</span>,Product&#123;id=<span cl
 </code></pre></div>
 
 <h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><p>现在我们再试下如何使用 <code>RestTemplate</code> API 进行文件上传,也比较简单，首先看下实现代码:</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testUploadFile</span><span class="hljs-params">()</span> </span>&#123;
     String url = <span class="hljs-string">&quot;http://localhost:8080/product/upload&quot;</span>;
     MultiValueMap&lt;String, Object&gt; body = <span class="hljs-keyword">new</span> LinkedMultiValueMap&lt;&gt;();
@@ -664,7 +704,7 @@ post_product2: &lt;<span class="hljs-number">200</span>,Product&#123;id=<span cl
 </code></pre></div>
 
 <p>如果需要上传文件类型数据，就只能使用 POST 请求，并且内容类型为 <code>multipart/form-data</code>,需要手动给 <code>Header</code> 指定这个 <code>Content-Type</code>。而需要上传的文件可以用 <code>FileSystemResource</code> 对象封装，表示了一个文件资源，同时服务端需要用 <code>MultipartRequest</code> 对象来获取文件数据。结合已运行的 Web 服务，运行上述测试方法即可得到下面日志输出:</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java">...
+<div class="code-wrapper"><pre><code class="hljs java">...
 upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,[Content-Type:<span class="hljs-string">&quot;text/plain;charset=UTF-8&quot;</span>, Content-Length:<span class="hljs-string">&quot;30&quot;</span>, Date:<span class="hljs-string">&quot;Fri, 10 May 2019 17:00:45 GMT&quot;</span>]&gt;
 ...
 </code></pre></div>
@@ -681,11 +721,11 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
 </blockquote>
 <p>从上面可以看出 <code>RestTemplate</code> 默认使用 JDK 原生的 <code>java.net.HttpURLConnection</code> 执行请求。而除此之外，Spring 还封装了 Apache HttpComponents， Netty， OkHttp 三种请求库，第一个就是我们平常用的 <code>HttpClient</code> API 相关的库，而 <a target="_blank" rel="noopener" href="https://netty.io/">Netty</a> 则是一个性能高的NIO 请求处理网络库，<a target="_blank" rel="noopener" href="https://square.github.io/okhttp">OkHttp</a> 为功能丰富且高效的网络框架，多用于 Android 程序。</p>
 <p>而我们上文采用默认的构造器方法创建的 <code>RestTemplate</code> 实例，即采用了 JDK 原生的网络 API。想要切换，只需要在构造方法中传入特定 <code>ClientHttpRequestFactory</code> 实现类即可,如下代码：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs haxe">RestTemplate template = <span class="hljs-keyword">new</span> <span class="hljs-type">RestTemplate</span>(<span class="hljs-keyword">new</span> <span class="hljs-type">HttpComponentsClientHttpRequestFactory</span>());
+<div class="code-wrapper"><pre><code class="hljs haxe">RestTemplate template = <span class="hljs-keyword">new</span> <span class="hljs-type">RestTemplate</span>(<span class="hljs-keyword">new</span> <span class="hljs-type">HttpComponentsClientHttpRequestFactory</span>());
 </code></pre></div>
 
 <p>我们查看 <code>RestTemplate</code> 源码找不到默认采用JDK <code>HttpURLConnection</code> API 的代码，那就根据前文给出 <code>RestTemplate</code> 类层次图向上查找，可以在父类 <code>HttpAccessor</code> 上能找到如下代码：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpAccessor</span> </span>&#123;
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpAccessor</span> </span>&#123;
 	<span class="hljs-comment">// ...</span>
 	<span class="hljs-keyword">private</span> ClientHttpRequestFactory requestFactory = <span class="hljs-keyword">new</span> SimpleClientHttpRequestFactory();
 	<span class="hljs-comment">// ...</span>
@@ -694,7 +734,7 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
 
 <p>而 Spring 对工厂类 <code>SimpleClientHttpRequestFactory</code> 描述为: <code>implementation that uses standard JDK facilities</code>， 也正说明了默认构造 <code>RestTemplate</code> 实例的行为都会直接使用 JDK 网络 API。</p>
 <h3 id="请求超时设置"><a href="#请求超时设置" class="headerlink" title="请求超时设置"></a>请求超时设置</h3><p>通常我们会对 HTTP 请求类进行执行行为的定制，例如调用超时时间设置，连接时长的限制等，而采用默认的 <code>HttpURLConnection</code> 默认的配置时， 从 <code>SimpleClientHttpRequestFactory</code> 源码类可以看到是没有超时限制，也就意味着无限等待请求响应：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// RestTemplate 默认超时设置</span>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// RestTemplate 默认超时设置</span>
 ...
 <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> connectTimeout = -<span class="hljs-number">1</span>;
 <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> readTimeout = -<span class="hljs-number">1</span>;
@@ -702,7 +742,7 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
 </code></pre></div>
 
 <p>那么我们该如何调整超时时间,可以参考如下代码：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java">RestTemplate customRestTemplate = <span class="hljs-keyword">new</span> RestTemplate(getClientHttpRequestFactory());
+<div class="code-wrapper"><pre><code class="hljs java">RestTemplate customRestTemplate = <span class="hljs-keyword">new</span> RestTemplate(getClientHttpRequestFactory());
 
 <span class="hljs-function"><span class="hljs-keyword">private</span> SimpleClientHttpRequestFactory <span class="hljs-title">getClientHttpRequestFactory</span><span class="hljs-params">()</span> </span>&#123;
     SimpleClientHttpRequestFactory clientHttpRequestFactory
@@ -719,54 +759,115 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
 <p>如果要调整 <code>HttpComponentsClient</code> 的超时设置，可以参考文章<a target="_blank" rel="noopener" href="https://howtodoinjava.com/spring-boot2/resttemplate-timeout-example/">resttemplate-timeout-example</a> 。当然除了java设置超时时间之外，还有更多参数进行定制，这里就不一一列举，可以参考文章 <a target="_blank" rel="noopener" href="https://howtodoinjava.com/spring-restful/resttemplate-httpclient-java-config/">resttemplate-httpclient-java-config</a> 进一步学习。</p>
 <p>到这里我们对 <code>RestTemplate</code> 的学习告一段落，如果有兴趣可以进一步研究下相关源码，有机会尝试使起来吧。😁</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/java/">java</a>
-                    
-                      <a class="hover-with-bg" href="/categories/java/spring/">spring</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/RestTemplate/">RestTemplate</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/spring/" class="category-chain-item">spring</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/RestTemplate/">#RestTemplate</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>spring RestTemplate</div>
+      <div>https://lunasaw.github.io/2020/11/24/spring-rest-template/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2020年11月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/11/28/other-logical-operations/">
+                      <a href="/2020/11/28/other-logical-operations/" title="逻辑运算符">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">逻辑运算符</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/11/04/mybatis-autosql/">
-                        <span class="hidden-mobile">mybatis动态sql</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/2020/11/04/mybatis-princpal/" title="mybatis原理">
+                        <span class="hidden-mobile">mybatis原理</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -776,12 +877,10 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -795,7 +894,9 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -803,26 +904,63 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -844,7 +982,7 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -852,14 +990,14 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -871,43 +1009,45 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -926,10 +1066,22 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -939,60 +1091,119 @@ upload: &lt;<span class="hljs-number">200</span>,upload success filename: b.txt,
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

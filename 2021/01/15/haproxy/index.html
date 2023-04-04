@@ -13,23 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="HAProxyHAProxy介绍HAProxy: 是法国人Willy Tarreau开发的一个开源软件，是一款应对客户端10000以上的同时连接的高性能的TCP和 HTTP负载均衡器。其功能是用来提供基于cookie的持久性， 基于内容的交换，过载保护的高级流量管制，自动故障切换 ，以正则表达式为基础的标题控制运行时间，基于Web的报表，高级日志记录以帮助排除故‹@障的应用或网络及其他功能。 相关">
+  
+    <meta name="description" content="HAProxyHAProxy介绍HAProxy: 是法国人Willy Tarreau开发的一个开源软件，是一款应对客户端10000以上的同时连接的高性能的TCP和 HTTP负载均衡器。其功能是用来提供基于cookie的持久性， 基于内容的交换，过载保护的高级流量管制，自动故障切换 ，以正则表达式为基础的标题控制运行时间，基于Web的报表，高级日志记录以帮助排除故‹@障的应用或网络及其他功能。 相关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="haproxy">
 <meta property="og:url" content="https://lunasaw.github.io/2021/01/15/haproxy/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="HAProxyHAProxy介绍HAProxy: 是法国人Willy Tarreau开发的一个开源软件，是一款应对客户端10000以上的同时连接的高性能的TCP和 HTTP负载均衡器。其功能是用来提供基于cookie的持久性， 基于内容的交换，过载保护的高级流量管制，自动故障切换 ，以正则表达式为基础的标题控制运行时间，基于Web的报表，高级日志记录以帮助排除故‹@障的应用或网络及其他功能。 相关">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2021/01/29/xjDWm63snTL48fG.png">
+<meta property="og:image" content="https://lunasaw.github.io/img/basic/haproxy-index.jpg">
 <meta property="article:published_time" content="2021-01-14T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.984Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="haproxy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i.loli.net/2021/01/29/xjDWm63snTL48fG.png">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/basic/haproxy-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -38,25 +42,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -65,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -102,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -114,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -126,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -138,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -150,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -162,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -170,14 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -185,70 +206,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/basic/haproxy-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="haproxy">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-01-15 00:00" pubdate>
-        2021年1月15日 凌晨
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      12k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      38 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/basic/haproxy-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="haproxy"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-01-15 00:00" pubdate>
+          2021年1月15日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          103 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -257,22 +292,31 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">haproxy</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h2 id="HAProxy"><a href="#HAProxy" class="headerlink" title="HAProxy"></a>HAProxy</h2><h2 id="HAProxy介绍"><a href="#HAProxy介绍" class="headerlink" title="HAProxy介绍"></a>HAProxy介绍</h2><p>HAProxy: 是法国人Willy Tarreau开发的一个开源软件，是一款应对客户端10000以上的同时连接的高性能的TCP和 HTTP负载均衡器。其功能是用来提供基于cookie的持久性， 基于内容的交换，过载保护的高级流量管制，自动故障切换 ，以正则表达式为基础的标题控制运行时间，基于Web的报表，高级日志记录以帮助排除故‹@障的应用或网络及其他功能。</p>
+            
+              <div class="markdown-body">
+                
+                <h2 id="HAProxy"><a href="#HAProxy" class="headerlink" title="HAProxy"></a>HAProxy</h2><h2 id="HAProxy介绍"><a href="#HAProxy介绍" class="headerlink" title="HAProxy介绍"></a>HAProxy介绍</h2><p>HAProxy: 是法国人Willy Tarreau开发的一个开源软件，是一款应对客户端10000以上的同时连接的高性能的TCP和 HTTP负载均衡器。其功能是用来提供基于cookie的持久性， 基于内容的交换，过载保护的高级流量管制，自动故障切换 ，以正则表达式为基础的标题控制运行时间，基于Web的报表，高级日志记录以帮助排除故‹@障的应用或网络及其他功能。</p>
 <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="代理的作用"><a href="#代理的作用" class="headerlink" title="代理的作用"></a>代理的作用</h3><ol>
 <li>正向代理，反向代理</li>
 <li>代理服务器，可以提供缓存功能加速客户端访问，同时可以对缓存数据进行有效性检查</li>
@@ -298,7 +342,7 @@
 <li><p>首先在后端部署两台http服务</p>
 </li>
 <li><p>编辑haproxy配置文件/etc/haproxy/haproxy.cfg<br>默认设置不做修改</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">[root@CentOS6 ~]<span class="hljs-comment"># vim /etc/haproxy/haproxy.cfg </span>
+<div class="code-wrapper"><pre><code class="hljs bash">[root@CentOS6 ~]<span class="hljs-comment"># vim /etc/haproxy/haproxy.cfg </span>
 frontend  main *:80     <span class="hljs-comment">#设置监听ip：端口</span>
 default_backend         websrvs     <span class="hljs-comment">#调用后端RS组名</span>
 backend websrvs
@@ -306,7 +350,7 @@ balance     roundrobin      <span class="hljs-comment">#轮询算法</span>
 server      web1 192.168.45.11:80 check
 server      web2 192.168.45.12:80 check</code></pre></div></li>
 </ol>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="global配置参数："><a href="#global配置参数：" class="headerlink" title="global配置参数："></a>global配置参数：</h3><div class="hljs code-wrapper"><pre><code class="hljs bash">global      <span class="hljs-comment"># 全局参数的设置</span>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="global配置参数："><a href="#global配置参数：" class="headerlink" title="global配置参数："></a>global配置参数：</h3><div class="code-wrapper"><pre><code class="hljs bash">global      <span class="hljs-comment"># 全局参数的设置</span>
 <span class="hljs-built_in">log</span>         127.0.0.1   local2                      
 <span class="hljs-comment"># log语法：log &lt;address_1&gt;[max_level_1] </span>
 <span class="hljs-comment"># 全局的日志配置，使用log关键字，指定使用127.0.0.1上的syslog服务中的local0日志设备，记录日志等级为info的日志</span>
@@ -319,7 +363,7 @@ daemon                              <span class="hljs-comment">#以守护进程�
 stats socket /var/lib/haproxy/stats <span class="hljs-comment">#基于本地的文件传输</span></code></pre></div>
 
 <p>实现日志记录：<br>haproxy配置文件中默认定义了log 127.0.0.1 local2 说明日志将被记录在本机的local2设施中。<br>编辑rsyslog配置文件：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">[root@CentOS6 ~]<span class="hljs-comment">#vim /etc/rsyslog.conf</span>
+<div class="code-wrapper"><pre><code class="hljs bash">[root@CentOS6 ~]<span class="hljs-comment">#vim /etc/rsyslog.conf</span>
 <span class="hljs-comment"># Provides UDP syslog reception</span>
 <span class="hljs-variable">$ModLoad</span> imudp      <span class="hljs-comment">#取消注释</span>
 <span class="hljs-variable">$UDPServerRun</span> 514   <span class="hljs-comment">#取消注释</span>
@@ -335,7 +379,7 @@ local2.*            /var/<span class="hljs-built_in">log</span>/haproxy.log
 <li>listen <name></li>
 </ul>
 <p>Frontend段：指定接收客户端连接侦听套接字设置<br>Backend段：指定将连接请求转发至后端服务器的相关设置<br>Listen段：指定完整的前后端设置，只对 TCP 有效<br>proxy 名称：使用字母 数字 - _ . : 并区分字符大小写</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">mode        http             
+<div class="code-wrapper"><pre><code class="hljs bash">mode        http             
 <span class="hljs-comment">#默认的模式mode &#123; tcp|http|health &#125;，tcp是4层，http是7层，health只会返回OK</span>
 <span class="hljs-built_in">log</span>         global        
 <span class="hljs-comment">#应用全局的日志配置</span>
@@ -385,18 +429,18 @@ server  web03 172.31.2.35:80  check inter 2000 fall 3 weight 30              <sp
 <p>first：根据服务器在列表中的位置，自上而下进行调度；前面服务器的连接数达到上限，新请求才会分配给下一台服务</p>
 <p>source：源地址hash，新连接先按权重分配，后续连接按source分配请求<br>动静态取决于hash type<br>hash-type：哈希算法<br>hash-type <method> <function> <modifier><br>method:<br>map-based：除权取余法，哈希数据结构是静态数组（不支持权重动态调整）<br>consistent：一致性哈希，哈希数据结构是一棵树 （支持权重动态调整）<br><function> : 哈希函数<br>sdbm djb2 wt6</p>
 <p>uri：<br>对URI的左半部分或整个uri做hash计算，并除以服务器总权重取模，以后派发至某挑出的服务器,适用于后端缓存服务器<br>动静态取决于hash type</p>
-<div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">hash</span>-<span class="hljs-built_in">type</span>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">hash</span>-<span class="hljs-built_in">type</span>
     <span class="hljs-built_in">map</span>-based
     consistent</code></pre></div>
 
 <p><scheme>://<user>:<password>@<host>:<port>/<path> ;<params>?<query>#<frag><br>左半部分：/<path>;<params><br>整个uri：/<path>;<params>?<query>#<frag></p>
 <p>url_param：<br>对用户请求的uri听<params>部分中的参数的值作hash计算， 并由服务器总权重相除以后派发至某挑出的服务器；通常用于追踪用户，以确保来自同一个用户的请求始终发往同一个Backend Server<br>动静态取决于hash type</p>
-<div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">hash</span>-<span class="hljs-built_in">type</span>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">hash</span>-<span class="hljs-built_in">type</span>
     <span class="hljs-built_in">map</span>-based
     consistent</code></pre></div>
 
 <p>hdr(<name>)：根据请求报文中指定的header（如use_agent,referer,hostname）将该hesder做hash计算进行调度<br>动静态取决于hash type</p>
-<div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">hash</span>-<span class="hljs-built_in">type</span>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">hash</span>-<span class="hljs-built_in">type</span>
     <span class="hljs-built_in">map</span>-based
     consistent</code></pre></div>
 
@@ -409,7 +453,7 @@ server  web03 172.31.2.35:80  check inter 2000 fall 3 weight 30              <sp
 <address>：服务器地址，支持使用主机名
 
 <p>[:[port]]：端口映射；省略时，表示同bind中绑定的端口</p>
-<p>[param*]：参数<br>check：对当前server做健康状态检测，只用于四层检测<br>注意：httpchk，“smtpchk”, “mysql-check”, “pgsql-check” and “sslhello-chk” 用于定义应用层检测方法<br>addr ：检测时使用的IP地址<br>port ：针对此端口进行检测<br>inter <delay>：连续两次检测之间的时间间隔，默认为2000ms<br>rise <count>：连续多少次检测结果为“成功”才标记服务器为可用 ；默认为2<br>fall <count>：连续多少次检测结果为“失败”才标记服务器为不可 用；默认为3<br>cookie <value>：为当前server指定cookie值，实现基于cookie的会话黏性<br>disabled：标记为不可用<br>redir <div class="hljs code-wrapper"><prefix>：将发往此server的所有GET和HEAD类的请求重定向至指 定的URL<br>weight <weight>：权重，默认为1<br>maxconn <maxconn>：当前server的最大并发连接数<br>backlog <backlog>：当server的连接数达到上限后的后援队列长度<br>backup：设定当前server为备用服务器</p>
+<p>[param*]：参数<br>check：对当前server做健康状态检测，只用于四层检测<br>注意：httpchk，“smtpchk”, “mysql-check”, “pgsql-check” and “sslhello-chk” 用于定义应用层检测方法<br>addr ：检测时使用的IP地址<br>port ：针对此端口进行检测<br>inter <delay>：连续两次检测之间的时间间隔，默认为2000ms<br>rise <count>：连续多少次检测结果为“成功”才标记服务器为可用 ；默认为2<br>fall <count>：连续多少次检测结果为“失败”才标记服务器为不可 用；默认为3<br>cookie <value>：为当前server指定cookie值，实现基于cookie的会话黏性<br>disabled：标记为不可用<br>redir <div class="code-wrapper"><prefix>：将发往此server的所有GET和HEAD类的请求重定向至指 定的URL<br>weight <weight>：权重，默认为1<br>maxconn <maxconn>：当前server的最大并发连接数<br>backlog <backlog>：当server的连接数达到上限后的后援队列长度<br>backup：设定当前server为备用服务器</p>
 <p>default-server [param*] 为backend中的各server设定默认选项</p>
 <h3 id="bind配置"><a href="#bind配置" class="headerlink" title="bind配置"></a>bind配置</h3><p>bind：指定一个或多个前端侦听地址和端口<br>只用于frountend配置段和listen配置段<br>bind [<address>]:<port_range> [, …] [param*]<br>示例：</p>
 <pre><code class="hljs bash">listen http_proxy 
@@ -420,7 +464,7 @@ server  web03 172.31.2.35:80  check inter 2000 fall 3 weight 30              <sp
 <h3 id="maxconn"><a href="#maxconn" class="headerlink" title="maxconn"></a>maxconn</h3><p>maxconn <conns>：为指定的frontend定义其最大并发连接数；默认为2000</p>
 <h3 id="mode-tcp-http-health"><a href="#mode-tcp-http-health" class="headerlink" title="mode { tcp|http|health }"></a>mode { tcp|http|health }</h3><p>定义haproxy的工作模式<br>tcp：基于layer4实现代理；可代理mysql, pgsql, ssh, ssl等协议,https时使用此模式，默认模式<br>http：仅当代理协议为http时使用,centos实际默认模式<br>health：工作为健康状态检查的响应模式，当连接请求到达时回应“OK”后即断开连接，较少使用</p>
 <h3 id="基于cookie的会话绑定"><a href="#基于cookie的会话绑定" class="headerlink" title="基于cookie的会话绑定"></a>基于cookie的会话绑定</h3><p>cookie <name> [ rewrite | insert | prefix ] [ indirect ] [ nocache ] [ postonly ] [ preserve ] [ httponly ] [ secure ] [ domain <domain> ]* [ maxidle <idle> ] [ maxlife <life> ]<br><name>：cookie名称，用于实现持久连接<br>rewrite：重写<br>insert：插入<br>prefix：前缀<br>配置示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">backend websrvs
+<div class="code-wrapper"><pre><code class="hljs bash">backend websrvs
   balance     roundrobin
   cookie WEBSRV insert nocache indirect
   server   web1 192.168.45.11:80 check cookie srv1
@@ -434,7 +478,7 @@ server  web03 172.31.2.35:80  check inter 2000 fall 3 weight 30              <sp
 <li>stats realm : HAProxy Statistics</li>
 <li>stats auth : no authentication</li>
 </ul>
-<p>stats uri <div class="hljs code-wrapper"><prefix> 自定义stats page uri</p>
+<p>stats uri <div class="code-wrapper"><prefix> 自定义stats page uri</p>
 <p>stats auth <user>:<passwd> 认证时的账号和密码，可使用多次</p>
 <p>stats realm <realm> 认证时的realm</p>
 <p>stats hide-version 隐藏版本</p>
@@ -457,17 +501,17 @@ server  web03 172.31.2.35:80  check inter 2000 fall 3 weight 30              <sp
 <p>为指定的MIME类型启用压缩传输功能<br>compression algo <algorithm> …：启用http协议的压缩机制，指明压缩算法gzip, deflate<br>compression type <mime type> …：指明压缩的MIMI类型</p>
 <h3 id="错误页配置"><a href="#错误页配置" class="headerlink" title="错误页配置"></a>错误页配置</h3><p>errorfile <code> <file> 自定义错误页<br><code>：HTTP status code.<br>支持200, 400, 403, 408, 500, 502, 503, 504.<br><file>：错误页文件路径</p>
 <p>示例：<br>使用haproxy主机本地的文件进行响应</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">errorfile 400 /etc/haproxy/errorfiles/400badreq.http 
+<div class="code-wrapper"><pre><code class="hljs bash">errorfile 400 /etc/haproxy/errorfiles/400badreq.http 
 errorfile 408 /dev/null     <span class="hljs-comment"># workaround Chrome preconnect bug </span>
 errorfile 403 /etc/haproxy/errorfiles/403forbid.http 
 errorfile 503 /etc/haproxy/errorfiles/503sorry.http</code></pre></div>
 
 <p>使用url进行响应，响应状态码为302，不适用于GET以外的其他请求方法：<br>errorloc <code> <url> 相当于errorloc302 <code> <url>，利用302重定向至指URL</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">errorloc <span class="hljs-number">503</span> http:<span class="hljs-regexp">//</span>www.a.com<span class="hljs-regexp">/error_pages/</span><span class="hljs-number">503</span>.html</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs awk">errorloc <span class="hljs-number">503</span> http:<span class="hljs-regexp">//</span>www.a.com<span class="hljs-regexp">/error_pages/</span><span class="hljs-number">503</span>.html</code></pre></div>
 
 <h3 id="修改报文首部"><a href="#修改报文首部" class="headerlink" title="修改报文首部"></a>修改报文首部</h3><p>reqadd <string> [{if | unless} <cond>]<br>在请求报文尾部添加指定首部</p>
 <p>rspadd <string> [{if | unless} <cond>]<br>在响应报文尾部添加指定首部<br>示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs livescript">rspadd X-Via:<span class="hljs-string">\</span> HAPorxy  <span class="hljs-comment">#字符串中的空格要转义</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs livescript">rspadd X-Via:<span class="hljs-string">\</span> HAPorxy  <span class="hljs-comment">#字符串中的空格要转义</span></code></pre></div>
 
 <p>reqdel <search> [{if | unless} <cond>]<br>reqidel <search> [{if | unless} <cond>] (ignore case) 不分大小写<br>从请求报文中删除匹配正则表达式的首部</p>
 <p>rspdel <search> [{if | unless} <cond>]<br>rspidel <search> [{if | unless} <cond>] (ignore case) 不分大小写从响应报文中删除匹配正则表达式的首部 示例： rspidel Server.*</p>
@@ -475,7 +519,7 @@ errorfile 503 /etc/haproxy/errorfiles/503sorry.http</code></pre></div>
 <h2 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h2><p>acl：haproxy的ACL用于实现基于请求报文的首部、响应报文的内容或其他的环境状态信息来做出转发决策，这大大增加了其配置弹性。其配置法则一般分为两部，首先定义ACL，既定义一个测试条件，而后在条件得到满足时执行某特定动作，如阻止访问或者转发至某特定的后端，<br>定义ACL的语法格式如下：<br>acl <aclname> <criterion> [flags] [operator] [<value>] …</p>
 <p><aclname>：ACL名称，可使用字母 数字 : . - _ 区分字符大小写</p>
 <p><criterion>： 指明检查条件<br>各种条件 :<br>dst 目标IP<br>dst_port 目标PORT<br>src 源IP<br>src_port 源PORT<br>示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">acl</span> invalid_src src <span class="hljs-number">172.16.100.200</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">acl</span> invalid_src src <span class="hljs-number">172.16.100.200</span></code></pre></div>
 
 <p><value>的类型：</p>
 <ul>
@@ -508,7 +552,7 @@ errorfile 503 /etc/haproxy/errorfiles/503sorry.http</code></pre></div>
 <li>否定：使用“!“ 表示</li>
 </ul>
 <p>示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-keyword">if</span> invalid_src invalid_port 与关系 
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-keyword">if</span> invalid_src invalid_port 与关系 
 <span class="hljs-keyword">if</span> invalid_src || invalid_port 或 
 <span class="hljs-keyword">if</span> ! invalid_src 非</code></pre></div>
 
@@ -516,19 +560,19 @@ errorfile 503 /etc/haproxy/errorfiles/503sorry.http</code></pre></div>
 <h3 id="path-string"><a href="#path-string" class="headerlink" title="path : string"></a>path : string</h3><p>提取请求的URL路径，该路径从第一个斜杠开始，并在问号之 前结束（无主机部分）<br><scheme>://<user>:<password>@<host>:<port>/<path>;&lt; params&gt;?<query>#<frag><br>path : exact string match<br>path_beg : prefix match 匹配路径开头<br>path_dir : subdir match<br>path_dom : domain match<br>path_end : suffix match 匹配路径结尾<br>path_len : length match<br>path_reg : regex match 正则表达式匹配一类PATH<br>path_sub : substring match</p>
 <h3 id="url-string"><a href="#url-string" class="headerlink" title="url : string"></a>url : string</h3><p>提取请求中的URL。一个典型的应用是具有预取能力的缓存， 以及需要从数据库聚合多个信息并将它们保存在缓存中的网页门户入口<br>url : exact string match<br>url_beg : prefix match URL开头，匹配协议<br>url_dir : subdir match<br>url_dom : domain match<br>url_end : suffix match URL结尾<br>url_len : length match<br>url_reg : regex match 正则表达式匹配一类url<br>url_sub : substring match</p>
 <h3 id="req-hdr"><a href="#req-hdr" class="headerlink" title="req.hdr(["></a>req.hdr([</h3><p>提取在一个HTTP请求报文的首部<br>hdr([<name>[,<occ>]]) : exact string match<br>hdr_beg([<name>[,<occ>]]) : prefix match 首部开头<br>hdr_dir([<name>[,<occ>]]) : subdir match<br>hdr_dom([<name>[,<occ>]]) : domain match<br>hdr_end([<name>[,<occ>]]) : suffix match 首部结尾<br>hdr_len([<name>[,<occ>]]) : length match<br>hdr_reg([<name>[,<occ>]]) : regex match<br>hdr_sub([<name>[,<occ>]]) : substring match<br>示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">acl bad_curl hdr_sub(User-Agent) -i curl 
+<div class="code-wrapper"><pre><code class="hljs bash">acl bad_curl hdr_sub(User-Agent) -i curl 
 block <span class="hljs-keyword">if</span> bad_curl</code></pre></div>
 
 <h3 id="status-integer"><a href="#status-integer" class="headerlink" title="status : integer"></a>status : integer</h3><p>返回在响应报文中的状态码</p>
 <h3 id="预定义ACL"><a href="#预定义ACL" class="headerlink" title="预定义ACL"></a>预定义ACL</h3><p>ACL名称 等价于 说明<br>TRUE always_true 总是匹配<br>FALSE always_false 从不匹配<br>HTTP req_proto_http 匹配HTTP协议<br>HTTP_1.0 req_ver 1.0 匹配HTTP协议1.0<br>HTTP_1.1 req_ver 1.1 匹配HTTP协议1.1<br>HTTP_CONTENT hdr_val(content-length) gt 0 匹配已存在内容长度<br>HTTP_URL_ABS url_reg ^[^/:]<em>:// 匹配URL绝对路径<br>HTTP_URL_SLASHurl_beg / 匹配URL相对路径<br>HTTP_URL_STAR url * 匹配 URL 等于 “</em>“<br>LOCALHOST src 127.0.0.1/8 匹配从localhost来的连接<br>METH_CONNECT method CONNECT 匹配HTTP CONNECT方法<br>METH_GETmethod GET HEAD #match HTTP GET or HEAD method<br>METH_HEAD method HEAD #match HTTP HEAD method<br>METH_OPTIONS method OPTIONS #match HTTP OPTIONS method<br>METH_POST method POST #match HTTP POST method<br>METH_TRACE method TRACE #match HTTP TRACE method<br>RDP_COOKIE req_rdp_cookie_cnt gt 0 #match presence of an RDP cookie<br>REQ_CONTENT req_len gt 0 #match data in the request buffer<br>WAIT_ENDwait_end #wait for end of content analysis</p>
 <h3 id="acl配置"><a href="#acl配置" class="headerlink" title="acl配置"></a>acl配置</h3><h4 id="基于IP的访问控制"><a href="#基于IP的访问控制" class="headerlink" title="基于IP的访问控制"></a>基于IP的访问控制</h4><p>use_backend <backend> [{if | unless} <condition>]<br>当if/unless一个基于ACL的条件匹配时切换指定backend</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">acl invalid_src src 172.16.200.2 
+<div class="code-wrapper"><pre><code class="hljs bash">acl invalid_src src 172.16.200.2 
 block <span class="hljs-keyword">if</span> invalid_src 
 errorfile 403 /etc/fstab</code></pre></div>
 
 <h4 id="七层请求的访问控制"><a href="#七层请求的访问控制" class="headerlink" title="七层请求的访问控制"></a>七层请求的访问控制</h4><p>http-request { allow | deny |add-header <name> <fmt> |set-header <name> <fmt> } [ { if | unless } <condition> ]</p>
 <h4 id="四层请求访问控制"><a href="#四层请求访问控制" class="headerlink" title="四层请求访问控制"></a>四层请求访问控制</h4><p>tcp-request connection {accept|reject} [{if | unless} <condition>]<br>示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">listen ssh 
+<div class="code-wrapper"><pre><code class="hljs bash">listen ssh 
 <span class="hljs-built_in">bind</span> :22022 
 balance leastconn 
 acl invalid_src src 172.16.200.2 
@@ -537,7 +581,7 @@ mode tcp
 server sshsrv1 172.16.100.6:22 check 
 server sshsrv2 172.16.100.7:22 check backup</code></pre></div>
 
-<h4 id="基于ACL的动静分离示例"><a href="#基于ACL的动静分离示例" class="headerlink" title="基于ACL的动静分离示例"></a>基于ACL的动静分离示例</h4><div class="hljs code-wrapper"><pre><code class="hljs bash">frontend  web *:80 
+<h4 id="基于ACL的动静分离示例"><a href="#基于ACL的动静分离示例" class="headerlink" title="基于ACL的动静分离示例"></a>基于ACL的动静分离示例</h4><div class="code-wrapper"><pre><code class="hljs bash">frontend  web *:80 
     acl url_static       path_beg       -i /static /images /javascript /stylesheets 
     acl url_static       path_end       -i .jpg .gif .png .css .js .html .txt .htm 
     use_backend staticsrvs       <span class="hljs-keyword">if</span> url_static 
@@ -562,54 +606,115 @@ listen stats
 <p>2 把80端口的请求重向定443<br>bind *:80<br>redirect scheme https if !{ ssl_fc }</p>
 <p>3 向后端传递用户请求的协议和端口（frontend或backend）<br>http_request set-header X-Forwarded-Port %[dst_port]<br>http_request add-header X-Forwared-Proto https if { ssl_fc }</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
-                    
-                      <a class="hover-with-bg" href="/categories/basic-component/haproxy/">haproxy</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/haproxy/">haproxy</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/haproxy/" class="category-chain-item">haproxy</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/haproxy/">#haproxy</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>haproxy</div>
+      <div>https://lunasaw.github.io/2021/01/15/haproxy/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2021年1月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/19/mybatis-interview-1/">
+                      <a href="/2021/04/19/mybatis-interview-1/" title="mybatis 面试题">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">mybatis 面试题</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/01/11/rabbitmq-linux/">
+                      <a href="/2021/01/11/rabbitmq-linux/" title="rabbitmq-linux">
                         <span class="hidden-mobile">rabbitmq-linux</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -619,12 +724,10 @@ listen stats
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -638,7 +741,9 @@ listen stats
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -646,26 +751,63 @@ listen stats
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -687,7 +829,7 @@ listen stats
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -695,14 +837,14 @@ listen stats
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -714,43 +856,45 @@ listen stats
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -769,10 +913,22 @@ listen stats
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -782,60 +938,119 @@ listen stats
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

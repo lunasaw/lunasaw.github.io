@@ -13,21 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。MyBatis中用于实现动态SQL的元素主要有：  if where set choose（when，otherwise） trim foreach    （1）if标签此时如果CNAINDCLABASINFID为null，此语句很可能报错或查询结果为空。此时我们使用if动态sql语句先进行判断，如果">
+  
+    <meta name="description" content="MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。MyBatis中用于实现动态SQL的元素主要有：  if where set choose（when，otherwise） trim foreach    （1）if标签此时如果CNAINDCLABASINFID为null，此语句很可能报错或查询结果为空。此时我们使用if动态sql语句先进行判断，如果">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis动态sql">
 <meta property="og:url" content="https://lunasaw.github.io/2020/11/04/mybatis-autosql/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。MyBatis中用于实现动态SQL的元素主要有：  if where set choose（when，otherwise） trim foreach    （1）if标签此时如果CNAINDCLABASINFID为null，此语句很可能报错或查询结果为空。此时我们使用if动态sql语句先进行判断，如果">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lunasaw.github.io/img/basic/mybatis-index.jpg">
 <meta property="article:published_time" content="2020-11-03T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.991Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/basic/mybatis-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -36,25 +42,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -63,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -100,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -112,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -124,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -136,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -148,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -160,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -168,14 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -183,70 +206,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/baisc/mybatis-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="mybatis动态sql">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-04 00:00" pubdate>
-        2020年11月4日 凌晨
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      6.6k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      21 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/baisc/mybatis-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="mybatis动态sql"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-04 00:00" pubdate>
+          2020年11月4日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          56 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -255,22 +292,31 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">mybatis动态sql</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h3 id="MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。"><a href="#MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。" class="headerlink" title="MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。"></a>MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。</h3><p>MyBatis中用于实现动态SQL的元素主要有：</p>
+            
+              <div class="markdown-body">
+                
+                <h3 id="MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。"><a href="#MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。" class="headerlink" title="MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。"></a>MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。</h3><p>MyBatis中用于实现动态SQL的元素主要有：</p>
 <ul>
 <li>if</li>
 <li>where</li>
@@ -280,7 +326,7 @@
 <li>foreach  </li>
 </ul>
 <h3 id="（1）if标签"><a href="#（1）if标签" class="headerlink" title="（1）if标签"></a>（1）if标签</h3><p>此时如果CNAINDCLABASINFID为null，此语句很可能报错或查询结果为空。此时我们使用if动态sql语句先进行判断，如果值为null或等于空字符串，我们就不进行此条件的判断，增加灵活性。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">where</span><span class="hljs-operator">&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">where</span><span class="hljs-operator">&gt;</span>
    com.CNAINDCLABASINFID = #&#123;industryNum&#125;
    <span class="hljs-operator">&lt;</span>if test<span class="hljs-operator">=</span>&quot;id!=null and id!=&#x27;&#x27;&quot;<span class="hljs-operator">&gt;</span><span class="hljs-operator">&lt;</span><span class="hljs-operator">!</span><span class="hljs-comment">-- 项目编号 --&gt;</span>
       and bas.id = #&#123;id&#125;
@@ -293,7 +339,7 @@
 <h3 id="（2）if-where-条件判断"><a href="#（2）if-where-条件判断" class="headerlink" title="（2）if + where 条件判断"></a>（2）if + where 条件判断</h3><p>如上所示</p>
 <h3 id="（3）if-set-更新语句"><a href="#（3）if-set-更新语句" class="headerlink" title="（3）if + set 更新语句"></a>（3）if + set 更新语句</h3><p>当update语句中没有使用if标签时，如果有一个参数为null，都会导致错误。<br>当在update语句中使用if标签时，如果前面的if没有执行，则或导致逗号多余错误。使用set标签可以将动态的配置SET 关键字，和剔除追加到条件末尾的任何不相关的逗号。<strong>如果set包含的内容为空的话则会出错。</strong></p>
 <p>使用if+set标签修改后，如果某项为null则不进行更新，而是保持数据库原值。如下示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span>update id<span class="hljs-operator">=</span>&quot;editRateAnalysTask&quot; parameterType<span class="hljs-operator">=</span>&quot;RateAnalystScale&quot; <span class="hljs-operator">&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span>update id<span class="hljs-operator">=</span>&quot;editRateAnalysTask&quot; parameterType<span class="hljs-operator">=</span>&quot;RateAnalystScale&quot; <span class="hljs-operator">&gt;</span>
 UPDATE STUDENT_TBL
 <span class="hljs-operator">&lt;</span><span class="hljs-keyword">set</span><span class="hljs-operator">&gt;</span>
    <span class="hljs-operator">&lt;</span>if test<span class="hljs-operator">=</span>&quot;studentName != null and studentName != &#x27;&#x27; &quot;<span class="hljs-operator">&gt;</span>
@@ -321,7 +367,7 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
 <h3 id="（4）choose-when-otherwise"><a href="#（4）choose-when-otherwise" class="headerlink" title="（4）choose (when,otherwise)"></a>（4）choose (when,otherwise)</h3><p>​    有时候我们并不想应用所有的条件，而只是想从多个选项中选择一个。而使用if标签时，只要test中的表达式为true，就会执行if标签中的条件。MyBatis提供了choose 元素。if标签是与(and)的关系，而choose标签是或（or）的关系.</p>
 <p>​    choose标签是按顺序判断其内部when标签中的test条件出否成立，如果有一个成立，则choose结束<strong>。</strong>当choose中所有when的条件都不满则时，则执行otherwise中的sql。类似于Java 的switch 语句，choose为switch，when为case，otherwise则为default。</p>
 <p>例如下面例子，同样把所有可以限制的条件都写上，方面使用。choose会从上到下选择一个when标签的test为true的sql执行。安全考虑，我们使用where将choose包起来，放置关键字多于错误。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">select</span> id<span class="hljs-operator">=</span>&quot;&quot;<span class="hljs-operator">&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">select</span> id<span class="hljs-operator">=</span>&quot;&quot;<span class="hljs-operator">&gt;</span>
    <span class="hljs-keyword">SELECT</span> ST.STUDENT_ID,
    ST.STUDENT_NAME,
    ST.STUDENT_SEX,
@@ -364,7 +410,7 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
 
 <h3 id="（5）trim标签"><a href="#（5）trim标签" class="headerlink" title="（5）trim标签"></a>（5）trim标签</h3><p>trim元素的主要功能是可以在自己包含的内容前加上某些前缀，也可以在其后加上某些后缀，与之对应的属性是<strong>prefix</strong>和<strong>suffix</strong>；可以把包含内容的首部某些内容覆盖，即忽略，也可以把尾部的某些内容覆盖，对应的属性是<strong>prefixOverrides</strong>和<strong>suffixOverrides</strong>。正因为trim有这样的功能，所以我们也可以非常简单的利用trim来代替where/set标签的功能，示例代码如下：</p>
 <p><strong>trim代替where标签：</strong></p>
-<div class="hljs code-wrapper"><pre><code class="hljs sql">　<span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> 
+<div class="code-wrapper"><pre><code class="hljs sql">　<span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> 
 　　<span class="hljs-operator">&lt;</span>trim prefix<span class="hljs-operator">=</span>&quot;WHERE&quot; prefixoverride<span class="hljs-operator">=</span>&quot;AND |OR&quot;<span class="hljs-operator">&gt;</span>
 　　　　&lt;if test=&quot;name != null and name.length()&gt;0&quot;&gt; AND name=#&#123;name&#125;&lt;/if&gt;
 　　　　&lt;if test=&quot;gender != null and gender.length()&gt;0&quot;&gt; AND gender=#&#123;gender&#125;&lt;/if&gt;
@@ -376,7 +422,7 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
 <p>　　prefixoverride：去掉第一个and或者是or</p>
 <p><strong>trim代替set标签：</strong></p>
 <p>update user</p>
-<div class="hljs code-wrapper"><pre><code class="hljs sql">　　<span class="hljs-operator">&lt;</span>trim prefix<span class="hljs-operator">=</span>&quot;set&quot; suffixoverride<span class="hljs-operator">=</span>&quot;,&quot; suffix<span class="hljs-operator">=</span>&quot; where id = #&#123;id&#125; &quot;<span class="hljs-operator">&gt;</span>
+<div class="code-wrapper"><pre><code class="hljs sql">　　<span class="hljs-operator">&lt;</span>trim prefix<span class="hljs-operator">=</span>&quot;set&quot; suffixoverride<span class="hljs-operator">=</span>&quot;,&quot; suffix<span class="hljs-operator">=</span>&quot; where id = #&#123;id&#125; &quot;<span class="hljs-operator">&gt;</span>
 　　　　&lt;if test=&quot;name != null and name.length()&gt;0&quot;&gt; name=#&#123;name&#125; , &lt;/if&gt;
 　　　　&lt;if test=&quot;gender != null and gender.length()&gt;0&quot;&gt; gender=#&#123;gender&#125; ,  &lt;/if&gt;
 　　<span class="hljs-operator">&lt;</span><span class="hljs-operator">/</span>trim<span class="hljs-operator">&gt;</span></code></pre></div>
@@ -399,7 +445,7 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
 <li>如果传入的是单参数且参数类型是一个array数组的时候，collection的属性值为array</li>
 <li>如果传入的参数是多个的时候，我们就需要把它们封装成一个Map了，当然单参数也可以封装成map，实际上如果你在传入参数的时候，在MyBatis里面也是会把它封装成一个Map的，map的key就是参数名，所以这⁄⁄⁄个时候collection属性值就是传入的List或array对象在自己封装的map里面的key</li>
 </ul>
-<h4 id="1）单参数List的类型："><a href="#1）单参数List的类型：" class="headerlink" title="1）单参数List的类型："></a>1）单参数List的类型：</h4><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">select</span> id<span class="hljs-operator">=</span>&quot;dynamicForeachTest&quot; resultType<span class="hljs-operator">=</span>&quot;Blog&quot;<span class="hljs-operator">&gt;</span>  
+<h4 id="1）单参数List的类型："><a href="#1）单参数List的类型：" class="headerlink" title="1）单参数List的类型："></a>1）单参数List的类型：</h4><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">select</span> id<span class="hljs-operator">=</span>&quot;dynamicForeachTest&quot; resultType<span class="hljs-operator">=</span>&quot;Blog&quot;<span class="hljs-operator">&gt;</span>  
     <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> t_blog <span class="hljs-keyword">where</span> id <span class="hljs-keyword">in</span>  
     <span class="hljs-operator">&lt;</span>foreach collection<span class="hljs-operator">=</span>&quot;list&quot; index<span class="hljs-operator">=</span>&quot;index&quot; item<span class="hljs-operator">=</span>&quot;item&quot; <span class="hljs-keyword">open</span><span class="hljs-operator">=</span>&quot;(&quot; separator<span class="hljs-operator">=</span>&quot;,&quot; <span class="hljs-keyword">close</span><span class="hljs-operator">=</span>&quot;)&quot;<span class="hljs-operator">&gt;</span>  
         #&#123;item&#125;  
@@ -407,9 +453,9 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
 <span class="hljs-operator">&lt;</span><span class="hljs-operator">/</span><span class="hljs-keyword">select</span><span class="hljs-operator">&gt;</span></code></pre></div>
 
 <p>上述collection的值为list，对应的Mapper是这样的：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs sql">public List<span class="hljs-operator">&lt;</span>Blog<span class="hljs-operator">&gt;</span> dynamicForeachTest(List<span class="hljs-operator">&lt;</span><span class="hljs-type">Integer</span><span class="hljs-operator">&gt;</span> ids);</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs sql">public List<span class="hljs-operator">&lt;</span>Blog<span class="hljs-operator">&gt;</span> dynamicForeachTest(List<span class="hljs-operator">&lt;</span><span class="hljs-type">Integer</span><span class="hljs-operator">&gt;</span> ids);</code></pre></div>
 
-<h4 id="2）单参数array数组的类型："><a href="#2）单参数array数组的类型：" class="headerlink" title="2）单参数array数组的类型："></a>2）单参数array数组的类型：</h4><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">select</span> id<span class="hljs-operator">=</span>&quot;dynamicForeach2Test&quot; resultType<span class="hljs-operator">=</span>&quot;Blog&quot;<span class="hljs-operator">&gt;</span>  
+<h4 id="2）单参数array数组的类型："><a href="#2）单参数array数组的类型：" class="headerlink" title="2）单参数array数组的类型："></a>2）单参数array数组的类型：</h4><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">select</span> id<span class="hljs-operator">=</span>&quot;dynamicForeach2Test&quot; resultType<span class="hljs-operator">=</span>&quot;Blog&quot;<span class="hljs-operator">&gt;</span>  
     <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> t_blog <span class="hljs-keyword">where</span> id <span class="hljs-keyword">in</span>  
     <span class="hljs-operator">&lt;</span>foreach collection<span class="hljs-operator">=</span>&quot;array&quot; index<span class="hljs-operator">=</span>&quot;index&quot; item<span class="hljs-operator">=</span>&quot;item&quot; <span class="hljs-keyword">open</span><span class="hljs-operator">=</span>&quot;(&quot; separator<span class="hljs-operator">=</span>&quot;,&quot; <span class="hljs-keyword">close</span><span class="hljs-operator">=</span>&quot;)&quot;<span class="hljs-operator">&gt;</span>  
         #&#123;item&#125;  
@@ -417,9 +463,9 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
 <span class="hljs-operator">&lt;</span><span class="hljs-operator">/</span><span class="hljs-keyword">select</span><span class="hljs-operator">&gt;</span></code></pre></div>
 
 <p>上述collection为array，对应的Mapper代码：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Blog&gt; <span class="hljs-title">dynamicForeach2Test</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] ids)</span></span>;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Blog&gt; <span class="hljs-title">dynamicForeach2Test</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] ids)</span></span>;</code></pre></div>
 
-<h4 id="3）自己把参数封装成Map的类型"><a href="#3）自己把参数封装成Map的类型" class="headerlink" title="3）自己把参数封装成Map的类型"></a>3）自己把参数封装成Map的类型</h4><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">select</span> id<span class="hljs-operator">=</span>&quot;dynamicForeach3Test&quot; resultType<span class="hljs-operator">=</span>&quot;Blog&quot;<span class="hljs-operator">&gt;</span>  
+<h4 id="3）自己把参数封装成Map的类型"><a href="#3）自己把参数封装成Map的类型" class="headerlink" title="3）自己把参数封装成Map的类型"></a>3）自己把参数封装成Map的类型</h4><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-operator">&lt;</span><span class="hljs-keyword">select</span> id<span class="hljs-operator">=</span>&quot;dynamicForeach3Test&quot; resultType<span class="hljs-operator">=</span>&quot;Blog&quot;<span class="hljs-operator">&gt;</span>  
     select * from t_blog where title like &quot;%&quot;#&#123;title&#125;&quot;%&quot; and id in  
     <span class="hljs-operator">&lt;</span>foreach collection<span class="hljs-operator">=</span>&quot;ids&quot; index<span class="hljs-operator">=</span>&quot;index&quot; item<span class="hljs-operator">=</span>&quot;item&quot; <span class="hljs-keyword">open</span><span class="hljs-operator">=</span>&quot;(&quot; separator<span class="hljs-operator">=</span>&quot;,&quot; <span class="hljs-keyword">close</span><span class="hljs-operator">=</span>&quot;)&quot;<span class="hljs-operator">&gt;</span>  
         #&#123;item&#125;  
@@ -427,61 +473,127 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
 <span class="hljs-operator">&lt;</span><span class="hljs-operator">/</span><span class="hljs-keyword">select</span><span class="hljs-operator">&gt;</span></code></pre></div>
 
 <p>上述collection的值为ids，是传入的参数Map的key，对应的Mapper代码：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Blog&gt; <span class="hljs-title">dynamicForeach3Test</span><span class="hljs-params">(Map&lt;String, Object&gt; params)</span></span>;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Blog&gt; <span class="hljs-title">dynamicForeach3Test</span><span class="hljs-params">(Map&lt;String, Object&gt; params)</span></span>;</code></pre></div>
 
 
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/java/">java</a>
-                    
-                      <a class="hover-with-bg" href="/categories/java/middle-component/">middle-component</a>
-                    
-                      <a class="hover-with-bg" href="/categories/java/middle-component/mybatis/">mybatis</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/mybatis/">mybatis</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/" class="category-chain-item">middle-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/middle-component/mybatis/" class="category-chain-item">mybatis</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/mybatis/">#mybatis</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>mybatis动态sql</div>
+      <div>https://lunasaw.github.io/2020/11/04/mybatis-autosql/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2020年11月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/11/24/spring-rest-template/">
+                      <a href="/2020/11/04/mybatis-princpal/" title="mybatis原理">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">spring RestTemplate</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="hidden-mobile">mybatis原理</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/11/04/mybatis-princpal/">
-                        <span class="hidden-mobile">mybatis原理</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/2020/10/12/basic-git-start/" title="git-start">
+                        <span class="hidden-mobile">git-start</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -491,12 +603,10 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -510,7 +620,9 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -518,26 +630,63 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -559,7 +708,7 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -567,14 +716,14 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -586,43 +735,45 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -641,10 +792,22 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -654,60 +817,119 @@ WHERE STUDENT_TBL.STUDENT_ID = #&#123;studentId&#125;;
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

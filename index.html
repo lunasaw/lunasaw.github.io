@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="十平方米小屋">
 <meta property="og:url" content="https://lunasaw.github.io/index.html">
 <meta property="og:site_name" content="十平方米小屋">
@@ -24,6 +24,10 @@
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="博客,luna,java,spring,utils,linux,idea">
 <meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -33,9 +37,12 @@
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +51,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -81,7 +109,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -93,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -105,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -117,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -129,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -141,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -149,14 +177,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -164,34 +194,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/paper/bg.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Edit your own life and compile your own world">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/paper/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Edit your own life and compile your own world"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -218,24 +254,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/02/luna-welcome/" target="_blank">
-          
-          
-            
-          
-          welcome!欢迎访问本系统~希望能帮助到您.
-来自-&gt;luna
-Hi there 👋𝗛𝗲𝗹𝗹𝗼! 𝗜’𝗺 LUNA𝑰 ❤️ 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒎𝒆𝒏𝒕!
-𝗠𝘆 𝗧𝗲𝗰𝗸 𝗦𝘁𝗮𝗰𝗸
-    
-        
-            
-                Java
-                
-          
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/04/02/luna-welcome/" target="_blank">
+        <div>
+          welcome!欢迎访问本系统~希望能帮助到您. 来自-&gt;luna Hi there 👋𝗛𝗲𝗹𝗹𝗼! 𝗜’𝗺 LUNA𝑰 ❤️ 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒎𝒆𝒏𝒕! 𝗠𝘆 𝗧𝗲𝗰𝗸 𝗦𝘁𝗮𝗰𝗸                                            Java
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -247,18 +271,32 @@ Hi there 👋𝗛𝗲𝗹𝗹𝗼! 𝗜’𝗺 LUNA𝑰 ❤️ 𝑫𝒆𝒗𝒆�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/luna/">luna</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/luna/" class="category-chain-item">luna</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/welcome/">welcome</a>
+              <a href="/tags/welcome/">#welcome</a>
             
           </div>
         
@@ -283,16 +321,12 @@ Hi there 👋𝗛𝗲𝗹𝗹𝗼! 𝗜’𝗺 LUNA𝑰 ❤️ 𝑫𝒆𝒗𝒆�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/09/26/apache-log/" target="_blank">
-          
-          
-            
-          
-          SLF4J、JCL、JUL、log4j、logback的关系名词解释JUL(java.util.logging)  Java自带的日志系统。
-log4jApache Log4j 2 is an upgrade to Log4j that provides significant improvements over its predecessor, Log4j 1.x, and provides m
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2022/09/26/apache-log/" target="_blank">
+        <div>
+          SLF4J、JCL、JUL、log4j、logback的关系名词解释JUL(java.util.logging)  Java自带的日志系统。 log4jApache Log4j 2 is an upgrade to Log4j that provides significant improvements over its predecessor, Log4j 1.x, and provides m
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -304,20 +338,39 @@ log4jApache Log4j 2 is an upgrade to Log4j that provides significant improvement
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/apache/">apache</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/apache/" class="category-chain-item">apache</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/apache/">apache</a>
+              <a href="/tags/apache/">#apache</a>
             
           </div>
         
@@ -342,17 +395,12 @@ log4jApache Log4j 2 is an upgrade to Log4j that provides significant improvement
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/09/06/basic-middle-rocketmq/" target="_blank">
-          
-          
-            
-          
-          rocketmq 原理解析RocketMQ 如何保证消息不丢失/保证可靠性消息在 RocketMQ 流转大概可以分为三个阶段：发送阶段、存储阶段、消费阶段，那么可靠性就要从这三个阶段考虑。
-生产者发送消息时主要依靠发送确认来确保消息可靠性的。同步异步发送都可以获取到发送状态，通过这个发送状态来判断本次消息是否成功发送。另外，发送消息时还可以指定一个超时时间，如果超出这个超时时间可以再次发送。
-消费
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2022/09/06/basic-middle-rocketmq/" target="_blank">
+        <div>
+          rocketmq 原理解析RocketMQ 如何保证消息不丢失/保证可靠性消息在 RocketMQ 流转大概可以分为三个阶段：发送阶段、存储阶段、消费阶段，那么可靠性就要从这三个阶段考虑。 生产者发送消息时主要依靠发送确认来确保消息可靠性的。同步异步发送都可以获取到发送状态，通过这个发送状态来判断本次消息是否成功发送。另外，发送消息时还可以指定一个超时时间，如果超出这个超时时间可以再次发送。 消费
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -364,20 +412,39 @@ log4jApache Log4j 2 is an upgrade to Log4j that provides significant improvement
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/rocketmq/">rocketmq</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/rocketmq/" class="category-chain-item">rocketmq</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/rocketmq/">rocketmq</a>
+              <a href="/tags/rocketmq/">#rocketmq</a>
             
           </div>
         
@@ -402,22 +469,12 @@ log4jApache Log4j 2 is an upgrade to Log4j that provides significant improvement
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/11/05/java-synchornized/" target="_blank">
-          
-          
-            
-          
-          Java Synchronizedsynchronized可以保证方法或者代码块在运行时，同一时刻只有一个方法可以进入到临界区，同时它还可以保证共享变量的内存可见性。
-Java中每一个对象都可以作为锁，这是synchronized实现同步的基础：
-
-普通同步方法，锁是当前实例对象
-静态同步方法，锁是当前类的class对象
-同步方法块，锁是括号里面的对象
-
-. synchronized 和 vola
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/11/05/java-synchornized/" target="_blank">
+        <div>
+          Java Synchronizedsynchronized可以保证方法或者代码块在运行时，同一时刻只有一个方法可以进入到临界区，同时它还可以保证共享变量的内存可见性。 Java中每一个对象都可以作为锁，这是synchronized实现同步的基础：  普通同步方法，锁是当前实例对象 静态同步方法，锁是当前类的class对象 同步方法块，锁是括号里面的对象  . synchronized 和 vola
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -429,18 +486,32 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/date/">date</a>
+              <a href="/tags/date/">#date</a>
             
           </div>
         
@@ -465,21 +536,12 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/11/04/mysql-master-slave/" target="_blank">
-          
-          
-            
-          
-          Mysql 主从复制一、概要mysql从3.23版本开始提供复制功能，复制是将主库的DDL和DML操作通过二进制日志传递到复制服务器（从库）上，然后从库对这些日志重新执行（重做），从而使得主库和从库保持数据一致。
-1.1 mysql 复制的优点**
-如果主库出现问题，可以快速切换到从库提供服务
-可以在从库执行查询操作，降低主库的访问压力。
-可以在从库进行备份，以免备份期间影响主库的服务。
-
-1.2
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/11/04/mysql-master-slave/" target="_blank">
+        <div>
+          Mysql 主从复制一、概要mysql从3.23版本开始提供复制功能，复制是将主库的DDL和DML操作通过二进制日志传递到复制服务器（从库）上，然后从库对这些日志重新执行（重做），从而使得主库和从库保持数据一致。 1.1 mysql 复制的优点** 如果主库出现问题，可以快速切换到从库提供服务 可以在从库执行查询操作，降低主库的访问压力。 可以在从库进行备份，以免备份期间影响主库的服务。  1.2
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -491,20 +553,39 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/basic-component/">basic-component</a>
-            
-              <a href="/categories/basic-component/mysql/">mysql</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/mysql/">mysql</a>
+              <a href="/tags/mysql/">#mysql</a>
             
           </div>
         
@@ -529,15 +610,12 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/24/java-aop/" target="_blank">
-          
-          
-            
-          
+      
+      <a class="index-excerpt " href="/2021/10/24/java-aop/" target="_blank">
+        <div>
           Java动态代理的两种实现方法接口定义实现AOP的拦截功能是由java中的动态代理来实现的。说白了，就是在目标类的基础上增加切面逻辑，生成增强的目标类（该切面逻辑或者在目标类函数执行之前，或者目标类函数执行之后，或者在目标类函数抛出异常时候执行。不同的切入时机对应不同的Interceptor的种类，如BeforeAdviseInterceptor，AfterAdviseInterceptor以及T
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -549,20 +627,39 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/javabin/">javabin</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/javabin/" class="category-chain-item">javabin</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/aop/">aop</a>
+              <a href="/tags/aop/">#aop</a>
             
           </div>
         
@@ -587,17 +684,12 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/24/java-proxy/" target="_blank">
-          
-          
-            
-          
-          Java 代理模式实现方式，主要有如下五种方法
-静态代理，工程师编辑代理类代码，实现代理模式；在编译期就生成了代理类。
-基于 JDK 实现动态代理，通过jdk提供的工具方法Proxy.newProxyInstance动态构建全新的代理类(继承Proxy类，并持有InvocationHandler接口引用 )字节码文件并实例化对象返回。(jdk动态代理是由java内部的反射机制来实例化代理对象，并代
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/10/24/java-proxy/" target="_blank">
+        <div>
+          Java 代理模式实现方式，主要有如下五种方法 静态代理，工程师编辑代理类代码，实现代理模式；在编译期就生成了代理类。 基于 JDK 实现动态代理，通过jdk提供的工具方法Proxy.newProxyInstance动态构建全新的代理类(继承Proxy类，并持有InvocationHandler接口引用 )字节码文件并实例化对象返回。(jdk动态代理是由java内部的反射机制来实例化代理对象，并代
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -609,18 +701,32 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/json/">json</a>
+              <a href="/tags/json/">#json</a>
             
           </div>
         
@@ -645,20 +751,12 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/13/java-interview-2/" target="_blank">
-          
-          
-            
-          
-          
-                    面向对象的三个特征 
-封装,继承,多态.这个应该是人人皆知.有时候也会加上抽象. 
-多态的好处 
-允许不同类对象对同一消息做出响应,即同一消息可以根据发送对象的不同而采用多种不同的行为方式(发送消息就是函数调用).主要有以下优点: 
-可替换性:多态对已存在代码具有可替换性.可扩充性:增加新的子类不影响已经存在的类结构.接口性:多态是超类通过方法签名,向子类
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2021/10/13/java-interview-2/" target="_blank">
+        <div>
+          面向对象的三个特征  封装,继承,多态.这个应该是人人皆知.有时候也会加上抽象.  多态的好处  允许不同类对象对同一消息做出响应,即同一消息可以根据发送对象的不同而采用多种不同的行为方式(发送消息就是函数调用).主要有以下优点:  可替换性:多态对已存在代码具有可替换性.可扩充性:增加新的子类不影响已经存在的类结构.接口性:多态是超类通过方法签名,向子类
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -670,20 +768,39 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/java-interview/">java-interview</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/java-interview/" class="category-chain-item">java-interview</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/java-review/">java-review</a>
+              <a href="/tags/java-review/">#java-review</a>
             
           </div>
         
@@ -708,15 +825,12 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/12/java-interview-1/" target="_blank">
-          
-          
-            
-          
+      
+      <a class="index-excerpt " href="/2021/10/12/java-interview-1/" target="_blank">
+        <div>
           项目难点主要是在任务拆分的时候，会遇到一些困难，比如我们当时准备引入hashcat内核，掩码的形式计算密文的时候，他内核有一个keyspace参数表示总的行数，然后有skip和limit 表示开始和结束，类似于数据查询的分页，假设现在有一个密文是6位的，那就是95^6种结果，第一位是常数，后6位是秘文的也是95^6 次方种结果，但是在hashcat中，这俩的结果是一样的，就在分配任务时候，我们就无
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -728,20 +842,39 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/java-interview/">java-interview</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/java-interview/" class="category-chain-item">java-interview</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/java-review/">java-review</a>
+              <a href="/tags/java-review/">#java-review</a>
             
           </div>
         
@@ -766,15 +899,12 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/12/linux-du/" target="_blank">
-          
-          
-            
-          
+      
+      <a class="index-excerpt " href="/2021/10/12/linux-du/" target="_blank">
+        <div>
           du查看某个文件或目录占用磁盘空间的大小一、du的功能：du reports the amount of disk space used by the specified files and for each subdirectory (of directory arguments). with no arguments,du reports the disk space for the curr
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -786,20 +916,39 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/system/">system</a>
-            
-              <a href="/categories/system/linux/">linux</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/system/linux/" class="category-chain-item">linux</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/linux/">linux</a>
+              <a href="/tags/linux/">#linux</a>
             
           </div>
         
@@ -836,7 +985,7 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -844,14 +993,14 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -863,43 +1012,45 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -918,10 +1069,22 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -931,47 +1094,24 @@ Java中每一个对象都可以作为锁，这是synchronized实现同步的基�
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

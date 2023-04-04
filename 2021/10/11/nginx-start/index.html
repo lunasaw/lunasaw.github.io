@@ -13,37 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="Nginx学习Nginx 是开源、高性能、高可靠的 Web 和反向代理服务器，而且支持热部署，几乎可以做到 7 * 24 小时不间断运行，即使运行几个月也不需要重新启动，还能在不间断服务的情况下对软件版本进行热更新。性能是 Nginx 最重要的考量，其占用内存少、并发能力强、能支持高达 5w 个并发连接数，最重要的是， Nginx 是免费的并可以商业化，配置使用也比较简单。 Nginx 特点  高">
+  
+    <meta name="description" content="Nginx学习Nginx 是开源、高性能、高可靠的 Web 和反向代理服务器，而且支持热部署，几乎可以做到 7 * 24 小时不间断运行，即使运行几个月也不需要重新启动，还能在不间断服务的情况下对软件版本进行热更新。性能是 Nginx 最重要的考量，其占用内存少、并发能力强、能支持高达 5w 个并发连接数，最重要的是， Nginx 是免费的并可以商业化，配置使用也比较简单。 Nginx 特点  高">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx">
 <meta property="og:url" content="https://lunasaw.github.io/2021/10/11/nginx-start/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="Nginx学习Nginx 是开源、高性能、高可靠的 Web 和反向代理服务器，而且支持热部署，几乎可以做到 7 * 24 小时不间断运行，即使运行几个月也不需要重新启动，还能在不间断服务的情况下对软件版本进行热更新。性能是 Nginx 最重要的考量，其占用内存少、并发能力强、能支持高达 5w 个并发连接数，最重要的是， Nginx 是免费的并可以商业化，配置使用也比较简单。 Nginx 特点  高">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2021/05/12/cHgeKZTvGRlxbNs.png">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1gqgipd9lr4j304w0bd3ye.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1gqgipukswcj30h20cj3yl.jpg">
-<meta property="og:image" content="https://i.loli.net/2021/05/13/xSXV4IvkreYuOa2.png">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1gqgionqq4ij30k212ydkv.jpg">
-<meta property="og:image" content="https://i.loli.net/2021/05/13/fSs4pyHmb5AQtiU.png">
-<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
-<meta property="og:image" content="https://i.loli.net/2021/05/13/Wsy3nxX6OkcjU5f.png">
-<meta property="og:image" content="https://i.loli.net/2021/05/13/L7Au6MSZ8NUcmeO.png">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1gqgio8wopaj30ry054glt.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1gqgiu2hh9mj30ip06675k.jpg">
-<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
-<meta property="og:image" content="https://i.loli.net/2021/05/13/2InKAg9biCSdoPj.png">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1gqgj9dsw29j30rn0aj74h.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1gqgil28gi4j30u00kudje.jpg">
+<meta property="og:image" content="https://lunasaw.github.io/img/basic/nginx-index.jpg">
 <meta property="article:published_time" content="2021-10-11T11:34:07.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.992Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i.loli.net/2021/05/12/cHgeKZTvGRlxbNs.png">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/basic/nginx-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -52,25 +42,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -79,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -116,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -128,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -140,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -152,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -164,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -176,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -184,14 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -199,70 +206,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/basic/nginx-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="nginx">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-11 19:34" pubdate>
-        2021年10月11日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      24k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      74 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/basic/nginx-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="nginx"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-11 19:34" pubdate>
+          2021年10月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          24k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          198 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -271,22 +292,31 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">nginx</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h1 id="Nginx学习"><a href="#Nginx学习" class="headerlink" title="Nginx学习"></a>Nginx学习</h1><p><code>Nginx</code> 是开源、高性能、高可靠的 <code>Web</code> 和反向代理服务器，而且支持热部署，几乎可以做到 7 * 24 小时不间断运行，即使运行几个月也不需要重新启动，还能在不间断服务的情况下对软件版本进行热更新。性能是 <code>Nginx</code> 最重要的考量，其占用内存少、并发能力强、能支持高达 5w 个并发连接数，最重要的是， <code>Nginx</code> 是免费的并可以商业化，配置使用也比较简单。</p>
+            
+              <div class="markdown-body">
+                
+                <h1 id="Nginx学习"><a href="#Nginx学习" class="headerlink" title="Nginx学习"></a>Nginx学习</h1><p><code>Nginx</code> 是开源、高性能、高可靠的 <code>Web</code> 和反向代理服务器，而且支持热部署，几乎可以做到 7 * 24 小时不间断运行，即使运行几个月也不需要重新启动，还能在不间断服务的情况下对软件版本进行热更新。性能是 <code>Nginx</code> 最重要的考量，其占用内存少、并发能力强、能支持高达 5w 个并发连接数，最重要的是， <code>Nginx</code> 是免费的并可以商业化，配置使用也比较简单。</p>
 <p><strong>Nginx 特点</strong></p>
 <ul>
 <li>高并发、高性能；</li>
@@ -308,10 +338,10 @@
 <p><strong>Nginx 安装</strong></p>
 <p>本文演示的是 <code>Linux</code> <code>centOS 7.x</code> 的操作系统上安装 <code>Nginx</code> ，至于在其它操作系统上进行安装可以网上自行搜索，都非常简单的。</p>
 <p>使用 <code>yum</code> 安装 <code>Nginx</code> ：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">yum install nginx -y</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">yum install nginx -y</code></pre></div>
 
 <p>安装完成后，通过 <code>rpm \-ql nginx</code> 命令查看 <code>Nginx</code> 的安装信息：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># Nginx配置文件</span>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># Nginx配置文件</span>
 /etc/nginx/nginx.conf <span class="hljs-comment"># nginx 主配置文件</span>
 /etc/nginx/nginx.conf.default
 
@@ -343,7 +373,7 @@
 <p><code>2. /usr/share/nginx/html/</code> 静态文件都放在这个文件夹，也可以根据你自己的习惯放在其他地方；</p>
 <p><strong>Nginx 常用命令</strong></p>
 <p><code>systemctl</code> 系统命令：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 开机配置</span>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 开机配置</span>
 systemctl <span class="hljs-built_in">enable</span> nginx <span class="hljs-comment"># 开机自动启动</span>
 systemctl <span class="hljs-built_in">disable</span> nginx <span class="hljs-comment"># 关闭开机自动启动</span>
 
@@ -369,7 +399,7 @@ ps -ef | grep nginx
 <span class="hljs-built_in">kill</span> -9 pid <span class="hljs-comment"># 根据上面查看到的Nginx进程号，杀死Nginx进程，-9 表示强制结束进程</span></code></pre></div>
 
 <p><code>Nginx</code> 应用程序命令：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">nginx -s reload <span class="hljs-comment"># 向主进程发送信号，重新加载配置文件，热重启</span>
+<div class="code-wrapper"><pre><code class="hljs bash">nginx -s reload <span class="hljs-comment"># 向主进程发送信号，重新加载配置文件，热重启</span>
 nginx -s reopen <span class="hljs-comment"># 重启 Nginx</span>
 nginx -s stop <span class="hljs-comment"># 快速关闭</span>
 nginx -s quit <span class="hljs-comment"># 等待工作进程处理完成后关闭</span>
@@ -377,7 +407,7 @@ nginx -T <span class="hljs-comment"># 查看当前 Nginx 最终的配置</span>
 nginx -t <span class="hljs-comment"># 检查配置是否有问题</span></code></pre></div>
 
 <h1 id="Nginx-核心配置"><a href="#Nginx-核心配置" class="headerlink" title="Nginx 核心配置"></a>Nginx 核心配置</h1><h2 id="配置文件结构"><a href="#配置文件结构" class="headerlink" title="配置文件结构"></a>配置文件结构</h2><p><code>Nginx</code> 的典型配置示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># main段配置信息</span>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># main段配置信息</span>
 user  nginx; <span class="hljs-comment"># 运行用户，默认即是nginx，可以不进行设置</span>
 worker_processes  auto; <span class="hljs-comment"># Nginx 进程数，一般设置为和 CPU 核数一样</span>
 error_log  /var/<span class="hljs-built_in">log</span>/nginx/error.log warn; <span class="hljs-comment"># Nginx 的错误日志存放目录</span>
@@ -439,7 +469,7 @@ http &#123;
 <p>用一张图清晰的展示它的层级结构：</p>
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqgipd9lr4j304w0bd3ye.jpg" srcset="/img/loading.gif" lazyload alt="Image"></p>
 <h2 id="配置文件-main-段核心参数"><a href="#配置文件-main-段核心参数" class="headerlink" title="配置文件 main 段核心参数"></a>配置文件 main 段核心参数</h2><h2 id="user"><a href="#user" class="headerlink" title="user"></a>user</h2><p>指定运行 <code>Nginx</code> 的 <code>woker</code> 子进程的属主和属组，其中组可以不指定。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">user USERNAME [GROUP]
+<div class="code-wrapper"><pre><code class="hljs bash">user USERNAME [GROUP]
 
 user nginx lion; <span class="hljs-comment"># 用户是nginx;组是lion</span></code></pre></div>
 
@@ -447,24 +477,24 @@ user nginx lion; <span class="hljs-comment"># 用户是nginx;组是lion</span></
 
 <p><strong>pid</strong></p>
 <p>指定运行 <code>Nginx</code> <code>master</code> 主进程的 <code>pid</code> 文件存放路径。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">pid /opt/nginx/logs/nginx.pid <span class="hljs-comment"># master主进程的的pid存放在nginx.pid的文件</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">pid /opt/nginx/logs/nginx.pid <span class="hljs-comment"># master主进程的的pid存放在nginx.pid的文件</span></code></pre></div>
 
 <h3 id="worker-rlimit-nofile-number"><a href="#worker-rlimit-nofile-number" class="headerlink" title="worker_rlimit_nofile_number"></a>worker_rlimit_nofile_number</h3><p>指定 <code>worker</code> 子进程可以打开的最大文件句柄数。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">worker_rlimit_nofile</span> <span class="hljs-number">20480</span>; <span class="hljs-comment"># 可以理解成每个worker子进程的最大连接数量。</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">worker_rlimit_nofile</span> <span class="hljs-number">20480</span>; <span class="hljs-comment"># 可以理解成每个worker子进程的最大连接数量。</span></code></pre></div>
 
 
 
 <p><strong>worker_rlimit_core</strong></p>
 <p>指定 <code>worker</code> 子进程异常终止后的 <code>core</code> 文件，用于记录分析问题。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">worker_rlimit_core <span class="hljs-number">50</span>M; <span class="hljs-comment"># 存放大小限制</span>
+<div class="code-wrapper"><pre><code class="hljs awk">worker_rlimit_core <span class="hljs-number">50</span>M; <span class="hljs-comment"># 存放大小限制</span>
 working_directory <span class="hljs-regexp">/opt/</span>nginx/tmp; <span class="hljs-comment"># 存放目录</span></code></pre></div>
 
 <h3 id="worker-processes-number"><a href="#worker-processes-number" class="headerlink" title="worker_processes_number"></a>worker_processes_number</h3><p>指定 <code>Nginx</code> 启动的 <code>worker</code> 子进程数量。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">worker_processes 4; <span class="hljs-comment"># 指定具体子进程数量</span>
+<div class="code-wrapper"><pre><code class="hljs bash">worker_processes 4; <span class="hljs-comment"># 指定具体子进程数量</span>
 worker_processes auto; <span class="hljs-comment"># 与当前cpu物理核心数一致</span></code></pre></div>
 
 <h3 id="worker-cpu-affinity"><a href="#worker-cpu-affinity" class="headerlink" title="worker_cpu_affinity"></a>worker_cpu_affinity</h3><p>将每个 <code>worker</code> 子进程与我们的 <code>cpu</code> 物理核心绑定。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">worker_cpu_affinity 0001 0010 0100 1000; <span class="hljs-comment"># 4个物理核心，4个worker子进程</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">worker_cpu_affinity 0001 0010 0100 1000; <span class="hljs-comment"># 4个物理核心，4个worker子进程</span></code></pre></div>
 
 
 
@@ -472,36 +502,36 @@ worker_processes auto; <span class="hljs-comment"># 与当前cpu物理核心数�
 <p>将每个 <code>worker</code> 子进程与特定 <code>CPU</code> 物理核心绑定，优势在于，避免同一个 <code>worker</code> 子进程在不同的 <code>CPU</code> 核心上切换，缓存失效，降低性能。但其并不能真正的避免进程切换。</p>
 <p><strong>worker_priority</strong></p>
 <p>指定 <code>worker</code> 子进程的 <code>nice</code> 值，以调整运行 <code>Nginx</code> 的优先级，通常设定为负值，以优先调用<code>Nginx</code> 。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">worker_priority -10; <span class="hljs-comment"># 120-10=110，110就是最终的优先级</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">worker_priority -10; <span class="hljs-comment"># 120-10=110，110就是最终的优先级</span></code></pre></div>
 
 <p><code>Linux</code> 默认进程的优先级值是120，值越小越优先；<code>nice</code> 定范围为 <code>-20</code> 到 <code>+19</code> 。</p>
 <p>[备注] 应用的默认优先级值是120加上 <code>nice</code> 值等于它最终的值，这个值越小，优先级越高。</p>
 <h3 id="worker-shutdown-timeout"><a href="#worker-shutdown-timeout" class="headerlink" title="worker_shutdown_timeout"></a>worker_shutdown_timeout</h3><p>指定 <code>worker</code> 子进程优雅退出时的超时时间。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">worker_shutdown_timeout 5s;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">worker_shutdown_timeout 5s;</code></pre></div>
 
 <h3 id="timer-resolution"><a href="#timer-resolution" class="headerlink" title="timer_resolution"></a>timer_resolution</h3><p><code>worker</code> 子进程内部使用的计时器精度，调整时间间隔越大，系统调用越少，有利于性能提升；反之，系统调用越多，性能下降。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">timer_resolution 100ms;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">timer_resolution 100ms;</code></pre></div>
 
 <p>在 <code>Linux</code> 系统中，用户需要获取计时器时需要向操作系统内核发送请求，有请求就必然会有开销，因此这个间隔越大开销就越小。</p>
 <p><strong>daemon</strong></p>
 <p>指定 <code>Nginx</code> 的运行方式，前台还是后台，前台用于调试，后台用于生产。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">daemon off; <span class="hljs-comment"># 默认是on，后台运行模式</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">daemon off; <span class="hljs-comment"># 默认是on，后台运行模式</span></code></pre></div>
 
 <h2 id="配置文件-events-段核心参数"><a href="#配置文件-events-段核心参数" class="headerlink" title="配置文件 events 段核心参数"></a>配置文件 events 段核心参数</h2><h3 id="use"><a href="#use" class="headerlink" title="use"></a>use</h3><p><code>Nginx</code> 使用何种事件驱动模型。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">use method; <span class="hljs-comment"># 不推荐配置它，让nginx自己选择</span>
+<div class="code-wrapper"><pre><code class="hljs bash">use method; <span class="hljs-comment"># 不推荐配置它，让nginx自己选择</span>
 
 method 可选值为：select、poll、kqueue、epoll、/dev/poll、eventport</code></pre></div>
 
 <h3 id="worker-connections"><a href="#worker-connections" class="headerlink" title="worker_connections"></a>worker_connections</h3><p><code>worker</code> 子进程能够处理的最大并发连接数。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">worker_connections 1024 <span class="hljs-comment"># 每个子进程的最大连接数为1024</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">worker_connections 1024 <span class="hljs-comment"># 每个子进程的最大连接数为1024</span></code></pre></div>
 
 <p><strong>accept_mutex</strong></p>
 <p>是否打开负载均衡互斥锁。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">accept_mutex on <span class="hljs-comment"># 默认是off关闭的，这里推荐打开</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">accept_mutex on <span class="hljs-comment"># 默认是off关闭的，这里推荐打开</span></code></pre></div>
 
 <p><strong>server_name 指令</strong></p>
 <p>指定虚拟主机域名。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">server_name name1 name2 name3
+<div class="code-wrapper"><pre><code class="hljs bash">server_name name1 name2 name3
 
 <span class="hljs-comment"># 示例：</span>
 server_name www.nginx.com;</code></pre></div>
@@ -516,7 +546,7 @@ server_name www.nginx.com;</code></pre></div>
 <p>匹配优先级：<strong>精确匹配 &gt; 左侧通配符匹配 &gt; 右侧通配符匹配 &gt; 正则表达式匹配</strong></p>
 <p><code>server_name</code> 配置实例：</p>
 <p>1、配置本地 <code>DNS</code> 解析 <code>vim /etc/hosts</code> （ <code>macOS</code> 系统）</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 添加如下内容，其中 121.42.11.34 是阿里云服务器IP地址</span>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 添加如下内容，其中 121.42.11.34 是阿里云服务器IP地址</span>
 121.42.11.34 www.nginx-test.com
 121.42.11.34 mail.nginx-test.com
 121.42.11.34 www.nginx-test.org
@@ -526,7 +556,7 @@ server_name www.nginx.com;</code></pre></div>
 
 <p>[注意] 这里使用的是虚拟域名进行测试，因此需要配置本地 <code>DNS</code> 解析，如果使用阿里云上购买的域名，则需要在阿里云上设置好域名解析。</p>
 <p>2、配置阿里云 <code>Nginx</code> ，<code>vim /etc/nginx/nginx.conf</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 这里只列举了http端中的sever端配置</span>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 这里只列举了http端中的sever端配置</span>
 
 <span class="hljs-comment"># 左匹配</span>
 server &#123;
@@ -578,7 +608,7 @@ server &#123;
 <li>当访问 <code>fe.nginx-test.club</code> 时，会进行“正则匹配”；</li>
 </ul>
 <h2 id="root"><a href="#root" class="headerlink" title="root"></a>root</h2><p>指定静态资源目录位置，它可以写在 <code>http</code> 、 <code>server</code> 、 <code>location</code> 等配置中。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">root path
+<div class="code-wrapper"><pre><code class="hljs bash">root path
 
 例如：
 location /image &#123;
@@ -589,7 +619,7 @@ location /image &#123;
 
 <p>[注意] <code>root</code> 会将定义路径与 <code>URI</code> 叠加， <code>alias</code> 则只取定义路径。</p>
 <h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><p>它也是指定静态资源目录位置，它只能写在 <code>location</code> 中。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">location /image &#123;
+<div class="code-wrapper"><pre><code class="hljs awk">location /image &#123;
  alias <span class="hljs-regexp">/opt/</span>nginx<span class="hljs-regexp">/static/im</span>age/;
 &#125;
 
@@ -598,7 +628,7 @@ location /image &#123;
 <p>[注意] 使用 alias 末尾一定要添加 <code>/</code> ，并且它只能位于 <code>location</code> 中。</p>
 <p><strong>location</strong></p>
 <p>配置路径。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs crmsh"><span class="hljs-keyword">location</span> <span class="hljs-title">[ = | ~ | ~* | ^~ ] uri</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs crmsh"><span class="hljs-keyword">location</span> <span class="hljs-title">[ = | ~ | ~* | ^~ ] uri</span> &#123;
  ...
 &#125;</code></pre></div>
 
@@ -611,7 +641,7 @@ location /image &#123;
 </ul>
 <p>匹配优先级：<code>=</code> &gt; <code>^~</code> &gt; <code>~</code> &gt; <code>~*</code> &gt; 不带任何字符。</p>
 <p>实例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs gradle">server &#123;
+<div class="code-wrapper"><pre><code class="hljs gradle">server &#123;
   listen <span class="hljs-number">80</span>;
   server_name www.nginx-test.com;
   
@@ -634,7 +664,7 @@ location /image &#123;
 &#125;</code></pre></div>
 
 <p><strong>location 中的反斜线</strong></p>
-<div class="hljs code-wrapper"><pre><code class="hljs crmsh"><span class="hljs-keyword">location</span> <span class="hljs-title">/test</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs crmsh"><span class="hljs-keyword">location</span> <span class="hljs-title">/test</span> &#123;
  ...
 &#125;
 
@@ -647,7 +677,7 @@ location /image &#123;
 <li>带 <code>/</code> 当访问 <code>www.nginx-test.com/test</code> 时， <code>Nginx</code> 先找是否有 <code>test</code> 目录，如果有则找<code>test</code> 目录下的 <code>index.html</code> ，如果没有它也不会去找是否存在 <code>test</code> 文件。</li>
 </ul>
 <h3 id="return"><a href="#return" class="headerlink" title="return"></a>return</h3><p>停止处理请求，直接返回响应码或重定向到其他 <code>URL</code> ；执行 <code>return</code> 指令后， <code>location</code> 中后续指令将不会被执行。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs crmsh">return code [text];
+<div class="code-wrapper"><pre><code class="hljs crmsh">return code [text];
 return code URL;
 return URL;
 
@@ -669,7 +699,7 @@ return URL;
 &#125;</code></pre></div>
 
 <h2 id="rewrite"><a href="#rewrite" class="headerlink" title="rewrite"></a>rewrite</h2><p>根据指定正则表达式匹配规则，重写 <code>URL</code> 。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">语法：rewrite 正则表达式 要替换的内容 [flag];
+<div class="code-wrapper"><pre><code class="hljs awk">语法：rewrite 正则表达式 要替换的内容 [flag];
 
 上下文：server、location、<span class="hljs-keyword">if</span>
 
@@ -682,7 +712,7 @@ return URL;
 <li><code>redirect</code> 返回302临时重定向；</li>
 <li><code>permanent</code> 返回301永久重定向；</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs crmsh">server&#123;
+<div class="code-wrapper"><pre><code class="hljs crmsh">server&#123;
   listen <span class="hljs-number">80</span>;
   server_name fe.lion.club; <span class="hljs-comment"># 要在本地hosts文件进行配置</span>
   root html;
@@ -708,7 +738,7 @@ return URL;
 <li>当访问 <code>fe.lion.club/search</code> 时，会自动帮我们重定向到 <code>https://www.baidu.com</code>。</li>
 <li>当访问 <code>fe.lion.club/images/1.jpg</code> 时，第一步重写 <code>URL</code> 为 <code>fe.lion.club/pics/1.jpg</code> ，找到 <code>pics</code> 的 <code>location</code> ，继续重写 <code>URL</code> 为 <code>fe.lion.club/photos/1.jpg</code> ，找到 <code>/photos</code> 的<code>location</code> 后，去 <code>html/photos</code> 目录下寻找 <code>1.jpg</code> 静态资源。</li>
 </ul>
-<h2 id="if-指令"><a href="#if-指令" class="headerlink" title="if 指令"></a>if 指令</h2><div class="hljs code-wrapper"><pre><code class="hljs nim">语法：<span class="hljs-keyword">if</span> (condition) <span class="hljs-meta">&#123;...&#125;</span>
+<h2 id="if-指令"><a href="#if-指令" class="headerlink" title="if 指令"></a>if 指令</h2><div class="code-wrapper"><pre><code class="hljs nim">语法：<span class="hljs-keyword">if</span> (condition) <span class="hljs-meta">&#123;...&#125;</span>
 
 上下文：server、location
 
@@ -730,7 +760,7 @@ return URL;
 <li><code>-x</code> 或 <code>! -x</code> 检测文件可以执行或不可执行；</li>
 </ul>
 <p>实例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;
   <span class="hljs-attribute">listen</span> <span class="hljs-number">8080</span>;
   <span class="hljs-attribute">server_name</span> localhost;
   <span class="hljs-attribute">root</span> html;
@@ -746,7 +776,7 @@ return URL;
 <p><strong>autoindex</strong></p>
 <p>用户请求以 <code>/</code> 结尾时，列出目录结构，可以用于快速搭建静态资源下载网站。</p>
 <p><code>autoindex.conf</code> 配置信息：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;
   <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
   <span class="hljs-attribute">server_name</span> fe.lion-test.club;
   
@@ -767,7 +797,7 @@ return URL;
 <p>下面列举些项目中常用的变量：</p>
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqgionqq4ij30k212ydkv.jpg" srcset="/img/loading.gif" lazyload alt="Image"></p>
 <p>实例演示 <code>var.conf</code> ：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs stata">server&#123;
+<div class="code-wrapper"><pre><code class="hljs stata">server&#123;
  listen 8081;
  server_name <span class="hljs-keyword">var</span>.lion-<span class="hljs-keyword">test</span>.club;
  root /usr/share/nginx/html;
@@ -802,7 +832,7 @@ document_root: <span class="hljs-variable">$document_root</span>
 &#125;</code></pre></div>
 
 <p>当我们访问 <code>http://var.lion-test.club:8081/test?pid=121414&amp;cid=sadasd</code> 时，由于 <code>Nginx</code>中写了 <code>return</code> 方法，因此 <code>chrome</code> 浏览器会默认为我们下载一个文件，下面展示的就是下载的文件内容：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs dts"><span class="hljs-symbol">remote_addr:</span> <span class="hljs-number">27.16</span><span class="hljs-number">.220</span><span class="hljs-number">.84</span>
+<div class="code-wrapper"><pre><code class="hljs dts"><span class="hljs-symbol">remote_addr:</span> <span class="hljs-number">27.16</span><span class="hljs-number">.220</span><span class="hljs-number">.84</span>
 <span class="hljs-symbol">remote_port:</span> <span class="hljs-number">56838</span>
 <span class="hljs-symbol">server_addr:</span> <span class="hljs-number">172.17</span><span class="hljs-number">.0</span><span class="hljs-number">.2</span>
 <span class="hljs-symbol">server_port:</span> <span class="hljs-number">8081</span>
@@ -877,7 +907,7 @@ document_root: <span class="hljs-variable">$document_root</span>
 <p><strong>upstream</strong></p>
 <p>用于定义上游服务器（指的就是后台提供的应用服务器）的相关信息。</p>
 <p><img src="https://i.loli.net/2021/05/13/L7Au6MSZ8NUcmeO.png" srcset="/img/loading.gif" lazyload alt="Image"></p>
-<div class="hljs code-wrapper"><pre><code class="hljs dust"><span class="xml">语法：upstream name </span><span class="hljs-template-variable">&#123;</span>
+<div class="code-wrapper"><pre><code class="hljs dust"><span class="xml">语法：upstream name </span><span class="hljs-template-variable">&#123;</span>
 <span class="hljs-template-variable"> ...</span>
 <span class="hljs-template-variable">&#125;</span>
 
@@ -902,7 +932,7 @@ document_root: <span class="hljs-variable">$document_root</span>
 <li><code>random</code> 随机负载均衡算法；</li>
 </ul>
 <h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><p>定义上游服务器地址。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs css">语法：server <span class="hljs-selector-tag">address</span> <span class="hljs-selector-attr">[parameters]</span>
+<div class="code-wrapper"><pre><code class="hljs css">语法：server <span class="hljs-selector-tag">address</span> <span class="hljs-selector-attr">[parameters]</span>
 
 上下文：upstream</code></pre></div>
 
@@ -916,14 +946,14 @@ document_root: <span class="hljs-variable">$document_root</span>
 <li><code>down</code> 标记服务器长期不可用，离线维护；</li>
 </ul>
 <h3 id="keepalive"><a href="#keepalive" class="headerlink" title="keepalive"></a>keepalive</h3><p>限制每个 <code>worker</code> 子进程与上游服务器空闲长连接的最大数量。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs abnf">keepalive connections<span class="hljs-comment">;</span>
+<div class="code-wrapper"><pre><code class="hljs abnf">keepalive connections<span class="hljs-comment">;</span>
 
 上下文：upstream
 
 示例：keepalive <span class="hljs-number">16</span><span class="hljs-comment">;</span></code></pre></div>
 
 <h3 id="keepalive-requests"><a href="#keepalive-requests" class="headerlink" title="keepalive_requests"></a>keepalive_requests</h3><p>单个长连接可以处理的最多 <code>HTTP</code> 请求个数。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs abnf">语法：keepalive_requests number<span class="hljs-comment">;</span>
+<div class="code-wrapper"><pre><code class="hljs abnf">语法：keepalive_requests number<span class="hljs-comment">;</span>
 
 默认值：keepalive_requests <span class="hljs-number">100</span><span class="hljs-comment">;</span>
 
@@ -933,13 +963,13 @@ document_root: <span class="hljs-variable">$document_root</span>
 
 <p><strong>keepalive_timeout</strong></p>
 <p>空闲长连接的最长保持时间。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs abnf">语法：keepalive_timeout time<span class="hljs-comment">;</span>
+<div class="code-wrapper"><pre><code class="hljs abnf">语法：keepalive_timeout time<span class="hljs-comment">;</span>
 
 默认值：keepalive_timeout <span class="hljs-number">60</span>s<span class="hljs-comment">;</span>
 
 上下文：upstream</code></pre></div>
 
-<h3 id="配置实例"><a href="#配置实例" class="headerlink" title="配置实例"></a>配置实例</h3><div class="hljs code-wrapper"><pre><code class="hljs routeros">upstream back_end&#123;
+<h3 id="配置实例"><a href="#配置实例" class="headerlink" title="配置实例"></a>配置实例</h3><div class="code-wrapper"><pre><code class="hljs routeros">upstream back_end&#123;
 <span class="hljs-built_in"> server </span>127.0.0.1:8081 <span class="hljs-attribute">weight</span>=3 <span class="hljs-attribute">max_conns</span>=1000 <span class="hljs-attribute">fail_timeout</span>=10s <span class="hljs-attribute">max_fails</span>=2;
   keepalive 32;
   keepalive_requests 50;
@@ -947,7 +977,7 @@ document_root: <span class="hljs-variable">$document_root</span>
 &#125;</code></pre></div>
 
 <h2 id="proxy-pass"><a href="#proxy-pass" class="headerlink" title="proxy_pass"></a>proxy_pass</h2><p>用于配置代理服务器。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">语法：proxy_pass URL;
+<div class="code-wrapper"><pre><code class="hljs awk">语法：proxy_pass URL;
 
 上下文：location、<span class="hljs-keyword">if</span>、limit_except
 
@@ -970,7 +1000,7 @@ proxy_pass http:<span class="hljs-regexp">//</span><span class="hljs-number">127
 <li>带 <code>/</code> 意味着 <code>Nginx</code> 会修改用户 <code>URL</code> ，修改方法是将 <code>location</code> 后的 <code>URL</code> 从用户 <code>URL</code> 中删除；</li>
 </ul>
 <p>不带 <code>/</code> 的用法：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">location <span class="hljs-regexp">/bbs/</span>&#123;
+<div class="code-wrapper"><pre><code class="hljs awk">location <span class="hljs-regexp">/bbs/</span>&#123;
   proxy_pass http:<span class="hljs-regexp">//</span><span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">8080</span>;
 &#125;</code></pre></div>
 
@@ -979,7 +1009,7 @@ proxy_pass http:<span class="hljs-regexp">//</span><span class="hljs-number">127
 <p>\2. 请求到达 <code>Nginx</code> 的 <code>URL</code> ：<code>/bbs/abc/test.html</code></p>
 <p>3 .请求到达上游应用服务器的 <code>URL</code> ：<code>/bbs/abc/test.html</code></p>
 <p>带 <code>/</code> 的用法：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">location <span class="hljs-regexp">/bbs/</span>&#123;
+<div class="code-wrapper"><pre><code class="hljs awk">location <span class="hljs-regexp">/bbs/</span>&#123;
   proxy_pass http:<span class="hljs-regexp">//</span><span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">8080</span>/;
 &#125;</code></pre></div>
 
@@ -991,7 +1021,7 @@ proxy_pass http:<span class="hljs-regexp">//</span><span class="hljs-number">127
 <p><strong>配置反向代理</strong></p>
 <p>这里为了演示更加接近实际，作者准备了两台云服务器，它们的公网 <code>IP</code> 分别是：<code>121.42.11.34</code>与 <code>121.5.180.193</code> 。</p>
 <p>我们把 <code>121.42.11.34</code> 服务器作为上游服务器，做如下配置：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs gradle"># <span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/conf.d/</span>proxy.conf
+<div class="code-wrapper"><pre><code class="hljs gradle"># <span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/conf.d/</span>proxy.conf
 server&#123;
   listen <span class="hljs-number">8080</span>;
   server_name localhost;
@@ -1009,7 +1039,7 @@ server&#123;
 
 <p>配置完成后重启 <code>Nginx</code> 服务器 <code>nginx \-s reload</code> 。</p>
 <p>把 <code>121.5.180.193</code> 服务器作为代理服务器，做如下配置：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-comment"># /etc/nginx/conf.d/proxy.conf</span>
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-comment"># /etc/nginx/conf.d/proxy.conf</span>
 <span class="hljs-attribute">upstream</span> back_end &#123;
   <span class="hljs-attribute">server</span> <span class="hljs-number">121.42.11.34:8080</span> weight=<span class="hljs-number">2</span> max_conns=<span class="hljs-number">1000</span> fail_timeout=<span class="hljs-number">10s</span> max_fails=<span class="hljs-number">3</span>;
   <span class="hljs-attribute">keepalive</span> <span class="hljs-number">32</span>;
@@ -1026,7 +1056,7 @@ server&#123;
 &#125;</code></pre></div>
 
 <p>本地机器要访问 <code>proxy.lion.club</code> 域名，因此需要配置本地 <code>hosts</code> ，通过命令：<code>vim /etc/hosts</code>进入配置文件，添加如下内容：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs accesslog"><span class="hljs-number">121.5.180.193</span> proxy.lion.club</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs accesslog"><span class="hljs-number">121.5.180.193</span> proxy.lion.club</code></pre></div>
 
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqgio8wopaj30ry054glt.jpg" srcset="/img/loading.gif" lazyload alt="Image"></p>
 <p>分析：</p>
@@ -1036,7 +1066,7 @@ server&#123;
 <p>通过 <code>server</code> 找到 <code>/usr/share/nginx/html/proxy/index.html</code> 资源，最终展示出来。</p>
 <h2 id="配置负载均衡"><a href="#配置负载均衡" class="headerlink" title="配置负载均衡"></a>配置负载均衡</h2><p>配置负载均衡主要是要使用 <code>upstream</code> 指令。</p>
 <p>我们把 <code>121.42.11.34</code> 服务器作为上游服务器，做如下配置（ <code>/etc/nginx/conf.d/balance.conf</code>）：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">server</span>&#123;
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">server</span>&#123;
   <span class="hljs-keyword">listen</span> <span class="hljs-number">8020</span>;
   <span class="hljs-keyword">location</span> / &#123;
    <span class="hljs-keyword">return</span> <span class="hljs-number">200</span> <span class="hljs-string">&#x27;return 8020 \n&#x27;</span>;
@@ -1062,7 +1092,7 @@ server&#123;
 <p><code>2. nginx -s reload</code> 重启 <code>Nginx</code> 服务器；</p>
 <p>\3. 执行 <code>ss -nlt</code> 命令查看端口是否被占用，从而判断 <code>Nginx</code> 服务是否正确启动。</p>
 <p>把 <code>121.5.180.193</code> 服务器作为代理服务器，做如下配置（ <code>/etc/nginx/conf.d/balance.conf</code>）：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">upstream</span> demo_server &#123;
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">upstream</span> demo_server &#123;
   <span class="hljs-attribute">server</span> <span class="hljs-number">121.42.11.34:8020</span>;
   <span class="hljs-attribute">server</span> <span class="hljs-number">121.42.11.34:8030</span>;
   <span class="hljs-attribute">server</span> <span class="hljs-number">121.42.11.34:8040</span>;
@@ -1078,7 +1108,7 @@ server&#123;
 &#125;</code></pre></div>
 
 <p>配置完成后重启 <code>Nginx</code> 服务器。并且在需要访问的客户端配置好 <code>ip</code> 和域名的映射关系。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs accesslog"># /etc/hosts
+<div class="code-wrapper"><pre><code class="hljs accesslog"># /etc/hosts
 
 <span class="hljs-number">121.5.180.193</span> balance.lion.club</code></pre></div>
 
@@ -1088,7 +1118,7 @@ server&#123;
 <p>接下来，我们再来了解下 <code>Nginx</code> 的其它分发策略。</p>
 <p><strong>hash 算法</strong></p>
 <p>通过制定关键字作为 <code>hash key</code> ，基于 <code>hash</code> 算法映射到特定的上游服务器中。关键字可以包含有变量、字符串。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">upstream</span> demo_server &#123;
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">upstream</span> demo_server &#123;
   <span class="hljs-attribute">hash</span> $request_uri;
   <span class="hljs-attribute">server</span> <span class="hljs-number">121.42.11.34:8020</span>;
   <span class="hljs-attribute">server</span> <span class="hljs-number">121.42.11.34:8030</span>;
@@ -1107,7 +1137,7 @@ server&#123;
 <p><code>hash $request_uri</code> 表示使用 <code>request_uri</code> 变量作为 <code>hash</code> 的 <code>key</code> 值，只要访问的 <code>URI</code> 保持不变，就会一直分发给同一台服务器。</p>
 <p><strong>ip_hash</strong></p>
 <p>根据客户端的请求 <code>ip</code> 进行判断，只要 <code>ip</code> 地址不变就永远分配到同一台主机。它可以有效解决后台服务器 <code>session</code> 保持的问题。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs pgsql">upstream demo_server &#123;
+<div class="code-wrapper"><pre><code class="hljs pgsql">upstream demo_server &#123;
   ip_hash;
   <span class="hljs-keyword">server</span> <span class="hljs-number">121.42</span><span class="hljs-number">.11</span><span class="hljs-number">.34</span>:<span class="hljs-number">8020</span>;
   <span class="hljs-keyword">server</span> <span class="hljs-number">121.42</span><span class="hljs-number">.11</span><span class="hljs-number">.34</span>:<span class="hljs-number">8030</span>;
@@ -1124,12 +1154,12 @@ server&#123;
 &#125;</code></pre></div>
 
 <h3 id="最少连接数算法"><a href="#最少连接数算法" class="headerlink" title="最少连接数算法"></a>最少连接数算法</h3><p>各个 <code>worker</code> 子进程通过读取共享内存的数据，来获取后端服务器的信息。来挑选一台当前已建立连接数最少的服务器进行分配请求。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs abnf">语法：least_conn<span class="hljs-comment">;</span>
+<div class="code-wrapper"><pre><code class="hljs abnf">语法：least_conn<span class="hljs-comment">;</span>
 
 上下文：upstream<span class="hljs-comment">;</span></code></pre></div>
 
 <p>示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs pgsql">upstream demo_server &#123;
+<div class="code-wrapper"><pre><code class="hljs pgsql">upstream demo_server &#123;
   <span class="hljs-type">zone</span> test <span class="hljs-number">10</span>M; # <span class="hljs-type">zone</span>可以设置共享内存空间的名字和大小
   least_conn;
   <span class="hljs-keyword">server</span> <span class="hljs-number">121.42</span><span class="hljs-number">.11</span><span class="hljs-number">.34</span>:<span class="hljs-number">8020</span>;
@@ -1151,7 +1181,7 @@ server&#123;
 <p>缓存可以非常有效的提升性能，因此不论是客户端（浏览器），还是代理服务器（ <code>Nginx</code> ），乃至上游服务器都多少会涉及到缓存。可见缓存在每个环节都是非常重要的。下面让我们来学习<code>Nginx</code> 中如何设置缓存策略。</p>
 <p><strong>proxy_cache</strong></p>
 <p>存储一些之前被访问过、而且可能将要被再次访问的资源，使用户可以直接从代理服务器获得，从而减少上游服务器的压力，加快整个访问速度。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs pgsql">语法：proxy_cache <span class="hljs-type">zone</span> | <span class="hljs-keyword">off</span> ; # <span class="hljs-type">zone</span> 是共享内存的名称
+<div class="code-wrapper"><pre><code class="hljs pgsql">语法：proxy_cache <span class="hljs-type">zone</span> | <span class="hljs-keyword">off</span> ; # <span class="hljs-type">zone</span> 是共享内存的名称
 
 默认值：proxy_cache <span class="hljs-keyword">off</span>;
 
@@ -1159,7 +1189,7 @@ server&#123;
 
 <p><strong>proxy_cache_path</strong></p>
 <p>设置缓存文件的存放路径。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs routeros">语法：proxy_cache_path path [<span class="hljs-attribute">level</span>=levels] <span class="hljs-built_in">..</span>.可选参数省略，下面会详细列举
+<div class="code-wrapper"><pre><code class="hljs routeros">语法：proxy_cache_path path [<span class="hljs-attribute">level</span>=levels] <span class="hljs-built_in">..</span>.可选参数省略，下面会详细列举
 
 默认值：proxy_cache_path off
 
@@ -1173,7 +1203,7 @@ server&#123;
 <li><code>inactive</code> 在指定时间内没有被访问，缓存会被清理，默认10分钟；</li>
 </ul>
 <h3 id="proxy-cache-key"><a href="#proxy-cache-key" class="headerlink" title="proxy_cache_key"></a>proxy_cache_key</h3><p>设置缓存文件的 <code>key</code> 。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs tcl">语法：proxy_cache_key
+<div class="code-wrapper"><pre><code class="hljs tcl">语法：proxy_cache_key
 
 默认值：proxy_cache_key <span class="hljs-variable">$scheme</span><span class="hljs-variable">$proxy_host</span><span class="hljs-variable">$request_uri</span>;
 
@@ -1183,28 +1213,28 @@ server&#123;
 
 <p><strong>proxy_cache_valid</strong></p>
 <p>配置什么状态码可以被缓存，以及缓存时长。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs crmsh">语法：proxy_cache_valid [code...] time;
+<div class="code-wrapper"><pre><code class="hljs crmsh">语法：proxy_cache_valid [code...] time;
 
 上下文：http、server、location
 
 配置示例：proxy_cache_valid <span class="hljs-number">200</span> <span class="hljs-number">304</span> <span class="hljs-number">2m</span>;; <span class="hljs-comment"># 说明对于状态为200和304的缓存文件的缓存时间是2分钟</span></code></pre></div>
 
 <h3 id="proxy-no-cache"><a href="#proxy-no-cache" class="headerlink" title="proxy_no_cache"></a>proxy_no_cache</h3><p>定义相应保存到缓存的条件，如果字符串参数的至少一个值不为空且不等于“ 0”，则将不保存该响应到缓存。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs crmsh">语法：proxy_no_cache <span class="hljs-keyword">string</span>;
+<div class="code-wrapper"><pre><code class="hljs crmsh">语法：proxy_no_cache <span class="hljs-keyword">string</span>;
 
 上下文：http、server、location
 
 示例：proxy_no_cache $http_pragma    $http_authorization;</code></pre></div>
 
 <h3 id="proxy-cache-bypass"><a href="#proxy-cache-bypass" class="headerlink" title="proxy_cache_bypass"></a>proxy_cache_bypass</h3><p>定义条件，在该条件下将不会从缓存中获取响应。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs crmsh">语法：proxy_cache_bypass <span class="hljs-keyword">string</span>;
+<div class="code-wrapper"><pre><code class="hljs crmsh">语法：proxy_cache_bypass <span class="hljs-keyword">string</span>;
 
 上下文：http、server、location
 
 示例：proxy_cache_bypass $http_pragma    $http_authorization;</code></pre></div>
 
 <h3 id="upstream-cache-status-变量"><a href="#upstream-cache-status-变量" class="headerlink" title="upstream_cache_status 变量"></a>upstream_cache_status 变量</h3><p>它存储了缓存是否命中的信息，会设置在响应头信息中，在调试中非常有用。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs avrasm"><span class="hljs-symbol">MISS:</span> 未命中缓存
+<div class="code-wrapper"><pre><code class="hljs avrasm"><span class="hljs-symbol">MISS:</span> 未命中缓存
 HIT：命中缓存
 <span class="hljs-symbol">EXPIRED:</span> 缓存过期
 <span class="hljs-symbol">STALE:</span> 命中了陈旧缓存
@@ -1213,7 +1243,7 @@ HIT：命中缓存
 <span class="hljs-symbol">BYPASS:</span> <span class="hljs-built_in">X</span>响应从原始服务器获取</code></pre></div>
 
 <h3 id="配置实例-1"><a href="#配置实例-1" class="headerlink" title="配置实例"></a>配置实例</h3><p>我们把 <code>121.42.11.34</code> 服务器作为上游服务器，做如下配置（ <code>/etc/nginx/conf.d/cache.conf</code>）：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">server</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">server</span> &#123;
   <span class="hljs-keyword">listen</span> <span class="hljs-number">1010</span>;
   root /usr/<span class="hljs-keyword">share</span>/nginx/html/<span class="hljs-number">1010</span>;
   <span class="hljs-keyword">location</span> / &#123;
@@ -1230,7 +1260,7 @@ HIT：命中缓存
 &#125;</code></pre></div>
 
 <p>把 <code>121.5.180.193</code> 服务器作为代理服务器，做如下配置（ <code>/etc/nginx/conf.d/cache.conf</code> ）：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">proxy_cache_path</span> /etc/nginx/cache_temp levels=<span class="hljs-number">2</span>:<span class="hljs-number">2</span> keys_zone=cache_zone:<span class="hljs-number">30m</span> max_size=<span class="hljs-number">2g</span> inactive=<span class="hljs-number">60m</span> use_temp_path=<span class="hljs-literal">off</span>;
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">proxy_cache_path</span> /etc/nginx/cache_temp levels=<span class="hljs-number">2</span>:<span class="hljs-number">2</span> keys_zone=cache_zone:<span class="hljs-number">30m</span> max_size=<span class="hljs-number">2g</span> inactive=<span class="hljs-number">60m</span> use_temp_path=<span class="hljs-literal">off</span>;
 
 <span class="hljs-attribute">upstream</span> cache_server&#123;
   <span class="hljs-attribute">server</span> <span class="hljs-number">121.42.11.34:1010</span>;
@@ -1251,7 +1281,7 @@ HIT：命中缓存
 
 <p>缓存就是这样配置，我们可以在 <code>/etc/nginx/cache_temp</code> 路径下找到相应的缓存文件。</p>
 <p><strong>对于一些实时性要求非常高的页面或数据来说，就不应该去设置缓存，下面来看看如何配置不缓存的内容。</strong></p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">...
+<div class="code-wrapper"><pre><code class="hljs awk">...
 
 server &#123;
   listen <span class="hljs-number">80</span>;
@@ -1285,7 +1315,7 @@ server &#123;
 <p>这就是 <code>HTTPS</code> 的基本运作原理，使用对称加密和非对称机密配合使用，保证传输内容的安全性。</p>
 <p>关于HTTPS更多知识，可以查看作者的另外一篇文章《学习 HTTP 协议》。</p>
 <h3 id="配置证书"><a href="#配置证书" class="headerlink" title="配置证书"></a>配置证书</h3><p>下载证书的压缩文件，里面有个 <code>Nginx</code> 文件夹，把 <code>xxx.crt</code> 和 <code>xxx.key</code> 文件拷贝到服务器目录，再进行如下配置：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">server &#123;
+<div class="code-wrapper"><pre><code class="hljs awk">server &#123;
   listen <span class="hljs-number">443</span> ssl http2 default_server; <span class="hljs-comment"># SSL 访问端口号为 443</span>
   server_name lion.club; <span class="hljs-comment"># 填写绑定证书的域名(我这里是随便写的)</span>
   ssl_certificate <span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/https/</span>lion.club_bundle.crt; <span class="hljs-comment"># 证书地址</span>
@@ -1307,7 +1337,7 @@ server &#123;
 <p><strong>同源的定义</strong></p>
 <p>如果两个页面的协议，端口（如果有指定）和域名都相同，则两个页面具有相同的源。</p>
 <p>下面给出了与 URL <code>http://store.company.com/dir/page.html</code> 的源进行对比的示例:</p>
-<div class="hljs code-wrapper"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>store.company.com<span class="hljs-regexp">/dir2/</span>other.html 同源
+<div class="code-wrapper"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>store.company.com<span class="hljs-regexp">/dir2/</span>other.html 同源
 https:<span class="hljs-regexp">//</span>store.company.com/secure.html 不同源，协议不同
 http:<span class="hljs-regexp">//</span>store.company.com:<span class="hljs-number">81</span><span class="hljs-regexp">/dir/</span>etc.html 不同源，端口不同
 http:<span class="hljs-regexp">//</span>news.company.com<span class="hljs-regexp">/dir/</span>other.html 不同源，主机不同</code></pre></div>
@@ -1325,7 +1355,7 @@ http:<span class="hljs-regexp">//</span>news.company.com<span class="hljs-regexp
 </ul>
 <p>现在我在 <code>fe.server.com</code> 对 <code>dev.server.com</code> 发起请求一定会出现跨域。</p>
 <p>现在我们只需要启动一个 <code>Nginx</code> 服务器，将 <code>server_name</code> 设置为 <code>fe.server.com</code> 然后设置相应的 <code>location</code> 以拦截前端需要跨域的请求，最后将请求代理回 <code>dev.server.com</code> 。如下面的配置：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;
  <span class="hljs-attribute">listen</span>      <span class="hljs-number">80</span>;
  <span class="hljs-attribute">server_name</span>  fe.server.com;
  <span class="hljs-attribute">location</span> / &#123;
@@ -1342,7 +1372,7 @@ http:<span class="hljs-regexp">//</span>news.company.com<span class="hljs-regexp
 <p>启用 <code>gzip</code> 同时需要客户端和服务端的支持，如果客户端支持 <code>gzip</code> 的解析，那么只要服务端能够返回 <code>gzip</code> 的文件就可以启用 <code>gzip</code> 了,我们可以通过 <code>Nginx</code> 的配置来让服务端支持 <code>gzip</code> 。下面的 <code>respone</code> 中 <code>content-encoding:gzip</code> ，指服务端开启了 <code>gzip</code> 的压缩方式。</p>
 <p><img src="https://i.loli.net/2021/05/13/2InKAg9biCSdoPj.png" srcset="/img/loading.gif" lazyload alt="Image"></p>
 <p>在 <code>/etc/nginx/conf.d/</code> 文件夹中新建配置文件 <code>gzip.conf</code> ：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs applescript"><span class="hljs-comment"># # 默认off，是否开启gzip</span>
+<div class="code-wrapper"><pre><code class="hljs applescript"><span class="hljs-comment"># # 默认off，是否开启gzip</span>
 gzip <span class="hljs-keyword">on</span>; 
 <span class="hljs-comment"># 要采用 gzip 压缩的 MIME 文件类型，其中 text/html 被系统强制启用；</span>
 gzip_types <span class="hljs-built_in">text</span>/plain <span class="hljs-built_in">text</span>/css <span class="hljs-built_in">application</span>/json <span class="hljs-built_in">application</span>/x-javascript <span class="hljs-built_in">text</span>/xml <span class="hljs-built_in">application</span>/xml <span class="hljs-built_in">application</span>/xml+rss <span class="hljs-built_in">text</span>/javascript;
@@ -1401,54 +1431,115 @@ gzip_http_version <span class="hljs-number">1.1</span>;</code></pre></div>
 <h2 id="Nginx-模块化管理机制"><a href="#Nginx-模块化管理机制" class="headerlink" title="Nginx 模块化管理机制"></a>Nginx 模块化管理机制</h2><p><code>Nginx</code> 的内部结构是由核心部分和一系列的功能模块所组成。这样划分是为了使得每个模块的功能相对简单，便于开发，同时也便于对系统进行功能扩展。<code>Nginx</code> 的模块是互相独立的,低耦合高内聚。</p>
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqgil28gi4j30u00kudje.jpg" srcset="/img/loading.gif" lazyload alt="Image"></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/basic-component/">basic-component</a>
-                    
-                      <a class="hover-with-bg" href="/categories/basic-component/nginx/">nginx</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/nginx/">nginx</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-component/" class="category-chain-item">basic-component</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/basic-component/nginx/" class="category-chain-item">nginx</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/nginx/">#nginx</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>nginx</div>
+      <div>https://lunasaw.github.io/2021/10/11/nginx-start/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2021年10月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/12/linux-du/">
+                      <a href="/2021/10/12/linux-du/" title="linux du">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">linux du</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/09/linux-chmod/">
+                      <a href="/2021/10/09/linux-chmod/" title="linux chmod">
                         <span class="hidden-mobile">linux chmod</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -1458,12 +1549,10 @@ gzip_http_version <span class="hljs-number">1.1</span>;</code></pre></div>
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -1477,7 +1566,9 @@ gzip_http_version <span class="hljs-number">1.1</span>;</code></pre></div>
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -1485,26 +1576,63 @@ gzip_http_version <span class="hljs-number">1.1</span>;</code></pre></div>
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -1526,7 +1654,7 @@ gzip_http_version <span class="hljs-number">1.1</span>;</code></pre></div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1534,14 +1662,14 @@ gzip_http_version <span class="hljs-number">1.1</span>;</code></pre></div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -1553,43 +1681,45 @@ gzip_http_version <span class="hljs-number">1.1</span>;</code></pre></div>
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -1608,10 +1738,22 @@ gzip_http_version <span class="hljs-number">1.1</span>;</code></pre></div>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -1621,60 +1763,119 @@ gzip_http_version <span class="hljs-number">1.1</span>;</code></pre></div>
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

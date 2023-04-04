@@ -13,21 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta name="description" content="Java 代理模式实现方式，主要有如下五种方法 静态代理，工程师编辑代理类代码，实现代理模式；在编译期就生成了代理类。 基于 JDK 实现动态代理，通过jdk提供的工具方法Proxy.newProxyInstance动态构建全新的代理类(继承Proxy类，并持有InvocationHandler接口引用 )字节码文件并实例化对象返回。(jdk动态代理是由java内部的反射机制来实例化代理对象，并代">
+  
+    <meta name="description" content="Java 代理模式实现方式，主要有如下五种方法 静态代理，工程师编辑代理类代码，实现代理模式；在编译期就生成了代理类。 基于 JDK 实现动态代理，通过jdk提供的工具方法Proxy.newProxyInstance动态构建全新的代理类(继承Proxy类，并持有InvocationHandler接口引用 )字节码文件并实例化对象返回。(jdk动态代理是由java内部的反射机制来实例化代理对象，并代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java 动态代理的实现方式">
 <meta property="og:url" content="https://lunasaw.github.io/2021/10/24/java-proxy/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:description" content="Java 代理模式实现方式，主要有如下五种方法 静态代理，工程师编辑代理类代码，实现代理模式；在编译期就生成了代理类。 基于 JDK 实现动态代理，通过jdk提供的工具方法Proxy.newProxyInstance动态构建全新的代理类(继承Proxy类，并持有InvocationHandler接口引用 )字节码文件并实例化对象返回。(jdk动态代理是由java内部的反射机制来实例化代理对象，并代">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lunasaw.github.io/img/basic/java-index.jpg">
 <meta property="article:published_time" content="2021-10-23T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-09-16T02:41:51.987Z">
 <meta property="article:author" content="luna">
 <meta property="article:tag" content="json">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lunasaw.github.io/img/basic/java-index.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
@@ -36,25 +42,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/idea.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -63,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -100,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -112,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -124,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -136,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -148,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -160,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -168,14 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -183,70 +206,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/basic/java-binner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="java 动态代理的实现方式">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      luna
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-24 00:00" pubdate>
-        2021年10月24日 凌晨
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      31k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      98 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-page-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/basic/java-binner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="java 动态代理的实现方式"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        luna
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-24 00:00" pubdate>
+          2021年10月24日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          31k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          261 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -255,22 +292,31 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">java 动态代理的实现方式</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 天前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：7 个月前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h1 id="Java-代理模式实现方式，主要有如下五种方法"><a href="#Java-代理模式实现方式，主要有如下五种方法" class="headerlink" title="Java 代理模式实现方式，主要有如下五种方法"></a>Java 代理模式实现方式，主要有如下五种方法</h1><ul>
+            
+              <div class="markdown-body">
+                
+                <h1 id="Java-代理模式实现方式，主要有如下五种方法"><a href="#Java-代理模式实现方式，主要有如下五种方法" class="headerlink" title="Java 代理模式实现方式，主要有如下五种方法"></a>Java 代理模式实现方式，主要有如下五种方法</h1><ul>
 <li>静态代理，工程师编辑代理类代码，实现代理模式；在编译期就生成了代理类。</li>
 <li>基于 JDK 实现动态代理，通过jdk提供的工具方法Proxy.newProxyInstance动态构建全新的代理类(继承Proxy类，并持有InvocationHandler接口引用 )字节码文件并实例化对象返回。(jdk动态代理是由java内部的反射机制来实例化代理对象，并代理的调用委托类方法)</li>
 <li>基于CGlib 动态代理模式 基于继承被代理类生成代理子类，不用实现接口。只需要被代理类是非final 类即可。(cglib动态代理底层是借助asm字节码技术</li>
@@ -287,7 +333,7 @@
 <li>约束接口实现类 Lion，实现 Cat 接口，委托角色</li>
 <li>代理类实现 FeederProxy，实现Cat 接口，并含有一个 Cat接口引用属性。 代理角色，代理 cat接口属性引用实例的行为并可以新增公共逻辑</li>
 </ul>
-<h4 id="Cat接口"><a href="#Cat接口" class="headerlink" title="Cat接口"></a>Cat接口</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.staticproxy;<span class="hljs-comment">/**</span>
+<h4 id="Cat接口"><a href="#Cat接口" class="headerlink" title="Cat接口"></a>Cat接口</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.staticproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author <span class="hljs-variable">PengRong</span></span></span>
 <span class="hljs-comment">* <span class="hljs-doctag">@package </span>org.vincent.proxy.staticproxy</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@date </span>2018/12/15 - 17:12</span>
@@ -301,7 +347,7 @@ public interface Cat &#123;
   public boolean running();
 &#125;</code></pre></div>
 
-<h4 id="委托类-Lion"><a href="#委托类-Lion" class="headerlink" title="委托类 Lion"></a>委托类 Lion</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.staticproxy;<span class="hljs-comment">/**</span>
+<h4 id="委托类-Lion"><a href="#委托类-Lion" class="headerlink" title="委托类 Lion"></a>委托类 Lion</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.staticproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author <span class="hljs-variable">PengRong</span></span></span>
 <span class="hljs-comment">* <span class="hljs-doctag">@package </span>org.vincent.proxy.staticproxy</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@date </span>2018/12/15 - 17:15</span>
@@ -344,7 +390,7 @@ public interface Cat &#123;
     &#125;
 &#125;</code></pre></div>
 
-<h4 id="代理类角色-FeederProxy"><a href="#代理类角色-FeederProxy" class="headerlink" title="代理类角色(FeederProxy)"></a>代理类角色(FeederProxy)</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.staticproxy;<span class="hljs-comment">/**</span>
+<h4 id="代理类角色-FeederProxy"><a href="#代理类角色-FeederProxy" class="headerlink" title="代理类角色(FeederProxy)"></a>代理类角色(FeederProxy)</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.staticproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author <span class="hljs-variable">PengRong</span></span></span>
 <span class="hljs-comment">* <span class="hljs-doctag">@package </span>org.vincent.proxy.staticproxy</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@date </span>2018/12/15 - 17:19</span>
@@ -382,7 +428,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
     &#125;
 &#125;</code></pre></div>
 
-<h4 id="静态代理类测试"><a href="#静态代理类测试" class="headerlink" title="静态代理类测试"></a>静态代理类测试</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy;<span class="hljs-keyword">import</span> org.vincent.proxy.staticproxy.Cat;
+<h4 id="静态代理类测试"><a href="#静态代理类测试" class="headerlink" title="静态代理类测试"></a>静态代理类测试</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy;<span class="hljs-keyword">import</span> org.vincent.proxy.staticproxy.Cat;
 <span class="hljs-keyword">import</span> org.vincent.proxy.staticproxy.FeederProxy;
 <span class="hljs-keyword">import</span> org.vincent.proxy.staticproxy.Lion;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author <span class="hljs-variable">PengRong</span></span></span>
@@ -419,7 +465,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
 <h3 id="基于JDK技术-动态代理类技术核心-Proxy类和一个-InvocationHandler-接口"><a href="#基于JDK技术-动态代理类技术核心-Proxy类和一个-InvocationHandler-接口" class="headerlink" title="基于JDK技术 动态代理类技术核心 Proxy类和一个 InvocationHandler 接口"></a>基于JDK技术 动态代理类技术核心 Proxy类和一个 InvocationHandler 接口</h3><p>java的java.lang.reflect包下提供了Proxy类和一个 InvocationHandler 接口，这个类Proxy定义了生成JDK动态代理类的方法 <code>getProxyClass(ClassLoader loader,Class&lt;?&gt;... interfaces)</code>生成动态代理类,返回class实例代表一个class文件。可以保存该 class 文件查看jdk生成的代理类文件长什么样</p>
 <p>该生成的动态代理类继承Proxy类，(重要特性) ，并实现公共接口。</p>
 <p>InvocationHandler这个接口 是被动态代理类回调的接口，我们所有需要增加的针对委托类的统一处理逻辑都增加到invoke 方法里面在调用委托类接口方法之前或之后 结束战斗。</p>
-<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><h5 id="公共接口"><a href="#公共接口" class="headerlink" title="公共接口"></a>公共接口</h5><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.dynamicproxy;<span class="hljs-comment">/**</span>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><h5 id="公共接口"><a href="#公共接口" class="headerlink" title="公共接口"></a>公共接口</h5><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.dynamicproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* Created by PengRong on 2018/12/25.</span>
 <span class="hljs-comment">* 创建Person 接口 用于定义 委托类和代理类之间的约束行为</span>
 <span class="hljs-comment">*/</span>
@@ -439,7 +485,7 @@ public interface Person&#123;    <span class="hljs-comment">/**</span>
    <span class="hljs-keyword">void</span>  setName(<span class="hljs-built_in">String</span> name);
 &#125;</code></pre></div>
 
-<h5 id="具体实现类，等下被委托，被代理的类-SoftwareEngineer-java"><a href="#具体实现类，等下被委托，被代理的类-SoftwareEngineer-java" class="headerlink" title="具体实现类，等下被委托，被代理的类 SoftwareEngineer.java"></a>具体实现类，等下被委托，被代理的类 SoftwareEngineer.java</h5><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.dynamicproxy;<span class="hljs-comment">/**</span>
+<h5 id="具体实现类，等下被委托，被代理的类-SoftwareEngineer-java"><a href="#具体实现类，等下被委托，被代理的类-SoftwareEngineer-java" class="headerlink" title="具体实现类，等下被委托，被代理的类 SoftwareEngineer.java"></a>具体实现类，等下被委托，被代理的类 SoftwareEngineer.java</h5><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.dynamicproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* Created by PengRong on 2018/12/25.</span>
 <span class="hljs-comment">* 动态代理委托类实现， 实现接口 Person。 被动态生成的代理类代理</span>
 <span class="hljs-comment">*/</span>
@@ -468,7 +514,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
     &#125;
 &#125;</code></pre></div>
 
-<h5 id="InvocationHandler-接口实现-PersonInvocationHandler-java"><a href="#InvocationHandler-接口实现-PersonInvocationHandler-java" class="headerlink" title="InvocationHandler 接口实现 PersonInvocationHandler.java"></a>InvocationHandler 接口实现 PersonInvocationHandler.java</h5><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.dynamicproxy;
+<h5 id="InvocationHandler-接口实现-PersonInvocationHandler-java"><a href="#InvocationHandler-接口实现-PersonInvocationHandler-java" class="headerlink" title="InvocationHandler 接口实现 PersonInvocationHandler.java"></a>InvocationHandler 接口实现 PersonInvocationHandler.java</h5><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.dynamicproxy;
 <span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;
 <span class="hljs-keyword">import</span> java.lang.reflect.Method;<span class="hljs-keyword">import</span> java.util.Arrays;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* Created by PengRong on 2018/12/25.</span>
@@ -513,7 +559,7 @@ public PersonInvocationHandler&lt;T&gt; implements InvocationHandler &#123;
     &#125;
 &#125;</code></pre></div>
 
-<h5 id="PersonInvocationHandler-invoke-方法中添加的公共代码，这里简单以统计方法执行时间为逻辑"><a href="#PersonInvocationHandler-invoke-方法中添加的公共代码，这里简单以统计方法执行时间为逻辑" class="headerlink" title="PersonInvocationHandler invoke 方法中添加的公共代码，这里简单以统计方法执行时间为逻辑"></a>PersonInvocationHandler invoke 方法中添加的公共代码，这里简单以统计方法执行时间为逻辑</h5><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.dynamicproxy;<span class="hljs-comment">/**</span>
+<h5 id="PersonInvocationHandler-invoke-方法中添加的公共代码，这里简单以统计方法执行时间为逻辑"><a href="#PersonInvocationHandler-invoke-方法中添加的公共代码，这里简单以统计方法执行时间为逻辑" class="headerlink" title="PersonInvocationHandler invoke 方法中添加的公共代码，这里简单以统计方法执行时间为逻辑"></a>PersonInvocationHandler invoke 方法中添加的公共代码，这里简单以统计方法执行时间为逻辑</h5><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.dynamicproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* Created by PengRong on 2018/12/25.</span>
 <span class="hljs-comment">* 方法用时监控类</span>
 <span class="hljs-comment">*/</span>public MonitorUtil &#123;
@@ -534,7 +580,7 @@ public PersonInvocationHandler&lt;T&gt; implements InvocationHandler &#123;
     &#125;
 &#125;</code></pre></div>
 
-<h5 id="最后的是-怎么创建代理类"><a href="#最后的是-怎么创建代理类" class="headerlink" title="最后的是 怎么创建代理类"></a>最后的是 怎么创建代理类</h5><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.jdkdynamicProxy;<span class="hljs-keyword">import</span> org.vincent.proxy.dynamicproxy.Person;<span class="hljs-keyword">import</span> org.vincent.proxy.dynamicproxy.PersonInvocationHandler;<span class="hljs-keyword">import</span> org.vincent.proxy.dynamicproxy.SoftwareEngineer;<span class="hljs-keyword">import</span> sun.misc.ProxyGenerator;<span class="hljs-keyword">import</span> java.io.FileOutputStream;<span class="hljs-keyword">import</span> java.lang.reflect.Constructor;<span class="hljs-keyword">import</span> java.lang.reflect.Field;<span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;<span class="hljs-keyword">import</span> java.lang.reflect.Proxy;<span class="hljs-keyword">import</span> java.nio.file.Path;<span class="hljs-keyword">import</span> java.nio.file.Paths;<span class="hljs-keyword">import</span> java.util.Arrays;<span class="hljs-keyword">import</span> java.util.Properties;<span class="hljs-comment">/**</span>
+<h5 id="最后的是-怎么创建代理类"><a href="#最后的是-怎么创建代理类" class="headerlink" title="最后的是 怎么创建代理类"></a>最后的是 怎么创建代理类</h5><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.jdkdynamicProxy;<span class="hljs-keyword">import</span> org.vincent.proxy.dynamicproxy.Person;<span class="hljs-keyword">import</span> org.vincent.proxy.dynamicproxy.PersonInvocationHandler;<span class="hljs-keyword">import</span> org.vincent.proxy.dynamicproxy.SoftwareEngineer;<span class="hljs-keyword">import</span> sun.misc.ProxyGenerator;<span class="hljs-keyword">import</span> java.io.FileOutputStream;<span class="hljs-keyword">import</span> java.lang.reflect.Constructor;<span class="hljs-keyword">import</span> java.lang.reflect.Field;<span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;<span class="hljs-keyword">import</span> java.lang.reflect.Proxy;<span class="hljs-keyword">import</span> java.nio.file.Path;<span class="hljs-keyword">import</span> java.nio.file.Paths;<span class="hljs-keyword">import</span> java.util.Arrays;<span class="hljs-keyword">import</span> java.util.Properties;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* 动态代理类测试</span>
 <span class="hljs-comment">* Created by PengRong on 2018/12/25.</span>
 <span class="hljs-comment">*/</span>public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JdkDynamicProxyTest</span> </span>&#123;
@@ -619,7 +665,7 @@ public PersonInvocationHandler&lt;T&gt; implements InvocationHandler &#123;
    &#125;&#125;</code></pre></div>
 
 <h4 id="解析JDK生成的动态代理类"><a href="#解析JDK生成的动态代理类" class="headerlink" title="解析JDK生成的动态代理类"></a>解析JDK生成的动态代理类</h4><p>saveGeneratedJdkProxyFiles方法 打开了存储jdk生成的动态代理类 以 接口方法 goWorking 为例讲解</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">public final <span class="hljs-class"><span class="hljs-keyword">class</span> $<span class="hljs-title">PersonProxy0</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Proxy</span> <span class="hljs-title">implements</span> <span class="hljs-title">Person</span> </span>&#123;
+<div class="code-wrapper"><pre><code class="hljs javascript">public final <span class="hljs-class"><span class="hljs-keyword">class</span> $<span class="hljs-title">PersonProxy0</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Proxy</span> <span class="hljs-title">implements</span> <span class="hljs-title">Person</span> </span>&#123;
     private <span class="hljs-keyword">static</span> Method m1;
     private <span class="hljs-keyword">static</span> Method m5;
     private <span class="hljs-keyword">static</span> Method m4;
@@ -738,7 +784,7 @@ public PersonInvocationHandler&lt;T&gt; implements InvocationHandler &#123;
 <h3 id="基于CGlib-技术动态代理代理类实现-基于继承"><a href="#基于CGlib-技术动态代理代理类实现-基于继承" class="headerlink" title="基于CGlib 技术动态代理代理类实现 (基于继承)"></a>基于CGlib 技术动态代理代理类实现 (基于继承)</h3><p>Cglib是针对类来实现代理的，他的原理是对代理的目标类生成一个子类，并覆盖其中方法实现增强，因为底层是基于创建被代理类的一个子类，所以它避免了JDK动态代理类的缺陷。</p>
 <p>但因为采用的是继承，所以不能对final修饰的类进行代理。final修饰的类不可继承。</p>
 <h4 id="导入maven-依赖"><a href="#导入maven-依赖" class="headerlink" title="导入maven 依赖"></a>导入maven 依赖</h4><p>cglib 是基于asm 字节修改技术。导入 cglib 会间接导入 asm, ant, ant-launcher 三个jar 包。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;!-- cglib 动态代理依赖 begin --&gt;
+<div class="code-wrapper"><pre><code class="hljs javascript">&lt;!-- cglib 动态代理依赖 begin --&gt;
  &lt;dependency&gt;
    &lt;groupId&gt;cglib&lt;/groupId&gt;
    &lt;artifactId&gt;cglib&lt;/artifactId&gt;
@@ -746,7 +792,7 @@ public PersonInvocationHandler&lt;T&gt; implements InvocationHandler &#123;
 &lt;!-- cglib 动态代理依赖 stop --&gt;</code></pre></div>
 
 <h4 id="业务类实现"><a href="#业务类实现" class="headerlink" title="业务类实现"></a>业务类实现</h4><p>cglib是针对类来实现代理的，原理是对指定的业务类生成他的一个子类，并覆盖其中的业务方法来实现代理。因为采用的是继承，所以不能对final修饰的类进行代理。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.cglibproxy;<span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.cglibproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Package</span>: org.vincent.proxy.cglibproxy &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Description</span>： Cglib 代理模式中 被代理的委托类 &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author</span>: lenovo &lt;br/&gt;</span>
@@ -762,7 +808,7 @@ public PersonInvocationHandler&lt;T&gt; implements InvocationHandler &#123;
    &#125;
 &#125;</code></pre></div>
 
-<h4 id="方法拦截器-实现-MethodInterceptor-接口"><a href="#方法拦截器-实现-MethodInterceptor-接口" class="headerlink" title="方法拦截器 实现 MethodInterceptor 接口"></a>方法拦截器 实现 MethodInterceptor 接口</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.cglibproxy;
+<h4 id="方法拦截器-实现-MethodInterceptor-接口"><a href="#方法拦截器-实现-MethodInterceptor-接口" class="headerlink" title="方法拦截器 实现 MethodInterceptor 接口"></a>方法拦截器 实现 MethodInterceptor 接口</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.cglibproxy;
 <span class="hljs-keyword">import</span> net.sf.cglib.proxy.Enhancer;
 <span class="hljs-keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;
 <span class="hljs-keyword">import</span> net.sf.cglib.proxy.MethodProxy;<span class="hljs-keyword">import</span> java.lang.reflect.Method;<span class="hljs-comment">/**</span>
@@ -807,7 +853,7 @@ public PersonInvocationHandler&lt;T&gt; implements InvocationHandler &#123;
    &#125;
 &#125;</code></pre></div>
 
-<h4 id="一个切面，用于在方法拦截器中intercept-方法中调用真正业务方法之前-之后处理逻辑"><a href="#一个切面，用于在方法拦截器中intercept-方法中调用真正业务方法之前-之后处理逻辑" class="headerlink" title="一个切面，用于在方法拦截器中intercept 方法中调用真正业务方法之前 之后处理逻辑"></a>一个切面，用于在方法拦截器中intercept 方法中调用真正业务方法之前 之后处理逻辑</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.cglibproxy;<span class="hljs-comment">/**</span>
+<h4 id="一个切面，用于在方法拦截器中intercept-方法中调用真正业务方法之前-之后处理逻辑"><a href="#一个切面，用于在方法拦截器中intercept-方法中调用真正业务方法之前-之后处理逻辑" class="headerlink" title="一个切面，用于在方法拦截器中intercept 方法中调用真正业务方法之前 之后处理逻辑"></a>一个切面，用于在方法拦截器中intercept 方法中调用真正业务方法之前 之后处理逻辑</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.cglibproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* Created by PengRong on 2018/12/25.</span>
 <span class="hljs-comment">* 方法用时监控类,作为一个切面 ，具有两个方法</span>
 <span class="hljs-comment">*/</span>
@@ -829,7 +875,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
     &#125;
 &#125;</code></pre></div>
 
-<h4 id="Cglib测试类"><a href="#Cglib测试类" class="headerlink" title="Cglib测试类"></a>Cglib测试类</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.cglibproxy;
+<h4 id="Cglib测试类"><a href="#Cglib测试类" class="headerlink" title="Cglib测试类"></a>Cglib测试类</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.proxy.cglibproxy;
 <span class="hljs-keyword">import</span> net.sf.cglib.core.DebuggingClassWriter;
 <span class="hljs-keyword">import</span> net.sf.cglib.proxy.Enhancer;
 <span class="hljs-keyword">import</span> org.junit.Test;
@@ -886,7 +932,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
 <p>静态代理在编译时产生class字节码文件，可以直接使用，效率高。动态代理必须实现InvocationHandler接口，通过invoke调用被委托类接口方法是通过反射方式，比较消耗系统性能，但可以减少代理类的数量，使用更灵活。 cglib代理无需实现接口，通过生成类字节码实现代理，比反射稍快，不存在性能问题，但cglib会继承目标对象，需要重写方法，所以目标对象不能为final类。</p>
 <h2 id="AOP-实现案例"><a href="#AOP-实现案例" class="headerlink" title="AOP 实现案例"></a>AOP 实现案例</h2><p>AOP的源码中用到了两种动态代理来实现拦截切入功能：jdk动态代理和cglib动态代理。两种方法同时存在，各有优劣。 jdk动态代理是由java内部的反射机制来实现的，cglib动态代理底层则是借助asm来实现的。 总的来说，<code>反射机制在生成类的过程中比较高效，执行时候通过反射调用委托类接口方法比较慢；而asm在生成类之后的相关代理类执行过程中比较高效（可以通过将asm生成的类进行缓存，这样解决asm生成类过程低效问题）</code>。 还有一点必须注意：jdk动态代理的应用前提，必须是委托类基于统一的接口。如果没有上述前提，jdk动态代理不能应用。 由此可以看出，jdk动态代理有一定的局限性，cglib这种第三方类库实现的动态代理应用更加广泛，且在效率上更有优势。</p>
 <p>实现AOP关键特点是定义好两个角色 切点 和 切面 。 代理模式中被代理类 委托类处于切点角色，需要添加的其他比如 校验逻辑，事务，审计逻辑 属于非功能实现逻辑通过 切面类定义的方法插入进去。</p>
-<h3 id="JDK动态代理-aop-实现方式"><a href="#JDK动态代理-aop-实现方式" class="headerlink" title="JDK动态代理 aop 实现方式"></a>JDK动态代理 aop 实现方式</h3><h4 id="定义切面接口，完成将通用公共方法注入到被代理类接口调用处理中"><a href="#定义切面接口，完成将通用公共方法注入到被代理类接口调用处理中" class="headerlink" title="定义切面接口，完成将通用公共方法注入到被代理类接口调用处理中"></a>定义切面接口，完成将通用公共方法注入到被代理类接口调用处理中</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;<span class="hljs-comment">/**</span>
+<h3 id="JDK动态代理-aop-实现方式"><a href="#JDK动态代理-aop-实现方式" class="headerlink" title="JDK动态代理 aop 实现方式"></a>JDK动态代理 aop 实现方式</h3><h4 id="定义切面接口，完成将通用公共方法注入到被代理类接口调用处理中"><a href="#定义切面接口，完成将通用公共方法注入到被代理类接口调用处理中" class="headerlink" title="定义切面接口，完成将通用公共方法注入到被代理类接口调用处理中"></a>定义切面接口，完成将通用公共方法注入到被代理类接口调用处理中</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Package</span>: org.vincent.aop.dynamicproxy &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Description</span>： 定义切面接口，切面接口定义了两个切面方法，分别在切点接口方法执行前和执行后执行 &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author</span>: lenovo &lt;br/&gt;</span>
@@ -910,7 +956,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
     <span class="hljs-keyword">void</span> endTrasaction();
 &#125;</code></pre></div>
 
-<h4 id="定义切面实现类"><a href="#定义切面实现类" class="headerlink" title="定义切面实现类"></a>定义切面实现类</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;
+<h4 id="定义切面实现类"><a href="#定义切面实现类" class="headerlink" title="定义切面实现类"></a>定义切面实现类</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;
 <span class="hljs-keyword">import</span> java.util.Objects;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Package</span>: org.vincent.aop.dynamicproxy &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Description</span>： 改类作为AOP 模型中切面角色类， 实现切面接口，切面接口定义了两个切面方法，分别在切点接口方法执行前和执行后执行 。 &lt;br/&gt;</span>
@@ -945,7 +991,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
     &#125;
 &#125;</code></pre></div>
 
-<h4 id="定义切点角色接口-因为是基于JDK实现的Aop-，所以委托类需要基于接口实现。"><a href="#定义切点角色接口-因为是基于JDK实现的Aop-，所以委托类需要基于接口实现。" class="headerlink" title="定义切点角色接口 因为是基于JDK实现的Aop ，所以委托类需要基于接口实现。"></a>定义切点角色接口 因为是基于JDK实现的Aop ，所以委托类需要基于接口实现。</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;<span class="hljs-comment">/**</span>
+<h4 id="定义切点角色接口-因为是基于JDK实现的Aop-，所以委托类需要基于接口实现。"><a href="#定义切点角色接口-因为是基于JDK实现的Aop-，所以委托类需要基于接口实现。" class="headerlink" title="定义切点角色接口 因为是基于JDK实现的Aop ，所以委托类需要基于接口实现。"></a>定义切点角色接口 因为是基于JDK实现的Aop ，所以委托类需要基于接口实现。</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Package</span>: org.vincent.aop.dynamicproxy &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Description</span>： AOP基于动态代理 实现  &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author</span>: lenovo &lt;br/&gt;</span>
@@ -959,7 +1005,7 @@ public interface IUserService &#123;
   <span class="hljs-keyword">void</span> saveUser(<span class="hljs-built_in">String</span> username, <span class="hljs-built_in">String</span> password) throws Exception;
 &#125;</code></pre></div>
 
-<h4 id="委托类实现"><a href="#委托类实现" class="headerlink" title="委托类实现"></a>委托类实现</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;<span class="hljs-comment">/**</span>
+<h4 id="委托类实现"><a href="#委托类实现" class="headerlink" title="委托类实现"></a>委托类实现</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Package</span>: org.vincent.aop.dynamicproxy &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Description</span>： UserService接口实现类UserServiceImpl 该类 作为AOP中切点角色，切面定义的方法插入到切点的接口方法 执行前和执行后执行。 &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author</span>: lenovo &lt;br/&gt;</span>
@@ -977,7 +1023,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
 &#125;</code></pre></div>
 
 <h4 id="JDK动态代理生成器工具类"><a href="#JDK动态代理生成器工具类" class="headerlink" title="JDK动态代理生成器工具类"></a>JDK动态代理生成器工具类</h4><p>可以看到 generatorJDKProxy 方法入参只有两个参数 一个切点接口引用，一个切面接口引用；在InvocationHandler 内部类中可以完整看到切面类方法是怎么影响切点代码执行逻辑的。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;
+<div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.dynamicproxy;
 <span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;
 <span class="hljs-keyword">import</span> java.lang.reflect.Method;
 <span class="hljs-keyword">import</span> java.lang.reflect.Proxy;
@@ -1028,7 +1074,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
     &#125;
 &#125;</code></pre></div>
 
-<h4 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop;<span class="hljs-keyword">import</span> org.junit.Test;
+<h4 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop;<span class="hljs-keyword">import</span> org.junit.Test;
 <span class="hljs-keyword">import</span> org.vincent.aop.dynamicproxy.CustomAspect;
 <span class="hljs-keyword">import</span> org.vincent.aop.dynamicproxy.IUserService;
 <span class="hljs-keyword">import</span> org.vincent.aop.dynamicproxy.JDKDynamicProxyGenerator;
@@ -1053,7 +1099,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
    &#125;
 &#125;</code></pre></div>
 
-<h3 id="Cglib-aop-实现方式"><a href="#Cglib-aop-实现方式" class="headerlink" title="Cglib aop 实现方式"></a>Cglib aop 实现方式</h3><h4 id="定义切面接口"><a href="#定义切面接口" class="headerlink" title="定义切面接口"></a>定义切面接口</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.cglib;<span class="hljs-comment">/**</span>
+<h3 id="Cglib-aop-实现方式"><a href="#Cglib-aop-实现方式" class="headerlink" title="Cglib aop 实现方式"></a>Cglib aop 实现方式</h3><h4 id="定义切面接口"><a href="#定义切面接口" class="headerlink" title="定义切面接口"></a>定义切面接口</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.cglib;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Package</span>: org.vincent.aop.dynamicproxy &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Description</span>： 定义切面接口，切面接口定义了两个切面方法，分别在切点接口方法执行前和执行后执行 &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author</span>: lenovo &lt;br/&gt;</span>
@@ -1071,7 +1117,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
    <span class="hljs-keyword">void</span> endTrasaction();
 &#125;</code></pre></div>
 
-<h4 id="切面实现"><a href="#切面实现" class="headerlink" title="切面实现"></a>切面实现</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.cglib;<span class="hljs-comment">/**</span>
+<h4 id="切面实现"><a href="#切面实现" class="headerlink" title="切面实现"></a>切面实现</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.cglib;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Package</span>: org.vincent.aop.dynamicproxy &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Description</span>： 改类作为AOP 模型中切面角色类， 实现切面接口，切面接口定义了两个切面方法，分别在切点接口方法执行前和执行后执行 。 &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author</span>: lenovo &lt;br/&gt;</span>
@@ -1088,7 +1134,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
    &#125;
 &#125;</code></pre></div>
 
-<h4 id="Cglib-是基于类实现的动态代理即业务类只需要实现类即可，不用强制必须实现某个接口为了突出这个优点这里没有实现接口"><a href="#Cglib-是基于类实现的动态代理即业务类只需要实现类即可，不用强制必须实现某个接口为了突出这个优点这里没有实现接口" class="headerlink" title="Cglib 是基于类实现的动态代理即业务类只需要实现类即可，不用强制必须实现某个接口为了突出这个优点这里没有实现接口"></a>Cglib 是基于类实现的动态代理即业务类只需要实现类即可，不用强制必须实现某个接口为了突出这个优点这里没有实现接口</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.cglib;<span class="hljs-comment">/**</span>
+<h4 id="Cglib-是基于类实现的动态代理即业务类只需要实现类即可，不用强制必须实现某个接口为了突出这个优点这里没有实现接口"><a href="#Cglib-是基于类实现的动态代理即业务类只需要实现类即可，不用强制必须实现某个接口为了突出这个优点这里没有实现接口" class="headerlink" title="Cglib 是基于类实现的动态代理即业务类只需要实现类即可，不用强制必须实现某个接口为了突出这个优点这里没有实现接口"></a>Cglib 是基于类实现的动态代理即业务类只需要实现类即可，不用强制必须实现某个接口为了突出这个优点这里没有实现接口</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.cglib;<span class="hljs-comment">/**</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Package</span>: org.vincent.aop.dynamicproxy &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@Description</span>： 业务实现类UserServiceImpl 该类 作为AOP中切点角色，切面定义的方法插入到切点的接口方法 执行前和执行后执行。 &lt;br/&gt;</span>
 <span class="hljs-comment">* <span class="hljs-doctag">@author</span>: lenovo &lt;br/&gt;</span>
@@ -1103,7 +1149,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
    &#125;
 &#125;</code></pre></div>
 
-<h4 id="Cglib-动态代理生成器工具类"><a href="#Cglib-动态代理生成器工具类" class="headerlink" title="Cglib 动态代理生成器工具类"></a>Cglib 动态代理生成器工具类</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.cglib;
+<h4 id="Cglib-动态代理生成器工具类"><a href="#Cglib-动态代理生成器工具类" class="headerlink" title="Cglib 动态代理生成器工具类"></a>Cglib 动态代理生成器工具类</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop.cglib;
 <span class="hljs-keyword">import</span> net.sf.cglib.proxy.Enhancer;
 <span class="hljs-keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;
 <span class="hljs-keyword">import</span> net.sf.cglib.proxy.MethodProxy;
@@ -1136,7 +1182,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
        <span class="hljs-keyword">return</span> enhancer.create();
    &#125;&#125;</code></pre></div>
 
-<h4 id="测试类-1"><a href="#测试类-1" class="headerlink" title="测试类"></a>测试类</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop;
+<h4 id="测试类-1"><a href="#测试类-1" class="headerlink" title="测试类"></a>测试类</h4><div class="code-wrapper"><pre><code class="hljs javascript">package org.vincent.aop;
 <span class="hljs-keyword">import</span> org.junit.Test;
 <span class="hljs-keyword">import</span> org.vincent.aop.cglib.CglibProxyGenerator;
 <span class="hljs-keyword">import</span> org.vincent.aop.cglib.CustomAspect;
@@ -1166,7 +1212,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
 <li>动态代理则在运行时借助于 JDK 动态代理、CGLIB 等在内存中“临时”生成 AOP 动态代理类，因此也被称为运行时增强。</li>
 </ul>
 <h4 id="基于-AspectJ-的编译时增强进行-AOP-POM-依赖"><a href="#基于-AspectJ-的编译时增强进行-AOP-POM-依赖" class="headerlink" title="基于 AspectJ 的编译时增强进行 AOP POM 依赖"></a>基于 AspectJ 的编译时增强进行 AOP POM 依赖</h4><p>原生 AspectJ 不依赖Spring案例, 基于 AspectJ 的编译时增强进行 AOP 它是在编译期修改字节码，增强功能；并不会生成新的代理类字节码。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;!-- AspectJ begin--&gt;&lt;dependency&gt;
+<div class="code-wrapper"><pre><code class="hljs javascript">&lt;!-- AspectJ begin--&gt;&lt;dependency&gt;
    &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
    &lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;
    &lt;version&gt;<span class="hljs-number">1.9</span><span class="hljs-number">.2</span>&lt;<span class="hljs-regexp">/version&gt;&lt;/</span>dependency&gt;&lt;dependency&gt;
@@ -1181,52 +1227,108 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
 <li>AOP</li>
 </ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/java/">java</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/json/">json</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/json/">#json</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>java 动态代理的实现方式</div>
+      <div>https://lunasaw.github.io/2021/10/24/java-proxy/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>著者</div>
+          <div>luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>作成日</div>
+          <div>2021年10月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>著作権</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/24/java-aop/">
+                      <a href="/2021/10/24/java-aop/" title="java aop">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">java aop</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">前の記事</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/13/java-interview-2/">
+                      <a href="/2021/10/13/java-interview-2/" title="java interview 2">
                         <span class="hidden-mobile">java interview 2</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -1236,12 +1338,10 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
@@ -1255,7 +1355,9 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
         )
         new Valine(options);
         Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
         })
       });
     });
@@ -1263,26 +1365,63 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>見出し</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  <!-- Custom -->
   <div class="col-lg-7 mx-auto nopadding-x-md">
     <div class="container custom post-custom mx-auto">
       <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
@@ -1304,7 +1443,7 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1312,14 +1451,14 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -1331,43 +1470,45 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -1386,10 +1527,22 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -1399,60 +1552,119 @@ public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>

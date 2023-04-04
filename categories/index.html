@@ -13,11 +13,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="luna">
   <meta name="keywords" content="博客,luna,java,spring,utils,linux,idea">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kategorie">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="カテゴリ">
 <meta property="og:url" content="https://lunasaw.github.io/categories/index.html">
 <meta property="og:site_name" content="十平方米小屋">
 <meta property="og:locale" content="zh_CN">
@@ -25,17 +25,24 @@
 <meta property="article:tag" content="博客,luna,java,spring,utils,linux,idea">
 <meta name="twitter:card" content="summary_large_image">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
   
-  <title>Kategorie - 十平方米小屋</title>
+  <title>カテゴリ - 十平方米小屋</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +51,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lunasaw.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":65,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1WlABYJFX3ooWNnixAEsUHg2-gzGzoHsz","app_key":"4HAsQYXea2QPsxkF5wOFFpbH","server_url":"https://cn-n1-cell1.leancloud.cn","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>十平方米小屋</strong>
@@ -81,7 +109,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -93,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -105,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -117,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -129,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -141,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                链接
+                <span>链接</span>
               </a>
             </li>
           
@@ -149,14 +177,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -164,34 +194,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/paper/categorate.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title=" ">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/paper/categorate.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text=" "></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -205,24 +241,27 @@
 <div class="category-list">
   
   
-  
-  
     
     
-    <div class="category row">
-      <a
-        class="category-item  list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="java"
         id="heading-93f725a07423fe1c889f448b33d21f46" role="tab" data-toggle="collapse" href="#collapse-93f725a07423fe1c889f448b33d21f46"
         aria-expanded="true"
       >
         java
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>41</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-93f725a07423fe1c889f448b33d21f46" role="tabpanel" aria-labelledby="heading-93f725a07423fe1c889f448b33d21f46">
+      
+        <a href="/categories/java/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>41</span>
+        </a>
+      
+      <div class="category-collapse collapse show" id="collapse-93f725a07423fe1c889f448b33d21f46"
+           role="tabpanel" aria-labelledby="heading-93f725a07423fe1c889f448b33d21f46">
         
         
           
@@ -232,70 +271,90 @@
     
       
       
-        <a href="/2021/11/05/java-synchornized/" class="list-group-item list-group-item-action">
+        <a href="/2021/11/05/java-synchornized/" title="java synchronized lock"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">java synchronized lock</span>
         </a>
       
     
       
       
-        <a href="/2021/10/24/java-proxy/" class="list-group-item list-group-item-action">
+        <a href="/2021/10/24/java-proxy/" title="java 动态代理的实现方式"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">java 动态代理的实现方式</span>
         </a>
       
     
       
       
-        <a href="/2021/08/26/jvm-tenance/" class="list-group-item list-group-item-action">
+        <a href="/2021/08/26/jvm-properties/" title="jvm_tuning"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">jvm_tuning</span>
         </a>
       
     
       
       
-        <a href="/2021/08/26/jvm-properties/" class="list-group-item list-group-item-action">
+        <a href="/2021/08/26/jvm-tenance/" title="jvm_tuning"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">jvm_tuning</span>
         </a>
       
     
       
       
-        <a href="/2021/05/26/jvm-tuning/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/26/jvm-tuning/" title="jvm_tuning"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">jvm_tuning</span>
         </a>
       
     
       
       
-        <a href="/2021/05/26/java-design-patterns/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/26/java-design-patterns/" title="design_patterns"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">design_patterns</span>
         </a>
       
     
       
       
-        <a href="/2021/05/16/java-binner-pic/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/16/java-binner-pic/" title="binner"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">binner</span>
         </a>
       
     
       
       
-        <a href="/2020/11/28/other-logical-operations/" class="list-group-item list-group-item-action">
+        <a href="/2020/11/28/other-logical-operations/" title="逻辑运算符"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">逻辑运算符</span>
         </a>
       
     
       
       
-        <a href="/2020/09/13/idea-easycode/" class="list-group-item list-group-item-action">
+        <a href="/2020/09/13/idea-easycode/" title="easyCode"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">easyCode</span>
         </a>
       
     
       
       
-        <a href="/2020/05/18/java-utils-date/" class="list-group-item list-group-item-action">
+        <a href="/2020/05/18/java-utils-date/" title="DateUtils方法"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">DateUtils方法</span>
         </a>
       
@@ -310,23 +369,27 @@
 
           
   
-  
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="middle-component"
         id="heading-5903f912182a23b50030916c07dcc4c7" role="tab" data-toggle="collapse" href="#collapse-5903f912182a23b50030916c07dcc4c7"
         aria-expanded="false"
       >
         middle-component
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/middle-component/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>10</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-5903f912182a23b50030916c07dcc4c7" role="tabpanel" aria-labelledby="heading-5903f912182a23b50030916c07dcc4c7">
+      
+        <a href="/categories/java/middle-component/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>10</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-5903f912182a23b50030916c07dcc4c7"
+           role="tabpanel" aria-labelledby="heading-5903f912182a23b50030916c07dcc4c7">
         
         
           
@@ -336,7 +399,9 @@
     
       
       
-        <a href="/2021/01/07/consul-start/" class="list-group-item list-group-item-action">
+        <a href="/2021/01/07/consul-start/" title="consul"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">consul</span>
         </a>
       
@@ -345,23 +410,27 @@
 
           
   
-  
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="redis"
         id="heading-86a1b907d54bf7010394bf316e183e67" role="tab" data-toggle="collapse" href="#collapse-86a1b907d54bf7010394bf316e183e67"
         aria-expanded="false"
       >
         redis
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/middle-component/redis/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-86a1b907d54bf7010394bf316e183e67" role="tabpanel" aria-labelledby="heading-86a1b907d54bf7010394bf316e183e67">
+      
+        <a href="/categories/java/middle-component/redis/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>3</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-86a1b907d54bf7010394bf316e183e67"
+           role="tabpanel" aria-labelledby="heading-86a1b907d54bf7010394bf316e183e67">
         
         
           
@@ -370,21 +439,27 @@
     
       
       
-        <a href="/2021/05/18/redis-config/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/18/redis-config/" title="redis config"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">redis config</span>
         </a>
       
     
       
       
-        <a href="/2021/01/04/redis/" class="list-group-item list-group-item-action">
+        <a href="/2021/01/04/redis/" title="redis"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">redis</span>
         </a>
       
     
       
       
-        <a href="/2020/06/02/redis-spring/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/02/redis-spring/" title="redis与springboot整合"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">redis与springboot整合</span>
         </a>
       
@@ -397,20 +472,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="mybatis"
         id="heading-f0d71b77ac2ea991f39f9dfdd5e985b5" role="tab" data-toggle="collapse" href="#collapse-f0d71b77ac2ea991f39f9dfdd5e985b5"
         aria-expanded="false"
       >
         mybatis
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/middle-component/mybatis/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-f0d71b77ac2ea991f39f9dfdd5e985b5" role="tabpanel" aria-labelledby="heading-f0d71b77ac2ea991f39f9dfdd5e985b5">
+      
+        <a href="/categories/java/middle-component/mybatis/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>3</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-f0d71b77ac2ea991f39f9dfdd5e985b5"
+           role="tabpanel" aria-labelledby="heading-f0d71b77ac2ea991f39f9dfdd5e985b5">
         
         
           
@@ -419,22 +499,28 @@
     
       
       
-        <a href="/2021/04/19/mybatis-interview-1/" class="list-group-item list-group-item-action">
+        <a href="/2021/04/19/mybatis-interview-1/" title="mybatis 面试题"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">mybatis 面试题</span>
         </a>
       
     
       
       
-        <a href="/2020/11/04/mybatis-autosql/" class="list-group-item list-group-item-action">
-          <span class="category-post">mybatis动态sql</span>
+        <a href="/2020/11/04/mybatis-princpal/" title="mybatis原理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mybatis原理</span>
         </a>
       
     
       
       
-        <a href="/2020/11/04/mybatis-princpal/" class="list-group-item list-group-item-action">
-          <span class="category-post">mybatis原理</span>
+        <a href="/2020/11/04/mybatis-autosql/" title="mybatis动态sql"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mybatis动态sql</span>
         </a>
       
     
@@ -446,20 +532,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="rabbitmq"
         id="heading-aedb75dfc563674e1263316b01879722" role="tab" data-toggle="collapse" href="#collapse-aedb75dfc563674e1263316b01879722"
         aria-expanded="false"
       >
         rabbitmq
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/middle-component/rabbitmq/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-aedb75dfc563674e1263316b01879722" role="tabpanel" aria-labelledby="heading-aedb75dfc563674e1263316b01879722">
+      
+        <a href="/categories/java/middle-component/rabbitmq/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>2</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-aedb75dfc563674e1263316b01879722"
+           role="tabpanel" aria-labelledby="heading-aedb75dfc563674e1263316b01879722">
         
         
           
@@ -468,14 +559,18 @@
     
       
       
-        <a href="/2021/01/11/rabbitmq-linux/" class="list-group-item list-group-item-action">
+        <a href="/2021/01/11/rabbitmq-linux/" title="rabbitmq-linux"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">rabbitmq-linux</span>
         </a>
       
     
       
       
-        <a href="/2021/01/11/rabbitmq-windows-install/" class="list-group-item list-group-item-action">
+        <a href="/2021/01/11/rabbitmq-windows-install/" title="rabbitmq-windows"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">rabbitmq-windows</span>
         </a>
       
@@ -488,20 +583,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="shiro"
         id="heading-6dfdc384d6025b2ab9b71ec15971aa11" role="tab" data-toggle="collapse" href="#collapse-6dfdc384d6025b2ab9b71ec15971aa11"
         aria-expanded="false"
       >
         shiro
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/middle-component/shiro/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-6dfdc384d6025b2ab9b71ec15971aa11" role="tabpanel" aria-labelledby="heading-6dfdc384d6025b2ab9b71ec15971aa11">
+      
+        <a href="/categories/java/middle-component/shiro/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-6dfdc384d6025b2ab9b71ec15971aa11"
+           role="tabpanel" aria-labelledby="heading-6dfdc384d6025b2ab9b71ec15971aa11">
         
         
           
@@ -510,7 +610,9 @@
     
       
       
-        <a href="/2020/04/02/shiro-start/" class="list-group-item list-group-item-action">
+        <a href="/2020/04/02/shiro-start/" title="shiro"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">shiro</span>
         </a>
       
@@ -527,20 +629,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="spring"
         id="heading-2a2d595e6ed9a0b24f027f2b63b134d6" role="tab" data-toggle="collapse" href="#collapse-2a2d595e6ed9a0b24f027f2b63b134d6"
         aria-expanded="false"
       >
         spring
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/spring/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>10</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-2a2d595e6ed9a0b24f027f2b63b134d6" role="tabpanel" aria-labelledby="heading-2a2d595e6ed9a0b24f027f2b63b134d6">
+      
+        <a href="/categories/java/spring/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>10</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-2a2d595e6ed9a0b24f027f2b63b134d6"
+           role="tabpanel" aria-labelledby="heading-2a2d595e6ed9a0b24f027f2b63b134d6">
         
         
           
@@ -549,70 +656,90 @@
     
       
       
-        <a href="/2021/05/11/spring-bean/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/11/spring-bean/" title="spring-bean"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">spring-bean</span>
         </a>
       
     
       
       
-        <a href="/2020/11/24/spring-rest-template/" class="list-group-item list-group-item-action">
+        <a href="/2020/11/24/spring-rest-template/" title="spring RestTemplate"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">spring RestTemplate</span>
         </a>
       
     
       
       
-        <a href="/2020/06/07/spring-exception/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/07/spring-exception/" title="SpringBoot 统一异常处理"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">SpringBoot 统一异常处理</span>
         </a>
       
     
       
       
-        <a href="/2020/06/03/spring-async/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/03/spring-async/" title="Springboot的异步方法async调用与线程池配置"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Springboot的异步方法async调用与线程池配置</span>
         </a>
       
     
       
       
-        <a href="/2020/06/01/spring-aop/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/01/spring-aop/" title="Spring Aop切面编程"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Spring Aop切面编程</span>
         </a>
       
     
       
       
-        <a href="/2020/05/31/spring-logback/" class="list-group-item list-group-item-action">
+        <a href="/2020/05/31/spring-logback/" title="SpringBoot + LogBack 配置"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">SpringBoot + LogBack 配置</span>
         </a>
       
     
       
       
-        <a href="/2020/05/31/spring-security/" class="list-group-item list-group-item-action">
+        <a href="/2020/05/31/spring-security/" title="Spring security 配置"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Spring security 配置</span>
         </a>
       
     
       
       
-        <a href="/2020/05/30/spring-https/" class="list-group-item list-group-item-action">
+        <a href="/2020/05/30/spring-https/" title="springhttps"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">springhttps</span>
         </a>
       
     
       
       
-        <a href="/2020/04/13/spring-anno/" class="list-group-item list-group-item-action">
+        <a href="/2020/04/13/spring-anno/" title="anno"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">anno</span>
         </a>
       
     
       
       
-        <a href="/2020/04/02/spring-mvc/" class="list-group-item list-group-item-action">
+        <a href="/2020/04/02/spring-mvc/" title="springMVC"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">springMVC</span>
         </a>
       
@@ -625,20 +752,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="javabin"
         id="heading-37e0f72704a3a661b40bd1b8aced49c5" role="tab" data-toggle="collapse" href="#collapse-37e0f72704a3a661b40bd1b8aced49c5"
         aria-expanded="false"
       >
         javabin
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/javabin/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-37e0f72704a3a661b40bd1b8aced49c5" role="tabpanel" aria-labelledby="heading-37e0f72704a3a661b40bd1b8aced49c5">
+      
+        <a href="/categories/java/javabin/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>3</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-37e0f72704a3a661b40bd1b8aced49c5"
+           role="tabpanel" aria-labelledby="heading-37e0f72704a3a661b40bd1b8aced49c5">
         
         
           
@@ -647,21 +779,27 @@
     
       
       
-        <a href="/2021/10/24/java-aop/" class="list-group-item list-group-item-action">
+        <a href="/2021/10/24/java-aop/" title="java aop"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">java aop</span>
         </a>
       
     
       
       
-        <a href="/2021/05/18/java-bin/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/18/java-bin/" title="java bin"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">java bin</span>
         </a>
       
     
       
       
-        <a href="/2021/05/18/java-thread-pool/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/18/java-thread-pool/" title="java-线程池"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">java-线程池</span>
         </a>
       
@@ -674,20 +812,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="java-interview"
         id="heading-bc3a992ae0754a4a1b48db239e6c10a1" role="tab" data-toggle="collapse" href="#collapse-bc3a992ae0754a4a1b48db239e6c10a1"
         aria-expanded="false"
       >
         java-interview
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/java-interview/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-bc3a992ae0754a4a1b48db239e6c10a1" role="tabpanel" aria-labelledby="heading-bc3a992ae0754a4a1b48db239e6c10a1">
+      
+        <a href="/categories/java/java-interview/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>2</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-bc3a992ae0754a4a1b48db239e6c10a1"
+           role="tabpanel" aria-labelledby="heading-bc3a992ae0754a4a1b48db239e6c10a1">
         
         
           
@@ -696,14 +839,18 @@
     
       
       
-        <a href="/2021/10/13/java-interview-2/" class="list-group-item list-group-item-action">
+        <a href="/2021/10/13/java-interview-2/" title="java interview 2"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">java interview 2</span>
         </a>
       
     
       
       
-        <a href="/2021/10/12/java-interview-1/" class="list-group-item list-group-item-action">
+        <a href="/2021/10/12/java-interview-1/" title="java hce"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">java hce</span>
         </a>
       
@@ -716,55 +863,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-a644e3558852a426590ecde132456fa5" role="tab" data-toggle="collapse" href="#collapse-a644e3558852a426590ecde132456fa5"
-        aria-expanded="false"
-      >
-        basic-language
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/java/basic-language/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-a644e3558852a426590ecde132456fa5" role="tabpanel" aria-labelledby="heading-a644e3558852a426590ecde132456fa5">
-        
-        
-          
-  <div class="category-post-list">
     
-    
-      
-      
-        <a href="/2020/04/05/java-regular/" class="list-group-item list-group-item-action">
-          <span class="category-post">正则表达式</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="json"
         id="heading-466deec76ecdf5fca6d38571f6324d54" role="tab" data-toggle="collapse" href="#collapse-466deec76ecdf5fca6d38571f6324d54"
         aria-expanded="false"
       >
         json
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/java/json/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-466deec76ecdf5fca6d38571f6324d54" role="tabpanel" aria-labelledby="heading-466deec76ecdf5fca6d38571f6324d54">
+      
+        <a href="/categories/java/json/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-466deec76ecdf5fca6d38571f6324d54"
+           role="tabpanel" aria-labelledby="heading-466deec76ecdf5fca6d38571f6324d54">
         
         
           
@@ -773,7 +890,9 @@
     
       
       
-        <a href="/2021/05/16/java-jackson/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/16/java-jackson/" title="Jackson"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Jackson</span>
         </a>
       
@@ -784,26 +903,73 @@
       </div>
     </div>
   
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="basic-language"
+        id="heading-a644e3558852a426590ecde132456fa5" role="tab" data-toggle="collapse" href="#collapse-a644e3558852a426590ecde132456fa5"
+        aria-expanded="false"
+      >
+        basic-language
+        <span class="list-group-count"></span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+        <a href="/categories/java/basic-language/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-a644e3558852a426590ecde132456fa5"
+           role="tabpanel" aria-labelledby="heading-a644e3558852a426590ecde132456fa5">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2020/04/05/java-regular/" title="正则表达式"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">正则表达式</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
         
       </div>
     </div>
   
     
     
-    <div class="category row">
-      <a
-        class="category-item  list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="basic-component"
         id="heading-ea30e682f3960199fc37553b1da0f054" role="tab" data-toggle="collapse" href="#collapse-ea30e682f3960199fc37553b1da0f054"
         aria-expanded="true"
       >
         basic-component
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>38</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-ea30e682f3960199fc37553b1da0f054" role="tabpanel" aria-labelledby="heading-ea30e682f3960199fc37553b1da0f054">
+      
+        <a href="/categories/basic-component/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>38</span>
+        </a>
+      
+      <div class="category-collapse collapse show" id="collapse-ea30e682f3960199fc37553b1da0f054"
+           role="tabpanel" aria-labelledby="heading-ea30e682f3960199fc37553b1da0f054">
         
         
           
@@ -815,23 +981,27 @@
 
           
   
-  
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="docker"
         id="heading-05b6053c41a2130afd6fc3b158bda4e6" role="tab" data-toggle="collapse" href="#collapse-05b6053c41a2130afd6fc3b158bda4e6"
         aria-expanded="false"
       >
         docker
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/docker/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>11</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-05b6053c41a2130afd6fc3b158bda4e6" role="tabpanel" aria-labelledby="heading-05b6053c41a2130afd6fc3b158bda4e6">
+      
+        <a href="/categories/basic-component/docker/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>11</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-05b6053c41a2130afd6fc3b158bda4e6"
+           role="tabpanel" aria-labelledby="heading-05b6053c41a2130afd6fc3b158bda4e6">
         
         
           
@@ -840,71 +1010,91 @@
     
       
       
-        <a href="/2021/05/09/docker-ssl/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/09/docker-ssl/" title="docker-ssl"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">docker-ssl</span>
         </a>
       
     
       
       
-        <a href="/2021/04/23/docker-compose/" class="list-group-item list-group-item-action">
+        <a href="/2021/04/23/docker-compose/" title="docker compose"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">docker compose</span>
         </a>
       
     
       
       
-        <a href="/2020/06/03/docker-%20design-architecture/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/03/docker-%20design-architecture/" title="Docker Principal"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Docker Principal</span>
         </a>
       
     
       
       
-        <a href="/2020/06/03/docker-container-use/" class="list-group-item list-group-item-action">
-          <span class="category-post">Docker container</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2020/06/03/docker-file/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/03/docker-file/" title="Docker File"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Docker File</span>
         </a>
       
     
       
       
-        <a href="/2020/06/03/docker-mirror-principal/" class="list-group-item list-group-item-action">
-          <span class="category-post">docker mirror principal</span>
+        <a href="/2020/06/03/docker-container-use/" title="Docker container"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Docker container</span>
         </a>
       
     
       
       
-        <a href="/2020/06/03/docker-security-1/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/03/docker-security-1/" title="docker security"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">docker security</span>
         </a>
       
     
       
       
-        <a href="/2020/06/03/docker-security-2/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/03/docker-mirror-principal/" title="docker mirror principal"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">docker mirror principal</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/06/03/docker-security-2/" title="docker security 2"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">docker security 2</span>
         </a>
       
     
       
       
-        <a href="/2020/06/03/docker-technology-%20principal/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/03/docker-technology-%20principal/" title="Docker 技术原理"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Docker 技术原理</span>
         </a>
       
     
       
       
-        <a href="/2020/06/03/docker-underly-isolation/" class="list-group-item list-group-item-action">
-          <span class="category-post">docker underly isolation</span>
+        <a href="/2020/06/03/docker-mirro-warehouse/" title="docker mirro warehouse"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">docker mirro warehouse</span>
         </a>
       
     
@@ -922,20 +1112,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="mysql"
         id="heading-81c3b080dad537de7e10e0987a4bf52e" role="tab" data-toggle="collapse" href="#collapse-81c3b080dad537de7e10e0987a4bf52e"
         aria-expanded="false"
       >
         mysql
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/mysql/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>6</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-81c3b080dad537de7e10e0987a4bf52e" role="tabpanel" aria-labelledby="heading-81c3b080dad537de7e10e0987a4bf52e">
+      
+        <a href="/categories/basic-component/mysql/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>6</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-81c3b080dad537de7e10e0987a4bf52e"
+           role="tabpanel" aria-labelledby="heading-81c3b080dad537de7e10e0987a4bf52e">
         
         
           
@@ -944,42 +1139,54 @@
     
       
       
-        <a href="/2021/11/04/mysql-master-slave/" class="list-group-item list-group-item-action">
+        <a href="/2021/11/04/mysql-master-slave/" title="mysql-master-slave"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">mysql-master-slave</span>
         </a>
       
     
       
       
-        <a href="/2021/04/25/mysql-interview-2/" class="list-group-item list-group-item-action">
+        <a href="/2021/04/25/mysql-interview-2/" title="mysql面试题"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">mysql面试题</span>
         </a>
       
     
       
       
-        <a href="/2020/07/27/mysql-install/" class="list-group-item list-group-item-action">
+        <a href="/2020/07/27/mysql-install/" title="mysql 免安装配置学习"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">mysql 免安装配置学习</span>
         </a>
       
     
       
       
-        <a href="/2020/07/04/mysql-DDL/" class="list-group-item list-group-item-action">
-          <span class="category-post">mysql-DDL</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2020/07/04/mysql-DML/" class="list-group-item list-group-item-action">
+        <a href="/2020/07/04/mysql-DML/" title="mysql-DML"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">mysql-DML</span>
         </a>
       
     
       
       
-        <a href="/2020/06/29/mysql-DQL/" class="list-group-item list-group-item-action">
+        <a href="/2020/07/04/mysql-DDL/" title="mysql-DDL"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mysql-DDL</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/06/29/mysql-DQL/" title="mysql-DQL"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">mysql-DQL</span>
         </a>
       
@@ -992,20 +1199,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="apache"
         id="heading-b6efd606d118d0f62066e31419ff04cc" role="tab" data-toggle="collapse" href="#collapse-b6efd606d118d0f62066e31419ff04cc"
         aria-expanded="false"
       >
         apache
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/apache/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>4</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-b6efd606d118d0f62066e31419ff04cc" role="tabpanel" aria-labelledby="heading-b6efd606d118d0f62066e31419ff04cc">
+      
+        <a href="/categories/basic-component/apache/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>4</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-b6efd606d118d0f62066e31419ff04cc"
+           role="tabpanel" aria-labelledby="heading-b6efd606d118d0f62066e31419ff04cc">
         
         
           
@@ -1014,29 +1226,37 @@
     
       
       
-        <a href="/2022/09/26/apache-log/" class="list-group-item list-group-item-action">
+        <a href="/2022/09/26/apache-log/" title="apache-log"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">apache-log</span>
         </a>
       
     
       
       
-        <a href="/2021/05/10/java-utils-files/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/10/java-utils-files/" title="java utils files"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">java utils files</span>
         </a>
       
     
       
       
-        <a href="/2020/05/05/apache-config-virtual/" class="list-group-item list-group-item-action">
-          <span class="category-post">apache-config-virtual</span>
+        <a href="/2020/05/05/apache-config-config/" title="apache-dav-config"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">apache-dav-config</span>
         </a>
       
     
       
       
-        <a href="/2020/05/05/apache-config-config/" class="list-group-item list-group-item-action">
-          <span class="category-post">apache-dav-config</span>
+        <a href="/2020/05/05/apache-config-virtual/" title="apache-config-virtual"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">apache-config-virtual</span>
         </a>
       
     
@@ -1048,20 +1268,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="nginx"
         id="heading-ee434023cf89d7dfb21f63d64f0f9d74" role="tab" data-toggle="collapse" href="#collapse-ee434023cf89d7dfb21f63d64f0f9d74"
         aria-expanded="false"
       >
         nginx
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/nginx/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-ee434023cf89d7dfb21f63d64f0f9d74" role="tabpanel" aria-labelledby="heading-ee434023cf89d7dfb21f63d64f0f9d74">
+      
+        <a href="/categories/basic-component/nginx/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>3</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-ee434023cf89d7dfb21f63d64f0f9d74"
+           role="tabpanel" aria-labelledby="heading-ee434023cf89d7dfb21f63d64f0f9d74">
         
         
           
@@ -1070,21 +1295,27 @@
     
       
       
-        <a href="/2021/10/11/nginx-start/" class="list-group-item list-group-item-action">
+        <a href="/2021/10/11/nginx-start/" title="nginx"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">nginx</span>
         </a>
       
     
       
       
-        <a href="/2021/01/01/nginx-all/" class="list-group-item list-group-item-action">
+        <a href="/2021/01/01/nginx-all/" title="nginx all"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">nginx all</span>
         </a>
       
     
       
       
-        <a href="/2020/07/27/nginx-install/" class="list-group-item list-group-item-action">
+        <a href="/2020/07/27/nginx-install/" title="一个简单的反向代理Nginx"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">一个简单的反向代理Nginx</span>
         </a>
       
@@ -1097,62 +1328,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ba9f11ecc3497d9993b933fdc2bd61e5" role="tab" data-toggle="collapse" href="#collapse-ba9f11ecc3497d9993b933fdc2bd61e5"
-        aria-expanded="false"
-      >
-        git
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/basic-component/git/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-ba9f11ecc3497d9993b933fdc2bd61e5" role="tabpanel" aria-labelledby="heading-ba9f11ecc3497d9993b933fdc2bd61e5">
-        
-        
-          
-  <div class="category-post-list">
     
-    
-      
-      
-        <a href="/2021/06/17/basic-git-clean/" class="list-group-item list-group-item-action">
-          <span class="category-post">git-clean</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2020/10/12/basic-git-start/" class="list-group-item list-group-item-action">
-          <span class="category-post">git-start</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="tomcat"
         id="heading-1b359d8753858b55befa0441067aaed3" role="tab" data-toggle="collapse" href="#collapse-1b359d8753858b55befa0441067aaed3"
         aria-expanded="false"
       >
         tomcat
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/tomcat/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-1b359d8753858b55befa0441067aaed3" role="tabpanel" aria-labelledby="heading-1b359d8753858b55befa0441067aaed3">
+      
+        <a href="/categories/basic-component/tomcat/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>2</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-1b359d8753858b55befa0441067aaed3"
+           role="tabpanel" aria-labelledby="heading-1b359d8753858b55befa0441067aaed3">
         
         
           
@@ -1161,14 +1355,18 @@
     
       
       
-        <a href="/2021/04/26/basic-tomcat-servlet/" class="list-group-item list-group-item-action">
+        <a href="/2021/04/26/basic-tomcat-servlet/" title="tomcat servlet"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">tomcat servlet</span>
         </a>
       
     
       
       
-        <a href="/2021/04/26/tomcat-interview/" class="list-group-item list-group-item-action">
+        <a href="/2021/04/26/tomcat-interview/" title="tomcat interview"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">tomcat interview</span>
         </a>
       
@@ -1181,20 +1379,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-1cba77c39b4d0a81024a7aada3655a28" role="tab" data-toggle="collapse" href="#collapse-1cba77c39b4d0a81024a7aada3655a28"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="git"
+        id="heading-ba9f11ecc3497d9993b933fdc2bd61e5" role="tab" data-toggle="collapse" href="#collapse-ba9f11ecc3497d9993b933fdc2bd61e5"
         aria-expanded="false"
       >
-        idea
+        git
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/idea/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-1cba77c39b4d0a81024a7aada3655a28" role="tabpanel" aria-labelledby="heading-1cba77c39b4d0a81024a7aada3655a28">
+      
+        <a href="/categories/basic-component/git/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>2</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-ba9f11ecc3497d9993b933fdc2bd61e5"
+           role="tabpanel" aria-labelledby="heading-ba9f11ecc3497d9993b933fdc2bd61e5">
         
         
           
@@ -1203,14 +1406,69 @@
     
       
       
-        <a href="/2021/05/18/idea-jrebel/" class="list-group-item list-group-item-action">
+        <a href="/2021/06/17/basic-git-clean/" title="git-clean"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git-clean</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/10/12/basic-git-start/" title="git-start"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git-start</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="idea"
+        id="heading-1cba77c39b4d0a81024a7aada3655a28" role="tab" data-toggle="collapse" href="#collapse-1cba77c39b4d0a81024a7aada3655a28"
+        aria-expanded="false"
+      >
+        idea
+        <span class="list-group-count"></span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+        <a href="/categories/basic-component/idea/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>2</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-1cba77c39b4d0a81024a7aada3655a28"
+           role="tabpanel" aria-labelledby="heading-1cba77c39b4d0a81024a7aada3655a28">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2021/05/18/idea-jrebel/" title="jRebel"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">jRebel</span>
         </a>
       
     
       
       
-        <a href="/2020/04/13/idea-plugs/" class="list-group-item list-group-item-action">
+        <a href="/2020/04/13/idea-plugs/" title="idea plugs"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">idea plugs</span>
         </a>
       
@@ -1223,20 +1481,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="maven"
         id="heading-402c5d9af6b43711ea070bee5170f74d" role="tab" data-toggle="collapse" href="#collapse-402c5d9af6b43711ea070bee5170f74d"
         aria-expanded="false"
       >
         maven
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/maven/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-402c5d9af6b43711ea070bee5170f74d" role="tabpanel" aria-labelledby="heading-402c5d9af6b43711ea070bee5170f74d">
+      
+        <a href="/categories/basic-component/maven/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>2</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-402c5d9af6b43711ea070bee5170f74d"
+           role="tabpanel" aria-labelledby="heading-402c5d9af6b43711ea070bee5170f74d">
         
         
           
@@ -1245,14 +1508,18 @@
     
       
       
-        <a href="/2021/05/11/maven-centeral/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/11/maven-centeral/" title="maven to centeral"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">maven to centeral</span>
         </a>
       
     
       
       
-        <a href="/2020/07/27/maven-start/" class="list-group-item list-group-item-action">
+        <a href="/2020/07/27/maven-start/" title="maven config start"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">maven config start</span>
         </a>
       
@@ -1265,90 +1532,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-7ac69cf2e1141a19ecc0355519d41d43" role="tab" data-toggle="collapse" href="#collapse-7ac69cf2e1141a19ecc0355519d41d43"
-        aria-expanded="false"
-      >
-        vnc
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/basic-component/vnc/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-7ac69cf2e1141a19ecc0355519d41d43" role="tabpanel" aria-labelledby="heading-7ac69cf2e1141a19ecc0355519d41d43">
-        
-        
-          
-  <div class="category-post-list">
     
-    
-      
-      
-        <a href="/2021/01/05/basic-connect-vncserver/" class="list-group-item list-group-item-action">
-          <span class="category-post">vncserver</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-40b6d5dcd2295641ee77cf0cd8e9b144" role="tab" data-toggle="collapse" href="#collapse-40b6d5dcd2295641ee77cf0cd8e9b144"
-        aria-expanded="false"
-      >
-        frp
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/basic-component/frp/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-40b6d5dcd2295641ee77cf0cd8e9b144" role="tabpanel" aria-labelledby="heading-40b6d5dcd2295641ee77cf0cd8e9b144">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2021/01/07/basic-connect-frp/" class="list-group-item list-group-item-action">
-          <span class="category-post">frp</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="http"
         id="heading-80791b3ae7002cb88c246876d9faa8f8" role="tab" data-toggle="collapse" href="#collapse-80791b3ae7002cb88c246876d9faa8f8"
         aria-expanded="false"
       >
         http
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/http/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-80791b3ae7002cb88c246876d9faa8f8" role="tabpanel" aria-labelledby="heading-80791b3ae7002cb88c246876d9faa8f8">
+      
+        <a href="/categories/basic-component/http/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-80791b3ae7002cb88c246876d9faa8f8"
+           role="tabpanel" aria-labelledby="heading-80791b3ae7002cb88c246876d9faa8f8">
         
         
           
@@ -1357,7 +1559,9 @@
     
       
       
-        <a href="/2021/05/26/basic-http-content/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/26/basic-http-content/" title="http content"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">http content</span>
         </a>
       
@@ -1370,20 +1574,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-eb68f837865ead850fdf78b51fb2bd73" role="tab" data-toggle="collapse" href="#collapse-eb68f837865ead850fdf78b51fb2bd73"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="vnc"
+        id="heading-7ac69cf2e1141a19ecc0355519d41d43" role="tab" data-toggle="collapse" href="#collapse-7ac69cf2e1141a19ecc0355519d41d43"
         aria-expanded="false"
       >
-        rocketmq
+        vnc
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/rocketmq/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-eb68f837865ead850fdf78b51fb2bd73" role="tabpanel" aria-labelledby="heading-eb68f837865ead850fdf78b51fb2bd73">
+      
+        <a href="/categories/basic-component/vnc/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-7ac69cf2e1141a19ecc0355519d41d43"
+           role="tabpanel" aria-labelledby="heading-7ac69cf2e1141a19ecc0355519d41d43">
         
         
           
@@ -1392,7 +1601,93 @@
     
       
       
-        <a href="/2022/09/06/basic-middle-rocketmq/" class="list-group-item list-group-item-action">
+        <a href="/2021/01/05/basic-connect-vncserver/" title="vncserver"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">vncserver</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="frp"
+        id="heading-40b6d5dcd2295641ee77cf0cd8e9b144" role="tab" data-toggle="collapse" href="#collapse-40b6d5dcd2295641ee77cf0cd8e9b144"
+        aria-expanded="false"
+      >
+        frp
+        <span class="list-group-count"></span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+        <a href="/categories/basic-component/frp/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-40b6d5dcd2295641ee77cf0cd8e9b144"
+           role="tabpanel" aria-labelledby="heading-40b6d5dcd2295641ee77cf0cd8e9b144">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2021/01/07/basic-connect-frp/" title="frp"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">frp</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="rocketmq"
+        id="heading-eb68f837865ead850fdf78b51fb2bd73" role="tab" data-toggle="collapse" href="#collapse-eb68f837865ead850fdf78b51fb2bd73"
+        aria-expanded="false"
+      >
+        rocketmq
+        <span class="list-group-count"></span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+        <a href="/categories/basic-component/rocketmq/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-eb68f837865ead850fdf78b51fb2bd73"
+           role="tabpanel" aria-labelledby="heading-eb68f837865ead850fdf78b51fb2bd73">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/09/06/basic-middle-rocketmq/" title="rocketmq 原理解析"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">rocketmq 原理解析</span>
         </a>
       
@@ -1405,20 +1700,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="haproxy"
         id="heading-75cbfa4f4f9f0606171f7bc3c61905c7" role="tab" data-toggle="collapse" href="#collapse-75cbfa4f4f9f0606171f7bc3c61905c7"
         aria-expanded="false"
       >
         haproxy
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/haproxy/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-75cbfa4f4f9f0606171f7bc3c61905c7" role="tabpanel" aria-labelledby="heading-75cbfa4f4f9f0606171f7bc3c61905c7">
+      
+        <a href="/categories/basic-component/haproxy/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-75cbfa4f4f9f0606171f7bc3c61905c7"
+           role="tabpanel" aria-labelledby="heading-75cbfa4f4f9f0606171f7bc3c61905c7">
         
         
           
@@ -1427,7 +1727,9 @@
     
       
       
-        <a href="/2021/01/15/haproxy/" class="list-group-item list-group-item-action">
+        <a href="/2021/01/15/haproxy/" title="haproxy"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">haproxy</span>
         </a>
       
@@ -1440,20 +1742,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ssh"
         id="heading-1787d7646304c5d987cf4e64a3973dc7" role="tab" data-toggle="collapse" href="#collapse-1787d7646304c5d987cf4e64a3973dc7"
         aria-expanded="false"
       >
         ssh
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/basic-component/ssh/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-1787d7646304c5d987cf4e64a3973dc7" role="tabpanel" aria-labelledby="heading-1787d7646304c5d987cf4e64a3973dc7">
+      
+        <a href="/categories/basic-component/ssh/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-1787d7646304c5d987cf4e64a3973dc7"
+           role="tabpanel" aria-labelledby="heading-1787d7646304c5d987cf4e64a3973dc7">
         
         
           
@@ -1462,7 +1769,9 @@
     
       
       
-        <a href="/2020/05/05/linux-ssh-password/" class="list-group-item list-group-item-action">
+        <a href="/2020/05/05/linux-ssh-password/" title="ssh 配置教程"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">ssh 配置教程</span>
         </a>
       
@@ -1479,20 +1788,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item  list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="system"
         id="heading-54b53072540eeeb8f8e9343e71f28176" role="tab" data-toggle="collapse" href="#collapse-54b53072540eeeb8f8e9343e71f28176"
         aria-expanded="true"
       >
         system
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/system/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>18</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-54b53072540eeeb8f8e9343e71f28176" role="tabpanel" aria-labelledby="heading-54b53072540eeeb8f8e9343e71f28176">
+      
+        <a href="/categories/system/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>18</span>
+        </a>
+      
+      <div class="category-collapse collapse show" id="collapse-54b53072540eeeb8f8e9343e71f28176"
+           role="tabpanel" aria-labelledby="heading-54b53072540eeeb8f8e9343e71f28176">
         
         
           
@@ -1502,21 +1816,27 @@
     
       
       
-        <a href="/2021/05/17/macos-profile/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/17/macos-profile/" title="macos-profile"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">macos-profile</span>
         </a>
       
     
       
       
-        <a href="/2021/04/20/mac-launchctl/" class="list-group-item list-group-item-action">
+        <a href="/2021/04/20/mac-launchctl/" title="mac-launchctl"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">mac-launchctl</span>
         </a>
       
     
       
       
-        <a href="/2021/01/10/macos/" class="list-group-item list-group-item-action">
+        <a href="/2021/01/10/macos/" title="luna-macos"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">luna-macos</span>
         </a>
       
@@ -1525,23 +1845,27 @@
 
           
   
-  
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="linux"
         id="heading-e206a54e97690cce50cc872dd70ee896" role="tab" data-toggle="collapse" href="#collapse-e206a54e97690cce50cc872dd70ee896"
         aria-expanded="false"
       >
         linux
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/system/linux/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>14</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-e206a54e97690cce50cc872dd70ee896" role="tabpanel" aria-labelledby="heading-e206a54e97690cce50cc872dd70ee896">
+      
+        <a href="/categories/system/linux/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>14</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-e206a54e97690cce50cc872dd70ee896"
+           role="tabpanel" aria-labelledby="heading-e206a54e97690cce50cc872dd70ee896">
         
         
           
@@ -1551,71 +1875,91 @@
     
       
       
-        <a href="/2021/10/12/linux-du/" class="list-group-item list-group-item-action">
+        <a href="/2021/10/12/linux-du/" title="linux du"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">linux du</span>
         </a>
       
     
       
       
-        <a href="/2021/10/09/linux-chmod/" class="list-group-item list-group-item-action">
+        <a href="/2021/10/09/linux-chmod/" title="linux chmod"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">linux chmod</span>
         </a>
       
     
       
       
-        <a href="/2021/06/05/linux-command/" class="list-group-item list-group-item-action">
+        <a href="/2021/06/05/linux-command/" title="linux command"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">linux command</span>
         </a>
       
     
       
       
-        <a href="/2020/12/25/linux-user-group/" class="list-group-item list-group-item-action">
+        <a href="/2020/12/25/linux-user-group/" title="linux user group"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">linux user group</span>
         </a>
       
     
       
       
-        <a href="/2020/12/24/linux-auto-mount/" class="list-group-item list-group-item-action">
+        <a href="/2020/12/24/linux-auto-mount/" title="linux automount"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">linux automount</span>
         </a>
       
     
       
       
-        <a href="/2020/12/24/linux-crontabs/" class="list-group-item list-group-item-action">
+        <a href="/2020/12/24/linux-crontabs/" title="linux crontabs"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">linux crontabs</span>
         </a>
       
     
       
       
-        <a href="/2020/12/24/linux-practice/" class="list-group-item list-group-item-action">
+        <a href="/2020/12/24/linux-practice/" title="linux practice"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">linux practice</span>
         </a>
       
     
       
       
-        <a href="/2020/12/24/linux-top/" class="list-group-item list-group-item-action">
+        <a href="/2020/12/24/linux-top/" title="linux top"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">linux top</span>
         </a>
       
     
       
       
-        <a href="/2020/04/02/linux-systemctl/" class="list-group-item list-group-item-action">
-          <span class="category-post">linux systemctl</span>
+        <a href="/2020/04/02/linux-tar/" title="linux tar"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">linux tar</span>
         </a>
       
     
       
       
-        <a href="/2020/04/02/linux-tar/" class="list-group-item list-group-item-action">
-          <span class="category-post">linux tar</span>
+        <a href="/2020/04/02/linux-systemctl/" title="linux systemctl"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">linux systemctl</span>
         </a>
       
     
@@ -1623,23 +1967,27 @@
 
           
   
-  
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="kaili"
         id="heading-c3b831951baf129b6aaf94e24a278265" role="tab" data-toggle="collapse" href="#collapse-c3b831951baf129b6aaf94e24a278265"
         aria-expanded="false"
       >
         kaili
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/system/linux/kaili/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-c3b831951baf129b6aaf94e24a278265" role="tabpanel" aria-labelledby="heading-c3b831951baf129b6aaf94e24a278265">
+      
+        <a href="/categories/system/linux/kaili/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>3</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-c3b831951baf129b6aaf94e24a278265"
+           role="tabpanel" aria-labelledby="heading-c3b831951baf129b6aaf94e24a278265">
         
         
           
@@ -1648,21 +1996,27 @@
     
       
       
-        <a href="/2020/09/19/kali-1/" class="list-group-item list-group-item-action">
-          <span class="category-post">安装和启动Kali</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2020/09/19/kali-3/" class="list-group-item list-group-item-action">
+        <a href="/2020/09/19/kali-3/" title="kali高级测试环境"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">kali高级测试环境</span>
         </a>
       
     
       
       
-        <a href="/2020/09/19/kali-2/" class="list-group-item list-group-item-action">
+        <a href="/2020/09/19/kali-1/" title="安装和启动Kali"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">安装和启动Kali</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/09/19/kali-2/" title="定制 Kali Linux"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">定制 Kali Linux</span>
         </a>
       
@@ -1675,20 +2029,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ubuntu"
         id="heading-1d41c853af58d3a7ae54990ce29417d8" role="tab" data-toggle="collapse" href="#collapse-1d41c853af58d3a7ae54990ce29417d8"
         aria-expanded="false"
       >
         ubuntu
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/system/linux/ubuntu/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-1d41c853af58d3a7ae54990ce29417d8" role="tabpanel" aria-labelledby="heading-1d41c853af58d3a7ae54990ce29417d8">
+      
+        <a href="/categories/system/linux/ubuntu/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-1d41c853af58d3a7ae54990ce29417d8"
+           role="tabpanel" aria-labelledby="heading-1d41c853af58d3a7ae54990ce29417d8">
         
         
           
@@ -1697,7 +2056,9 @@
     
       
       
-        <a href="/2021/01/01/linux-apt-get/" class="list-group-item list-group-item-action">
+        <a href="/2021/01/01/linux-apt-get/" title="apt-get"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">apt-get</span>
         </a>
       
@@ -1714,20 +2075,25 @@
   
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="macos"
         id="heading-43b9d8ea18c48c3a64c4e37338fc668f" role="tab" data-toggle="collapse" href="#collapse-43b9d8ea18c48c3a64c4e37338fc668f"
         aria-expanded="false"
       >
         macos
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/system/macos/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-43b9d8ea18c48c3a64c4e37338fc668f" role="tabpanel" aria-labelledby="heading-43b9d8ea18c48c3a64c4e37338fc668f">
+      
+        <a href="/categories/system/macos/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-43b9d8ea18c48c3a64c4e37338fc668f"
+           role="tabpanel" aria-labelledby="heading-43b9d8ea18c48c3a64c4e37338fc668f">
         
         
           
@@ -1736,7 +2102,9 @@
     
       
       
-        <a href="/2020/05/05/macos-brew/" class="list-group-item list-group-item-action">
+        <a href="/2020/05/05/macos-brew/" title="homebrew教程"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">homebrew教程</span>
         </a>
       
@@ -1753,20 +2121,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item  list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="project"
         id="heading-46f86faa6bbf9ac94a7e459509a20ed0" role="tab" data-toggle="collapse" href="#collapse-46f86faa6bbf9ac94a7e459509a20ed0"
         aria-expanded="true"
       >
         project
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/project/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-46f86faa6bbf9ac94a7e459509a20ed0" role="tabpanel" aria-labelledby="heading-46f86faa6bbf9ac94a7e459509a20ed0">
+      
+        <a href="/categories/project/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>3</span>
+        </a>
+      
+      <div class="category-collapse collapse show" id="collapse-46f86faa6bbf9ac94a7e459509a20ed0"
+           role="tabpanel" aria-labelledby="heading-46f86faa6bbf9ac94a7e459509a20ed0">
         
         
           
@@ -1776,14 +2149,18 @@
     
       
       
-        <a href="/2020/08/10/luna-commons-common/" class="list-group-item list-group-item-action">
+        <a href="/2020/08/10/luna-commons-common/" title="luna-commons-common"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">luna-commons-common</span>
         </a>
       
     
       
       
-        <a href="/2020/07/27/luna-commons/" class="list-group-item list-group-item-action">
+        <a href="/2020/07/27/luna-commons/" title="luna-commons"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">luna-commons</span>
         </a>
       
@@ -1792,23 +2169,27 @@
 
           
   
-  
     
     
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="mall"
         id="heading-2ee385d4e42e07f2c539b597559e70ee" role="tab" data-toggle="collapse" href="#collapse-2ee385d4e42e07f2c539b597559e70ee"
         aria-expanded="false"
       >
         mall
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/project/mall/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-2ee385d4e42e07f2c539b597559e70ee" role="tabpanel" aria-labelledby="heading-2ee385d4e42e07f2c539b597559e70ee">
+      
+        <a href="/categories/project/mall/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-2ee385d4e42e07f2c539b597559e70ee"
+           role="tabpanel" aria-labelledby="heading-2ee385d4e42e07f2c539b597559e70ee">
         
         
           
@@ -1817,7 +2198,9 @@
     
       
       
-        <a href="/2021/06/23/other-mall-attr/" class="list-group-item list-group-item-action">
+        <a href="/2021/06/23/other-mall-attr/" title="mall attribute"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">mall attribute</span>
         </a>
       
@@ -1834,20 +2217,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="genesis"
         id="heading-289ffeb2a745ccf51ca89a297f47e382" role="tab" data-toggle="collapse" href="#collapse-289ffeb2a745ccf51ca89a297f47e382"
         aria-expanded="false"
       >
         genesis
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/genesis/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-289ffeb2a745ccf51ca89a297f47e382" role="tabpanel" aria-labelledby="heading-289ffeb2a745ccf51ca89a297f47e382">
+      
+        <a href="/categories/genesis/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>3</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-289ffeb2a745ccf51ca89a297f47e382"
+           role="tabpanel" aria-labelledby="heading-289ffeb2a745ccf51ca89a297f47e382">
         
         
           
@@ -1856,21 +2244,27 @@
     
       
       
-        <a href="/2020/06/01/project-genesis-reply/" class="list-group-item list-group-item-action">
-          <span class="category-post">reply</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2020/06/01/project-genesis-2/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/01/project-genesis-2/" title="智慧教学辅助系统-作品思路"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">智慧教学辅助系统-作品思路</span>
         </a>
       
     
       
       
-        <a href="/2020/06/01/project-genesis-1/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/01/project-genesis-reply/" title="reply"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">reply</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/06/01/project-genesis-1/" title="智慧教学辅助系统-作品简介"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">智慧教学辅助系统-作品简介</span>
         </a>
       
@@ -1883,20 +2277,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="vue"
         id="heading-951c1f757a9f918f0624cd5cb90b890d" role="tab" data-toggle="collapse" href="#collapse-951c1f757a9f918f0624cd5cb90b890d"
         aria-expanded="false"
       >
         vue
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/vue/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>3</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-951c1f757a9f918f0624cd5cb90b890d" role="tabpanel" aria-labelledby="heading-951c1f757a9f918f0624cd5cb90b890d">
+      
+        <a href="/categories/vue/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>3</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-951c1f757a9f918f0624cd5cb90b890d"
+           role="tabpanel" aria-labelledby="heading-951c1f757a9f918f0624cd5cb90b890d">
         
         
           
@@ -1905,21 +2304,27 @@
     
       
       
-        <a href="/2020/09/27/vue-project/" class="list-group-item list-group-item-action">
+        <a href="/2020/09/27/vue-project/" title="vue-project"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">vue-project</span>
         </a>
       
     
       
       
-        <a href="/2020/06/15/vue-demo/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/15/vue-demo/" title="vue-demo"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">vue-demo</span>
         </a>
       
     
       
       
-        <a href="/2020/06/12/vue-start/" class="list-group-item list-group-item-action">
+        <a href="/2020/06/12/vue-start/" title="vue-start"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">vue-start</span>
         </a>
       
@@ -1932,20 +2337,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="javascript"
         id="heading-de9b9ed78d7e2e1dceeffee780e2f919" role="tab" data-toggle="collapse" href="#collapse-de9b9ed78d7e2e1dceeffee780e2f919"
         aria-expanded="false"
       >
         javascript
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/javascript/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-de9b9ed78d7e2e1dceeffee780e2f919" role="tabpanel" aria-labelledby="heading-de9b9ed78d7e2e1dceeffee780e2f919">
+      
+        <a href="/categories/javascript/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-de9b9ed78d7e2e1dceeffee780e2f919"
+           role="tabpanel" aria-labelledby="heading-de9b9ed78d7e2e1dceeffee780e2f919">
         
         
           
@@ -1954,7 +2364,9 @@
     
       
       
-        <a href="/2021/07/05/javascript-equls/" class="list-group-item list-group-item-action">
+        <a href="/2021/07/05/javascript-equls/" title="javascript equals"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">javascript equals</span>
         </a>
       
@@ -1967,20 +2379,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="vim"
         id="heading-f898198629bb686f1dfc3d1ac8b13506" role="tab" data-toggle="collapse" href="#collapse-f898198629bb686f1dfc3d1ac8b13506"
         aria-expanded="false"
       >
         vim
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/vim/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-f898198629bb686f1dfc3d1ac8b13506" role="tabpanel" aria-labelledby="heading-f898198629bb686f1dfc3d1ac8b13506">
+      
+        <a href="/categories/vim/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-f898198629bb686f1dfc3d1ac8b13506"
+           role="tabpanel" aria-labelledby="heading-f898198629bb686f1dfc3d1ac8b13506">
         
         
           
@@ -1989,7 +2406,9 @@
     
       
       
-        <a href="/2021/05/09/linux-vim/" class="list-group-item list-group-item-action">
+        <a href="/2021/05/09/linux-vim/" title="linux vim"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">linux vim</span>
         </a>
       
@@ -2002,20 +2421,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="luna"
         id="heading-ba8a48b0e34226a2992d871c65600a7c" role="tab" data-toggle="collapse" href="#collapse-ba8a48b0e34226a2992d871c65600a7c"
         aria-expanded="false"
       >
         luna
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/luna/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-ba8a48b0e34226a2992d871c65600a7c" role="tabpanel" aria-labelledby="heading-ba8a48b0e34226a2992d871c65600a7c">
+      
+        <a href="/categories/luna/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-ba8a48b0e34226a2992d871c65600a7c"
+           role="tabpanel" aria-labelledby="heading-ba8a48b0e34226a2992d871c65600a7c">
         
         
           
@@ -2024,7 +2448,9 @@
     
       
       
-        <a href="/2020/04/02/luna-welcome/" class="list-group-item list-group-item-action">
+        <a href="/2020/04/02/luna-welcome/" title="welcome!"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">welcome!</span>
         </a>
       
@@ -2037,20 +2463,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="python"
         id="heading-23eeeb4347bdd26bfc6b7ee9a3b755dd" role="tab" data-toggle="collapse" href="#collapse-23eeeb4347bdd26bfc6b7ee9a3b755dd"
         aria-expanded="false"
       >
         python
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/python/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-23eeeb4347bdd26bfc6b7ee9a3b755dd" role="tabpanel" aria-labelledby="heading-23eeeb4347bdd26bfc6b7ee9a3b755dd">
+      
+        <a href="/categories/python/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-23eeeb4347bdd26bfc6b7ee9a3b755dd"
+           role="tabpanel" aria-labelledby="heading-23eeeb4347bdd26bfc6b7ee9a3b755dd">
         
         
           
@@ -2059,7 +2490,9 @@
     
       
       
-        <a href="/2020/04/13/python-getter-setter/" class="list-group-item list-group-item-action">
+        <a href="/2020/04/13/python-getter-setter/" title="pyGetterSetter"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">pyGetterSetter</span>
         </a>
       
@@ -2071,6 +2504,7 @@
     </div>
   
 </div>
+
 
               </div>
             </div>
@@ -2091,7 +2525,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -2099,14 +2533,14 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
@@ -2118,43 +2552,45 @@
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <i class="iconfont icon-love"></i> <a href="https://github.com/czy1024" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://github.com/lunasaw" target="_blank" rel="nofollow noopener"><span>luna</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -2173,10 +2609,22 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -2186,47 +2634,24 @@
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
-  <script defer src="/js/leancloud.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">ブログは JavaScript を有効にすると最適に機能します</div>
+  </noscript>
 </body>
 </html>
